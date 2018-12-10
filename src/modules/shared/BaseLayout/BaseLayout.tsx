@@ -1,26 +1,20 @@
 import * as React from 'react';
 
-import * as searchRepositories from 'features/searchRepositories';
-
 import { RowsLayout } from 'shared/view/elements';
 import { Header, Footer } from 'shared/view/components';
 
 import { homeRedirectPath, orderRedirectPath } from '../../routes';
 import { StylesProps, provideStyles } from './BaseLayout.style';
-import { getAsyncContainer } from 'core/FeatureConnector';
 
 interface IOwnProps {
-  withSearch?: boolean;
   children: React.ReactNode;
 }
 
 type Props = IOwnProps & StylesProps;
 
-const AsyncSearchInput = getAsyncContainer(searchRepositories.loadEntry, 'SearchRepositoriesInput');
-
 class BaseLayout extends React.PureComponent<Props> {
   public render() {
-    const { classes, children, withSearch } = this.props;
+    const { classes, children } = this.props;
 
     return (
       <RowsLayout
@@ -30,7 +24,7 @@ class BaseLayout extends React.PureComponent<Props> {
             brandRedirectPath={homeRedirectPath}
             menuRedirectPaths={{ order: orderRedirectPath }}
           >
-            {withSearch && <AsyncSearchInput />}
+            header
           </Header>
         )}
       >

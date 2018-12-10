@@ -14,14 +14,12 @@ import * as autoprefixer from 'autoprefixer';
 import * as stylelint from 'stylelint';
 import * as doiuse from 'doiuse';
 
-import { ROUTES_PREFIX } from '../src/core/constants';
 import getEnvParams from '../src/core/getEnvParams';
 
 export type BuildType = 'dev' | 'prod' | 'server';
 
 const { chunkHash, withAnalyze, chunkName, withHot } = getEnvParams();
-// http://www.backalleycoder.com/2016/05/13/sghpa-the-single-page-app-hack-for-github-pages/
-const isNeed404Page: boolean = process.env.NODE_ENV_MODE === 'gh-pages' ? true : false;
+
 const workerPool = {
   workers: require('os').cpus().length - 1,
   poolTimeout: withHot ? Infinity : 2000,
@@ -46,7 +44,6 @@ export const getCommonPlugins: (type: BuildType) => webpack.Plugin[] = (type) =>
     chunksSortMode: sortChunks,
   }),
   new webpack.DefinePlugin({
-    'process.env.NODE_ENV_MODE': JSON.stringify(process.env.NODE_ENV_MODE),
     '__HOST__': JSON.stringify('http://localhost:3000'),
     '__LANG__': JSON.stringify(process.env.LANG || 'en'),
     '__CLIENT__': true,
@@ -64,13 +61,6 @@ export const getCommonPlugins: (type: BuildType) => webpack.Plugin[] = (type) =>
   ) : [])
   .concat(withHot && type !== 'prod' ? (
     new webpack.HotModuleReplacementPlugin()
-  ) : [])
-  .concat(isNeed404Page ? (
-    new HtmlWebpackPlugin({
-      filename: '404.html',
-      template: 'assets/index.html',
-      chunksSortMode: sortChunks,
-    })
   ) : []);
 
 function sortChunks(a: webpack.compilation.Chunk, b: webpack.compilation.Chunk) {
@@ -88,7 +78,8 @@ export const getCommonRules: (type: BuildType) => webpack.Rule[] = (type) => [
       {
         loader: 'thread-loader',
         options: workerPool,
-      }] as webpack.Loader[])
+      },
+    ] as webpack.Loader[])
       .concat(withHot && type === 'dev' ? {
         loader: 'babel-loader',
         options: {
@@ -195,7 +186,7 @@ export const commonConfig: webpack.Configuration = {
   target: 'web',
   context: path.resolve(__dirname, '..', 'src'),
   output: {
-    publicPath: ROUTES_PREFIX + '/',
+    publicPath: '/',
     path: path.resolve(__dirname, '..', 'build'),
     filename: `js/[name]-[${chunkHash}].bundle.js`,
     chunkFilename: `js/[${chunkName}]-[${chunkHash}].bundle.js`,
