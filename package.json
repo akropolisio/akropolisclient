@@ -1,8 +1,7 @@
 {
-  "name": "react-redux-starter-kit",
+  "name": "akropolis",
   "version": "1.0.0",
-  "description": "Starter kit from Fullstack-development company developers",
-  "main": "index.js",
+  "description": "Akropolis",
   "scripts": {
     "check-types": "node_modules/.bin/tsc -p . --noEmit",
     "dev": "npm run watch:dev",
@@ -19,10 +18,8 @@
     "test:coverage": "node_modules/.bin/jest --coverage --watch",
     "build:dev": "better-npm-run build:dev",
     "build:prod": "better-npm-run build:prod",
-    "build:gh-pages": "better-npm-run build:gh-pages",
     "analyze:dev": "better-npm-run analyze:dev",
     "analyze:prod": "better-npm-run analyze:prod",
-    "deploy:gh-pages": "better-npm-run build:gh-pages && better-npm-run deploy:gh-pages",
     "yeoman": "better-npm-run initial:yeoman",
     "stylelint-autofix": "./node_modules/.bin/stylelint \"./src/**/*.scss\" --fix"
   },
@@ -120,15 +117,6 @@
         "TS_NODE_FILES": true,
         "TS_NODE_COMPILER_OPTIONS": "{\"target\": \"es5\", \"module\": \"commonjs\"}"
       }
-    },
-    "build:gh-pages": {
-      "command": "better-npm-run build:prod",
-      "env": {
-        "NODE_ENV_MODE": "gh-pages"
-      }
-    },
-    "deploy:gh-pages": {
-      "command": "node_modules/.bin/gh-pages -d build"
     }
   },
   "repository": {
@@ -231,7 +219,6 @@
     "doiuse": "^4.2.0",
     "express": "^4.16.3",
     "file-loader": "^2.0.0",
-    "gh-pages": "^1.2.0",
     "inversify": "^5.0.1",
     "inversify-inject-decorators": "^3.1.0",
     "jss": "^9.8.3",
