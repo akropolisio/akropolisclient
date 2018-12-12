@@ -25,4 +25,6 @@ declare module '_helpers' {
   export type GetProps<T extends React.ComponentType<any>> =
     T extends React.StatelessComponent<infer SP> ? SP :
     T extends React.ComponentClass<infer CP> ? CP : never;
+
+  export type SubSet<T, R extends T> = R;
 }
