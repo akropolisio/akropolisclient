@@ -25,7 +25,8 @@
     "importHelpers": true,
     "strictPropertyInitialization": true,
     "strictFunctionTypes": false,
-    "sourceMap": true
+    "sourceMap": true,
+    "resolveJsonModule": true
   },
   "include": [
     "src/**/*",

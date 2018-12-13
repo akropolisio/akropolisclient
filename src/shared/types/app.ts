@@ -7,13 +7,13 @@ import { JSS, Theme } from 'react-jss';
 
 import Api from 'services/api/Api';
 
-export abstract class Module<C = any> {
-  public getRoutes?(): ReactElement<RouteProps> | Array<ReactElement<RouteProps>>;
-  public getReduxEntry?(): IReduxEntry;
+export interface IModule {
+  getRoutes?(): ReactElement<RouteProps> | Array<ReactElement<RouteProps>>;
+  getReduxEntry?(): IReduxEntry;
 }
 
 export interface IAppData {
-  modules: Module[];
+  modules: IModule[];
   store: Store<IAppReduxState>;
   jssDeps: IJssDependencies;
 }
