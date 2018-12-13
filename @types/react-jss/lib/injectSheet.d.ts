@@ -9,6 +9,8 @@ declare module 'react-jss/lib/injectSheet' {
 
   type ExtendedCSSProperties = {
     [key in keyof BaseCSSProps]: BaseCSSProps[key] | ((props: any) => BaseCSSProps[key]);
+  } & {
+    composes?: string | string[];
   };
 
   export interface CSSProperties extends ExtendedCSSProperties {
@@ -23,7 +25,7 @@ declare module 'react-jss/lib/injectSheet' {
    * - the `keys` are the class (names) that will be created
    * - the `values` are objects that represent CSS rules (`React.CSSProperties`).
    */
-  export type StyleRules<ClassKey extends string = string> = Record<ClassKey, CSSProperties>;
+  export type StyleRules<ClassKey extends string = string> = Record<ClassKey, CSSProperties | ((props: any) => BaseCSSProps)>;
 
   export type StyleRulesCallback<ClassKey extends string = string> = (
     theme: Theme,
