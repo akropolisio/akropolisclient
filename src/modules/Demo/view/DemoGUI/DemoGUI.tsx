@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { TextInput, SimpleList, Button, Typography } from 'shared/view/elements';
+import {
+  TextInput, SimpleList, Button, Typography, RadioGroupInput, FormControlLabel, Radio,
+} from 'shared/view/elements';
 
 function DemoGUI() {
   return (
@@ -56,6 +58,27 @@ function DemoGUI() {
           <Typography variant="h4">Other inputs</Typography>
           <TextInput label="Visa input" variant="outlined" maskType="visa" />
           <TextInput label="Password input" variant="outlined" type="password" />
+        </SimpleList>
+      </SimpleList>
+
+      <SimpleList marginFactor={4} direction="row">
+        <SimpleList marginFactor={2} gutter>
+          <Typography variant="h4">Radio button</Typography>
+          <RadioGroupInput label="Label for radio buttons" value="other">
+            <FormControlLabel value="female" control={<Radio />} label="Female" />
+            <FormControlLabel value="male" control={<Radio />} label="Male" />
+            <FormControlLabel disabled value="disabled" control={<Radio />} label="Disabled" />
+            <FormControlLabel value="other" control={<Radio />} label="Other" />
+          </RadioGroupInput>
+        </SimpleList>
+        <SimpleList marginFactor={2} gutter>
+          <Typography variant="h4">Radio with error</Typography>
+          <RadioGroupInput error helperText="Unknown error" label="Label for radio buttons" value="other">
+            <FormControlLabel value="female" control={<Radio />} label="Female" />
+            <FormControlLabel value="male" control={<Radio />} label="Male" />
+            <FormControlLabel disabled value="disabled" control={<Radio />} label="Disabled" />
+            <FormControlLabel value="other" control={<Radio />} label="Other" />
+          </RadioGroupInput>
         </SimpleList>
       </SimpleList>
     </div>
