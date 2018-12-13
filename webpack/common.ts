@@ -53,8 +53,8 @@ export const getCommonPlugins: (type: BuildType) => webpack.Plugin[] = (type) =>
     new ForkTsCheckerWebpackPlugin({
       checkSyntacticErrors: true,
       async: false,
-      tsconfig: path.resolve('./tsconfig.json'),
-      tslint: path.resolve('./tslint.json'),
+      tsconfig: path.resolve(__dirname, '..', 'tsconfig.json'),
+      tslint: path.resolve(__dirname, '..', 'tslint.json'),
       reportFiles: [
         '**',
         '!**/*.json',
