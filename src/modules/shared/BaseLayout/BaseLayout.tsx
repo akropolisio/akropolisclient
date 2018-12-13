@@ -3,7 +3,6 @@ import * as React from 'react';
 import { RowsLayout } from 'shared/view/elements';
 import { Header, Footer } from 'shared/view/components';
 
-import { homeRedirectPath, orderRedirectPath } from '../../routes';
 import { StylesProps, provideStyles } from './BaseLayout.style';
 
 interface IOwnProps {
@@ -21,8 +20,8 @@ class BaseLayout extends React.PureComponent<Props> {
         footerContent={<Footer />}
         headerContent={(
           <Header
-            brandRedirectPath={homeRedirectPath}
-            menuRedirectPaths={{ order: orderRedirectPath }}
+            brandRedirectPath={'homeRedirectPath'}
+            menuRedirectPaths={{ order: 'orderRedirectPath' }}
           >
             header
           </Header>

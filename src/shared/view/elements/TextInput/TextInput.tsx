@@ -25,7 +25,7 @@ const maskByType: Record<MaskType, GetProps<typeof MaskedInput>['mask']> = {
   visa: [/\d/, /\d/, /\d/, /\d/, ' ', /\d/, /\d/, /\d/, /\d/, ' ', /\d/, /\d/, /\d/, /\d/, ' ', /\d/, /\d/, /\d/, /\d/],
 };
 
-const makeMaskInput = R.memoize((maskType: MaskType) => {
+const makeMaskInput = R.memoizeWith(R.identity, (maskType: MaskType) => {
   return function TextMaskCustom(props: InputBaseComponentProps) {
     const { inputRef, value, defaultValue, ...other } = props;
 

@@ -55,6 +55,10 @@ export const getCommonPlugins: (type: BuildType) => webpack.Plugin[] = (type) =>
       async: false,
       tsconfig: path.resolve('./tsconfig.json'),
       tslint: path.resolve('./tslint.json'),
+      reportFiles: [
+        '**',
+        '!**/*.json',
+      ],
     })) : [])
   .concat(withAnalyze ? (
     new BundleAnalyzerPlugin()
