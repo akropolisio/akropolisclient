@@ -13,13 +13,17 @@ export function configureJss(virtual?: boolean): IJssDependencies {
     ...(createMuiTheme({
       palette: {
         primary: {
-          main: extraTheme.colors.purpleHeart,
-          light: extraTheme.colors.mediumPurple,
-          dark: extraTheme.colors.pigmentIndigo,
+          main: extraTheme.colors.mediumPurple,
+          light: extraTheme.colors.heliotrope,
+          dark: extraTheme.colors.purpleHeart,
           contrastText: extraTheme.colors.white,
+        },
+        error: {
+          main: extraTheme.colors.monza,
         },
       },
       typography: {
+        useNextVariants: true, // https://material-ui.com/style/typography/#migration-to-typography-v2
         fontFamily: extraTheme.typography.primaryFont,
       },
       shape: {

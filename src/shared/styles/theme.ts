@@ -6,7 +6,7 @@ import { hexToRGBA } from './helpers';
 const colors = {
   mediumPurple: '#8c4be6',
   purpleHeart: '#6931b6',
-  pigmentIndigo: '#340085',
+  heliotrope: '#c17bff',
   wildSand: '#f4f4f4',
   mercury: '#e2e2e2',
   silver: '#c9c9c9',
