@@ -7,6 +7,7 @@ interface IProps {
   gutter?: boolean;
   children: React.ReactNode;
   direction?: 'column' | 'row';
+  alignItems?: 'stretch' | 'flex-start';
 }
 
 class SimpleList extends React.PureComponent<IProps & StylesProps> {

@@ -6,3 +6,6 @@ export { default as Button } from './Button/Button';
 export { default as RadioGroupInput } from './RadioGroupInput/RadioGroupInput';
 export { default as FormControlLabel } from './FormControlLabel/FormControlLabel';
 export { default as Radio } from './Radio/Radio';
+export { default as MenuItem } from './MenuItem/MenuItem';
+export { default as Checkbox } from './Checkbox/Checkbox';
+export { default as CheckboxInput } from './CheckboxInput/CheckboxInput';

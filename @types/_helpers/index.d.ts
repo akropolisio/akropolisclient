@@ -28,6 +28,8 @@ declare module '_helpers' {
 
   export type SubSet<T, R extends T> = R;
 
+  export type Diff<T, U> = T extends U ? never : T;
+
   type CheckExtends<T, R> = T extends R ? true : unknown;
   export type CheckIdentity<T, R> = (
     CheckExtends<T, R> | CheckExtends<R, T> | CheckExtends<keyof T, keyof R> | CheckExtends<keyof R, keyof T>

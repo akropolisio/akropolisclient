@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {
-  TextInput, SimpleList, Button, Typography, RadioGroupInput, FormControlLabel, Radio,
+  TextInput, SimpleList, Button, Typography, RadioGroupInput, FormControlLabel, Radio, MenuItem, CheckboxInput,
 } from 'shared/view/elements';
 
 function DemoGUI() {
@@ -25,18 +25,28 @@ function DemoGUI() {
       </SimpleList>
 
       <SimpleList marginFactor={4} direction="row">
-        <SimpleList marginFactor={2} gutter>
+        <SimpleList marginFactor={2} alignItems="stretch" gutter>
           <Typography variant="h4">Underlined input</Typography>
-          <TextInput label="Your email" variant="standard" />
+          <TextInput label="Your email" variant="standard" required />
           <TextInput label="Your email" variant="standard" error helperText="Wrong email" />
           <TextInput label="Your email" value="disabled" variant="standard" disabled />
+          <TextInput label="Select" value={1} variant="standard" select fullWidth>
+            {[1, 2, 3, 4, 5].map(item => (
+              <MenuItem key={item} value={item}>Item #{item}</MenuItem>
+            ))}
+          </TextInput>
         </SimpleList>
 
-        <SimpleList marginFactor={2} gutter>
+        <SimpleList marginFactor={2} alignItems="stretch" gutter>
           <Typography variant="h4">Outlined input</Typography>
           <TextInput label="Your email" variant="outlined" />
           <TextInput label="Your email" variant="outlined" error helperText="Wrong email" />
           <TextInput label="Your email" value="disabled" variant="outlined" disabled />
+          <TextInput label="Select" value={1} variant="outlined" select fullWidth>
+            {[1, 2, 3, 4, 5].map(item => (
+              <MenuItem key={item} value={item}>Item #{item}</MenuItem>
+            ))}
+          </TextInput>
         </SimpleList>
 
         <SimpleList marginFactor={2} gutter>
@@ -64,7 +74,7 @@ function DemoGUI() {
       <SimpleList marginFactor={4} direction="row">
         <SimpleList marginFactor={2} gutter>
           <Typography variant="h4">Radio button</Typography>
-          <RadioGroupInput label="Label for radio buttons" value="other">
+          <RadioGroupInput label="Label for required radio" value="other" required>
             <FormControlLabel value="female" control={<Radio />} label="Female" />
             <FormControlLabel value="male" control={<Radio />} label="Male" />
             <FormControlLabel disabled value="disabled" control={<Radio />} label="Disabled" />
@@ -79,6 +89,15 @@ function DemoGUI() {
             <FormControlLabel disabled value="disabled" control={<Radio />} label="Disabled" />
             <FormControlLabel value="other" control={<Radio />} label="Other" />
           </RadioGroupInput>
+        </SimpleList>
+
+        <SimpleList marginFactor={0} gutter>
+          <Typography variant="h4">CheckBoxes</Typography>
+          <CheckboxInput label="Checked" checked />
+          <CheckboxInput label="Unchecked" />
+          <CheckboxInput label="Required" required />
+          <CheckboxInput label="Disabled checked" disabled checked />
+          <CheckboxInput label="With error" error helperText="Unknown error" />
         </SimpleList>
       </SimpleList>
     </div>

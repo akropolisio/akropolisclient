@@ -18,7 +18,7 @@ const styles = (theme: Theme) => ({
     display: 'flex',
     flexDirection: getDirection,
     justifyContent: 'flex-start',
-    alignItems: 'flex-start',
+    alignItems: (props: IProps) => props.alignItems || 'flex-start',
   }),
   withoutGutterRoot: (props: IProps) => {
     return {
