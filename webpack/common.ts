@@ -7,7 +7,6 @@ import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import * as ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import * as threadLoader from 'thread-loader';
 
-import * as postcssReporter from 'postcss-reporter';
 import * as postcssEasyImport from 'postcss-easy-import';
 import * as postcssSCSS from 'postcss-scss';
 import * as autoprefixer from 'autoprefixer';
@@ -143,10 +142,6 @@ export function getStyleRules(type: BuildType) {
 
 const commonScssLoaders: webpack.Loader[] = [
   {
-    loader: 'thread-loader',
-    options: workerPool,
-  },
-  {
     loader: 'postcss-loader',
     options: {
       plugins: () => {
@@ -175,10 +170,6 @@ const commonScssLoaders: webpack.Loader[] = [
             browsers: ['defaults', 'not op_mini all', 'not ie > 0', 'not ie_mob > 0'],
             ignore: [],
             ignoreFiles: ['**/normalize.css'],
-          }),
-          postcssReporter({
-            clearReportedMessages: true,
-            throwError: true,
           }),
         ];
       },
