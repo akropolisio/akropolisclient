@@ -55,7 +55,7 @@ export const theme = {
     unit: 8,
   },
   typography: {
-    primaryFont: ['GoogleSans', 'Arial', 'sans-serif'].join(','),
+    primaryFont: ['OpenSans', 'Arial', 'sans-serif'].join(','),
   },
   zIndex: {
     newContext: 0,
