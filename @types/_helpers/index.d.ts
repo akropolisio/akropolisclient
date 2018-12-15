@@ -27,4 +27,11 @@ declare module '_helpers' {
     T extends React.ComponentClass<infer CP> ? CP : never;
 
   export type SubSet<T, R extends T> = R;
+
+  export type Diff<T, U> = T extends U ? never : T;
+
+  type CheckExtends<T, R> = T extends R ? true : unknown;
+  export type CheckIdentity<T, R> = (
+    CheckExtends<T, R> | CheckExtends<R, T> | CheckExtends<keyof T, keyof R> | CheckExtends<keyof R, keyof T>
+  ) extends true ? T : unknown;
 }
