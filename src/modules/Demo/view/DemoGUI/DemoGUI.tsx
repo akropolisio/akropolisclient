@@ -1,11 +1,22 @@
 import * as React from 'react';
 import {
   TextInput, SimpleList, Button, Typography, RadioGroupInput, FormControlLabel, Radio, MenuItem, CheckboxInput,
+  ToggleButtonGroup, ToggleButton,
 } from 'shared/view/elements';
 
 function DemoGUI() {
   return (
     <div style={{ padding: 20 }}>
+      <SimpleList marginFactor={2} gutter>
+        <Typography variant="h4">Toggle button group</Typography>
+        <ToggleButtonGroup exclusive value="beneficiary">
+          <ToggleButton value="beneficiary">Beneficiary</ToggleButton>
+          <ToggleButton value="fund owner">Fund owner</ToggleButton>
+          <ToggleButton value="board member">Board member</ToggleButton>
+          <ToggleButton value="asset manager">Asset manager</ToggleButton>
+        </ToggleButtonGroup>
+      </SimpleList>
+
       <SimpleList marginFactor={4} direction="row">
         <SimpleList marginFactor={2} gutter>
           <Typography variant="h4">Default color</Typography>
