@@ -15,7 +15,7 @@ declare module 'react-jss/lib/injectSheet' {
 
   export interface CSSProperties extends ExtendedCSSProperties {
     // Allow pseudo selectors and media queries
-    [k: string]: ExtendedCSSProperties[keyof ExtendedCSSProperties] | ExtendedCSSProperties;
+    [k: string]: ExtendedCSSProperties[keyof ExtendedCSSProperties] | ExtendedCSSProperties | CSSProperties;
   }
 
   /**
