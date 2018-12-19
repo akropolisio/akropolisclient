@@ -39,6 +39,11 @@ export function configureJss(virtual?: boolean): IJssDependencies {
             minHeight: extraTheme.sizes.control.minHeight,
           },
         },
+        MuiSvgIcon: {
+          root: {
+            fontSize: 22,
+          },
+        },
       },
     })),
     extra: extraTheme,
