@@ -10,3 +10,5 @@ export { default as MenuItem } from './MenuItem/MenuItem';
 export { default as Checkbox } from './Checkbox/Checkbox';
 export { default as CheckboxInput } from './CheckboxInput/CheckboxInput';
 export { default as QrCode } from './QrCode/QrCode';
+export { default as ToggleButtonGroup } from './ToggleButtonGroup/ToggleButtonGroup';
+export { default as ToggleButton } from './ToggleButton/ToggleButton';
