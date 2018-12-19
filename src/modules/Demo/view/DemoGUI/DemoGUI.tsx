@@ -3,9 +3,11 @@ import {
   TextInput, SimpleList, Button, Typography, RadioGroupInput, FormControlLabel, Radio, MenuItem, CheckboxInput,
 } from 'shared/view/elements';
 
+import { SendTransaction } from 'features/sendTransaction';
 function DemoGUI() {
   return (
     <div style={{ padding: 20 }}>
+      <SendTransaction />
       <SimpleList marginFactor={4} direction="row">
         <SimpleList marginFactor={2} gutter>
           <Typography variant="h4">Default color</Typography>
