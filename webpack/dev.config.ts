@@ -1,4 +1,5 @@
 import * as webpack from 'webpack';
+import * as FaviconsWebpackPlugin from 'favicons-webpack-plugin';
 
 import { getCommonRules, commonConfig, getStyleRules, BuildType, getCommonPlugins } from './common';
 
@@ -18,7 +19,9 @@ const getDevConfig: (type?: BuildType) => webpack.Configuration = (type) => {
     module: {
       rules,
     },
-    plugins: getCommonPlugins(type || 'dev'),
+    plugins: getCommonPlugins(type || 'dev').concat([
+      new FaviconsWebpackPlugin('../src/assets/favicon.png'),
+    ]),
   };
 };
 
