@@ -11,7 +11,7 @@ interface IProps {
 function RowsLayout({ children, footerContent, headerContent, classes }: IProps & StylesProps) {
   return (
     <Grid container className={classes.root} direction="column" alignItems="stretch">
-      <Grid item>
+      <Grid className={classes.header} item>
         {headerContent}
       </Grid>
       <Grid item className={classes.content}>

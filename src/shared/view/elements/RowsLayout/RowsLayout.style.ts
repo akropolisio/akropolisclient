@@ -9,6 +9,10 @@ const styles = {
   content: rule({
     flexGrow: 1,
   }),
+
+  header: rule({
+    height: '6.25rem',
+  }),
 };
 
 export const provideStyles = injectSheet(styles);

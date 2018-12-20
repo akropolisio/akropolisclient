@@ -1,15 +1,10 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
-import { Typography, AppBar, Toolbar, Button } from '@material-ui/core';
-
-import { withComponent } from 'shared/helpers';
+import { NavLink, Link } from 'react-router-dom';
 import { provideStyles, StylesProps } from './Header.style';
 
-const provideLinkComponent = withComponent(Link);
-const ButtonLink = provideLinkComponent(Button);
-const TypographyLink = provideLinkComponent(Typography);
+import * as logo from './images/logo.png';
 
-type LinkName = 'order';
+type LinkName = 'marketplace' | 'dashboard';
 
 interface IProps {
   children?: React.ReactNode;
@@ -18,33 +13,32 @@ interface IProps {
 }
 
 const textForMenuItem: Record<LinkName, string> = {
-  order: 'Travel order form',
+  dashboard: 'Dashboard',
+  marketplace: 'Marketplace',
 };
 
 class Header extends React.PureComponent<IProps & StylesProps> {
   public render() {
-    const { children, classes, brandRedirectPath, menuRedirectPaths } = this.props;
+    const { classes, brandRedirectPath, menuRedirectPaths } = this.props;
 
     return (
-      <AppBar position="static">
-        <Toolbar>
-          <TypographyLink className={classes.link} to={brandRedirectPath} variant="display1" color="inherit">
-            FSD Starter kit
-          </TypographyLink>
-          <div className={classes.content}>{children}</div>
-          {Object.keys(menuRedirectPaths).map((key: LinkName) => (
-            <ButtonLink
-              key={key}
-              className={classes.link}
-              to={menuRedirectPaths[key]}
-              variant="outlined"
-              color="inherit"
-            >
-              {textForMenuItem[key]}
-            </ButtonLink>
-          ))}
-        </Toolbar>
-      </AppBar>
+      <div className={classes.root}>
+        <div className={classes.logo}>
+          <Link className={classes.link} to={brandRedirectPath}>
+            <img style={{ height: '100%' }} src={logo} />
+          </Link>
+        </div>
+        {Object.keys(menuRedirectPaths).map((key: LinkName) => (
+          <NavLink
+            key={key}
+            className={classes.link}
+            activeClassName={classes.activeLink}
+            to={menuRedirectPaths[key]}
+          >
+            <span>{textForMenuItem[key]}</span>
+          </NavLink>
+        ))}
+      </div >
     );
   }
 }

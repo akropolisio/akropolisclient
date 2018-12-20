@@ -3,7 +3,7 @@ import {
   TextInput, SimpleList, Button, Typography, RadioGroupInput, FormControlLabel, Radio, MenuItem, CheckboxInput,
   ToggleButtonGroup, ToggleButton, Tooltip,
 } from 'shared/view/elements';
-import { MoneyIcon, Question } from 'shared/view/elements/Icons';
+import { Question } from 'shared/view/elements/Icons';
 
 import { StylesProps, provideStyles } from './DemoGUI.style';
 

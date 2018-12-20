@@ -3,6 +3,8 @@ import * as React from 'react';
 import { RowsLayout } from 'shared/view/elements';
 import { Header, Footer } from 'shared/view/components';
 
+import routes from 'modules/routes';
+
 import { StylesProps, provideStyles } from './BaseLayout.style';
 
 interface IOwnProps {
@@ -21,7 +23,10 @@ class BaseLayout extends React.PureComponent<Props> {
         headerContent={(
           <Header
             brandRedirectPath={'homeRedirectPath'}
-            menuRedirectPaths={{ order: 'orderRedirectPath' }}
+            menuRedirectPaths={{
+              dashboard: routes.demo.dashboard.getRoutePath(),
+              marketplace: routes.demo.marketplace.getRoutePath(),
+            }}
           >
             header
           </Header>
