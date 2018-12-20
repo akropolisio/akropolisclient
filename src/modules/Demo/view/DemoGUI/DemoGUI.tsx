@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {
   TextInput, SimpleList, Button, Typography, RadioGroupInput, FormControlLabel, Radio, MenuItem, CheckboxInput,
-  ToggleButtonGroup, ToggleButton,
+  ToggleButtonGroup, ToggleButton, CircleProgressBar,
 } from 'shared/view/elements';
 
 function DemoGUI() {
@@ -32,6 +32,11 @@ function DemoGUI() {
           <Button variant="contained" color="primary">Contained</Button>
           <Button variant="outlined" color="primary" disabled>Outlined disabled</Button>
           <Button variant="contained" color="primary" disabled>Contained disabled</Button>
+        </SimpleList>
+
+        <SimpleList marginFactor={0} gutter>
+          <Typography variant="h4">ProgressBar</Typography>
+          <CircleProgressBar variant="static" size={100} value={85} />
         </SimpleList>
       </SimpleList>
 
@@ -110,6 +115,7 @@ function DemoGUI() {
           <CheckboxInput label="Disabled checked" disabled checked />
           <CheckboxInput label="With error" error helperText="Unknown error" />
         </SimpleList>
+
       </SimpleList>
     </div>
   );
