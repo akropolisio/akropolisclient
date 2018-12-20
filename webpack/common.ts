@@ -41,6 +41,7 @@ export const getCommonPlugins: (type: BuildType) => webpack.Plugin[] = (type) =>
     filename: 'index.html',
     template: 'assets/index.html',
     chunksSortMode: sortChunks,
+    favicon: 'assets/favicon.ico',
   }),
   new webpack.DefinePlugin({
     '__HOST__': JSON.stringify('http://localhost:3000'),
