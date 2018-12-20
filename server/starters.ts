@@ -24,7 +24,6 @@ function startDevelopmentMode(
 
     const { compilation, exports: { default: render } } = res.locals.isomorphic;
     const { clientStats } = compilation;
-    
 
     const assets = extractAssets(clientStats.compilation);
     render({ req, res, assets })
