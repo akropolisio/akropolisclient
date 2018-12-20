@@ -1,19 +1,42 @@
 import * as React from 'react';
 import {
   TextInput, SimpleList, Button, Typography, RadioGroupInput, FormControlLabel, Radio, MenuItem, CheckboxInput,
-  ToggleButtonGroup, ToggleButton, CircleProgressBar,
+  ToggleButtonGroup, ToggleButton, Tooltip, CircleProgressBar,
 } from 'shared/view/elements';
+import { Question } from 'shared/view/elements/Icons';
 
-function DemoGUI() {
+import { StylesProps, provideStyles } from './DemoGUI.style';
+
+function DemoGUI({ classes }: StylesProps) {
   return (
     <div style={{ padding: 20 }}>
       <SimpleList marginFactor={2} gutter>
         <Typography variant="h4">Toggle button group</Typography>
         <ToggleButtonGroup exclusive value="beneficiary">
-          <ToggleButton value="beneficiary">Beneficiary</ToggleButton>
-          <ToggleButton value="fund owner">Fund owner</ToggleButton>
-          <ToggleButton value="board member">Board member</ToggleButton>
-          <ToggleButton value="asset manager">Asset manager</ToggleButton>
+          <ToggleButton value="beneficiary">
+            Beneficiary
+            <Tooltip placement="top" title="qweqwe">
+              <Question className={classes.rightIcon} />
+            </Tooltip>
+          </ToggleButton>
+          <ToggleButton value="fund owner">
+            Fund owner
+            <Tooltip placement="top" title="qweqwe">
+              <Question className={classes.rightIcon} />
+            </Tooltip>
+          </ToggleButton>
+          <ToggleButton value="board member">
+            Board member
+            <Tooltip placement="top" title="qweqwe">
+              <Question className={classes.rightIcon} />
+            </Tooltip>
+          </ToggleButton>
+          <ToggleButton value="asset manager">
+            Asset manager
+            <Tooltip placement="top" title="qweqwe">
+              <Question className={classes.rightIcon} />
+            </Tooltip>
+          </ToggleButton>
         </ToggleButtonGroup>
       </SimpleList>
 
@@ -121,4 +144,4 @@ function DemoGUI() {
   );
 }
 
-export default DemoGUI;
+export default provideStyles(DemoGUI);
