@@ -1,9 +1,7 @@
 import * as React from 'react';
 
 import { RowsLayout } from 'shared/view/elements';
-import {
-  Footer, WithDeviceEnvironment, IWithDeviceEnvironmentInjectedProps,
-} from 'shared/view/components';
+import { Footer } from 'shared/view/components';
 
 import Header from '../Header/Header';
 
@@ -13,15 +11,14 @@ interface IOwnProps {
   children: React.ReactNode;
 }
 
-type Props = IOwnProps & StylesProps & IWithDeviceEnvironmentInjectedProps;
+type Props = IOwnProps & StylesProps;
 
 class BaseLayout extends React.PureComponent<Props> {
   public render() {
-    const { classes, children, deviceEnvironment: { isMobile } } = this.props;
+    const { classes, children } = this.props;
 
     return (
       <RowsLayout
-        isMobile={isMobile}
         footerContent={<Footer />}
         headerContent={<Header />}
       >
@@ -33,4 +30,4 @@ class BaseLayout extends React.PureComponent<Props> {
   }
 }
 
-export default WithDeviceEnvironment(provideStyles(BaseLayout));
+export default provideStyles(BaseLayout);

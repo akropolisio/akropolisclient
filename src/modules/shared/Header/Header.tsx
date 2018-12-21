@@ -1,42 +1,102 @@
 import * as React from 'react';
-import { DesktopHeader, MobileHeader } from './view';
+import * as cn from 'classnames';
+import { bind } from 'decko';
 import routes from 'modules/routes';
-import { WithDeviceEnvironment, IWithDeviceEnvironmentInjectedProps, ProfileMenu } from 'shared/view/components';
-import { withRouter, RouteComponentProps } from 'react-router';
+import { NavLink, Link, withRouter, RouteComponentProps } from 'react-router-dom';
+import IconMenu from '@material-ui/icons/Menu';
+import IconClose from '@material-ui/icons/Close';
 
-type IProps = IWithDeviceEnvironmentInjectedProps & RouteComponentProps;
+import { provideStyles, StylesProps } from './Header.style';
+import { ProfileMenu } from 'shared/view/components';
+import * as logo from './images/logo.png';
 
-class Header extends React.PureComponent<IProps> {
+type LinkName = 'marketplace' | 'dashboard' | 'profile';
+
+const brandRedirectPath = routes.demo.getRoutePath();
+const desktopRedirectPaths = {
+  dashboard: routes.demo.header.dashboard.getRoutePath(),
+  marketplace: routes.demo.header.marketplace.getRoutePath(),
+};
+
+const mobileRedirectPaths = {
+  ...desktopRedirectPaths,
+  profile: routes.demo.header.profile.getRoutePath(),
+};
+
+const textForMenuItem: Record<LinkName, string> = {
+  dashboard: 'Dashboard',
+  marketplace: 'Marketplace',
+  profile: 'Profile',
+};
+
+type IProps = StylesProps & RouteComponentProps;
+
+interface IState {
+  isMenuOpen: boolean;
+}
+
+class DesktopHeader extends React.PureComponent<IProps, IState> {
+  public state: IState = { isMenuOpen: false };
+
   public render() {
-    const { deviceEnvironment: { isMobile } } = this.props;
-    return isMobile ? this.renderMobileVersion() : this.renderDesktopVersion();
-  }
-
-  public renderDesktopVersion() {
+    const { classes } = this.props;
+    const { isMenuOpen } = this.state;
     return (
-      <DesktopHeader
-        brandRedirectPath={routes.demo.getRoutePath()}
-        menuRedirectPaths={{
-          dashboard: routes.demo.header.dashboard.getRoutePath(),
-          marketplace: routes.demo.header.marketplace.getRoutePath(),
-        }}
-        ProfileComponent={ProfileMenu}
-      />
+      <div
+        className={cn(classes.root, { [classes.hiddenBottomBorder]: isMenuOpen })}
+      >
+        <div className={classes.logo}>
+          <Link to={brandRedirectPath}>
+            <img style={{ height: '100%' }} src={logo} />
+          </Link>
+        </div>
+        <div className={classes.desktopLinks}>
+          {Object.keys(desktopRedirectPaths).map((key: 'marketplace' | 'dashboard') => (
+            <NavLink
+              key={key}
+              className={classes.link}
+              activeClassName={cn(classes.activeLink, classes.withBorder)}
+              to={desktopRedirectPaths[key]}
+            >
+              <span>{textForMenuItem[key]}</span>
+            </NavLink>
+          ))}
+        </div>
+        <div className={classes.profileComponent}><ProfileMenu /></div>
+        <div className={classes.toogleMenu} onClick={this.toggleMenu}>
+          {isMenuOpen ? <IconClose /> : <IconMenu />}
+        </div>
+        {isMenuOpen && this.renderMenu()}
+      </div >
     );
   }
 
-  public renderMobileVersion() {
+  @bind
+  public toggleMenu() {
+    this.setState((prevState) => ({ isMenuOpen: !prevState.isMenuOpen }));
+  }
+
+  public renderMenu() {
+    const { classes } = this.props;
     return (
-      <MobileHeader
-        brandRedirectPath={routes.demo.getRoutePath()}
-        menuRedirectPaths={{
-          dashboard: routes.demo.header.dashboard.getRoutePath(),
-          marketplace: routes.demo.header.marketplace.getRoutePath(),
-          profile: routes.demo.header.profile.getRoutePath(),
-        }}
-      />
+      <div className={classes.mobileMenu}>
+        <div className={classes.linksList}>
+          {Object.keys(mobileRedirectPaths).map((key: LinkName) => (
+            <div key={key} className={classes.listItem}>
+              <NavLink
+                className={classes.link}
+                activeClassName={classes.activeLink}
+                to={mobileRedirectPaths[key]}
+              >
+                <span>{textForMenuItem[key]}</span>
+              </NavLink>
+            </div>
+          ))}
+        </div>
+      </div>
     );
   }
 }
 
-export default withRouter(WithDeviceEnvironment(Header));
+export { IProps };
+export default withRouter(provideStyles(DesktopHeader));

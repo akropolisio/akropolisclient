@@ -6,7 +6,6 @@ interface IProps {
   children?: React.ReactNode;
   footerContent?: React.ReactNode;
   headerContent?: React.ReactNode;
-  isMobile?: boolean;
 }
 
 function RowsLayout({ children, footerContent, headerContent, classes }: IProps & StylesProps) {

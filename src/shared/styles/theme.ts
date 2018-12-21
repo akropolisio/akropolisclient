@@ -20,8 +20,8 @@ const colors = {
 };
 
 const screensWidth = {
-  sm: '600px',
-  md: '1100px',
+  sm: '760px',
+  md: '1200px',
   maxWidthScreen: '1600px',
 };
 
