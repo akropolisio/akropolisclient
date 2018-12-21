@@ -11,4 +11,5 @@ export { default as Checkbox } from './Checkbox/Checkbox';
 export { default as CheckboxInput } from './CheckboxInput/CheckboxInput';
 export { default as ToggleButtonGroup } from './ToggleButtonGroup/ToggleButtonGroup';
 export { default as ToggleButton } from './ToggleButton/ToggleButton';
+export { default as CircleProgressBar } from './CircleProgressBar/CircleProgressBar';
 export { default as Tooltip } from './Tooltip/Tooltip';
