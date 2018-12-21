@@ -26,6 +26,7 @@ const styles = ({ extra: theme }: Theme) => ({
     padding: '0 0.25rem',
     display: 'flex',
     alignItems: 'center',
+    color: theme.colors.dustyGray,
   }),
 
   menu: rule({

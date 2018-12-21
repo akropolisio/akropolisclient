@@ -32,6 +32,11 @@ const styles = ({ extra: theme }: Theme) => ({
     height: '100%',
     padding: '1.6875rem 4.5rem 1.6875rem 0',
   }),
+
+  profileComponent: rule({
+    marginLeft: 'auto',
+  }),
+
 });
 
 export const provideStyles = injectSheet(styles);

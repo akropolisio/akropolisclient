@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { DesktopHeader, MobileHeader } from './view';
 import routes from 'modules/routes';
-import { WithDeviceEnvironment, IWithDeviceEnvironmentInjectedProps } from 'shared/view/components';
+import { WithDeviceEnvironment, IWithDeviceEnvironmentInjectedProps, ProfileMenu } from 'shared/view/components';
 import { withRouter, RouteComponentProps } from 'react-router';
 
 type IProps = IWithDeviceEnvironmentInjectedProps & RouteComponentProps;
@@ -21,6 +21,7 @@ class Header extends React.PureComponent<IProps> {
           dashboard: routes.demo.header.dashboard.getRoutePath(),
           marketplace: routes.demo.header.marketplace.getRoutePath(),
         }}
+        ProfileComponent={ProfileMenu}
       />
     );
   }

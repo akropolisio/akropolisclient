@@ -10,6 +10,7 @@ interface IOwnProps {
   children?: React.ReactNode;
   brandRedirectPath: string;
   menuRedirectPaths: Record<LinkName, string>;
+  ProfileComponent: React.ComponentType;
 }
 
 const textForMenuItem: Record<LinkName, string> = {
@@ -20,7 +21,7 @@ const textForMenuItem: Record<LinkName, string> = {
 type IProps = IOwnProps & StylesProps;
 class DesktopHeader extends React.PureComponent<IProps> {
   public render() {
-    const { classes, brandRedirectPath, menuRedirectPaths } = this.props;
+    const { classes, brandRedirectPath, menuRedirectPaths, ProfileComponent } = this.props;
 
     return (
       <div className={classes.root}>
@@ -39,6 +40,7 @@ class DesktopHeader extends React.PureComponent<IProps> {
             <span>{textForMenuItem[key]}</span>
           </NavLink>
         ))}
+        <div className={classes.profileComponent}><ProfileComponent /></div>
       </div >
     );
   }
