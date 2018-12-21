@@ -28,7 +28,7 @@ class Header extends React.PureComponent<IProps> {
   public renderMobileVersion() {
     return (
       <MobileHeader
-        brandRedirectPath={'homeRedirectPath'}
+        brandRedirectPath={routes.demo.getRoutePath()}
         menuRedirectPaths={{
           dashboard: routes.demo.header.dashboard.getRoutePath(),
           marketplace: routes.demo.header.marketplace.getRoutePath(),
