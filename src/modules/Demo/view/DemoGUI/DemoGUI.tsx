@@ -1,10 +1,8 @@
 import * as React from 'react';
-import {
-  SimpleList, Button, Typography, CheckboxInput, CircleProgressBar,
-} from 'shared/view/elements';
+import { SimpleList, Button, Typography, CircleProgressBar } from 'shared/view/elements';
 
 import { StylesProps, provideStyles } from './DemoGUI.style';
-import { ToggleButtons, TextInputs, RadioGroups } from './components';
+import { ToggleButtons, TextInputs, RadioGroups, Checkboxes } from './components';
 
 function DemoGUI(_props: StylesProps) {
   return (
@@ -38,16 +36,7 @@ function DemoGUI(_props: StylesProps) {
 
       <SimpleList marginFactor={4} direction="row">
         <RadioGroups />
-
-        <SimpleList marginFactor={0} gutter>
-          <Typography variant="h4">CheckBoxes</Typography>
-          <CheckboxInput label="Checked" checked />
-          <CheckboxInput label="Unchecked" />
-          <CheckboxInput label="Required" required />
-          <CheckboxInput label="Disabled checked" disabled checked />
-          <CheckboxInput label="With error" error helperText="Unknown error" />
-        </SimpleList>
-
+        <Checkboxes />
       </SimpleList>
     </div>
   );
