@@ -6,7 +6,7 @@ import IconMenu from '@material-ui/icons/Menu';
 import IconClose from '@material-ui/icons/Close';
 
 import { provideStyles, StylesProps } from './MobileHeader.style';
-import * as logo from './images/logo.png';
+import * as logo from '../images/logo.png';
 
 type LinkName = 'marketplace' | 'dashboard' | 'profile';
 

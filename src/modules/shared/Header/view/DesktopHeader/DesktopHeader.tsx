@@ -2,7 +2,7 @@ import * as React from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { provideStyles, StylesProps } from './DesktopHeader.style';
 
-import * as logo from './images/logo.png';
+import * as logo from '../images/logo.png';
 
 type LinkName = 'marketplace' | 'dashboard';
 
