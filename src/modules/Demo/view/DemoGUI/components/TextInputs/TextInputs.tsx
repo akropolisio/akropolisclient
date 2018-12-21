@@ -3,13 +3,10 @@ import { InjectedFormProps, reduxForm } from 'redux-form';
 import uuid = require('uuid');
 import { SimpleList, Typography, MenuItem } from 'shared/view/elements';
 import { TextInputField } from 'shared/view/redux-form';
+import { isRequired } from 'shared/validators';
 
 interface IFormData {
   selectedGroup: string;
-}
-
-function isRequired(value: any) {
-  return !value ? 'Field is required' : undefined;
 }
 
 function TextInputs(_props: InjectedFormProps<IFormData>) {

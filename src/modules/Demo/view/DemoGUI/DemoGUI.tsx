@@ -1,10 +1,10 @@
 import * as React from 'react';
 import {
-  SimpleList, Button, Typography, RadioGroupInput, FormControlLabel, Radio, CheckboxInput, CircleProgressBar,
+  SimpleList, Button, Typography, CheckboxInput, CircleProgressBar,
 } from 'shared/view/elements';
 
 import { StylesProps, provideStyles } from './DemoGUI.style';
-import { ToggleButtons, TextInputs } from './components';
+import { ToggleButtons, TextInputs, RadioGroups } from './components';
 
 function DemoGUI(_props: StylesProps) {
   return (
@@ -30,31 +30,14 @@ function DemoGUI(_props: StylesProps) {
 
         <SimpleList marginFactor={0} gutter>
           <Typography variant="h4">ProgressBar</Typography>
-          <CircleProgressBar variant="static" size={100} value={85} />
+          <CircleProgressBar variant="indeterminate" size={100} value={85} />
         </SimpleList>
       </SimpleList>
 
       <TextInputs />
 
       <SimpleList marginFactor={4} direction="row">
-        <SimpleList marginFactor={2} gutter>
-          <Typography variant="h4">Radio button</Typography>
-          <RadioGroupInput label="Label for required radio" value="other" required>
-            <FormControlLabel value="female" control={<Radio />} label="Female" />
-            <FormControlLabel value="male" control={<Radio />} label="Male" />
-            <FormControlLabel disabled value="disabled" control={<Radio />} label="Disabled" />
-            <FormControlLabel value="other" control={<Radio />} label="Other" />
-          </RadioGroupInput>
-        </SimpleList>
-        <SimpleList marginFactor={2} gutter>
-          <Typography variant="h4">Radio with error</Typography>
-          <RadioGroupInput error helperText="Unknown error" label="Label for radio buttons" value="other">
-            <FormControlLabel value="female" control={<Radio />} label="Female" />
-            <FormControlLabel value="male" control={<Radio />} label="Male" />
-            <FormControlLabel disabled value="disabled" control={<Radio />} label="Disabled" />
-            <FormControlLabel value="other" control={<Radio />} label="Other" />
-          </RadioGroupInput>
-        </SimpleList>
+        <RadioGroups />
 
         <SimpleList marginFactor={0} gutter>
           <Typography variant="h4">CheckBoxes</Typography>
