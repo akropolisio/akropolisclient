@@ -11,7 +11,7 @@ type IProps = Omit<ToggleButtonGroupProps, 'classes'> & StylesProps & {
 class ToggleButtonGroup extends React.Component<IProps> {
   public render() {
     return (
-      <MuiToggleButtonGroup {...this.props} onChange={this.onChange} />
+      <MuiToggleButtonGroup {...normalizeProps(this.props)} onChange={this.onChange} />
     );
   }
 
@@ -20,6 +20,12 @@ class ToggleButtonGroup extends React.Component<IProps> {
 
     (value || nullable) && onChange && onChange(event, value);
   }
+}
+
+function normalizeProps(props: IProps): ToggleButtonGroupProps {
+  const { theme, nullable, ...rest } = props;
+
+  return rest;
 }
 
 export default provideStyles(ToggleButtonGroup);

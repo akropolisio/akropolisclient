@@ -1,16 +1,16 @@
 import * as React from 'react';
 import { WrappedFieldProps } from 'redux-form';
 import { GetProps } from '_helpers';
+import { bind } from 'decko';
 
 import { ToggleButtonGroup } from 'shared/view/elements';
 import { getFieldWithComponent } from 'shared/helpers/react';
-import { bind } from 'decko';
 
 type IProps = GetProps<typeof ToggleButtonGroup> & WrappedFieldProps;
 
 class ToggleButtonGroupField extends React.Component<IProps> {
   public render() {
-    const { classes, input, meta, ...rest } = this.props;
+    const { input, meta, ...rest } = this.props;
     return (
       <ToggleButtonGroup {...rest} value={input.value} onChange={this.onChange} onBlur={this.onBlur} />
     );

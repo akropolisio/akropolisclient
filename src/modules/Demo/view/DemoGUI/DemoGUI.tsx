@@ -1,11 +1,10 @@
 import * as React from 'react';
 import {
-  TextInput, SimpleList, Button, Typography, RadioGroupInput, FormControlLabel, Radio, MenuItem, CheckboxInput,
-  CircleProgressBar,
+  SimpleList, Button, Typography, RadioGroupInput, FormControlLabel, Radio, CheckboxInput, CircleProgressBar,
 } from 'shared/view/elements';
 
 import { StylesProps, provideStyles } from './DemoGUI.style';
-import { ToggleButtons } from './components';
+import { ToggleButtons, TextInputs } from './components';
 
 function DemoGUI(_props: StylesProps) {
   return (
@@ -35,52 +34,7 @@ function DemoGUI(_props: StylesProps) {
         </SimpleList>
       </SimpleList>
 
-      <SimpleList marginFactor={4} direction="row">
-        <SimpleList marginFactor={2} alignItems="stretch" gutter>
-          <Typography variant="h4">Underlined input</Typography>
-          <TextInput label="Your email" variant="standard" required />
-          <TextInput label="Your email" variant="standard" error helperText="Wrong email" />
-          <TextInput label="Your email" value="disabled" variant="standard" disabled />
-          <TextInput label="Select" value={1} variant="standard" select fullWidth>
-            {[1, 2, 3, 4, 5].map(item => (
-              <MenuItem key={item} value={item}>Item #{item}</MenuItem>
-            ))}
-          </TextInput>
-        </SimpleList>
-
-        <SimpleList marginFactor={2} alignItems="stretch" gutter>
-          <Typography variant="h4">Outlined input</Typography>
-          <TextInput label="Your email" variant="outlined" />
-          <TextInput label="Your email" variant="outlined" error helperText="Wrong email" />
-          <TextInput label="Your email" value="disabled" variant="outlined" disabled />
-          <TextInput label="Select" value={1} variant="outlined" select fullWidth>
-            {[1, 2, 3, 4, 5].map(item => (
-              <MenuItem key={item} value={item}>Item #{item}</MenuItem>
-            ))}
-          </TextInput>
-        </SimpleList>
-
-        <SimpleList marginFactor={2} gutter>
-          <Typography variant="h4">Multiline inputs</Typography>
-          <TextInput label="Static input" variant="outlined" multiline rows={3} />
-          <TextInput
-            error
-            multiline
-            rows={3}
-            variant="outlined"
-            label="Multiline with error"
-            helperText="Unknown error"
-          />
-          <TextInput label="Dynamic input" variant="outlined" multiline rowsMax={4} />
-          <TextInput label="Dynamic underlined" variant="standard" multiline rowsMax={4} />
-        </SimpleList>
-
-        <SimpleList marginFactor={2} gutter>
-          <Typography variant="h4">Other inputs</Typography>
-          <TextInput label="Visa input" variant="outlined" maskType="visa" />
-          <TextInput label="Password input" variant="outlined" type="password" />
-        </SimpleList>
-      </SimpleList>
+      <TextInputs />
 
       <SimpleList marginFactor={4} direction="row">
         <SimpleList marginFactor={2} gutter>

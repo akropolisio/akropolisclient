@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as R from 'ramda';
-import { GetProps } from '_helpers';
+import { GetProps, MarkAsPartial, SubSet } from '_helpers';
 import MaskedInput from 'react-text-mask';
 
 import TextField, { TextFieldProps } from '@material-ui/core/TextField';
@@ -13,7 +13,14 @@ import { bind } from 'decko';
 
 type MaskType = 'visa';
 
-type IProps = TextFieldProps & {
+// crutch for types :)
+type PartialProps = SubSet<
+  keyof TextFieldProps,
+  | 'className' | 'classes' | 'defaultValue' | 'variant' | 'style' | 'innerRef'
+  | 'inputProps' | 'InputProps' | 'inputRef' | 'rows' | 'rowsMax' | 'value'
+>;
+
+type IProps = MarkAsPartial<TextFieldProps, PartialProps> & {
   maskType?: MaskType;
 };
 
@@ -53,7 +60,7 @@ class TextInput extends React.PureComponent<IProps, IState> {
 
     return (
       <TextField
-        {...restProps}
+        {...restProps as TextFieldProps}
         type={type}
         InputLabelProps={{
           shrink: maskType && true,
