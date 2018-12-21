@@ -16,6 +16,13 @@ const colors = {
   buttercup: '#f5a623',
   white: '#fff',
   black: '#000',
+  alto: '#e0e0e0',
+};
+
+const screensWidth = {
+  sm: '600px',
+  md: '1100px',
+  maxWidthScreen: '1600px',
 };
 
 export const theme = {
@@ -50,21 +57,63 @@ export const theme = {
       borderRadius: 4,
       minHeight: 40,
     },
+    header: {
+      mobile: '3.3125rem',
+      desktop: '6.25rem',
+    },
   },
   spacing: {
     unit: 8,
+    mainContentPadding: {
+      desktop: '4.9063rem',
+      mobile: '1.25rem',
+    },
   },
   typography: {
     primaryFont: ['OpenSans', 'Arial', 'sans-serif'].join(','),
   },
   zIndex: {
     newContext: 0,
+    mobileHeader: 500,
     modal: 1400,
     tooltip: 1500,
     beforeContext: (zIndex: number) => --zIndex,
     afterContext: (zIndex: number) => ++zIndex,
   },
   defaultTransitionDuration: '0.4s',
+  respondTo: (
+    type: 'sm' | 'maxWidthScreen',
+    styles: StylesObj,
+    customSelector?: string,
+  ) => {
+    const mediaQuery = getMediaQueryByType(type, true);
+    return {
+      [mediaQuery]: customSelector ? { [customSelector]: styles } : styles,
+    };
+  },
+  adaptive: {
+    maxWidth: screensWidth.maxWidthScreen,
+    getMediaQueryByType,
+    screensWidth,
+    settings: {
+      sm: {
+        commonHorizontalPadding: '1.25rem',
+      },
+    },
+  },
 };
+
+type StylesObj = Record<string, React.CSSProperties> | {
+  [K in keyof React.CSSProperties]: ((props: any) => React.CSSProperties[K]) | React.CSSProperties[K]
+};
+
+function getMediaQueryByType(type: 'sm' | 'maxWidthScreen', withKeyword: boolean): string {
+  // tslint:disable-next-line:max-line-length
+  if (type === 'sm') {
+    return `${withKeyword ? '@media ' : ''}(max-width: ${screensWidth[type]}), (max-device-width: 1000px)`;
+  } else {
+    return `${withKeyword ? '@media ' : ''}(min-width: ${screensWidth[type]})`;
+  }
+}
 
 export type Theme = MaterialTheme & { extra: typeof theme };

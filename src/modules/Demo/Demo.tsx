@@ -15,8 +15,6 @@ const DemoModule: IModule = {
           <Redirect exact from={routes.demo.getRoutePath()} to={routes.demo.gui.getRedirectPath()} />
           <Route path={routes.demo.gui.getRoutePath()} component={DemoGUI} />
           <Route path={routes.demo.header.getRoutePath()} component={DemoHeader} />
-          <Route path={routes.demo.dashboard.getRoutePath()} component={DemoHeader} />
-          <Route path={routes.demo.marketplace.getRoutePath()} component={DemoHeader} />
         </Switch>
       </Route>
     );

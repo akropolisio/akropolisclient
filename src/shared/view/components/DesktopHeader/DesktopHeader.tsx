@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import { provideStyles, StylesProps } from './Header.style';
+import { provideStyles, StylesProps } from './DesktopHeader.style';
 
 import * as logo from './images/logo.png';
 
 type LinkName = 'marketplace' | 'dashboard';
 
-interface IProps {
+interface IOwnProps {
   children?: React.ReactNode;
   brandRedirectPath: string;
   menuRedirectPaths: Record<LinkName, string>;
@@ -17,7 +17,8 @@ const textForMenuItem: Record<LinkName, string> = {
   marketplace: 'Marketplace',
 };
 
-class Header extends React.PureComponent<IProps & StylesProps> {
+type IProps = IOwnProps & StylesProps;
+class DesktopHeader extends React.PureComponent<IProps> {
   public render() {
     const { classes, brandRedirectPath, menuRedirectPaths } = this.props;
 
@@ -44,4 +45,4 @@ class Header extends React.PureComponent<IProps & StylesProps> {
 }
 
 export { IProps };
-export default provideStyles(Header);
+export default provideStyles(DesktopHeader);

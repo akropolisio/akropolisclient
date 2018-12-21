@@ -1,7 +1,9 @@
 import * as React from 'react';
 
 import { RowsLayout } from 'shared/view/elements';
-import { Header, Footer } from 'shared/view/components';
+import {
+  DesktopHeader, MobileHeader, Footer, WithDeviceEnvironment, IWithDeviceEnvironmentInjectedProps,
+} from 'shared/view/components';
 
 import routes from 'modules/routes';
 
@@ -11,22 +13,31 @@ interface IOwnProps {
   children: React.ReactNode;
 }
 
-type Props = IOwnProps & StylesProps;
+type Props = IOwnProps & StylesProps & IWithDeviceEnvironmentInjectedProps;
 
 class BaseLayout extends React.PureComponent<Props> {
   public render() {
-    const { classes, children } = this.props;
+    const { classes, children, deviceEnvironment: { isMobile } } = this.props;
+    const Header = isMobile ? MobileHeader : DesktopHeader;
+
+    const desktopMenuRedirectPaths = {
+      dashboard: routes.demo.header.dashboard.getRoutePath(),
+      marketplace: routes.demo.header.marketplace.getRoutePath(),
+    };
+
+    const mobileMenuRedirectPaths = {
+      ...desktopMenuRedirectPaths,
+      profile: routes.demo.header.profile.getRoutePath(),
+    };
 
     return (
       <RowsLayout
+        isMobile={isMobile}
         footerContent={<Footer />}
         headerContent={(
           <Header
             brandRedirectPath={'homeRedirectPath'}
-            menuRedirectPaths={{
-              dashboard: routes.demo.dashboard.getRoutePath(),
-              marketplace: routes.demo.marketplace.getRoutePath(),
-            }}
+            menuRedirectPaths={isMobile ? mobileMenuRedirectPaths : desktopMenuRedirectPaths}
           >
             header
           </Header>
@@ -40,4 +51,4 @@ class BaseLayout extends React.PureComponent<Props> {
   }
 }
 
-export default provideStyles(BaseLayout);
+export default WithDeviceEnvironment(provideStyles(BaseLayout));

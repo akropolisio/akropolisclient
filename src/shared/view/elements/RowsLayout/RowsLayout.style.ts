@@ -1,7 +1,9 @@
-import injectSheet, { WithStyles } from 'react-jss';
+import injectSheet, { WithStyles, Theme } from 'react-jss';
 import { rule } from 'shared/helpers/style';
 
-const styles = {
+import { IProps } from './RowsLayout';
+
+const styles = ({ extra: theme }: Theme) => ({
   root: rule({
     flexGrow: 1,
     minHeight: '100%',
@@ -11,9 +13,9 @@ const styles = {
   }),
 
   header: rule({
-    height: '6.25rem',
+    height: ({ isMobile }: IProps) => isMobile ? theme.sizes.header.mobile : theme.sizes.header.desktop,
   }),
-};
+});
 
 export const provideStyles = injectSheet(styles);
 

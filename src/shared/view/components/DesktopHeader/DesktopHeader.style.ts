@@ -6,7 +6,7 @@ const styles = ({ extra: theme }: Theme) => ({
   root: rule({
     height: '100%',
     background: theme.colors.white,
-    padding: '0 4.9063rem',
+    padding: `0 ${theme.spacing.mainContentPadding.desktop}`,
     display: 'flex',
     alignItems: 'center',
   }),
@@ -26,11 +26,6 @@ const styles = ({ extra: theme }: Theme) => ({
     composes: '$link',
     fontWeight: 'bold',
     borderBottom: `solid ${theme.palette.control.border.focus} 2px`,
-  }),
-  content: rule({
-    margin: theme.spacing.unit,
-    marginLeft: 'auto',
-    paddingLeft: theme.spacing.unit,
   }),
 
   logo: rule({
