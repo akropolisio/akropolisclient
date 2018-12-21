@@ -25,16 +25,17 @@ function withDeviceEnvironment<TProps extends IInjectedProps>(
   class DeviceEnvironmentProvider extends React.Component<TProps, IState> {
 
     public static displayName: string = `DeviceEnvironmentProvider(${wrappedComponentName})`;
-    public state: IState = { deviceEnvironment: null };
+    public state: IState = { deviceEnvironment: __CLIENT__ ? null : { isMobile: false, screenWidth: 0 } };
 
     private mobileMediaQueryList: MediaQueryList | null = null;
 
     public componentWillMount() {
-      this.mobileMediaQueryList = window.matchMedia(theme.adaptive.getMediaQueryByType('sm', false));
-      this.onChangeScreenSize(this.mobileMediaQueryList);
-      this.mobileMediaQueryList.addListener(this.onChangeScreenSize as unknown as (this: MediaQueryList) => void);
-
-      window.addEventListener('resize', this.onWindowResize);
+      if (__CLIENT__) {
+        this.mobileMediaQueryList = window.matchMedia(theme.adaptive.getMediaQueryByType('sm', false));
+        this.onChangeScreenSize(this.mobileMediaQueryList);
+        this.mobileMediaQueryList.addListener(this.onChangeScreenSize as unknown as (this: MediaQueryList) => void);
+        window.addEventListener('resize', this.onWindowResize);
+      }
     }
 
     public componentWillUnmount() {
