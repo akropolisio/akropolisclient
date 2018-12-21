@@ -10,7 +10,6 @@ class Header extends React.PureComponent<IProps> {
   public render() {
     const { deviceEnvironment: { isMobile } } = this.props;
     return isMobile ? this.renderMobileVersion() : this.renderDesktopVersion();
-
   }
 
   public renderDesktopVersion() {

@@ -61,9 +61,8 @@ class MobileHeader extends React.PureComponent<IProps, IState> {
       <div className={classes.menu}>
         <div className={classes.linksList}>
           {Object.keys(menuRedirectPaths).map((key: LinkName) => (
-            <div className={classes.listItem}>
+            <div key={key} className={classes.listItem}>
               <NavLink
-                key={key}
                 className={classes.link}
                 activeClassName={classes.activeLink}
                 to={menuRedirectPaths[key]}

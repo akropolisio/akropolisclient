@@ -13,9 +13,7 @@ class DemoHeader extends React.PureComponent<IProps> {
 
     return (
       <BaseLayout>
-        <div className={classes.root}>
-          header
-        </div>
+        <div className={classes.root} />
       </BaseLayout>
     );
   }
