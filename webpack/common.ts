@@ -6,6 +6,7 @@ import * as MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import * as ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import * as threadLoader from 'thread-loader';
+import * as FaviconsWebpackPlugin from 'favicons-webpack-plugin';
 
 import * as postcssEasyImport from 'postcss-easy-import';
 import * as postcssSCSS from 'postcss-scss';
@@ -47,7 +48,9 @@ export const getCommonPlugins: (type: BuildType) => webpack.Plugin[] = (type) =>
     '__LANG__': JSON.stringify(process.env.LANG || 'en'),
     '__CLIENT__': true,
     '__SERVER__': false,
-  })]
+  }),
+  new FaviconsWebpackPlugin(path.resolve(__dirname, '..', 'src', 'assets', 'favicon.png')),
+]
   .concat(type !== 'server' ? (
     new ForkTsCheckerWebpackPlugin({
       checkSyntacticErrors: true,
