@@ -76,6 +76,11 @@ class DesktopHeader extends React.PureComponent<IProps, IState> {
     this.setState((prevState) => ({ isMenuOpen: !prevState.isMenuOpen }));
   }
 
+  @bind
+  public closeMenu() {
+    this.setState({ isMenuOpen: false });
+  }
+
   public renderMenu() {
     const { classes } = this.props;
     return (
@@ -84,6 +89,7 @@ class DesktopHeader extends React.PureComponent<IProps, IState> {
           {Object.keys(mobileRedirectPaths).map((key: LinkName) => (
             <div key={key} className={classes.listItem}>
               <NavLink
+                onClick={this.closeMenu}
                 className={classes.link}
                 activeClassName={classes.activeLink}
                 to={mobileRedirectPaths[key]}
