@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import IconExpandMore from '@material-ui/icons/ExpandMore';
+import { Arrow } from 'shared/view/elements/Icons'
 
 import { provideStyles, StylesProps } from './ProfileMenu.style';
 
@@ -13,7 +13,7 @@ class ProfileMenu extends React.PureComponent<StylesProps> {
       <div className={classes.root}>
         <div className={classes.avatar} />
         <div className={classes.name}>Klimov Pavel</div>
-        <div className={classes.toggle}><IconExpandMore /></div>
+        <div className={classes.toggle}><Arrow className={classes.toggleIcon} /></div>
       </div>
 
     );

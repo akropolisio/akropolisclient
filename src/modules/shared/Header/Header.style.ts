@@ -81,6 +81,10 @@ const styles = ({ extra: theme }: Theme) => ({
     }),
   }),
 
+  toogleMenuIcon: rule({
+    width: '100%',
+  }),
+
   mobileMenu: rule({
     display: 'none',
     position: 'fixed',

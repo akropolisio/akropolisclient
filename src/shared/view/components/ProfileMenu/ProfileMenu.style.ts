@@ -30,9 +30,14 @@ const styles = ({ extra: theme }: Theme) => ({
   }),
 
   toggle: rule({
-    width: '0.5rem',
-    paddingTop: '0.25rem',
+    width: '0.75rem',
+    paddingTop: '0.2rem',
     color: theme.colors.dustyGray,
+  }),
+
+  toggleIcon: rule({
+    width: '100%',
+    transform: 'rotate(90deg)',
   }),
 });
 

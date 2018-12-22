@@ -3,8 +3,7 @@ import * as cn from 'classnames';
 import { bind } from 'decko';
 import routes from 'modules/routes';
 import { NavLink, Link, withRouter, RouteComponentProps } from 'react-router-dom';
-import IconMenu from '@material-ui/icons/Menu';
-import IconClose from '@material-ui/icons/Close';
+import { Menu, Cross } from 'shared/view/elements/Icons';
 
 import { provideStyles, StylesProps } from './Header.style';
 import { ProfileMenu } from 'shared/view/components';
@@ -64,7 +63,7 @@ class DesktopHeader extends React.PureComponent<IProps, IState> {
         </div>
         <div className={classes.profileComponent}><ProfileMenu /></div>
         <div className={classes.toogleMenu} onClick={this.toggleMenu}>
-          {isMenuOpen ? <IconClose /> : <IconMenu />}
+          {isMenuOpen ? <Cross className={classes.toogleMenuIcon} /> : <Menu className={classes.toogleMenuIcon} />}
         </div>
         {isMenuOpen && this.renderMenu()}
       </div >
