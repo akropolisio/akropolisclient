@@ -1,8 +1,8 @@
-import injectSheet from 'react-jss';
+import injectSheet, { Theme } from 'react-jss';
 import { rule } from 'shared/helpers/style';
 import './fonts/OpenSans/index.scss';
 
-const styles = {
+const styles = ({ extra: theme }: Theme) => ({
   '@global': rule({
     html: {
       fontSize: 16, // TODO: use rems everywhere in the project
@@ -16,6 +16,12 @@ const styles = {
       height: '100%',
     },
   }),
-};
+
+  [theme.adaptive.getMediaQueryByType('sm', true)]: {
+    '@global html': {
+      fontSize: 13,
+    },
+  },
+});
 
 export default injectSheet(styles)();
