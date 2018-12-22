@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Arrow } from 'shared/view/elements/Icons'
+import { Arrow } from 'shared/view/elements/Icons';
 
 import { provideStyles, StylesProps } from './ProfileMenu.style';
 
