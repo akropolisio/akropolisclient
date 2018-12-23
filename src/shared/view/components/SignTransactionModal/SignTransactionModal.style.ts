@@ -11,6 +11,11 @@ const styles = ({ extra: theme }: Theme) => ({
     alignItems: 'center',
     justifyContent: 'center',
     padding: '3.125rem 7.5rem 5.625rem',
+
+    ...theme.respondTo('sm', {
+      paddingLeft: '1rem',
+      paddingRight: '1rem',
+    }),
   }),
 
   title: rule({
@@ -19,6 +24,11 @@ const styles = ({ extra: theme }: Theme) => ({
     fontFamily: theme.typography.primaryFont,
     fontWeight: 'bold',
     color: theme.palette.text.primary,
+    textAlign: 'center',
+
+    ...theme.respondTo('sm', {
+      padding: '0 3rem',
+    }),
   }),
 
   description: rule({
@@ -26,6 +36,10 @@ const styles = ({ extra: theme }: Theme) => ({
     fontFamily: theme.typography.primaryFont,
     color: theme.palette.text.primary,
     textAlign: 'center',
+
+    ...theme.respondTo('sm', {
+      padding: '0 3rem',
+    }),
   }),
 
   scanQrCode: rule({

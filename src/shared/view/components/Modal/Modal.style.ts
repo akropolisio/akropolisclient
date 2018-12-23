@@ -60,7 +60,13 @@ const styles = ({ extra: theme }: Theme) => ({
     position: 'absolute',
     top: '3.125rem',
     right: '3.125rem',
+    zIndex: theme.zIndex.newContext + 1,
     cursor: 'pointer',
+
+    ...theme.respondTo('sm', {
+      top: '2.625rem',
+      right: '2.625rem',
+    }),
   }),
 
   '@keyframes modal-disappear-animation': rule({
