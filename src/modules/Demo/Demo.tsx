@@ -6,15 +6,17 @@ import { IModule } from 'shared/types/app';
 
 import DemoGUI from './view/DemoGUI/DemoGUI';
 import DemoHeader from './view/DemoHeader/DemoHeader';
+import DemoTranslations from './view/DemoTranslations/DemoTranslations';
 
 const DemoModule: IModule = {
   getRoutes() {
     return (
       <Route key="demo" path={routes.demo.getRoutePath()}>
         <Switch>
-          <Redirect exact from={routes.demo.getRoutePath()} to={routes.demo.gui.getRedirectPath()} />
           <Route path={routes.demo.gui.getRoutePath()} component={DemoGUI} />
           <Route path={routes.demo.header.getRoutePath()} component={DemoHeader} />
+          <Route path={routes.demo.translations.getRoutePath()} component={DemoTranslations} />
+          <Redirect to={routes.demo.gui.getRedirectPath()} />
         </Switch>
       </Route>
     );

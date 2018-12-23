@@ -28,10 +28,18 @@ declare module '_helpers' {
 
   export type SubSet<T, R extends T> = R;
 
-  export type Diff<T, U> = T extends U ? never : T;
+  export type MergeRight<L, R> = R & Pick<L, Exclude<keyof L, keyof R>>;
 
   type CheckExtends<T, R> = T extends R ? true : unknown;
   export type CheckIdentity<T, R> = (
     CheckExtends<T, R> | CheckExtends<R, T> | CheckExtends<keyof T, keyof R> | CheckExtends<keyof R, keyof T>
   ) extends true ? T : unknown;
+
+  export type MarkAsPartial<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>> & {
+    [key in K]?: T[key];
+  }
+
+  export type MarkNotIdentityProps<T, R> = {
+    [K in keyof T & keyof R]: CheckIdentity<T[K], R[K]>;
+  }
 }
