@@ -5,14 +5,14 @@ import { TYPES, container } from './configureIoc';
 import configureStore, { createReducer } from './configureStore';
 import { configureJss } from 'core/configureJss';
 
-import { DemoModule } from 'modules';
+import { DemoModule, AuthModule } from 'modules';
 
 import { ReducersMap } from 'shared/types/redux';
 import { IAppData, IModule, RootSaga, IAppReduxState, IReduxEntry } from 'shared/types/app';
 
 function configureApp(data?: IAppData): IAppData {
   /* Prepare main app elements */
-  const modules: IModule[] = [DemoModule];
+  const modules: IModule[] = [DemoModule, AuthModule];
 
   if (data) {
     return { ...data, modules };

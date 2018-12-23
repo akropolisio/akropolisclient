@@ -13,9 +13,9 @@ export function configureJss(virtual?: boolean): IJssDependencies {
     ...(createMuiTheme({
       palette: {
         primary: {
-          main: extraTheme.colors.mediumPurple,
+          main: extraTheme.colors.purpleHeart,
           light: extraTheme.colors.heliotrope,
-          dark: extraTheme.colors.purpleHeart,
+          dark: extraTheme.colors.mediumPurple,
           contrastText: extraTheme.colors.white,
         },
         error: {
@@ -37,6 +37,7 @@ export function configureJss(virtual?: boolean): IJssDependencies {
           root: {
             textTransform: 'initial',
             minHeight: extraTheme.sizes.control.minHeight,
+            fontWeight: 600,
           },
         },
         MuiSvgIcon: {

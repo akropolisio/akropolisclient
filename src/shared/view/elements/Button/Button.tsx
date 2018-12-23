@@ -2,7 +2,7 @@ import * as React from 'react';
 import { SubSet } from '_helpers';
 import MuiButton, { ButtonProps } from '@material-ui/core/Button';
 
-type ICommonProps = Pick<ButtonProps, 'disabled' | 'onClick' | 'href' | 'variant'>;
+type ICommonProps = Pick<ButtonProps, 'disabled' | 'onClick' | 'href' | 'variant' | 'fullWidth'>;
 
 type IProps = ICommonProps & {
   color?: SubSet<ButtonProps['color'], 'primary' | 'default'>;

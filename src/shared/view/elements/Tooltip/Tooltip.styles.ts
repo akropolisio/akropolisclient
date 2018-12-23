@@ -49,7 +49,11 @@ function arrowGenerator(color: string): CSSProperties {
 }
 
 const styles = (theme: Theme) => ({
-  arrowPopper: arrowGenerator(theme.palette.grey[700]),
+  arrowPopper: {
+    ...arrowGenerator(theme.palette.grey[700]),
+    maxWidth: '8.75rem',
+    textAlign: 'center',
+  } as CSSProperties,
   arrow: rule({
     position: 'absolute',
     fontSize: 7,
