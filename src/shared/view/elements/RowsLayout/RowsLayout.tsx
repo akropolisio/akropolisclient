@@ -17,9 +17,6 @@ function RowsLayout({ children, footerContent, headerContent, classes }: IProps 
       <Grid item className={classes.content}>
         {children}
       </Grid>
-      <Grid item>
-        {footerContent}
-      </Grid>
     </Grid>
   );
 }

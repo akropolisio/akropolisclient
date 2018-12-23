@@ -1,7 +1,6 @@
 import * as React from 'react';
 
 import { RowsLayout } from 'shared/view/elements';
-import { Footer } from 'shared/view/components';
 
 import Header from '../Header/Header';
 
@@ -19,7 +18,6 @@ class BaseLayout extends React.PureComponent<Props> {
 
     return (
       <RowsLayout
-        footerContent={<Footer />}
         headerContent={<Header />}
       >
         <div className={classes.content}>
