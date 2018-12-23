@@ -6,6 +6,7 @@ const rawTree = {
   },
   demo: {
     gui: null,
+    translations: null,
   },
 };
 
