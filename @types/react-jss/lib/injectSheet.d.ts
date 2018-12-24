@@ -35,10 +35,10 @@ declare module 'react-jss/lib/injectSheet' {
 
   export type WithStyles<T extends string | StyleRules | StyleRulesCallback> = Partial<WithTheme> & {
     classes: ClassNameMap<
-    T extends string ? T :
-    T extends StyleRulesCallback<infer K> ? K :
-    T extends StyleRules<infer K> ? K :
-    never
+      T extends string ? T :
+      T extends StyleRulesCallback<infer K> ? K :
+      T extends StyleRules<infer K> ? K :
+      never
     >;
   };
 
@@ -50,8 +50,8 @@ declare module 'react-jss/lib/injectSheet' {
   export default function withStyles<ClassKey extends string>(
     style: StyleRulesCallback<ClassKey> | StyleRules<ClassKey>,
   ): {
-      <P extends ConsistentWith<P, StyledComponentProps<ClassKey>>>(
-        component?: React.ComponentType<P & WithStyles<ClassKey>>,
-      ): React.ComponentType<Overwrite<P, StyledComponentProps<ClassKey>>>;
-    };
+    <P extends ConsistentWith<P, StyledComponentProps<ClassKey>>>(
+      component?: React.ComponentType<P & WithStyles<ClassKey>>,
+    ): React.ComponentType<Overwrite<P, StyledComponentProps<ClassKey>>>;
+  };
 }
