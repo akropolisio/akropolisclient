@@ -16,10 +16,10 @@ const styles = ({ extra: theme }: Theme) => ({
       medium: '30rem',
       large: '40.625rem',
     }),
-    ...theme.respondTo('sm', {
-      width: () => '100%',
-      height: () => '100%',
-    }),
+    // ...theme.respondTo('sm', {
+    //   width: () => '100%',
+    //   height: () => '100%',
+    // }),
   }),
   modalAfterOpen: rule({
     animationName: 'modal-appear-animation',
@@ -63,10 +63,10 @@ const styles = ({ extra: theme }: Theme) => ({
     zIndex: theme.zIndex.newContext + 1,
     cursor: 'pointer',
 
-    ...theme.respondTo('sm', {
-      top: '2.625rem',
-      right: '2.625rem',
-    }),
+    // ...theme.respondTo('sm', {
+    //   top: '2.625rem',
+    //   right: '2.625rem',
+    // }),
   }),
 
   '@keyframes modal-disappear-animation': rule({

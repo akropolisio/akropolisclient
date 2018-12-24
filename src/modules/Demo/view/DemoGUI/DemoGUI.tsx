@@ -1,44 +1,13 @@
 import * as React from 'react';
-import {
-  TextInput, SimpleList, Button, Typography, RadioGroupInput, FormControlLabel, Radio, MenuItem, CheckboxInput,
-  ToggleButtonGroup, ToggleButton, Tooltip, CircleProgressBar,
-} from 'shared/view/elements';
-import { Question } from 'shared/view/elements/Icons';
+import { SimpleList, Button, Typography, CircleProgressBar } from 'shared/view/elements';
 
 import { StylesProps, provideStyles } from './DemoGUI.style';
+import { ToggleButtons, TextInputs, RadioGroups, Checkboxes } from './components';
 
-function DemoGUI({ classes }: StylesProps) {
+function DemoGUI(_props: StylesProps) {
   return (
     <div style={{ padding: 20 }}>
-      <SimpleList marginFactor={2} gutter>
-        <Typography variant="h4">Toggle button group</Typography>
-        <ToggleButtonGroup exclusive value="beneficiary">
-          <ToggleButton value="beneficiary">
-            Beneficiary
-            <Tooltip placement="top" title="qweqwe">
-              <Question className={classes.rightIcon} />
-            </Tooltip>
-          </ToggleButton>
-          <ToggleButton value="fund owner">
-            Fund owner
-            <Tooltip placement="top" title="qweqwe">
-              <Question className={classes.rightIcon} />
-            </Tooltip>
-          </ToggleButton>
-          <ToggleButton value="board member">
-            Board member
-            <Tooltip placement="top" title="qweqwe">
-              <Question className={classes.rightIcon} />
-            </Tooltip>
-          </ToggleButton>
-          <ToggleButton value="asset manager">
-            Asset manager
-            <Tooltip placement="top" title="qweqwe">
-              <Question className={classes.rightIcon} />
-            </Tooltip>
-          </ToggleButton>
-        </ToggleButtonGroup>
-      </SimpleList>
+      <ToggleButtons />
 
       <SimpleList marginFactor={4} direction="row">
         <SimpleList marginFactor={2} gutter>
@@ -59,86 +28,15 @@ function DemoGUI({ classes }: StylesProps) {
 
         <SimpleList marginFactor={0} gutter>
           <Typography variant="h4">ProgressBar</Typography>
-          <CircleProgressBar variant="static" size={100} value={85} />
+          <CircleProgressBar variant="indeterminate" size={100} value={85} />
         </SimpleList>
       </SimpleList>
 
-      <SimpleList marginFactor={4} direction="row">
-        <SimpleList marginFactor={2} alignItems="stretch" gutter>
-          <Typography variant="h4">Underlined input</Typography>
-          <TextInput label="Your email" variant="standard" required />
-          <TextInput label="Your email" variant="standard" error helperText="Wrong email" />
-          <TextInput label="Your email" value="disabled" variant="standard" disabled />
-          <TextInput label="Select" value={1} variant="standard" select fullWidth>
-            {[1, 2, 3, 4, 5].map(item => (
-              <MenuItem key={item} value={item}>Item #{item}</MenuItem>
-            ))}
-          </TextInput>
-        </SimpleList>
-
-        <SimpleList marginFactor={2} alignItems="stretch" gutter>
-          <Typography variant="h4">Outlined input</Typography>
-          <TextInput label="Your email" variant="outlined" />
-          <TextInput label="Your email" variant="outlined" error helperText="Wrong email" />
-          <TextInput label="Your email" value="disabled" variant="outlined" disabled />
-          <TextInput label="Select" value={1} variant="outlined" select fullWidth>
-            {[1, 2, 3, 4, 5].map(item => (
-              <MenuItem key={item} value={item}>Item #{item}</MenuItem>
-            ))}
-          </TextInput>
-        </SimpleList>
-
-        <SimpleList marginFactor={2} gutter>
-          <Typography variant="h4">Multiline inputs</Typography>
-          <TextInput label="Static input" variant="outlined" multiline rows={3} />
-          <TextInput
-            error
-            multiline
-            rows={3}
-            variant="outlined"
-            label="Multiline with error"
-            helperText="Unknown error"
-          />
-          <TextInput label="Dynamic input" variant="outlined" multiline rowsMax={4} />
-          <TextInput label="Dynamic underlined" variant="standard" multiline rowsMax={4} />
-        </SimpleList>
-
-        <SimpleList marginFactor={2} gutter>
-          <Typography variant="h4">Other inputs</Typography>
-          <TextInput label="Visa input" variant="outlined" maskType="visa" />
-          <TextInput label="Password input" variant="outlined" type="password" />
-        </SimpleList>
-      </SimpleList>
+      <TextInputs />
 
       <SimpleList marginFactor={4} direction="row">
-        <SimpleList marginFactor={2} gutter>
-          <Typography variant="h4">Radio button</Typography>
-          <RadioGroupInput label="Label for required radio" value="other" required>
-            <FormControlLabel value="female" control={<Radio />} label="Female" />
-            <FormControlLabel value="male" control={<Radio />} label="Male" />
-            <FormControlLabel disabled value="disabled" control={<Radio />} label="Disabled" />
-            <FormControlLabel value="other" control={<Radio />} label="Other" />
-          </RadioGroupInput>
-        </SimpleList>
-        <SimpleList marginFactor={2} gutter>
-          <Typography variant="h4">Radio with error</Typography>
-          <RadioGroupInput error helperText="Unknown error" label="Label for radio buttons" value="other">
-            <FormControlLabel value="female" control={<Radio />} label="Female" />
-            <FormControlLabel value="male" control={<Radio />} label="Male" />
-            <FormControlLabel disabled value="disabled" control={<Radio />} label="Disabled" />
-            <FormControlLabel value="other" control={<Radio />} label="Other" />
-          </RadioGroupInput>
-        </SimpleList>
-
-        <SimpleList marginFactor={0} gutter>
-          <Typography variant="h4">CheckBoxes</Typography>
-          <CheckboxInput label="Checked" checked />
-          <CheckboxInput label="Unchecked" />
-          <CheckboxInput label="Required" required />
-          <CheckboxInput label="Disabled checked" disabled checked />
-          <CheckboxInput label="With error" error helperText="Unknown error" />
-        </SimpleList>
-
+        <RadioGroups />
+        <Checkboxes />
       </SimpleList>
     </div>
   );

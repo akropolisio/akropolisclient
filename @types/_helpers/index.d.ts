@@ -27,11 +27,46 @@ declare module '_helpers' {
     T extends React.ComponentClass<infer CP> ? CP : never;
 
   export type SubSet<T, R extends T> = R;
+  export type SubsetMapStrict<B extends { [key in keyof T]: any }, T extends B> = T;
 
-  export type Diff<T, U> = T extends U ? never : T;
+  export type MergeRight<L, R> = R & Pick<L, Exclude<keyof L, keyof R>>;
 
   type CheckExtends<T, R> = T extends R ? true : unknown;
   export type CheckIdentity<T, R> = (
     CheckExtends<T, R> | CheckExtends<R, T> | CheckExtends<keyof T, keyof R> | CheckExtends<keyof R, keyof T>
   ) extends true ? T : unknown;
+
+  export type MarkAsPartial<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>> & {
+    [key in K]?: T[key];
+  }
+
+  export type MarkNotIdentityProps<T, R> = {
+    [K in keyof T & keyof R]: CheckIdentity<T[K], R[K]>;
+  }
+
+  // tslint:disable-next-line:ban-types
+  export type FunctionPropertyNames<T> = { [K in keyof T]: T[K] extends Function ? K : never }[keyof T];
+  export type FunctionProperties<T> = Pick<T, FunctionPropertyNames<T>>;
+
+  export type ArrayPropertyNames<T> = { [K in keyof T]: T[K] extends any[] ? K : never }[keyof T];
+
+  export type NullablePropertyNames<T> = { [K in keyof T]: Extract<T[K], null> extends null ? K : never }[keyof T];
+
+  // tslint:disable-next-line:ban-types
+  export type NonFunctionPropertyNames<T> = { [K in keyof T]: T[K] extends Function ? never : K }[keyof T];
+  export type NonFunctionProperties<T> = Pick<T, NonFunctionPropertyNames<T>>;
+
+  // tslint:disable-next-line:ban-types
+  export type RequiredProps<T, K extends Extract<keyof T, string>> = Required<Pick<T, K>> & Omit<T, K>;
+
+  export type DeepPartial<T> =
+    T extends any[] ? IDeepPartialArray<T[number]> :
+    T extends object ? DeepPartialObject<T> :
+    T;
+
+  interface IDeepPartialArray<T> extends Array<DeepPartial<T>> { }
+
+  type DeepPartialObject<T> = {
+    readonly [P in NonFunctionPropertyNames<T>]?: DeepPartial<T[P]>;
+  };
 }

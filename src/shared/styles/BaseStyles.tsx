@@ -17,7 +17,7 @@ const styles = ({ extra: theme }: Theme) => ({
     },
   }),
 
-  [theme.adaptive.getMediaQueryByType('sm', true)]: {
+  [theme.breakpoints.down('sm')]: {
     '@global html': {
       fontSize: 13,
     },

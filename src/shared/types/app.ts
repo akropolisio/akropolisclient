@@ -4,6 +4,9 @@ import { Store, Reducer, ActionCreator, Action } from 'redux';
 import { SagaIterator } from 'redux-saga';
 import { GenerateClassName } from 'jss';
 import { JSS, Theme } from 'react-jss';
+import { FormStateMap } from 'redux-form';
+
+import * as i18nNS from 'services/i18n/namespace';
 
 import Api from 'services/api/Api';
 
@@ -48,7 +51,10 @@ export interface IFeatureEntry<
 }
 
 export interface IAppReduxState {
-  someFeature: '';
+  form: FormStateMap;
+  // services
+  i18n: i18nNS.IReduxState;
+  // features
 }
 
 export type RootSaga = (deps: IDependencies) => () => SagaIterator;
