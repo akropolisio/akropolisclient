@@ -18,13 +18,8 @@ const colors = {
   white: '#fff',
   black: '#000',
   alto: '#e0e0e0',
+  heavyMetal: '#1d1d1b',
 };
-
-// const screensWidth = {
-//   sm: '760px',
-//   md: '1200px',
-//   maxWidthScreen: '1600px',
-// };
 
 export const theme = {
   breakpoints,
@@ -59,8 +54,12 @@ export const theme = {
       borderRadius: 4,
       minHeight: 40,
     },
+    page: {
+      maxWidth: 1100,
+      horizontalPadding: 20,
+    },
     header: {
-      mobile: '3.3125rem',
+      minHeightMobile: '3.4125rem',
       desktop: '6.25rem',
     },
   },

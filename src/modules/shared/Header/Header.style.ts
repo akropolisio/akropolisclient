@@ -7,10 +7,9 @@ const styles = ({ extra: theme }: Theme) => ({
     display: 'flex',
     alignItems: 'center',
     background: theme.colors.white,
-    position: 'fixed',
-    width: '100%',
-    height: theme.sizes.header.mobile,
-    padding: `0 ${theme.spacing.mainContentPadding.mobile}`,
+    maxWidth: theme.sizes.page.maxWidth,
+    minHeight: theme.sizes.header.minHeightMobile,
+    padding: `${theme.spacing.unit * 2} ${theme.spacing.unit * 2}px`,
     borderTop: `solid ${theme.colors.alto} 1px`,
     borderBottom: `solid ${theme.colors.alto} 1px`,
     zIndex: theme.zIndex.mobileHeader,
@@ -54,9 +53,6 @@ const styles = ({ extra: theme }: Theme) => ({
   }),
 
   logo: rule({
-    height: '100%',
-    padding: '0.5rem 0',
-
     [theme.breakpoints.up('sm')]: rule({
       padding: '1.1875rem 4.5rem 1.1875rem 0',
     }),
@@ -75,34 +71,28 @@ const styles = ({ extra: theme }: Theme) => ({
     borderBottomColor: theme.colors.white,
   }),
 
-  toogleMenu: rule({
+  toggleMenu: rule({
     display: 'flex',
-
-    width: '1.625rem',
     padding: '0 0.25rem',
-    alignItems: 'center',
     marginLeft: 'auto',
+    fontSize: '1.5rem',
     color: theme.colors.dustyGray,
+
     [theme.breakpoints.up('sm')]: rule({
       display: 'none',
     }),
   }),
 
-  toogleMenuIcon: rule({
-    width: '100%',
-  }),
-
   mobileMenu: rule({
     display: 'block',
-
     position: 'fixed',
-    background: theme.colors.white,
-    width: '100%',
-    height: '100%',
     top: 0,
     left: 0,
     right: 0,
-    marginTop: theme.sizes.header.mobile,
+    bottom: 0,
+    marginTop: theme.sizes.header.minHeightMobile,
+    background: theme.colors.white,
+
     [theme.breakpoints.up('sm')]: rule({
       display: 'none',
     }),
@@ -112,13 +102,13 @@ const styles = ({ extra: theme }: Theme) => ({
     width: '100%',
     display: 'flex',
     flexDirection: 'column',
-    marginLeft: '3.3125rem',
-    marginTop: '1.125rem',
+    marginLeft: '3.0125rem',
+    marginTop: '1.825rem',
     borderTop: `solid ${theme.colors.dustyGray} 1px`,
   }),
 
   listItem: rule({
-    padding: ' 0.9375rem 0',
+    padding: ' 0.96rem 0',
     borderBottom: `solid ${theme.colors.dustyGray} 1px`,
   }),
 });

@@ -10,7 +10,7 @@ interface IOwnProps {
 }
 type IProps = IOwnProps & StylesProps;
 
-class DesktopHeader extends React.PureComponent<IProps> {
+class HeaderLogo extends React.PureComponent<IProps> {
   public render() {
     const { classes, linkTo } = this.props;
     return (
@@ -23,4 +23,4 @@ class DesktopHeader extends React.PureComponent<IProps> {
 }
 
 export { IProps };
-export default provideStyles(DesktopHeader);
+export default provideStyles(HeaderLogo);

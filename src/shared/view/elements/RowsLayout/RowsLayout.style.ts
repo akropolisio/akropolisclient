@@ -1,7 +1,7 @@
-import injectSheet, { WithStyles, Theme } from 'react-jss';
+import injectSheet, { WithStyles } from 'react-jss';
 import { rule } from 'shared/helpers/style';
 
-const styles = ({ extra: theme }: Theme) => ({
+const styles = {
   root: rule({
     flexGrow: 1,
     minHeight: '100%',
@@ -9,14 +9,7 @@ const styles = ({ extra: theme }: Theme) => ({
   content: rule({
     flexGrow: 1,
   }),
-
-  header: rule({
-    height: theme.sizes.header.mobile,
-    [theme.breakpoints.up('sm')]: {
-      height: theme.sizes.header.desktop,
-    },
-  }),
-});
+};
 
 export const provideStyles = injectSheet(styles);
 

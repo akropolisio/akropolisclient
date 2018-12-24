@@ -34,7 +34,7 @@ interface IState {
   isMenuOpen: boolean;
 }
 
-class DesktopHeader extends React.PureComponent<IProps, IState> {
+class Header extends React.PureComponent<IProps, IState> {
   public state: IState = { isMenuOpen: false };
 
   public render() {
@@ -60,8 +60,8 @@ class DesktopHeader extends React.PureComponent<IProps, IState> {
           ))}
         </div>
         <div className={classes.profileComponent}><ProfileMenu /></div>
-        <div className={classes.toogleMenu} onClick={this.toggleMenu}>
-          {isMenuOpen ? <Cross className={classes.toogleMenuIcon} /> : <Menu className={classes.toogleMenuIcon} />}
+        <div className={classes.toggleMenu} onClick={this.toggleMenu}>
+          {isMenuOpen ? <Cross /> : <Menu />}
         </div>
         {isMenuOpen && this.renderMenu()}
       </div >
@@ -102,4 +102,4 @@ class DesktopHeader extends React.PureComponent<IProps, IState> {
 }
 
 export { IProps };
-export default withRouter(provideStyles(DesktopHeader));
+export default withRouter(provideStyles(Header));

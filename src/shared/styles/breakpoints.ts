@@ -1,6 +1,6 @@
 
-type breakpointsType = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-export const keys: breakpointsType[] = ['xs', 'sm', 'md', 'lg', 'xl'];
+type BreakpointType = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+export const keys: BreakpointType[] = ['xs', 'sm', 'md', 'lg', 'xl'];
 
 const values: { [key: string]: number } = {
   xs: 0,
@@ -12,12 +12,12 @@ const values: { [key: string]: number } = {
 const unit = 'px';
 const step = 5;
 
-function up(key: breakpointsType) {
+function up(key: BreakpointType) {
   const value = typeof values[key] === 'number' ? values[key] : key;
   return `@media (min-width:${value}${unit})`;
 }
 
-function down(key: breakpointsType) {
+function down(key: BreakpointType) {
   const endIndex = keys.indexOf(key) + 1;
   const upperbound = values[keys[endIndex]];
 
@@ -32,7 +32,7 @@ function down(key: breakpointsType) {
   }
 }
 
-function between(start: breakpointsType, end: breakpointsType) {
+function between(start: BreakpointType, end: BreakpointType) {
   const endIndex = keys.indexOf(end) + 1;
 
   if (endIndex === keys.length) {
@@ -45,11 +45,11 @@ function between(start: breakpointsType, end: breakpointsType) {
   );
 }
 
-function only(key: breakpointsType) {
+function only(key: BreakpointType) {
   return between(key, key);
 }
 
-function width(key: breakpointsType) {
+function width(key: BreakpointType) {
   return values[key];
 }
 

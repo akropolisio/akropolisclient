@@ -7,7 +7,7 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 function Cross(props: GetProps<typeof SvgIcon>) {
   return (
     <SvgIcon {...props} viewBox="0 0 18 18">
-      <g fill="none" fillRule="evenodd" stroke="#868686" strokeLinecap="round" strokeWidth="1.5">
+      <g fill="none" fillRule="evenodd" stroke="currentColor" strokeLinecap="round" strokeWidth="1.5">
         <path d="M2.58 2.516l13 13M2.58 15.516l13-13" />
       </g>
     </SvgIcon>
