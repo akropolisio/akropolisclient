@@ -10,12 +10,12 @@ const styles = ({ extra: theme }: Theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: '3.125rem 7.5rem 5.625rem',
+    paddingLeft: '1rem',
+    paddingRight: '1rem',
 
-    // ...theme.respondTo('sm', {
-    //   paddingLeft: '1rem',
-    //   paddingRight: '1rem',
-    // }),
+    [theme.breakpoints.up('sm')]: rule({
+      padding: '3.125rem 7.5rem 5.625rem',
+    }),
   }),
 
   title: rule({
@@ -25,10 +25,11 @@ const styles = ({ extra: theme }: Theme) => ({
     fontWeight: 'bold',
     color: theme.palette.text.primary,
     textAlign: 'center',
+    padding: '0 3rem',
 
-    // ...theme.respondTo('sm', {
-    //   padding: '0 3rem',
-    // }),
+    [theme.breakpoints.up('sm')]: rule({
+      padding: '0',
+    }),
   }),
 
   description: rule({
@@ -36,10 +37,11 @@ const styles = ({ extra: theme }: Theme) => ({
     fontFamily: theme.typography.primaryFont,
     color: theme.palette.text.primary,
     textAlign: 'center',
+    padding: '0 3rem',
 
-    // ...theme.respondTo('sm', {
-    //   padding: '0 3rem',
-    // }),
+    [theme.breakpoints.up('sm')]: rule({
+      padding: 0,
+    }),
   }),
 
   scanQrCode: rule({

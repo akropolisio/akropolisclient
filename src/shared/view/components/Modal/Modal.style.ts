@@ -11,15 +11,18 @@ const styles = ({ extra: theme }: Theme) => ({
     outline: 'none',
     opacity: 0,
     borderRadius: '8px',
-    width: ({ size }: IProps) => matchProp(size)({
-      small: '21.875rem',
-      medium: '30rem',
-      large: '40.625rem',
+    height: '100%',
+    width: '100%',
+
+    [theme.breakpoints.up('sm')]: rule({
+      width: ({ size }: IProps) => matchProp(size)({
+        small: '21.875rem',
+        medium: '30rem',
+        large: '40.625rem',
+      }),
+      height: 'auto',
+
     }),
-    // ...theme.respondTo('sm', {
-    //   width: () => '100%',
-    //   height: () => '100%',
-    // }),
   }),
   modalAfterOpen: rule({
     animationName: 'modal-appear-animation',
