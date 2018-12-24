@@ -1,51 +1,52 @@
 import * as React from 'react';
-
-import { ToggleButton, Tooltip } from 'shared/view/elements';
-import { ToggleButtonGroupField } from 'shared/view/redux-form';
+import { bind } from 'decko';
+import { ToggleButton, Tooltip, ToggleButtonGroup } from 'shared/view/elements';
 import { Question } from 'shared/view/elements/Icons';
 
 import { StylesProps, provideStyles } from './SelectRole.style';
-import { reduxForm, InjectedFormProps } from 'redux-form';
-import uuid = require('uuid');
 
-interface IFormData {
-  selectedGroup: string;
+export type Role = 'beneficiary' | 'fundOwner' | 'boardMember' | 'assetManager';
+
+export interface IRole {
+  value: Role;
+  title: string;
+  hint: string;
 }
 
-function SelectRole(props: StylesProps & InjectedFormProps<IFormData>) {
-  const { classes } = props;
-  return (
-    <ToggleButtonGroupField name="selectedGroup" exclusive nullable={false}>
-      <ToggleButton value="beneficiary">
-        Beneficiary
-          <Tooltip placement="top" title="individual saver that acts as a provider of capital">
-          <Question className={classes.rightIcon} />
-        </Tooltip>
-      </ToggleButton>
-      <ToggleButton value="fund owner">
-        Fund owner
-          <Tooltip placement="top" title=" A creator of an Pension Fund">
-          <Question className={classes.rightIcon} />
-        </Tooltip>
-      </ToggleButton>
-      <ToggleButton value="board member">
-        Board member
-          <Tooltip placement="top" title="Party responsible for Asset Manager selection">
-          <Question className={classes.rightIcon} />
-        </Tooltip>
-      </ToggleButton>
-      <ToggleButton value="asset manager">
-        Asset manager
-          <Tooltip placement="top" title="Party responsible for investment management of Pension Fund’s ">
-          <Question className={classes.rightIcon} />
-        </Tooltip>
-      </ToggleButton>
-    </ToggleButtonGroupField>
-  );
+interface IOwnProps {
+  roles: IRole[];
+  selectedRole: Role;
+  onSelectRole(role: Role): void;
 }
 
-export default (
-  reduxForm<IFormData>({ form: uuid(), initialValues: { selectedGroup: 'beneficiary' } })(
-    provideStyles(SelectRole),
-  )
-);
+type IProps = IOwnProps & StylesProps;
+
+class SelectRole extends React.PureComponent<IProps> {
+
+  public render() {
+    const { classes, roles, selectedRole } = this.props;
+    return (
+      <ToggleButtonGroup value={selectedRole} onChange={this.onSelectRole} exclusive nullable={false} >
+        {roles.map(role => (
+          <ToggleButton
+            className={role.value === selectedRole ? classes.roleButtonSelected : classes.roleButton}
+            value={role.value}
+            key={role.value}
+          >
+            {role.title}
+            <Tooltip placement="top" title={role.hint}>
+              <Question className={classes.rightIcon} />
+            </Tooltip>
+          </ToggleButton>
+        ))}
+      </ToggleButtonGroup>
+    );
+  }
+
+  @bind
+  public onSelectRole(event: React.MouseEvent<HTMLElement>, value: Role) {
+    this.props.onSelectRole(value);
+  }
+}
+
+export default (provideStyles(SelectRole));

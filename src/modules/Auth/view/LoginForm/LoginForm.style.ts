@@ -10,45 +10,49 @@ const styles = ({ extra: theme }: Theme) => ({
 
   content: rule({
     margin: 'auto',
-    width: '50rem',
-    minWidth: '50rem',
-    height: '37.5rem',
+    width: '51.25rem',
+    minWidth: '51.25rem',
+    height: '43.75rem',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'space-between',
-    padding: '3.125rem 4.375rem 6.25rem',
-    boxShadow: '0 1px 12px 0 rgba(0, 0, 0, 0.5)',
+    padding: '3.5rem 5.125rem 6.5rem',
+    boxShadow: '0 0.0625rem 0.75rem 0 rgba(0, 0, 0, 0.5)',
   }),
 
   logo: rule({
     width: '40%',
+    marginBottom: '3.125rem',
   }),
 
   text: rule({
     textTransform: 'uppercase',
     fontFamily: theme.typography.primaryFont,
-    fontSize: '0.75rem',
+    fontSize: '11px',
     textAlign: 'center',
   }),
 
   subTitle: rule({
     composes: '$text',
-    marginBottom: '1.25rem',
+    marginBottom: '3.125rem',
   }),
 
   title: rule({
     composes: '$text',
-    fontSize: '2.25rem',
+    fontSize: '2.5rem',
     fontWeight: 'bold',
+    marginBottom: '1.625rem',
   }),
 
   selectRole: rule({
     composes: '$text',
-
+    marginBottom: '2.25rem',
   }),
 
-  roles: rule({}),
+  roles: rule({
+    marginBottom: '3.125rem',
+  }),
 
   signButtons: rule({
     width: '48%',

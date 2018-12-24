@@ -51,7 +51,7 @@ function arrowGenerator(color: string): CSSProperties {
 const styles = (theme: Theme) => ({
   arrowPopper: {
     ...arrowGenerator(theme.palette.grey[700]),
-    maxWidth: '8.75rem',
+    maxWidth: '180px',
     textAlign: 'center',
   } as CSSProperties,
   arrow: rule({
@@ -67,6 +67,11 @@ const styles = (theme: Theme) => ({
       height: 0,
       borderStyle: 'solid',
     },
+  }),
+
+  title: rule({
+    fontFamily: theme.extra.typography.primaryFont,
+    fontSize: '0.8125rem',
   }),
 });
 

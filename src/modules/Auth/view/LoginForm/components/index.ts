@@ -1,1 +1,1 @@
-export { default as SelectRole } from './SelectRole/SelectRole';
+export { default as SelectRole, IRole, Role } from './SelectRole/SelectRole';
