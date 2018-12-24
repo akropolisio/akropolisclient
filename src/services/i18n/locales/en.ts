@@ -1,6 +1,12 @@
 // tslint:disable:max-line-length
 export default {
-  shared: {},
+  shared: {
+    menu: {
+      dashboard: 'Dashboard',
+      marketplace: 'Marketplace',
+      profile: 'Profile',
+    },
+  },
   features: {},
   documents: {},
   modules: {},

@@ -4,57 +4,52 @@ import { rule } from 'shared/helpers/style';
 const styles = ({ extra: theme }: Theme) => ({
 
   root: rule({
-    display: 'flex',
-    alignItems: 'center',
     background: theme.colors.white,
-    maxWidth: theme.sizes.page.maxWidth,
-    minHeight: theme.sizes.header.minHeightMobile,
-    padding: `${theme.spacing.unit * 2} ${theme.spacing.unit * 2}px`,
     borderTop: `solid ${theme.colors.alto} 1px`,
     borderBottom: `solid ${theme.colors.alto} 1px`,
-    zIndex: theme.zIndex.mobileHeader,
-    justifyContent: 'space-between',
 
     [theme.breakpoints.up('sm')]: rule({
-      position: 'static',
-      height: '100%',
-      padding: `0 ${theme.spacing.mainContentPadding.desktop}`,
       border: 'none',
-      justifyContent: 'inherit',
+      boxShadow: '0 1px 2px 0 rgba(224, 224, 224, 0.5)',
+    }),
+
+    '&$isMenuOpen': rule({
+      borderBottomColor: theme.colors.white,
     }),
   }),
 
-  desktopLinks: rule({
-    display: 'none',
-    height: '100%',
-    [theme.breakpoints.up('sm')]: rule({
-      display: 'flex',
-    }),
-  }),
-
-  link: rule({
-    height: '100%',
+  content: rule({
     display: 'flex',
     alignItems: 'center',
-    marginRight: '3.125rem',
-    textDecoration: 'none',
-    color: theme.palette.text.primary,
-    fontFamily: theme.typography.primaryFont,
-    tapHighlightColor: 'rgba(0,0,0,0)',
-  }),
+    justifyContent: 'space-between',
+    maxWidth: theme.sizes.page.maxWidth,
+    minHeight: theme.sizes.header.minHeightMobile,
+    padding: `${theme.spacing.unit}px ${theme.spacing.unit * 2}px`,
+    margin: '0 auto',
 
-  activeLink: rule({
-    composes: '$link',
-    fontWeight: 'bold',
-  }),
-
-  withBorder: rule({
-    borderBottom: `solid ${theme.palette.control.border.focus} 2px`,
+    [theme.breakpoints.up('sm')]: rule({
+      justifyContent: 'initial',
+      minHeight: theme.sizes.header.minHeightDesktop,
+      padding: `0 ${theme.spacing.unit * 4}px`,
+    }),
   }),
 
   logo: rule({
+    fontSize: '2.3875rem',
+
     [theme.breakpoints.up('sm')]: rule({
-      padding: '1.1875rem 4.5rem 1.1875rem 0',
+      marginRight: '4.2rem',
+      fontSize: '3rem',
+    }),
+  }),
+
+  desktopMenu: rule({
+    display: 'none',
+    alignSelf: 'stretch',
+    alignItems: 'stretch',
+
+    [theme.breakpoints.up('sm')]: rule({
+      display: 'flex',
     }),
   }),
 
@@ -67,16 +62,8 @@ const styles = ({ extra: theme }: Theme) => ({
     }),
   }),
 
-  hiddenBottomBorder: rule({
-    borderBottomColor: theme.colors.white,
-  }),
-
-  toggleMenu: rule({
-    display: 'flex',
-    padding: '0 0.25rem',
+  toggleMenuButton: rule({
     marginLeft: 'auto',
-    fontSize: '1.5rem',
-    color: theme.colors.dustyGray,
 
     [theme.breakpoints.up('sm')]: rule({
       display: 'none',
@@ -84,33 +71,26 @@ const styles = ({ extra: theme }: Theme) => ({
   }),
 
   mobileMenu: rule({
-    display: 'block',
+    display: 'none',
     position: 'fixed',
     top: 0,
     left: 0,
     right: 0,
     bottom: 0,
     marginTop: theme.sizes.header.minHeightMobile,
+    padding: '1.85rem 0 0 3.2rem',
     background: theme.colors.white,
 
     [theme.breakpoints.up('sm')]: rule({
-      display: 'none',
+      display: 'none !important',
+    }),
+
+    '&$isMenuOpen': rule({
+      display: 'block',
     }),
   }),
 
-  linksList: rule({
-    width: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    marginLeft: '3.0125rem',
-    marginTop: '1.825rem',
-    borderTop: `solid ${theme.colors.dustyGray} 1px`,
-  }),
-
-  listItem: rule({
-    padding: ' 0.96rem 0',
-    borderBottom: `solid ${theme.colors.dustyGray} 1px`,
-  }),
+  isMenuOpen: {},
 });
 
 export const provideStyles = injectSheet(styles);
