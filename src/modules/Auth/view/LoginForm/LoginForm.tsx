@@ -4,10 +4,10 @@ import { withRouter, RouteComponentProps } from 'react-router';
 
 import { Button } from 'shared/view/elements';
 import routes from 'modules/routes';
+import { Logo } from 'modules/shared';
 
 import { SelectRole, IRole, Role } from './components';
 import { StylesProps, provideStyles } from './LoginForm.style';
-import * as logo from './images/logo.png';
 
 interface IState {
   selectedRole: Role;
@@ -33,7 +33,9 @@ class LoginForm extends React.PureComponent<IProps, IState> {
     return (
       <div className={classes.root}>
         <div className={classes.content}>
-          <img className={classes.logo} src={logo} />
+          <div className={classes.logo}>
+            <Logo linkTo={'/'} />
+          </div>
           <div className={classes.subTitle}>decentralised pensions and savings infrastructure</div>
           <div className={classes.title}>a trustless financial future for everyone</div>
           <div className={classes.selectRole}>select your role</div>

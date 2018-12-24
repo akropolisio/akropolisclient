@@ -1,15 +1,19 @@
 import injectSheet, { WithStyles, Theme } from 'react-jss';
 import { rule } from 'shared/helpers/style';
+import * as backgroundFon from './images/background.png';
 
 const styles = ({ extra: theme }: Theme) => ({
   root: rule({
     width: '100%',
     height: '100%',
     display: 'flex',
+    backgroundSize: 'cover',
+    backgroundPosition: '50% 50%',
+    backgroundImage: `url(${backgroundFon})`,
+    backgroundRepeat: 'no-repeat',
   }),
 
   content: rule({
-    margin: 'auto',
     width: '51.25rem',
     minWidth: '51.25rem',
     height: '43.75rem',
@@ -17,7 +21,9 @@ const styles = ({ extra: theme }: Theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'space-between',
+    margin: 'auto',
     padding: '3.5rem 5.125rem 6.5rem',
+    background: theme.colors.white,
     boxShadow: '0 0.0625rem 0.75rem 0 rgba(0, 0, 0, 0.5)',
   }),
 

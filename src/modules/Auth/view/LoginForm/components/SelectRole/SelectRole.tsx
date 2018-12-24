@@ -5,14 +5,15 @@ import { Question } from 'shared/view/elements/Icons';
 
 import { StylesProps, provideStyles } from './SelectRole.style';
 
-export type Role = 'beneficiary' | 'fundOwner' | 'boardMember' | 'assetManager';
+type Role = 'beneficiary' | 'fundOwner' | 'boardMember' | 'assetManager';
 
-export interface IRole {
+interface IRole {
   value: Role;
   title: string;
   hint: string;
 }
 
+export { Role, IRole };
 interface IOwnProps {
   roles: IRole[];
   selectedRole: Role;
