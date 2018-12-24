@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { SubSet } from '_helpers';
+import { SubSet, Omit } from '_helpers';
 import MuiButton, { ButtonProps } from '@material-ui/core/Button';
 
-type ICommonProps = Pick<ButtonProps, 'disabled' | 'onClick' | 'href' | 'variant'>;
+type ICommonProps = Omit<ButtonProps, 'color'>;
 
 type IProps = ICommonProps & {
   color?: SubSet<ButtonProps['color'], 'primary' | 'default'>;

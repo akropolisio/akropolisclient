@@ -4,7 +4,6 @@ import { BrowserRouter, StaticRouter } from 'react-router-dom';
 import 'normalize.css';
 
 import { JssProvider, SheetsRegistry } from 'react-jss';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 
 import { IAppData, IModule, IJssDependencies } from 'shared/types/app';
@@ -60,7 +59,6 @@ function renderSharedPart(
     >
       <MuiThemeProvider theme={theme} disableStylesGeneration={disableStylesGeneration}>
         {/* <React.StrictMode> */}
-        <CssBaseline />
         <BaseStyles />
         {createRoutes(modules)}
         {/* </React.StrictMode> */}
