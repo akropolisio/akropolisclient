@@ -11,10 +11,10 @@ const styles = ({ extra: theme }: Theme) => ({
   }),
 
   header: rule({
-    height: theme.sizes.header.desktop,
-    ...theme.respondTo('sm', {
-      height: theme.sizes.header.mobile,
-    }),
+    height: theme.sizes.header.mobile,
+    [theme.breakpoints.up('sm')]: {
+      height: theme.sizes.header.desktop,
+    },
   }),
 });
 

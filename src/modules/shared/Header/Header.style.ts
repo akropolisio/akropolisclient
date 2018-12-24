@@ -5,28 +5,31 @@ const styles = ({ extra: theme }: Theme) => ({
 
   root: rule({
     display: 'flex',
-    height: '100%',
-    padding: `0 ${theme.spacing.mainContentPadding.desktop}`,
     alignItems: 'center',
     background: theme.colors.white,
+    position: 'fixed',
+    width: '100%',
+    height: theme.sizes.header.mobile,
+    padding: `0 ${theme.spacing.mainContentPadding.mobile}`,
+    borderTop: `solid ${theme.colors.alto} 1px`,
+    borderBottom: `solid ${theme.colors.alto} 1px`,
+    zIndex: theme.zIndex.mobileHeader,
+    justifyContent: 'space-between',
 
-    ...theme.respondTo('sm', {
-      position: 'fixed',
-      width: '100%',
-      height: theme.sizes.header.mobile,
-      zIndex: theme.zIndex.mobileHeader,
-      padding: `0 ${theme.spacing.mainContentPadding.mobile}`,
-      borderTop: `solid ${theme.colors.alto} 1px`,
-      borderBottom: `solid ${theme.colors.alto} 1px`,
-      justifyContent: 'space-between',
+    [theme.breakpoints.up('sm')]: rule({
+      position: 'static',
+      height: '100%',
+      padding: `0 ${theme.spacing.mainContentPadding.desktop}`,
+      border: 'none',
+      justifyContent: 'inherit',
     }),
   }),
 
   desktopLinks: rule({
-    display: 'flex',
-    alignItems: 'center',
-    ...theme.respondTo('sm', {
-      display: 'none',
+    display: 'none',
+    height: '100%',
+    [theme.breakpoints.up('sm')]: rule({
+      display: 'flex',
     }),
   }),
 
@@ -52,16 +55,19 @@ const styles = ({ extra: theme }: Theme) => ({
 
   logo: rule({
     height: '100%',
-    padding: '1.6875rem 4.5rem 1.6875rem 0',
-    ...theme.respondTo('sm', {
-      padding: '0.5rem 0',
+    padding: '0.5rem 0',
+
+    [theme.breakpoints.up('sm')]: rule({
+      padding: '1.6875rem 4.5rem 1.6875rem 0',
     }),
   }),
 
   profileComponent: rule({
     marginLeft: 'auto',
-    ...theme.respondTo('sm', {
-      display: 'none',
+    display: 'none',
+
+    [theme.breakpoints.up('sm')]: rule({
+      display: 'block',
     }),
   }),
 
@@ -70,14 +76,15 @@ const styles = ({ extra: theme }: Theme) => ({
   }),
 
   toogleMenu: rule({
-    display: 'none',
+    display: 'flex',
+
     width: '1.625rem',
     padding: '0 0.25rem',
     alignItems: 'center',
     marginLeft: 'auto',
     color: theme.colors.dustyGray,
-    ...theme.respondTo('sm', {
-      display: 'flex',
+    [theme.breakpoints.up('sm')]: rule({
+      display: 'none',
     }),
   }),
 
@@ -86,7 +93,8 @@ const styles = ({ extra: theme }: Theme) => ({
   }),
 
   mobileMenu: rule({
-    display: 'none',
+    display: 'block',
+
     position: 'fixed',
     background: theme.colors.white,
     width: '100%',
@@ -95,8 +103,8 @@ const styles = ({ extra: theme }: Theme) => ({
     left: 0,
     right: 0,
     marginTop: theme.sizes.header.mobile,
-    ...theme.respondTo('sm', {
-      display: 'block',
+    [theme.breakpoints.up('sm')]: rule({
+      display: 'none',
     }),
   }),
 

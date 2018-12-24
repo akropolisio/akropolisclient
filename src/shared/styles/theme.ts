@@ -1,5 +1,6 @@
 import { Theme as MaterialTheme } from '@material-ui/core/styles';
 import { hexToRGBA } from './helpers';
+import breakpoints from './breakpoints';
 
 // Find color name http://chir.ag/projects/name-that-color
 // https://github.com/insomnious0x01/ntc-js
@@ -19,13 +20,14 @@ const colors = {
   alto: '#e0e0e0',
 };
 
-const screensWidth = {
-  sm: '760px',
-  md: '1200px',
-  maxWidthScreen: '1600px',
-};
+// const screensWidth = {
+//   sm: '760px',
+//   md: '1200px',
+//   maxWidthScreen: '1600px',
+// };
 
 export const theme = {
+  breakpoints,
   colors,
   palette: {
     text: {
@@ -81,39 +83,19 @@ export const theme = {
     afterContext: (zIndex: number) => ++zIndex,
   },
   defaultTransitionDuration: '0.4s',
-  respondTo: (
-    type: 'sm' | 'maxWidthScreen',
-    styles: StylesObj,
-    customSelector?: string,
-  ) => {
-    const mediaQuery = getMediaQueryByType(type, true);
-    return {
-      [mediaQuery]: customSelector ? { [customSelector]: styles } : styles,
-    };
-  },
-  adaptive: {
-    maxWidth: screensWidth.maxWidthScreen,
-    getMediaQueryByType,
-    screensWidth,
-    settings: {
-      sm: {
-        commonHorizontalPadding: '1.25rem',
-      },
-    },
-  },
 };
 
-type StylesObj = Record<string, React.CSSProperties> | {
-  [K in keyof React.CSSProperties]: ((props: any) => React.CSSProperties[K]) | React.CSSProperties[K]
-};
+// type StylesObj = Record<string, React.CSSProperties> | {
+//   [K in keyof React.CSSProperties]: ((props: any) => React.CSSProperties[K]) | React.CSSProperties[K]
+// };
 
-function getMediaQueryByType(type: 'sm' | 'maxWidthScreen', withKeyword: boolean): string {
-  // tslint:disable-next-line:max-line-length
-  if (type === 'sm') {
-    return `${withKeyword ? '@media ' : ''}(max-width: ${screensWidth[type]}), (max-device-width: 1000px)`;
-  } else {
-    return `${withKeyword ? '@media ' : ''}(min-width: ${screensWidth[type]})`;
-  }
-}
+// function getMediaQueryByType(type: 'sm' | 'maxWidthScreen', withKeyword: boolean): string {
+//   // tslint:disable-next-line:max-line-length
+//   if (type === 'sm') {
+//     return `${withKeyword ? '@media ' : ''}(max-width: ${screensWidth[type]}), (max-device-width: 1000px)`;
+//   } else {
+//     return `${withKeyword ? '@media ' : ''}(min-width: ${screensWidth[type]})`;
+//   }
+// }
 
 export type Theme = MaterialTheme & { extra: typeof theme };
