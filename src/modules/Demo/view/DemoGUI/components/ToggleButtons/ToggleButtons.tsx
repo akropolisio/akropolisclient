@@ -6,7 +6,7 @@ import { Question } from 'shared/view/elements/Icons';
 
 import { StylesProps, provideStyles } from './ToggleButtons.style';
 import { reduxForm, InjectedFormProps } from 'redux-form';
-import uuid = require('uuid');
+import uuid from 'uuid';
 
 interface IFormData {
   selectedGroup: string;

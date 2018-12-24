@@ -5,6 +5,7 @@ import routes from 'modules/routes';
 import { IModule } from 'shared/types/app';
 
 import DemoGUI from './view/DemoGUI/DemoGUI';
+import DemoHeader from './view/DemoHeader/DemoHeader';
 import DemoTranslations from './view/DemoTranslations/DemoTranslations';
 
 const DemoModule: IModule = {
@@ -13,6 +14,7 @@ const DemoModule: IModule = {
       <Route key="demo" path={routes.demo.getRoutePath()}>
         <Switch>
           <Route path={routes.demo.gui.getRoutePath()} component={DemoGUI} />
+          <Route path={routes.demo.header.getRoutePath()} component={DemoHeader} />
           <Route path={routes.demo.translations.getRoutePath()} component={DemoTranslations} />
           <Redirect to={routes.demo.gui.getRedirectPath()} />
         </Switch>

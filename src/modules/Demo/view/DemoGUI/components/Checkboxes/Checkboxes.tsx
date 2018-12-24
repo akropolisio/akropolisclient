@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { reduxForm, InjectedFormProps } from 'redux-form';
-import uuid = require('uuid');
+import uuid from 'uuid';
+
 import { SimpleList, Typography } from 'shared/view/elements';
 import { CheckboxInputField } from 'shared/view/redux-form';
 import { isRequired } from 'shared/validators';

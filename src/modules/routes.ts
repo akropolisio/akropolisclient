@@ -13,6 +13,11 @@ const rawTree = {
   demo: {
     gui: null,
     translations: null,
+    header: {
+      marketplace: null,
+      dashboard: null,
+      profile: null,
+    },
   },
 };
 
