@@ -58,7 +58,7 @@ const styles = ({ extra: theme }: Theme) => ({
     padding: '0.5rem 0',
 
     [theme.breakpoints.up('sm')]: rule({
-      padding: '1.6875rem 4.5rem 1.6875rem 0',
+      padding: '1.1875rem 4.5rem 1.1875rem 0',
     }),
   }),
 

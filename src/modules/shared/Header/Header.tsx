@@ -2,12 +2,12 @@ import * as React from 'react';
 import * as cn from 'classnames';
 import { bind } from 'decko';
 import routes from 'modules/routes';
-import { NavLink, Link, withRouter, RouteComponentProps } from 'react-router-dom';
+import { NavLink, withRouter, RouteComponentProps } from 'react-router-dom';
 import { Menu, Cross } from 'shared/view/elements/Icons';
 
 import { provideStyles, StylesProps } from './Header.style';
+import Logo from '../Logo/Logo';
 import { ProfileMenu } from 'shared/view/components';
-import * as logo from './images/logo.png';
 
 type LinkName = 'marketplace' | 'dashboard' | 'profile';
 
@@ -45,9 +45,7 @@ class DesktopHeader extends React.PureComponent<IProps, IState> {
         className={cn(classes.root, { [classes.hiddenBottomBorder]: isMenuOpen })}
       >
         <div className={classes.logo}>
-          <Link to={brandRedirectPath}>
-            <img style={{ height: '100%' }} src={logo} />
-          </Link>
+          <Logo linkTo={brandRedirectPath} />
         </div>
         <div className={classes.desktopLinks}>
           {Object.keys(desktopRedirectPaths).map((key: 'marketplace' | 'dashboard') => (
