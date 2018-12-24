@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { InjectedFormProps, reduxForm } from 'redux-form';
-import uuid = require('uuid');
+import uuid from 'uuid';
 import { SimpleList, Typography, MenuItem } from 'shared/view/elements';
 import { TextInputField } from 'shared/view/redux-form';
 import { isRequired } from 'shared/validators';

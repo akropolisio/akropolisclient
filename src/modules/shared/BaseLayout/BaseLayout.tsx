@@ -1,7 +1,8 @@
 import * as React from 'react';
 
 import { RowsLayout } from 'shared/view/elements';
-import { Header, Footer } from 'shared/view/components';
+
+import Header from '../Header/Header';
 
 import { StylesProps, provideStyles } from './BaseLayout.style';
 
@@ -17,15 +18,7 @@ class BaseLayout extends React.PureComponent<Props> {
 
     return (
       <RowsLayout
-        footerContent={<Footer />}
-        headerContent={(
-          <Header
-            brandRedirectPath={'homeRedirectPath'}
-            menuRedirectPaths={{ order: 'orderRedirectPath' }}
-          >
-            header
-          </Header>
-        )}
+        headerContent={<Header />}
       >
         <div className={classes.content}>
           {children}

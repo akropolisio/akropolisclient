@@ -3,7 +3,7 @@ import { SimpleList, Typography, FormControlLabel, Radio } from 'shared/view/ele
 import { RadioGroupInputField } from 'shared/view/redux-form';
 import { isRequired } from 'shared/validators';
 import { reduxForm, InjectedFormProps } from 'redux-form';
-import uuid = require('uuid');
+import uuid from 'uuid';
 
 type Value = 'female' | 'male' | 'disabled' | 'other';
 
