@@ -7,28 +7,22 @@ const styles = ({ extra: theme }: Theme) => ({
     display: 'flex',
     alignItems: 'center',
     textDecoration: 'none',
+    fontSize: '1em',
   }),
 
   title: rule({
-    fontSize: '0.75rem',
+    fontSize: '0.45em',
     fontFamily: theme.typography.primaryFont,
     fontWeight: 'bold',
     color: theme.colors.heavyMetal,
     textTransform: 'uppercase',
-    letterSpacing: '0.15rem',
-
-    [theme.breakpoints.up('sm')]: rule({
-      fontSize: '1.25rem',
-    }),
+    letterSpacing: '0.07em',
   }),
 
   logo: rule({
+    fontSize: '1em',
     flexShrink: 0,
-    marginRight: '0.7rem',
-    fontSize: '2.3875rem',
-    [theme.breakpoints.up('sm')]: rule({
-      fontSize: '4rem',
-    }),
+    marginRight: '0.5em',
   }),
 });
 

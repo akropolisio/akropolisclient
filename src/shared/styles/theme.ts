@@ -19,6 +19,7 @@ const colors = {
   black: '#000',
   alto: '#e0e0e0',
   heavyMetal: '#1d1d1b',
+  alabaster: '#f8f8f8',
 };
 
 export const theme = {
@@ -56,20 +57,15 @@ export const theme = {
       minHeight: 40,
     },
     page: {
-      maxWidth: 1100,
-      horizontalPadding: 20,
+      maxWidth: 1200,
     },
     header: {
       minHeightMobile: '3.4125rem',
-      desktop: '6.25rem',
+      minHeightDesktop: '6.25rem',
     },
   },
   spacing: {
     unit: 8,
-    mainContentPadding: {
-      desktop: '4.9063rem',
-      mobile: '1.25rem',
-    },
   },
   typography: {
     primaryFont: ['OpenSans', 'Arial', 'sans-serif'].join(','),
