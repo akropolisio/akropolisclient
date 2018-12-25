@@ -58,18 +58,15 @@ const styles = ({ extra: theme }: Theme) => ({
   }),
 
   cross: rule({
-    width: '1.25rem',
-    height: '1.25rem',
     position: 'absolute',
-    top: '3.125rem',
-    right: '3.125rem',
+    top: '1.5rem',
+    right: '1.5rem',
     zIndex: theme.zIndex.newContext + 1,
-    cursor: 'pointer',
 
-    // ...theme.respondTo('sm', {
-    //   top: '2.625rem',
-    //   right: '2.625rem',
-    // }),
+    [theme.breakpoints.up('sm')]: rule({
+      top: '3rem',
+      right: '3rem',
+    }),
   }),
 
   '@keyframes modal-disappear-animation': rule({

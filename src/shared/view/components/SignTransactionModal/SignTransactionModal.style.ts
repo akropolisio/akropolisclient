@@ -10,43 +10,42 @@ const styles = ({ extra: theme }: Theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingLeft: '1rem',
-    paddingRight: '1rem',
+    padding: '2rem 1rem 2.5rem',
 
     [theme.breakpoints.up('sm')]: rule({
-      padding: '3.125rem 7.5rem 5.625rem',
+      padding: '3.625rem 1rem 4.625rem',
     }),
   }),
 
   title: rule({
     marginBottom: '0.9375rem',
-    fontSize: '1.5rem',
+    fontSize: '1.25rem',
     fontFamily: theme.typography.primaryFont,
     fontWeight: 'bold',
     color: theme.palette.text.primary,
     textAlign: 'center',
-    padding: '0 3rem',
 
     [theme.breakpoints.up('sm')]: rule({
-      padding: '0',
+      fontSize: '1.5rem',
     }),
   }),
 
   description: rule({
-    fontSize: '0.9375rem',
+    fontSize: '0.875rem',
     fontFamily: theme.typography.primaryFont,
     color: theme.palette.text.primary,
     textAlign: 'center',
-    padding: '0 3rem',
+    padding: '0 1rem',
 
     [theme.breakpoints.up('sm')]: rule({
-      padding: 0,
+      padding: '0 11rem',
+      fontSize: '0.9375rem',
     }),
   }),
 
   scanQrCode: rule({
     position: 'relative',
-    width: '100%',
+    width: '80%',
     marginBottom: '2.5rem',
   }),
 
@@ -73,12 +72,14 @@ const styles = ({ extra: theme }: Theme) => ({
   linksToMarket: rule({
     width: '100%',
     display: 'flex',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     padding: '0 3.125rem',
   }),
 
   link: rule({
     flexGrow: 1,
+    maxWidth: '10rem',
+
     '&:first-child': {
       marginRight: '0.3125rem',
     },

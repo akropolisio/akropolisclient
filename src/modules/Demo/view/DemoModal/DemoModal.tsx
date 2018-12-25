@@ -2,12 +2,11 @@ import * as React from 'react';
 import { bind } from 'decko';
 import { Button } from 'shared/view/elements';
 
-import { StylesProps, provideStyles } from './DemoModal.style';
 import { SignTransactionModal } from 'shared/view/components';
 
 import QrCode from './QrStub/QrStub';
 
-class DemoModal extends React.PureComponent<StylesProps> {
+class DemoModal extends React.PureComponent {
   public state = { isOpenModal: false };
   public render() {
     return (
@@ -29,4 +28,4 @@ class DemoModal extends React.PureComponent<StylesProps> {
   }
 }
 
-export default provideStyles(DemoModal);
+export default DemoModal;

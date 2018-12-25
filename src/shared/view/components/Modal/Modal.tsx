@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as ReactModal from 'react-modal';
 
 import { Cross } from 'shared/view/elements/Icons';
+import { IconButton } from 'shared/view/elements';
 
 import { provideStyles, StylesProps } from './Modal.style';
 
@@ -37,7 +38,11 @@ class Modal extends React.Component<IProps> {
         onRequestClose={onClose}
         closeTimeoutMS={400}
       >
-        {withCross && <Cross onClick={onClose} className={classes.cross} />}
+        {withCross && (
+          <IconButton className={classes.cross} onClick={onClose}>
+            <Cross />
+          </IconButton>
+        )}
         {children}
       </ReactModal>
     );

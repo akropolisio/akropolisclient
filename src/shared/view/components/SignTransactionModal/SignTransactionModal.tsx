@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
+
+import { i18nConnect, ITranslateProps, tKeys } from 'services/i18n';
 
 import Modal from '../Modal/Modal';
 import { provideStyles, StylesProps } from './SignTransactionModal.style';
@@ -7,32 +8,32 @@ import * as phone from './images/phone.png';
 import googlePlay from './images/googlePlay.svg';
 import appstore from './images/appstore.svg';
 
+const tKeysAuth = tKeys.modules.auth;
+
 interface IOwnProps {
   isOpen: boolean;
   QrCode: React.ComponentType;
   onClose(): void;
 }
 
-type IProps = IOwnProps & StylesProps;
+type IProps = IOwnProps & StylesProps & ITranslateProps;
 
 class SignTransactionModal extends React.Component<IProps> {
 
   public render() {
-    const { classes, onClose, isOpen, QrCode } = this.props;
+    const { classes, onClose, isOpen, QrCode, t } = this.props;
     return (
       <Modal withCross size="large" onClose={onClose} isOpen={isOpen}>
         <div className={classes.root}>
-          <div className={classes.title}>Sign transaction</div>
-          <div className={classes.description}>
-            Scan this QR code with your mobile device to continue transaction
-          </div>
+          <div className={classes.title}>{t(tKeysAuth.signTransaction.getKey())}</div>
+          <div className={classes.description}>{t(tKeysAuth.scanQr.getKey())}</div>
           <div className={classes.scanQrCode}>
             <img className={classes.phone} src={phone} />
             <div className={classes.qrCode}><QrCode /></div>
           </div>
           <div className={classes.linksToMarket}>
-            <Link to={'#'} className={classes.link}><img className={classes.image} src={appstore} /></Link>
-            <Link to={'#'} className={classes.link}><img className={classes.image} src={googlePlay} /></Link>
+            <a href={'#'} className={classes.link}><img className={classes.image} src={appstore} /></a>
+            <a href={'#'} className={classes.link}><img className={classes.image} src={googlePlay} /></a>
           </div>
         </div>
       </Modal>
@@ -41,4 +42,4 @@ class SignTransactionModal extends React.Component<IProps> {
 }
 
 export { IProps };
-export default provideStyles(SignTransactionModal);
+export default i18nConnect(provideStyles(SignTransactionModal));

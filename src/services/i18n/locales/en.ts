@@ -9,7 +9,12 @@ export default {
   },
   features: {},
   documents: {},
-  modules: {},
+  modules: {
+    auth: {
+      signTransaction: 'Sign transaction',
+      scanQr: 'Scan this QR code with your mobile device to continue transaction',
+    },
+  },
   demo: {
     selectedLang: 'Selected language is %{locale}',
     selectorLabel: 'Language selector:',
