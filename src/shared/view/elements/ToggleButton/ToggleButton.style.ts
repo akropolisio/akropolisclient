@@ -1,22 +1,24 @@
 import injectSheet, { WithStyles, Theme } from 'react-jss';
 import { rule } from 'shared/helpers/style';
-import { fade } from '@material-ui/core/styles/colorManipulator';
+import { withStyles } from '@material-ui/core/styles';
 
 const styles = (theme: Theme) => ({
   root: rule({
     boxSizing: 'border-box',
     padding: '8px 16px',
     minHeight: 40,
-    color: theme.palette.primary.main,
+    color: theme.extra.colors.black,
     borderRadius: 4,
     borderWidth: 1,
     borderStyle: 'solid',
     borderColor: theme.extra.colors.silver,
     zIndex: theme.extra.zIndex.newContext,
+    whiteSpace: 'nowrap',
     '&:hover': {
-      backgroundColor: fade(theme.palette.primary.main, theme.palette.action.hoverOpacity),
-      borderColor: theme.palette.primary.main,
+      backgroundColor: theme.palette.primary.dark,
+      borderColor: theme.palette.primary.dark,
       zIndex: theme.extra.zIndex.afterContext(theme.extra.zIndex.newContext),
+      color: theme.extra.colors.white,
       // Reset on touch devices, it doesn't add specificity
       ['@media (hover: none)']: {
         backgroundColor: 'transparent',
@@ -33,6 +35,7 @@ const styles = (theme: Theme) => ({
       color: theme.extra.colors.white,
       backgroundColor: theme.palette.primary.main,
       borderColor: theme.palette.primary.main,
+      fontWeight: 600,
     },
     '&:not(:first-child)': {
       marginLeft: -1,
@@ -52,6 +55,7 @@ const styles = (theme: Theme) => ({
   }),
 });
 
-export const provideStyles = injectSheet(styles);
+// TODO ds: rewrite after transition to @material-ui/styles
+export const provideStyles = (withStyles as typeof injectSheet)(styles);
 
 export type StylesProps = WithStyles<typeof styles>;

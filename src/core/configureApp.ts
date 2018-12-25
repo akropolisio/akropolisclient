@@ -5,7 +5,7 @@ import { TYPES, container } from './configureIoc';
 import configureStore, { createReducer } from './configureStore';
 import { configureJss } from 'core/configureJss';
 
-import { DemoModule } from 'modules';
+import { DemoModule, AuthModule } from 'modules';
 import { reduxEntry as i18nRE, I18n } from 'services/i18n';
 import { reduxEntry as adaptabilityRE } from 'services/adaptability';
 
@@ -14,7 +14,7 @@ import { IAppData, IModule, RootSaga, IAppReduxState, IReduxEntry } from 'shared
 
 function configureApp(data?: IAppData): IAppData {
   /* Prepare main app elements */
-  const modules: IModule[] = [DemoModule];
+  const modules: IModule[] = [DemoModule, AuthModule];
 
   if (data) {
     return { ...data, modules };

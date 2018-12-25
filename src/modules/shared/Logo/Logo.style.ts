@@ -1,10 +1,13 @@
 import injectSheet, { Theme, WithStyles } from 'react-jss';
 import { rule } from 'shared/helpers/style';
 
+import { IProps } from './Logo';
+
 const styles = ({ extra: theme }: Theme) => ({
 
   root: rule({
     display: 'flex',
+    flexDirection: (props: IProps) => props.viewType,
     alignItems: 'center',
     textDecoration: 'none',
     fontSize: '1em',
@@ -22,7 +25,8 @@ const styles = ({ extra: theme }: Theme) => ({
   logo: rule({
     fontSize: '1em',
     flexShrink: 0,
-    marginRight: '0.5em',
+    marginRight: ({ viewType }: IProps) => viewType === 'row' ? '0.5em' : 0,
+    marginBottom: ({ viewType }: IProps) => viewType === 'row' ? 0 : '0.65em',
   }),
 });
 
