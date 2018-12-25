@@ -4,6 +4,7 @@ const rawTree = {
   demo: {
     gui: null,
     translations: null,
+    adaptability: null,
     header: {
       marketplace: null,
       dashboard: null,

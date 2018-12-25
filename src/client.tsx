@@ -8,6 +8,9 @@ import * as bootstrapper from 'react-async-bootstrapper';
 import { App } from 'core/App';
 import configureApp from 'core/configureApp';
 import getEnvParams from 'core/getEnvParams';
+import { actions as adaptabilityActions } from 'services/adaptability';
+
+import { IAppData } from 'shared/types/app';
 
 const appData = configureApp();
 
@@ -16,7 +19,7 @@ async function main() {
   await bootstrapper(appForBootstrap);
   const app = <App {...appData} />;
 
-  render(app);
+  render(app, appData);
 }
 
 /* Start application */
@@ -28,11 +31,11 @@ if ((module as any).hot && process.env.NODE_ENV !== 'production') {
     const nextConfigureApp: typeof configureApp = require('./core/configureApp').default;
     const NextApp: typeof App = require('./core/App').App;
     const nextAppData = nextConfigureApp(appData);
-    render(<NextApp {...nextAppData} jssDeps={appData.jssDeps} />);
+    render(<NextApp {...nextAppData} jssDeps={appData.jssDeps} />, appData);
   });
 }
 
-function render(component: React.ReactElement<any>) {
+function render(component: React.ReactElement<any>, { store }: IAppData) {
   ReactDOM.hydrate(
     <AppContainer>{component}</AppContainer>,
     document.getElementById('root'),
@@ -42,6 +45,7 @@ function render(component: React.ReactElement<any>) {
       if (ssStyles && ssStyles.parentNode) {
         ssStyles.parentNode.removeChild(ssStyles);
       }
+      store.dispatch(adaptabilityActions.hydrated());
     },
   );
 }
