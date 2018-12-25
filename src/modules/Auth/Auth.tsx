@@ -11,8 +11,9 @@ const AuthModule: IModule = {
     return (
       <Route key="auth" path={routes.auth.getRoutePath()}>
         <Switch>
-          <Redirect exact from={routes.auth.getRoutePath()} to={routes.auth.selectRole.getRedirectPath()} />
-          <Route path={routes.auth.selectRole.getRoutePath()} component={LoginForm} />
+          <Route path={routes.auth.role.getRoutePath()} component={LoginForm} />
+          <Redirect to={routes.auth.role.getRedirectPath({ role: 'beneficiary' })} />
+
         </Switch>
       </Route>
     );

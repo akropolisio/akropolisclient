@@ -5,18 +5,19 @@ import * as backgroundFon from './images/background.png';
 const styles = ({ extra: theme }: Theme) => ({
   root: rule({
     width: '100%',
-    height: '100%',
+    minHeight: '100%',
     display: 'flex',
     backgroundSize: 'cover',
     backgroundPosition: '50% 50%',
     backgroundImage: `url(${backgroundFon})`,
     backgroundRepeat: 'no-repeat',
+    backgroundColor: theme.colors.white,
   }),
 
   content: rule({
     width: '51.25rem',
-    minWidth: '51.25rem',
-    height: '43.75rem',
+    maxWidth: '51.25rem',
+    minHeight: '43.75rem',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -28,14 +29,14 @@ const styles = ({ extra: theme }: Theme) => ({
   }),
 
   logo: rule({
-    width: '40%',
+    fontSize: '1.875rem',
     marginBottom: '3.125rem',
   }),
 
   text: rule({
     textTransform: 'uppercase',
     fontFamily: theme.typography.primaryFont,
-    fontSize: '11px',
+    fontSize: '0.6875rem',
     textAlign: 'center',
   }),
 
@@ -61,7 +62,12 @@ const styles = ({ extra: theme }: Theme) => ({
   }),
 
   signButtons: rule({
-    width: '48%',
+    alignSelf: 'stretch',
+    padding: '0 11rem',
+  }),
+
+  signInButton: rule({
+    marginBottom: '0.625rem',
   }),
 });
 

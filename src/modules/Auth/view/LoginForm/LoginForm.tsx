@@ -1,74 +1,81 @@
 import * as React from 'react';
-import { bind } from 'decko';
 import { withRouter, RouteComponentProps } from 'react-router';
 
 import { Button } from 'shared/view/elements';
 import routes from 'modules/routes';
 import { Logo } from 'modules/shared';
+import { tKeys, i18nConnect, ITranslateProps } from 'services/i18n';
 
-import { SelectRole, IRole, Role } from './components';
+import { SelectRole, IRole } from './components';
 import { StylesProps, provideStyles } from './LoginForm.style';
+import { withComponent } from 'shared/helpers';
+import { Link } from 'react-router-dom';
 
-interface IState {
-  selectedRole: Role;
-}
+const LinkButton = withComponent(Link)(Button);
 
+const tKeysAuth = tKeys.modules.auth;
 const roles: IRole[] = [
-  { value: 'beneficiary', title: 'Beneficiary', hint: 'individual saver that acts as a provider of capital' },
-  { value: 'fundOwner', title: 'Fund owner', hint: 'A creator of an Pension Fund' },
-  { value: 'boardMember', title: 'Board member', hint: 'Party responsible for Asset Manager selection' },
   {
-    value: 'assetManager', title: 'Asset manager',
-    hint: 'Party responsible for investment management of Pension Fund’s',
+    value: 'beneficiary',
+    link: routes.auth.role.getRedirectPath({ role: 'beneficiary' }),
+    title: tKeysAuth.roles.title.beneficiary.getKey(),
+    hint: tKeysAuth.roles.hint.beneficiary.getKey(),
+  },
+  {
+    value: 'fundOwner',
+    link: routes.auth.role.getRedirectPath({ role: 'fundOwner' }),
+    title: tKeysAuth.roles.title.fundOwner.getKey(),
+    hint: tKeysAuth.roles.hint.fundOwner.getKey(),
+
+  },
+  {
+    value: 'boardMember',
+    link: routes.auth.role.getRedirectPath({ role: 'boardMember' }),
+    title: tKeysAuth.roles.title.boardMember.getKey(),
+    hint: tKeysAuth.roles.hint.boardMember.getKey(),
+
+  },
+  {
+    value: 'assetManager',
+    link: routes.auth.role.getRedirectPath({ role: 'assetManager' }),
+    title: tKeysAuth.roles.title.assetManager.getKey(),
+    hint: tKeysAuth.roles.hint.assetManager.getKey(),
   },
 ];
 
-type IProps = RouteComponentProps & StylesProps;
+type IProps = RouteComponentProps & StylesProps & ITranslateProps;
 
-class LoginForm extends React.PureComponent<IProps, IState> {
-  public state: IState = { selectedRole: roles[0].value };
+class LoginForm extends React.PureComponent<IProps> {
 
   public render() {
-    const { classes } = this.props;
+    const { classes, location, t } = this.props;
     return (
       <div className={classes.root}>
         <div className={classes.content}>
           <div className={classes.logo}>
             <Logo linkTo={'/'} />
           </div>
-          <div className={classes.subTitle}>decentralised pensions and savings infrastructure</div>
-          <div className={classes.title}>a trustless financial future for everyone</div>
-          <div className={classes.selectRole}>select your role</div>
+          <div className={classes.subTitle}>{t(tKeysAuth.authForm.subTitle.getKey())}</div>
+          <div className={classes.title}>{t(tKeysAuth.authForm.title.getKey())}</div>
+          <div className={classes.selectRole}>{t(tKeysAuth.authForm.selectRole.getKey())}</div>
           <div className={classes.roles}>
-            <SelectRole selectedRole={this.state.selectedRole} roles={roles} onSelectRole={this.onSelectRole} />
+            <SelectRole roles={roles} />
           </div>
           <div className={classes.signButtons}>
-            <div style={{ marginBottom: '0.625rem' }}>
-              <Button onClick={this.onSignIn} fullWidth variant="contained" color="primary">Sign in</Button>
+            <div className={classes.signInButton}>
+              <LinkButton to={location.pathname + '/signIn'} fullWidth variant="contained" color="primary">
+                {t(tKeysAuth.signIn.getKey())}
+              </LinkButton>
             </div>
             <div>
-              <Button onClick={this.onSignUp} fullWidth variant="outlined">Sign up</Button>
+              <LinkButton to={location.pathname + '/signUp'} fullWidth variant="outlined">
+                {t(tKeysAuth.signUp.getKey())}
+              </LinkButton>
             </div>
           </div>
         </div>
       </div>);
   }
-
-  @bind
-  public onSelectRole(role: Role) {
-    this.setState({ selectedRole: role });
-  }
-
-  @bind
-  public onSignIn() {
-    this.props.history.push(routes.auth.signIn.getRedirectPath({ role: this.state.selectedRole }));
-  }
-
-  @bind
-  public onSignUp() {
-    this.props.history.push(routes.auth.signUp.getRedirectPath({ role: this.state.selectedRole }));
-
-  }
 }
 
-export default withRouter(provideStyles(LoginForm));
+export default withRouter(i18nConnect(provideStyles(LoginForm)));

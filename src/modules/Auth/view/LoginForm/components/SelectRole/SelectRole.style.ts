@@ -9,18 +9,24 @@ const styles = (theme: Theme) => ({
     },
   }),
 
-  roleButtonSelected: rule({
-    composes: '$roleButton',
-    '& $rightIcon': {
-      color: 'inherit',
-    },
-  }),
+  // roleButtonSelected: rule({
+  //   composes: '$roleButton',
+  //   '& $rightIcon': {
+  //     color: 'inherit',
+  //   },
+  // }),
 
   rightIcon: rule({
     marginLeft: theme.spacing.unit * 1.5,
     fontSize: '1rem',
     color: theme.extra.colors.silver,
+
+    '&$isSelected': {
+      color: 'inherit',
+    },
   }),
+
+  isSelected: {},
 });
 
 export const provideStyles = injectSheet(styles);

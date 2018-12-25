@@ -1,7 +1,12 @@
 import * as React from 'react';
-import { bind } from 'decko';
+import { Link } from 'react-router-dom';
+import * as cn from 'classnames';
+import { withRouter, RouteComponentProps } from 'react-router';
+
 import { ToggleButton, Tooltip, ToggleButtonGroup } from 'shared/view/elements';
 import { Question } from 'shared/view/elements/Icons';
+import { withComponent } from 'shared/helpers';
+import { i18nConnect, ITranslateProps } from 'services/i18n';
 
 import { StylesProps, provideStyles } from './SelectRole.style';
 
@@ -11,43 +16,41 @@ interface IRole {
   value: Role;
   title: string;
   hint: string;
+  link: string;
 }
 
 export { Role, IRole };
 interface IOwnProps {
   roles: IRole[];
-  selectedRole: Role;
-  onSelectRole(role: Role): void;
 }
 
-type IProps = IOwnProps & StylesProps;
+type IProps = IOwnProps & StylesProps & ITranslateProps & RouteComponentProps<{ role: string }>;
+
+const NavToggleButton = withComponent(Link)(ToggleButton);
 
 class SelectRole extends React.PureComponent<IProps> {
 
   public render() {
-    const { classes, roles, selectedRole } = this.props;
+    const { classes, t, roles, match: { params: { role: selectedRole } } } = this.props;
+
     return (
-      <ToggleButtonGroup value={selectedRole} onChange={this.onSelectRole} exclusive nullable={false} >
+      <ToggleButtonGroup value={selectedRole} exclusive nullable={false} >
         {roles.map(role => (
-          <ToggleButton
-            className={role.value === selectedRole ? classes.roleButtonSelected : classes.roleButton}
+          <NavToggleButton
+            to={role.link}
+            className={classes.roleButton}
             value={role.value}
             key={role.value}
           >
-            {role.title}
-            <Tooltip placement="top" title={role.hint}>
-              <Question className={classes.rightIcon} />
+            {t(role.title)}
+            <Tooltip placement="top" title={t(role.hint)}>
+              <Question className={cn(classes.rightIcon, { [classes.isSelected]: selectedRole === role.value })} />
             </Tooltip>
-          </ToggleButton>
+          </NavToggleButton>
         ))}
       </ToggleButtonGroup>
     );
   }
-
-  @bind
-  public onSelectRole(event: React.MouseEvent<HTMLElement>, value: Role) {
-    this.props.onSelectRole(value);
-  }
 }
 
-export default (provideStyles(SelectRole));
+export default withRouter(provideStyles(i18nConnect(SelectRole)));
