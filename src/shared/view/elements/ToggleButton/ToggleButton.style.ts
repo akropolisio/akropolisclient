@@ -1,5 +1,6 @@
 import injectSheet, { WithStyles, Theme } from 'react-jss';
 import { rule } from 'shared/helpers/style';
+import { withStyles } from '@material-ui/core/styles';
 
 const styles = (theme: Theme) => ({
   root: rule({
@@ -12,6 +13,7 @@ const styles = (theme: Theme) => ({
     borderStyle: 'solid',
     borderColor: theme.extra.colors.silver,
     zIndex: theme.extra.zIndex.newContext,
+    whiteSpace: 'nowrap',
     '&:hover': {
       backgroundColor: theme.palette.primary.dark,
       borderColor: theme.palette.primary.dark,
@@ -53,6 +55,7 @@ const styles = (theme: Theme) => ({
   }),
 });
 
-export const provideStyles = injectSheet(styles);
+// TODO ds: rewrite after transition to @material-ui/styles
+export const provideStyles = (withStyles as typeof injectSheet)(styles);
 
 export type StylesProps = WithStyles<typeof styles>;

@@ -3,54 +3,74 @@ import { Link } from 'react-router-dom';
 import * as cn from 'classnames';
 import { withRouter, RouteComponentProps } from 'react-router';
 
-import { ToggleButton, Tooltip, ToggleButtonGroup } from 'shared/view/elements';
+import routes from 'modules/routes';
+import { i18nConnect, ITranslateProps, tKeys } from 'services/i18n';
+import { Adaptive } from 'services/adaptability';
+
+import { ToggleButton, Tooltip, ToggleButtonGroup, TextInput, MenuItem } from 'shared/view/elements';
 import { Question } from 'shared/view/elements/Icons';
 import { withComponent } from 'shared/helpers';
-import { i18nConnect, ITranslateProps } from 'services/i18n';
 
+import { Role } from '../../../../namespace';
 import { StylesProps, provideStyles } from './SelectRole.style';
 
-type Role = 'beneficiary' | 'fundOwner' | 'boardMember' | 'assetManager';
-
-interface IRole {
-  value: Role;
-  title: string;
-  hint: string;
-  link: string;
-}
-
-export { Role, IRole };
-interface IOwnProps {
-  roles: IRole[];
-}
-
-type IProps = IOwnProps & StylesProps & ITranslateProps & RouteComponentProps<{ role: string }>;
+type IProps = StylesProps & ITranslateProps & RouteComponentProps<{ role: Role }>;
 
 const NavToggleButton = withComponent(Link)(ToggleButton);
+const NavMenuItem = withComponent(Link)(MenuItem);
+
+const tKeysAuth = tKeys.modules.auth;
+const roles: Role[] = ['beneficiary', 'fundOwner', 'boardMember', 'assetManager'];
 
 class SelectRole extends React.PureComponent<IProps> {
 
   public render() {
-    const { classes, t, roles, match: { params: { role: selectedRole } } } = this.props;
+    const { classes, t, match: { params: { role: selectedRole } } } = this.props;
 
     return (
-      <ToggleButtonGroup value={selectedRole} exclusive nullable={false} >
-        {roles.map(role => (
-          <NavToggleButton
-            to={role.link}
-            className={classes.roleButton}
-            value={role.value}
-            key={role.value}
+      <>
+        <Adaptive to="sm">
+          <TextInput
+            value={selectedRole}
+            variant="outlined"
+            select
+            fullWidth
+            InputProps={{
+              classes: { input: classes.overrideInput },
+            }}
           >
-            {t(role.title)}
-            <Tooltip placement="top" title={t(role.hint)}>
-              <Question className={cn(classes.rightIcon, { [classes.isSelected]: selectedRole === role.value })} />
-            </Tooltip>
-          </NavToggleButton>
-        ))}
-      </ToggleButtonGroup>
+            {roles.map(role => (
+              <NavMenuItem to={routes.auth.role.getRedirectPath({ role })} key={role} value={role}>
+                {t(tKeysAuth.roles.title[role].getKey())}
+                <Tooltip placement="top" title={t(tKeysAuth.roles.hint[role].getKey())}>
+                  <Question className={cn(classes.rightIcon, classes.inMenu)} />
+                </Tooltip>
+              </NavMenuItem>
+            ))}
+          </TextInput>
+        </Adaptive>
+
+        <Adaptive from="sm">
+          <ToggleButtonGroup value={selectedRole} exclusive nullable={false} >
+            {roles.map(role => (
+              <NavToggleButton
+                to={routes.auth.role.getRedirectPath({ role })}
+                className={classes.roleButton}
+                value={role}
+                key={role}
+                classes={{ selected: classes.isSelected }}
+              >
+                {t(tKeysAuth.roles.title[role].getKey())}
+                <Tooltip placement="top" title={t(tKeysAuth.roles.hint[role].getKey())}>
+                  <Question className={cn(classes.rightIcon)} />
+                </Tooltip>
+              </NavToggleButton>
+            ))}
+          </ToggleButtonGroup>
+        </Adaptive>
+      </>
     );
   }
 }
 
-export default withRouter(provideStyles(i18nConnect(SelectRole)));
+export default withRouter(i18nConnect(provideStyles(SelectRole)));

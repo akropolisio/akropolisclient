@@ -2,30 +2,28 @@ import injectSheet, { WithStyles, Theme } from 'react-jss';
 import { rule } from 'shared/helpers/style';
 
 const styles = (theme: Theme) => ({
-
-  roleButton: rule({
-    '&:hover $rightIcon': {
-      color: 'inherit',
-    },
-  }),
-
-  // roleButtonSelected: rule({
-  //   composes: '$roleButton',
-  //   '& $rightIcon': {
-  //     color: 'inherit',
-  //   },
-  // }),
+  roleButton: {},
 
   rightIcon: rule({
     marginLeft: theme.spacing.unit * 1.5,
-    fontSize: '1rem',
+    fontSize: '1.1rem',
     color: theme.extra.colors.silver,
 
-    '&$isSelected': {
+    '$isSelected &, $roleButton:hover &': {
       color: 'inherit',
+    },
+
+    '&$inMenu': {
+      marginLeft: 'auto',
     },
   }),
 
+  overrideInput: {
+    paddingTop: 10.5,
+    paddingBottom: 10.5,
+  },
+
+  inMenu: {},
   isSelected: {},
 });
 

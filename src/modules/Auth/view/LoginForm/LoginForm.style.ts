@@ -30,27 +30,17 @@ const styles = ({ extra: theme }: Theme) => ({
       minHeight: '43.75rem',
       margin: 'auto',
       padding: '3.5rem 5.125rem 6.5rem',
-
     }),
-
   }),
 
   mobileLogo: rule({
-    display: 'block',
     marginBottom: '1.75rem',
     fontSize: '2.5rem',
-    [theme.breakpoints.up('sm')]: rule({
-      display: 'none',
-    }),
   }),
 
   desktopLogo: rule({
-    display: 'none',
-    [theme.breakpoints.up('sm')]: rule({
-      display: 'block',
-      marginBottom: '3.125rem',
-      fontSize: '3.125rem',
-    }),
+    marginBottom: '3.125rem',
+    fontSize: '3.125rem',
   }),
 
   text: rule({
@@ -92,11 +82,11 @@ const styles = ({ extra: theme }: Theme) => ({
   }),
 
   roles: rule({
-    display: 'none',
     marginBottom: '3.125rem',
+    alignSelf: 'stretch',
 
     [theme.breakpoints.up('sm')]: rule({
-      display: 'block',
+      alignSelf: 'unset',
     }),
   }),
 

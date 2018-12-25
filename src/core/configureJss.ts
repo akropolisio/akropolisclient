@@ -45,6 +45,12 @@ export function configureJss(virtual?: boolean): IJssDependencies {
             fontSize: 22,
           },
         },
+        MuiSelect: {
+          selectMenu: {
+            display: 'flex',
+            alignItems: 'center',
+          },
+        },
       },
     })),
     extra: extraTheme,

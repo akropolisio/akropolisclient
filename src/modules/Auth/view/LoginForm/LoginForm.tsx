@@ -1,47 +1,20 @@
 import * as React from 'react';
 import { withRouter, RouteComponentProps } from 'react-router';
+import { Link } from 'react-router-dom';
 
-import { Button } from 'shared/view/elements';
-import routes from 'modules/routes';
 import { Logo } from 'modules/shared';
 import { tKeys, i18nConnect, ITranslateProps } from 'services/i18n';
+import { Adaptive } from 'services/adaptability';
 
-import { SelectRole, IRole } from './components';
-import { StylesProps, provideStyles } from './LoginForm.style';
+import { Button } from 'shared/view/elements';
 import { withComponent } from 'shared/helpers';
-import { Link } from 'react-router-dom';
+
+import { SelectRole } from './components';
+import { StylesProps, provideStyles } from './LoginForm.style';
 
 const LinkButton = withComponent(Link)(Button);
 
 const tKeysAuth = tKeys.modules.auth;
-const roles: IRole[] = [
-  {
-    value: 'beneficiary',
-    link: routes.auth.role.getRedirectPath({ role: 'beneficiary' }),
-    title: tKeysAuth.roles.title.beneficiary.getKey(),
-    hint: tKeysAuth.roles.hint.beneficiary.getKey(),
-  },
-  {
-    value: 'fundOwner',
-    link: routes.auth.role.getRedirectPath({ role: 'fundOwner' }),
-    title: tKeysAuth.roles.title.fundOwner.getKey(),
-    hint: tKeysAuth.roles.hint.fundOwner.getKey(),
-
-  },
-  {
-    value: 'boardMember',
-    link: routes.auth.role.getRedirectPath({ role: 'boardMember' }),
-    title: tKeysAuth.roles.title.boardMember.getKey(),
-    hint: tKeysAuth.roles.hint.boardMember.getKey(),
-
-  },
-  {
-    value: 'assetManager',
-    link: routes.auth.role.getRedirectPath({ role: 'assetManager' }),
-    title: tKeysAuth.roles.title.assetManager.getKey(),
-    hint: tKeysAuth.roles.hint.assetManager.getKey(),
-  },
-];
 
 type IProps = RouteComponentProps & StylesProps & ITranslateProps;
 
@@ -52,29 +25,31 @@ class LoginForm extends React.PureComponent<IProps> {
     return (
       <div className={classes.root}>
         <div className={classes.content}>
-          <div className={classes.mobileLogo}>
+          <Adaptive to="sm" className={classes.mobileLogo}>
             <Logo viewType="column" linkTo={'/'} />
-          </div>
-          <div className={classes.desktopLogo}>
+          </Adaptive>
+          <Adaptive from="sm" className={classes.desktopLogo}>
             <Logo viewType="row" linkTo={'/'} />
-          </div>
+          </Adaptive>
           <div className={classes.subTitle}>{t(tKeysAuth.authForm.subTitle.getKey())}</div>
           <div className={classes.title}>{t(tKeysAuth.authForm.title.getKey())}</div>
           <div className={classes.selectRole}>{t(tKeysAuth.authForm.selectRole.getKey())}</div>
           <div className={classes.roles}>
-            <SelectRole roles={roles} />
+            <SelectRole />
           </div>
           <div className={classes.signButtons}>
-            <div className={classes.signInButton}>
-              <LinkButton to={location.pathname + '/signIn'} fullWidth variant="contained" color="primary">
-                {t(tKeysAuth.signIn.getKey())}
-              </LinkButton>
-            </div>
-            <div>
-              <LinkButton to={location.pathname + '/signUp'} fullWidth variant="outlined">
-                {t(tKeysAuth.signUp.getKey())}
-              </LinkButton>
-            </div>
+            <LinkButton
+              className={classes.signInButton}
+              to={location.pathname + '/signIn'}
+              fullWidth
+              variant="contained"
+              color="primary"
+            >
+              {t(tKeysAuth.signIn.getKey())}
+            </LinkButton>
+            <LinkButton to={location.pathname + '/signUp'} fullWidth variant="outlined">
+              {t(tKeysAuth.signUp.getKey())}
+            </LinkButton>
           </div>
         </div>
       </div>);

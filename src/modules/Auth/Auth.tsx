@@ -13,7 +13,6 @@ const AuthModule: IModule = {
         <Switch>
           <Route path={routes.auth.role.getRoutePath()} component={LoginForm} />
           <Redirect to={routes.auth.role.getRedirectPath({ role: 'beneficiary' })} />
-
         </Switch>
       </Route>
     );

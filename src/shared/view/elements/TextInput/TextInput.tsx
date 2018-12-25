@@ -17,7 +17,7 @@ type MaskType = 'visa';
 type PartialProps = SubSet<
   keyof TextFieldProps,
   | 'className' | 'classes' | 'defaultValue' | 'variant' | 'style' | 'innerRef'
-  | 'inputProps' | 'InputProps' | 'inputRef' | 'rows' | 'rowsMax' | 'value'
+  | 'inputProps' | 'InputProps' | 'inputRef' | 'rows' | 'rowsMax' | 'value' | 'onChange'
 >;
 
 type IProps = MarkAsPartial<TextFieldProps, PartialProps> & {
@@ -63,9 +63,11 @@ class TextInput extends React.PureComponent<IProps, IState> {
         {...restProps as TextFieldProps}
         type={type}
         InputLabelProps={{
+          ...restProps.InputLabelProps,
           shrink: maskType && true,
         }}
         InputProps={{
+          ...restProps.InputProps,
           inputComponent: maskType && makeMaskInput(maskType),
           endAdornment: this.renderEndAdornment(),
         }}
