@@ -15,22 +15,42 @@ const styles = ({ extra: theme }: Theme) => ({
   }),
 
   content: rule({
-    width: '51.25rem',
-    maxWidth: '51.25rem',
-    minHeight: '43.75rem',
+    width: '100%',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    justifyContent: 'space-between',
-    margin: 'auto',
-    padding: '3.5rem 5.125rem 6.5rem',
+    justifyContent: 'center',
     background: theme.colors.white,
     boxShadow: '0 0.0625rem 0.75rem 0 rgba(0, 0, 0, 0.5)',
+    padding: '1.875rem 1.25rem 4.75rem',
+
+    [theme.breakpoints.up('sm')]: rule({
+      width: '51.25rem',
+      maxWidth: '51.25rem',
+      minHeight: '43.75rem',
+      margin: 'auto',
+      padding: '3.5rem 5.125rem 6.5rem',
+
+    }),
+
   }),
 
-  logo: rule({
-    fontSize: '1.875rem',
-    marginBottom: '3.125rem',
+  mobileLogo: rule({
+    display: 'block',
+    marginBottom: '1.75rem',
+    fontSize: '2.5rem',
+    [theme.breakpoints.up('sm')]: rule({
+      display: 'none',
+    }),
+  }),
+
+  desktopLogo: rule({
+    display: 'none',
+    [theme.breakpoints.up('sm')]: rule({
+      display: 'block',
+      marginBottom: '3.125rem',
+      fontSize: '3.125rem',
+    }),
   }),
 
   text: rule({
@@ -38,18 +58,32 @@ const styles = ({ extra: theme }: Theme) => ({
     fontFamily: theme.typography.primaryFont,
     fontSize: '0.6875rem',
     textAlign: 'center',
+    fontWeight: 600,
+    [theme.breakpoints.up('sm')]: rule({
+      fontWeight: 'normal',
+    }),
   }),
 
   subTitle: rule({
     composes: '$text',
-    marginBottom: '3.125rem',
+    marginBottom: '1.625rem',
+
+    [theme.breakpoints.up('sm')]: rule({
+      marginBottom: '3.125rem',
+    }),
   }),
 
   title: rule({
     composes: '$text',
-    fontSize: '2.5rem',
+    marginBottom: '1.4375rem',
+    fontSize: '1.5625rem',
     fontWeight: 'bold',
-    marginBottom: '1.625rem',
+
+    [theme.breakpoints.up('sm')]: rule({
+      marginBottom: '1.625rem',
+      fontSize: '2.5rem',
+    }),
+
   }),
 
   selectRole: rule({
@@ -58,12 +92,20 @@ const styles = ({ extra: theme }: Theme) => ({
   }),
 
   roles: rule({
+    display: 'none',
     marginBottom: '3.125rem',
+
+    [theme.breakpoints.up('sm')]: rule({
+      display: 'block',
+    }),
   }),
 
   signButtons: rule({
     alignSelf: 'stretch',
-    padding: '0 11rem',
+
+    [theme.breakpoints.up('sm')]: rule({
+      padding: '0 11rem',
+    }),
   }),
 
   signInButton: rule({

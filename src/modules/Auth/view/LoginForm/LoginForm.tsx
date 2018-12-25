@@ -52,8 +52,11 @@ class LoginForm extends React.PureComponent<IProps> {
     return (
       <div className={classes.root}>
         <div className={classes.content}>
-          <div className={classes.logo}>
-            <Logo linkTo={'/'} />
+          <div className={classes.mobileLogo}>
+            <Logo viewType="column" linkTo={'/'} />
+          </div>
+          <div className={classes.desktopLogo}>
+            <Logo viewType="row" linkTo={'/'} />
           </div>
           <div className={classes.subTitle}>{t(tKeysAuth.authForm.subTitle.getKey())}</div>
           <div className={classes.title}>{t(tKeysAuth.authForm.title.getKey())}</div>

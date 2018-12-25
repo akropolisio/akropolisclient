@@ -31,7 +31,7 @@ class Header extends React.PureComponent<IProps, IState> {
       <div className={cn(classes.root, { [classes.isMenuOpen]: isMenuOpen })}>
         <div className={classes.content}>
           <div className={classes.logo}>
-            <Logo linkTo={brandRedirectPath} />
+            <Logo viewType="row" linkTo={brandRedirectPath} />
           </div>
           <div className={classes.desktopMenu}>
             <Menu viewType="row" />
