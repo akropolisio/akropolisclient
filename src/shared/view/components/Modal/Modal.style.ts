@@ -1,30 +1,61 @@
 import injectSheet, { Theme, WithStyles } from 'react-jss';
 
-import { rule } from 'shared/helpers/style';
-import matchProp from 'shared/helpers/matchProp';
+import { rule, styledBy } from 'shared/helpers/style';
 
 import { IProps } from './Modal';
 
 const styles = ({ extra: theme }: Theme) => ({
-  modal: rule({
+  '@global': rule({
+    '.ReactModalPortal': {
+      overflow: 'auto',
+      position: 'fixed',
+      top: -1,
+      right: -1,
+      bottom: -1,
+      left: -1,
+      zIndex: theme.zIndex.modal,
+
+      '&:empty': {
+        display: 'none',
+      },
+    },
+  }),
+  overlay: rule({
     minHeight: '100%',
-    maxHeight: '100%',
-    overflow: 'auto',
+    minWidth: '100%',
+    padding: 1,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column',
+    backgroundColor: theme.palette.control.bg.overlay,
+  }),
+  modal: rule({
+    flexGrow: 1,
+    minHeight: '100%',
+    minWidth: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column',
     backgroundColor: theme.colors.white,
     outline: 'none',
     opacity: 0,
-    borderRadius: '0.5rem',
 
     [theme.breakpoints.up('sm')]: rule({
-      width: ({ size }: IProps) => matchProp(size)({
+      flexGrow: 0,
+      minHeight: 'unset',
+      minWidth: 'unset',
+      width: styledBy<IProps, 'size'>('size', {
         small: '21.875rem',
         medium: '30rem',
         large: '40.625rem',
       }),
-      height: 'auto',
-      minHeight: 'unset',
+      margin: '3rem',
+      borderRadius: '0.5rem',
     }),
   }),
+
   modalAfterOpen: rule({
     animationName: 'modal-appear-animation',
     animationDuration: '500ms',
@@ -44,18 +75,6 @@ const styles = ({ extra: theme }: Theme) => ({
     animationName: 'overlay-disappear-animation',
     animationDuration: '400ms',
     animationFillMode: 'forwards',
-  }),
-  overlay: rule({
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: theme.palette.control.bg.overlay,
-    zIndex: theme.zIndex.modal,
   }),
 
   cross: rule({

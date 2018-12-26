@@ -6,7 +6,11 @@ import { SignTransactionModal } from 'shared/view/components';
 
 import QrCode from './QrStub/QrStub';
 
-class DemoModal extends React.PureComponent {
+interface IState {
+  isOpenModal: boolean;
+}
+
+class DemoModal extends React.PureComponent<{}, IState> {
   public state = { isOpenModal: false };
   public render() {
     return (

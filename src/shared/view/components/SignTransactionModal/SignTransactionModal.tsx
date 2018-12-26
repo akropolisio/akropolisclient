@@ -8,7 +8,7 @@ import * as phone from './images/phone.png';
 import googlePlay from './images/googlePlay.svg';
 import appstore from './images/appstore.svg';
 
-const tKeysAuth = tKeys.modules.auth;
+const tKeysSign = tKeys.features.signTransaction;
 
 interface IOwnProps {
   isOpen: boolean;
@@ -25,8 +25,8 @@ class SignTransactionModal extends React.Component<IProps> {
     return (
       <Modal withCross size="large" onClose={onClose} isOpen={isOpen}>
         <div className={classes.root}>
-          <div className={classes.title}>{t(tKeysAuth.signTransaction.getKey())}</div>
-          <div className={classes.description}>{t(tKeysAuth.scanQr.getKey())}</div>
+          <div className={classes.title}>{t(tKeysSign.title.getKey())}</div>
+          <div className={classes.description}>{t(tKeysSign.description.getKey())}</div>
           <div className={classes.scanQrCode}>
             <img className={classes.phone} src={phone} />
             <div className={classes.qrCode}><QrCode /></div>
