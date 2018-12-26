@@ -7,12 +7,13 @@ import { IProps } from './Modal';
 
 const styles = ({ extra: theme }: Theme) => ({
   modal: rule({
+    minHeight: '100%',
+    maxHeight: '100%',
+    overflow: 'auto',
     backgroundColor: theme.colors.white,
     outline: 'none',
     opacity: 0,
     borderRadius: '0.5rem',
-    height: '100%',
-    width: '100%',
 
     [theme.breakpoints.up('sm')]: rule({
       width: ({ size }: IProps) => matchProp(size)({
@@ -21,6 +22,7 @@ const styles = ({ extra: theme }: Theme) => ({
         large: '40.625rem',
       }),
       height: 'auto',
+      minHeight: 'unset',
     }),
   }),
   modalAfterOpen: rule({
