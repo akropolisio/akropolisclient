@@ -38,14 +38,14 @@ export const theme = {
     control: {
       border: {
         normal: colors.mercury,
-        hover: colors.mediumPurple,
-        focus: colors.purpleHeart,
+        hover: colors.purpleHeart,
+        focus: colors.mediumPurple,
         disabled: colors.mercury,
       },
       bg: {
         normal: colors.white,
-        hover: colors.mediumPurple,
-        focus: colors.purpleHeart,
+        hover: colors.purpleHeart,
+        focus: colors.mediumPurple,
         disabled: colors.mercury,
         overlay: hexToRGBA(colors.black, 0.18),
       },

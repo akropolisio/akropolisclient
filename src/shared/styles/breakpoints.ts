@@ -1,6 +1,6 @@
 
-type BreakpointType = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
-export const keys: BreakpointType[] = ['xs', 'sm', 'md', 'lg', 'xl'];
+export type BreakpointType = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+export const breakpointKeys: BreakpointType[] = ['xs', 'sm', 'md', 'lg', 'xl'];
 
 const values: { [key: string]: number } = {
   xs: 0,
@@ -17,32 +17,28 @@ function up(key: BreakpointType) {
   return `@media (min-width:${value}${unit})`;
 }
 
-function down(key: BreakpointType) {
-  const endIndex = keys.indexOf(key) + 1;
-  const upperbound = values[keys[endIndex]];
+function down(key: BreakpointType): string {
+  const endIndex = breakpointKeys.indexOf(key);
+  const upperbound = values[breakpointKeys[endIndex]];
 
-  if (endIndex === keys.length) {
-    return up('xs');
-  }
-
-  const value = typeof upperbound === 'number' && endIndex > 0 ? upperbound : key;
+  const value = typeof upperbound === 'number' && endIndex >= 0 ? upperbound : key;
 
   if (typeof value === 'number') {
     return `@media (max-width:${value - step / 100}${unit})`;
   }
-  return key;
+  return value;
 }
 
 function between(start: BreakpointType, end: BreakpointType) {
-  const endIndex = keys.indexOf(end) + 1;
+  const endIndex = breakpointKeys.indexOf(end) + 1;
 
-  if (endIndex === keys.length) {
+  if (endIndex === breakpointKeys.length) {
     return up(start);
   }
 
   return (
     `@media (min-width:${values[start]}${unit}) and ` +
-    `(max-width:${values[keys[endIndex]] - step / 100}${unit})`
+    `(max-width:${values[breakpointKeys[endIndex]] - step / 100}${unit})`
   );
 }
 
@@ -55,7 +51,7 @@ function width(key: BreakpointType) {
 }
 
 export default {
-  keys,
+  keys: breakpointKeys,
   values,
   up,
   down,

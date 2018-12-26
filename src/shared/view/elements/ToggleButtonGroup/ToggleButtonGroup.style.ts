@@ -4,6 +4,7 @@ import { rule } from 'shared/helpers/style';
 const styles = (theme: Theme) => ({
   root: rule({
     boxShadow: 'unset',
+    display: 'flex',
   }),
   selected: rule({
 

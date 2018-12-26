@@ -2,11 +2,11 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 
 import { provideStyles, StylesProps } from './Logo.style';
-// import logo from './images/logo.svg';
 import { Logo } from 'shared/view/elements/Icons';
 
 interface IOwnProps {
   linkTo: string;
+  viewType: 'row' | 'column';
 }
 type IProps = IOwnProps & StylesProps;
 
