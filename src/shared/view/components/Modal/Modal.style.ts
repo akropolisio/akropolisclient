@@ -10,7 +10,7 @@ const styles = ({ extra: theme }: Theme) => ({
     backgroundColor: theme.colors.white,
     outline: 'none',
     opacity: 0,
-    borderRadius: '8px',
+    borderRadius: '0.5rem',
     height: '100%',
     width: '100%',
 
@@ -21,7 +21,6 @@ const styles = ({ extra: theme }: Theme) => ({
         large: '40.625rem',
       }),
       height: 'auto',
-
     }),
   }),
   modalAfterOpen: rule({

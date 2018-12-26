@@ -24,12 +24,12 @@ class Modal extends React.Component<IProps> {
     const { classes, children, isOpen, onClose, withCross } = this.props;
     return (
       <ReactModal
-        className={{
+        className={classes.modal && {
           base: classes.modal,
           afterOpen: classes.modalAfterOpen,
           beforeClose: classes.modalBeforeClose,
         }}
-        overlayClassName={{
+        overlayClassName={classes.overlay && {
           base: classes.overlay,
           afterOpen: classes.overlayAfterOpen,
           beforeClose: classes.overlayBeforeClose,
