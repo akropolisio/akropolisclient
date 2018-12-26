@@ -18,7 +18,7 @@ import getEnvParams from '../src/core/getEnvParams';
 
 export type BuildType = 'dev' | 'prod' | 'server';
 
-const { chunkHash, withAnalyze, chunkName, withHot } = getEnvParams();
+const { chunkHash, withAnalyze, chunkName, withHot, withoutTypeCheking } = getEnvParams();
 
 const workerPool = {
   workers: require('os').cpus().length - 1,
@@ -51,7 +51,7 @@ export const getCommonPlugins: (type: BuildType) => webpack.Plugin[] = (type) =>
   }),
   new FaviconsWebpackPlugin(path.resolve(__dirname, '..', 'src', 'assets', 'favicon.png')),
 ]
-  .concat(type !== 'server' ? (
+  .concat(type !== 'server' && !withoutTypeCheking ? (
     new ForkTsCheckerWebpackPlugin({
       checkSyntacticErrors: true,
       async: false,

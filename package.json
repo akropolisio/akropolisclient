@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "Akropolis",
   "scripts": {
-    "check-types": "node_modules/.bin/tsc -p . --noEmit",
+    "check-types": "node_modules/.bin/tsc -p . --noEmit -w",
     "dev": "npm run watch:dev",
+    "fast": "better-npm-run watch:dev:fast",
     "prod": "npm run watch:prod",
     "watch:dev": "better-npm-run watch:dev",
     "watch:prod": "better-npm-run watch:prod",
@@ -83,6 +84,16 @@
         "NODE_ENV": "production",
         "TS_NODE_FILES": true,
         "WATCH_MODE": true,
+        "TS_NODE_COMPILER_OPTIONS": "{\"target\": \"es5\", \"module\": \"commonjs\"}"
+      }
+    },
+    "watch:dev:fast": {
+      "command": "node_modules/.bin/webpack-dev-server --watch --progress --colors --config webpack/dev.config.ts",
+      "env": {
+        "NODE_ENV": "development",
+        "TS_NODE_FILES": true,
+        "WATCH_MODE": true,
+        "WITHOUT_TYPES_CHECKING": true,
         "TS_NODE_COMPILER_OPTIONS": "{\"target\": \"es5\", \"module\": \"commonjs\"}"
       }
     },
