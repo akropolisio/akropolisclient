@@ -5,6 +5,7 @@ import routes from 'modules/routes';
 import { IModule } from 'shared/types/app';
 
 import DemoGUI from './view/DemoGUI/DemoGUI';
+import DemoModal from './view/DemoModal/DemoModal';
 import DemoHeader from './view/DemoHeader/DemoHeader';
 import DemoTranslations from './view/DemoTranslations/DemoTranslations';
 import DemoAdaptability from './view/DemoAdaptability/DemoAdaptability';
@@ -15,6 +16,7 @@ const DemoModule: IModule = {
       <Route key="demo" path={routes.demo.getRoutePath()}>
         <Switch>
           <Route path={routes.demo.gui.getRoutePath()} component={DemoGUI} />
+          <Route path={routes.demo.modal.getRoutePath()} component={DemoModal} />
           <Route path={routes.demo.header.getRoutePath()} component={DemoHeader} />
           <Route path={routes.demo.translations.getRoutePath()} component={DemoTranslations} />
           <Route path={routes.demo.adaptability.getRoutePath()} component={DemoAdaptability} />

@@ -9,6 +9,7 @@ const rawTree = {
   },
   demo: {
     gui: null,
+    modal: null,
     translations: null,
     adaptability: null,
     header: {

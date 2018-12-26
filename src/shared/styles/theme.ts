@@ -47,6 +47,7 @@ export const theme = {
         hover: colors.purpleHeart,
         focus: colors.mediumPurple,
         disabled: colors.mercury,
+        overlay: hexToRGBA(colors.black, 0.18),
       },
     },
   },
