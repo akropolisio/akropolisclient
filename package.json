@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "Akropolis",
   "scripts": {
-    "check-types": "node_modules/.bin/tsc -p . --noEmit",
+    "check-types": "node_modules/.bin/tsc -p . --noEmit -w",
     "dev": "npm run watch:dev",
+    "fast": "better-npm-run watch:dev:fast",
     "prod": "npm run watch:prod",
     "watch:dev": "better-npm-run watch:dev",
     "watch:prod": "better-npm-run watch:prod",
@@ -83,6 +84,16 @@
         "NODE_ENV": "production",
         "TS_NODE_FILES": true,
         "WATCH_MODE": true,
+        "TS_NODE_COMPILER_OPTIONS": "{\"target\": \"es5\", \"module\": \"commonjs\"}"
+      }
+    },
+    "watch:dev:fast": {
+      "command": "node_modules/.bin/webpack-dev-server --watch --progress --colors --config webpack/dev.config.ts",
+      "env": {
+        "NODE_ENV": "development",
+        "TS_NODE_FILES": true,
+        "WATCH_MODE": true,
+        "WITHOUT_TYPES_CHECKING": true,
         "TS_NODE_COMPILER_OPTIONS": "{\"target\": \"es5\", \"module\": \"commonjs\"}"
       }
     },
@@ -198,6 +209,7 @@
     "@types/react": "^16.7.17",
     "@types/react-dom": "^16.0.11",
     "@types/react-helmet": "^5.0.7",
+    "@types/react-modal": "^3.6.0",
     "@types/react-redux": "6.0.8",
     "@types/react-responsive": "^3.0.2",
     "@types/react-router": "^4.4.1",
@@ -248,6 +260,7 @@
     "react-geosuggest": "^2.5.0",
     "react-helmet": "^5.2.0",
     "react-jss": "^8.6.1",
+    "react-modal": "^3.8.1",
     "react-redux": "^5.1.1",
     "react-responsive": "^6.0.1",
     "react-router": "^4.3.1",

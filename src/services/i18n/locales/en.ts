@@ -7,7 +7,12 @@ export default {
       profile: 'Profile',
     },
   },
-  features: {},
+  features: {
+    signTransaction: {
+      title: 'Sign transaction',
+      description: 'Scan this QR code with your mobile device to continue transaction',
+    },
+  },
   documents: {},
   modules: {
     auth: {
