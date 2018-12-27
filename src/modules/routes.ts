@@ -3,7 +3,6 @@ import build, { getParam } from 'build-route-tree';
 const rawTree = {
   auth: {
     role: getParam({
-      signIn: null,
       signUp: null,
     }),
   },

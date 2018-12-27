@@ -7,21 +7,23 @@ import { tKeys, i18nConnect, ITranslateProps } from 'services/i18n';
 import { Adaptive } from 'services/adaptability';
 
 import { Button } from 'shared/view/elements';
-import { withComponent } from 'shared/helpers';
+import { withComponent } from 'shared/helpers/react';
 
 import { SelectRole } from './components';
 import { StylesProps, provideStyles } from './LoginForm.style';
+import { SignTransactionButton } from 'services/signTransaction';
+import { UserRole } from 'shared/types/models';
 
 const LinkButton = withComponent(Link)(Button);
 
 const tKeysAuth = tKeys.modules.auth;
 
-type IProps = RouteComponentProps & StylesProps & ITranslateProps;
+type IProps = RouteComponentProps<{ role: UserRole }> & StylesProps & ITranslateProps;
 
 class LoginForm extends React.PureComponent<IProps> {
 
   public render() {
-    const { classes, location, t } = this.props;
+    const { classes, location, t, match } = this.props;
     return (
       <div className={classes.root}>
         <div className={classes.content}>
@@ -38,15 +40,18 @@ class LoginForm extends React.PureComponent<IProps> {
             <SelectRole />
           </div>
           <div className={classes.signButtons}>
-            <LinkButton
+            <SignTransactionButton<'signIn'>
+              transactionType="signIn"
+              data={{ role: match.params.role }}
               className={classes.signInButton}
-              to={location.pathname + '/signIn'}
               fullWidth
               variant="contained"
               color="primary"
+              onSuccess={console.log.bind(null, '>> success >>')}
+              onCancel={console.log.bind(null, '>> cancel >>')}
             >
               {t(tKeysAuth.signIn.getKey())}
-            </LinkButton>
+            </SignTransactionButton>
             <LinkButton to={location.pathname + '/signUp'} fullWidth variant="outlined">
               {t(tKeysAuth.signUp.getKey())}
             </LinkButton>
