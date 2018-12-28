@@ -5,6 +5,7 @@ import { withRouter, RouteComponentProps } from 'react-router-dom';
 
 import routes from 'modules/routes';
 
+import { Adaptive } from 'services/adaptability';
 import { Menu as MenuIcon, Cross } from 'shared/view/elements/Icons';
 import { ProfileMenu } from 'shared/view/components';
 import { IconButton } from 'shared/view/elements';
@@ -31,7 +32,15 @@ class Header extends React.PureComponent<IProps, IState> {
       <div className={cn(classes.root, { [classes.isMenuOpen]: isMenuOpen })}>
         <div className={classes.content}>
           <div className={classes.logo}>
-            <Logo viewType="row" linkTo={brandRedirectPath} />
+            <Adaptive to="sm">
+              <Logo viewType="row" linkTo={brandRedirectPath} />
+            </Adaptive>
+            <Adaptive from="sm" to="md">
+              <Logo onlyIcon viewType="row" linkTo={brandRedirectPath} />
+            </Adaptive>
+            <Adaptive from="md">
+              <Logo viewType="row" linkTo={brandRedirectPath} />
+            </Adaptive>
           </div>
           <div className={classes.desktopMenu}>
             <Menu viewType="row" />

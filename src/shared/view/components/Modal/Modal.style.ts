@@ -47,12 +47,20 @@ const styles = ({ extra: theme }: Theme) => ({
       minHeight: 'unset',
       minWidth: 'unset',
       width: styledBy<IProps, 'size'>('size', {
+        small: '16.875rem',
+        medium: '25rem',
+        large: '35.625rem',
+      }),
+      margin: '3rem',
+      borderRadius: '0.5rem',
+    }),
+
+    [theme.breakpoints.up('md')]: rule({
+      width: styledBy<IProps, 'size'>('size', {
         small: '21.875rem',
         medium: '30rem',
         large: '40.625rem',
       }),
-      margin: '3rem',
-      borderRadius: '0.5rem',
     }),
   }),
 
