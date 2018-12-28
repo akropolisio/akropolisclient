@@ -2,12 +2,8 @@ import injectSheet, { WithStyles, Theme } from 'react-jss';
 import { rule } from 'shared/helpers/style';
 
 const styles = (theme: Theme) => ({
-  root: {},
-  field: rule({
-    marginBottom: theme.spacing.unit * 3,
-  }),
-  submit: rule({
-    marginTop: theme.spacing.unit * 2,
+  root: rule({
+    padding: `${theme.spacing.unit * 6}px ${theme.spacing.unit * 5}px`,
   }),
 });
 

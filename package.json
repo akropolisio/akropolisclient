@@ -70,7 +70,7 @@
       }
     },
     "watch:dev": {
-      "command": "node_modules/.bin/webpack-dev-server --watch --progress --colors --config webpack/dev.config.ts",
+      "command": "node --max_old_space_size=4096 node_modules/.bin/webpack-dev-server --watch --progress --colors --config webpack/dev.config.ts",
       "env": {
         "NODE_ENV": "development",
         "TS_NODE_FILES": true,
@@ -79,7 +79,7 @@
       }
     },
     "watch:prod": {
-      "command": "node_modules/.bin/webpack-dev-server --client-log-level info --watch --progress --colors --config webpack/prod.config.ts",
+      "command": "node --max_old_space_size=4096 node_modules/.bin/webpack-dev-server --client-log-level info --watch --progress --colors --config webpack/prod.config.ts",
       "env": {
         "NODE_ENV": "production",
         "TS_NODE_FILES": true,
@@ -88,7 +88,7 @@
       }
     },
     "watch:dev:fast": {
-      "command": "node_modules/.bin/webpack-dev-server --watch --progress --colors --config webpack/dev.config.ts",
+      "command": "node --max_old_space_size=4096 node_modules/.bin/webpack-dev-server --watch --progress --colors --config webpack/dev.config.ts",
       "env": {
         "NODE_ENV": "development",
         "TS_NODE_FILES": true,
@@ -98,7 +98,7 @@
       }
     },
     "analyze:dev": {
-      "command": "node_modules/.bin/webpack --progress --config webpack/dev.config.ts",
+      "command": "node --max_old_space_size=4096 node_modules/.bin/webpack --progress --config webpack/dev.config.ts",
       "env": {
         "BUNDLE_ANALYZE_MODE": true,
         "TS_NODE_FILES": true,
@@ -107,7 +107,7 @@
       }
     },
     "analyze:prod": {
-      "command": "node_modules/.bin/webpack --progress --config webpack/prod.config.ts",
+      "command": "node --max_old_space_size=4096 node_modules/.bin/webpack --progress --config webpack/prod.config.ts",
       "env": {
         "BUNDLE_ANALYZE_MODE": true,
         "TS_NODE_FILES": true,
@@ -116,7 +116,7 @@
       }
     },
     "build:dev": {
-      "command": "node_modules/.bin/webpack --progress --colors --config webpack/dev.config.ts",
+      "command": "node --max_old_space_size=4096 node_modules/.bin/webpack --progress --colors --config webpack/dev.config.ts",
       "env": {
         "NODE_ENV": "development",
         "TS_NODE_FILES": true,
@@ -124,7 +124,7 @@
       }
     },
     "build:prod": {
-      "command": "node_modules/.bin/webpack --progress --colors --config webpack/prod.config.ts",
+      "command": "node --max_old_space_size=4096 node_modules/.bin/webpack --progress --colors --config webpack/prod.config.ts",
       "env": {
         "NODE_ENV": "production",
         "TS_NODE_FILES": true,

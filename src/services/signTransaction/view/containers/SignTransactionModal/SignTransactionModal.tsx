@@ -31,7 +31,7 @@ class SignTransactionModal extends React.Component<IProps> {
   public render() {
     const { onClose, isOpened, ...restProps } = this.props;
     return (
-      <Modal withCross size="large" onClose={onClose} isOpen={isOpened}>
+      <Modal withCross size="large" type="signTransaction" onClose={onClose} isOpen={isOpened}>
         <SignTransaction {...restProps} />
       </Modal>
     );

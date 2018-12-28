@@ -1,1 +1,2 @@
-export { default as SomeContainer } from './SomeContainer/SomeContainer';
+export { default as SignUpForm } from './SignUpForm/SignUpForm';
+export { default as SignUpModal } from './SignUpModal/SignUpModal';

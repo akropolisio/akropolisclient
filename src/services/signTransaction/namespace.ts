@@ -1,5 +1,6 @@
 import { ICommunication, IAction, IPlainFailAction, IPlainAction } from 'shared/types/redux';
 import { ABIRequest, ITransaction } from 'shared/types/models';
+import { signTransaction } from './redux/actions';
 
 export interface IReduxState {
   communication: {
@@ -16,6 +17,8 @@ export interface IQRCodeData {
   abiUrl: string;
   uuid: string;
 }
+
+export type SignTransactionFunction = typeof signTransaction;
 
 export type IGenerateABI = IAction<'SIGN_TRANSACTION:GENERATE_ABI', ABIRequest>;
 export type IGenerateABISuccess = IAction<'SIGN_TRANSACTION:GENERATE_ABI_SUCCESS', { abi: string, uuid: string }>;

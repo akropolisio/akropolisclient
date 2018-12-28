@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { withRouter, RouteComponentProps } from 'react-router';
+import { bind } from 'decko';
+import { withRouter, RouteComponentProps, Route } from 'react-router';
 import { Link } from 'react-router-dom';
 
 import { Logo } from 'modules/shared';
@@ -13,6 +14,8 @@ import { SelectRole } from './components';
 import { StylesProps, provideStyles } from './LoginForm.style';
 import { SignTransactionButton } from 'services/signTransaction';
 import { UserRole } from 'shared/types/models';
+import routes from 'modules/routes';
+import { SignUpModal } from 'features/signUp';
 
 const LinkButton = withComponent(Link)(Button);
 
@@ -47,8 +50,7 @@ class LoginForm extends React.PureComponent<IProps> {
               fullWidth
               variant="contained"
               color="primary"
-              onSuccess={console.log.bind(null, '>> success >>')}
-              onCancel={console.log.bind(null, '>> cancel >>')}
+              onSuccess={this.onSignInSuccess}
             >
               {t(tKeysAuth.signIn.getKey())}
             </SignTransactionButton>
@@ -57,7 +59,35 @@ class LoginForm extends React.PureComponent<IProps> {
             </LinkButton>
           </div>
         </div>
+        <Route path={routes.auth.role.signUp.getRoutePath()}>
+          {({ match: signUpMatch }: RouteComponentProps<{ role: UserRole }>) => (
+            <SignUpModal
+              size="medium"
+              isOpen={Boolean(signUpMatch && signUpMatch.isExact)}
+              role={match.params.role}
+              onSuccess={this.onSignUpSuccess}
+              onClose={this.onSignUpClose}
+            />
+          )}
+        </Route>
       </div>);
+  }
+
+  @bind
+  private onSignUpClose() {
+    const { history, match } = this.props;
+    history.push(routes.auth.role.getRedirectPath({ role: match.params.role }));
+  }
+
+  @bind
+  private onSignInSuccess() {
+    // do something
+  }
+
+  @bind
+  private onSignUpSuccess() {
+    this.onSignUpClose();
+    // do something
   }
 }
 
