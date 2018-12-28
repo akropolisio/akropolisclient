@@ -20,6 +20,10 @@ const styles = ({ extra: theme }: Theme) => ({
     color: theme.colors.heavyMetal,
     textTransform: 'uppercase',
     letterSpacing: '0.07em',
+
+    [theme.breakpoints.between('sm', 'md')]: rule({
+      display: 'none',
+    }),
   }),
 
   logo: rule({
@@ -27,7 +31,12 @@ const styles = ({ extra: theme }: Theme) => ({
     flexShrink: 0,
     marginRight: ({ viewType }: IProps) => viewType === 'row' ? '0.5em' : 0,
     marginBottom: ({ viewType }: IProps) => viewType === 'row' ? 0 : '0.65em',
+
+    [theme.breakpoints.between('sm', 'md')]: rule({
+      marginRight: () => '0',
+    }),
   }),
+
 });
 
 export const provideStyles = injectSheet(styles);

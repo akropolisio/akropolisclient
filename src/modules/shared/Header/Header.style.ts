@@ -79,6 +79,7 @@ const styles = ({ extra: theme }: Theme) => ({
     bottom: 0,
     marginTop: theme.sizes.header.minHeightMobile,
     padding: '1.85rem 0 0 3.2rem',
+    zIndex: theme.zIndex.afterContext(theme.zIndex.newContext),
     background: theme.colors.white,
 
     [theme.breakpoints.up('sm')]: rule({

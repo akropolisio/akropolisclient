@@ -5,3 +5,4 @@ export { default as Cross } from './Cross';
 export { default as Menu } from './Menu';
 export { default as Arrow } from './Arrow';
 export { default as Logo } from './Logo';
+export { default as Search } from './Search';

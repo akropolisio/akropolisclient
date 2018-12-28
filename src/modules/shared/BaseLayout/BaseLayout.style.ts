@@ -3,10 +3,10 @@ import { rule } from 'shared/helpers/style';
 
 const styles = (theme: Theme) => ({
   content: rule({
+    maxWidth: theme.extra.sizes.page.maxWidth,
     padding: theme.spacing.unit * 3,
 
     [theme.breakpoints.up('md')]: {
-      width: theme.breakpoints.values.md,
       margin: '0 auto',
     },
   }),

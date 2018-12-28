@@ -12,11 +12,9 @@ const rawTree = {
     modal: null,
     translations: null,
     adaptability: null,
-    header: {
-      marketplace: null,
-      dashboard: null,
-      profile: null,
-    },
+    marketplace: null,
+    dashboard: null,
+    profile: null,
   },
 };
 
