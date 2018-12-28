@@ -1,8 +1,9 @@
 import { bind } from 'decko';
-import BaseApi from './BaseApi';
-import { ABIRequest, ITransaction } from 'shared/types/models';
 import EventEmitter from 'events';
 import { delay } from 'redux-saga';
+
+import { ABIRequest, ITransaction } from 'shared/types/models';
+import BaseApi from './BaseApi';
 
 const ee = new EventEmitter();
 

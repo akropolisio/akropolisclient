@@ -19,12 +19,11 @@ type IProps<T extends TransactionType> = IOwnProps<T> & IButtonProps;
 
 class SignTransactionButton<T extends TransactionType> extends React.Component<IProps<T>> {
   public render() {
-    const {
-      data, transactionType, onSuccess, onCancel, ...restProps } = this.props;
+    const { data, transactionType, onSuccess, onCancel, ...restProps } = this.props;
     return (
       <WithSignTransaction onCancel={onCancel} onSuccess={onSuccess}>
         {({ signTransaction }) => (
-          < Button {...restProps} onClick={signTransaction.bind(null, transactionType, data)} />
+          <Button {...restProps} onClick={signTransaction.bind(null, transactionType, data)} />
         )}
       </WithSignTransaction>
     );

@@ -11,7 +11,7 @@ export function dataReducer(state: NS.IReduxState['data'] = initial.data, action
     }
     case 'SIGN_TRANSACTION:STOP_TRANSACTION_LISTENING': {
       return {
-        ...initial.data,
+        ...state,
         request: null,
       };
     }

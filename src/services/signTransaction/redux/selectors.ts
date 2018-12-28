@@ -1,7 +1,8 @@
 import { IAppReduxState } from 'shared/types/app';
-import * as NS from '../namespace';
-import { makeCommunicationSelector } from 'shared/helpers/redux';
 import { ITransaction } from 'shared/types/models';
+import { makeCommunicationSelector } from 'shared/helpers/redux';
+
+import * as NS from '../namespace';
 
 export function selectState(state: IAppReduxState): NS.IReduxState {
   return state.signTransaction;

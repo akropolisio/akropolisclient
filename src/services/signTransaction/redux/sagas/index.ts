@@ -1,12 +1,12 @@
 import { SagaIterator, eventChannel } from 'redux-saga';
 import { put, call, takeLatest, race, take } from 'redux-saga/effects';
+import { PromisedReturnType, ArgumentTypes } from '_helpers';
 
 import { IDependencies } from 'shared/types/app';
 import { getErrorMsg } from 'shared/helpers';
 
-import * as actions from '../actions';
 import * as NS from '../../namespace';
-import { PromisedReturnType, ArgumentTypes } from '_helpers';
+import * as actions from '../actions';
 
 const signTransactionType: NS.ISignTransaction['type'] = 'SIGN_TRANSACTION:SIGN_TRANSACTION';
 const generateABIType: NS.IGenerateABI['type'] = 'SIGN_TRANSACTION:GENERATE_ABI';

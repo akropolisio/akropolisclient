@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 
 import { ReducersMap } from 'shared/types/redux';
-import * as NS from '../../namespace';
 
+import * as NS from '../../namespace';
 import { communicationReducer } from './communication';
 import { dataReducer } from './data';
 

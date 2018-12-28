@@ -4,18 +4,18 @@ import { withRouter, RouteComponentProps, Route } from 'react-router';
 import { Link } from 'react-router-dom';
 
 import { Logo } from 'modules/shared';
+import routes from 'modules/routes';
 import { tKeys, i18nConnect, ITranslateProps } from 'services/i18n';
 import { Adaptive } from 'services/adaptability';
+import { SignTransactionButton } from 'services/signTransaction';
+import { SignUpModal } from 'features/signUp';
 
+import { UserRole } from 'shared/types/models';
 import { Button } from 'shared/view/elements';
 import { withComponent } from 'shared/helpers/react';
 
 import { SelectRole } from './components';
 import { StylesProps, provideStyles } from './LoginForm.style';
-import { SignTransactionButton } from 'services/signTransaction';
-import { UserRole } from 'shared/types/models';
-import routes from 'modules/routes';
-import { SignUpModal } from 'features/signUp';
 
 const LinkButton = withComponent(Link)(Button);
 

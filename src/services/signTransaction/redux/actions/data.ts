@@ -1,6 +1,6 @@
 import uuid from 'uuid';
-import * as NS from '../../namespace';
 import { TransactionType, ABIRequestDataByType, ABIRequest, ITransaction } from 'shared/types/models';
+import * as NS from '../../namespace';
 
 export function signTransaction<T extends TransactionType>(
   type: T, data: ABIRequestDataByType[T],

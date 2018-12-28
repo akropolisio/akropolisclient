@@ -1,14 +1,16 @@
 import * as React from 'react';
 import { bind } from 'decko';
-
-import { StylesProps, provideStyles } from './SignUpForm.style';
 import { reduxForm, InjectedFormProps } from 'redux-form';
-import { TextInputField } from 'shared/view/redux-form';
+
+import { i18nConnect, ITranslateProps, tKeys as allKeys } from 'services/i18n';
+import { WithSignTransaction, SignTransactionFunction } from 'services/signTransaction';
+
 import { UserRole } from 'shared/types/models';
 import { Button } from 'shared/view/elements';
-import { WithSignTransaction, SignTransactionFunction } from 'services/signTransaction';
+import { TextInputField } from 'shared/view/redux-form';
 import { isRequired } from 'shared/validators';
-import { i18nConnect, ITranslateProps, tKeys as allKeys } from 'services/i18n';
+
+import { StylesProps, provideStyles } from './SignUpForm.style';
 
 const tKeys = allKeys.features.signUp;
 

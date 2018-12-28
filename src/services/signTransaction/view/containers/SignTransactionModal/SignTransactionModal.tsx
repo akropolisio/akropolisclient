@@ -26,16 +26,13 @@ const mapDispatch = {
   onClose: stopTransactionListening,
 };
 
-class SignTransactionModal extends React.Component<IProps> {
-
-  public render() {
-    const { onClose, isOpened, ...restProps } = this.props;
-    return (
-      <Modal withCross size="large" type="signTransaction" onClose={onClose} isOpen={isOpened}>
-        <SignTransaction {...restProps} />
-      </Modal>
-    );
-  }
+function SignTransactionModal(props: IProps) {
+  const { onClose, isOpened, ...restProps } = props;
+  return (
+    <Modal withCross size="large" type="signTransaction" onClose={onClose} isOpen={isOpened}>
+      <SignTransaction {...restProps} />
+    </Modal>
+  );
 }
 
 export { IProps };

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { bind } from 'decko';
-import { Button } from 'shared/view/elements';
 
+import { Button } from 'shared/view/elements';
 import { Modal } from 'shared/view/components';
 
 type ModalType = 'small' | 'medium' | 'large' | 'with-scroll';

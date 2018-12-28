@@ -1,10 +1,11 @@
 import * as React from 'react';
-
-import { StylesProps, provideStyles } from './SignUpModal.style';
 import { GetProps, Omit } from '_helpers';
-import { Modal } from 'shared/view/components';
-import SignUpForm, { IOwnProps as IFormOwnProps } from '../SignUpForm/SignUpForm';
+
 import { tKeys, ITranslateProps, i18nConnect } from 'services/i18n';
+import { Modal } from 'shared/view/components';
+
+import SignUpForm, { IOwnProps as IFormOwnProps } from '../SignUpForm/SignUpForm';
+import { StylesProps, provideStyles } from './SignUpModal.style';
 
 type IProps = Omit<GetProps<typeof Modal>, 'classes' | 'title'> & IFormOwnProps & ITranslateProps & StylesProps;
 

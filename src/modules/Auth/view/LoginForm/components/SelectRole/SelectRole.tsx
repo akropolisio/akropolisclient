@@ -7,12 +7,12 @@ import routes from 'modules/routes';
 import { i18nConnect, ITranslateProps, tKeys } from 'services/i18n';
 import { Adaptive } from 'services/adaptability';
 
+import { UserRole } from 'shared/types/models';
 import { ToggleButton, Tooltip, ToggleButtonGroup, TextInput, MenuItem } from 'shared/view/elements';
 import { Question } from 'shared/view/elements/Icons';
 import { withComponent } from 'shared/helpers/react';
 
 import { StylesProps, provideStyles } from './SelectRole.style';
-import { UserRole } from 'shared/types/models';
 
 type IProps = StylesProps & ITranslateProps & RouteComponentProps<{ role: UserRole }>;
 
