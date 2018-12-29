@@ -1,5 +1,5 @@
 import * as React from 'react';
-import MuiSlider, {SliderProps} from '@material-ui/lab/Slider';
+import MuiSlider, { SliderProps } from '@material-ui/lab/Slider';
 import { StylesProps, provideStyles } from './Slider.style';
 import { Omit } from '_helpers';
 
@@ -23,17 +23,19 @@ class Slider extends React.Component<IProps> {
       </div>
     );
     return (
-      <MuiSlider
-        {...this.props}
-        classes={{
-          thumb: classes.thumb,
-          track: classes.track,
-          trackAfter: classes.trackAfter,
-        }}
-        thumb={thumb}
-        value={sliderValue}
-        onChange={this.handleChange}
-      />
+      <div className={classes.root}>
+        <MuiSlider
+          {...this.props}
+          classes={{
+            thumb: classes.thumb,
+            track: classes.track,
+            trackAfter: classes.trackAfter,
+          }}
+          thumb={thumb}
+          value={sliderValue}
+          onChange={this.handleChange}
+        />
+      </div>
     );
   }
 

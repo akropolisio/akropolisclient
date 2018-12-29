@@ -39,11 +39,9 @@ function DemoGUI(_props: StylesProps) {
         <Checkboxes />
       </SimpleList>
 
-      <SimpleList marginFactor={2} gutter>
-      <Typography variant="h4">Slider</Typography>
-        <div style={{ width: '1000px' }}>
-          <Slider value={30} />
-        </div>
+      <SimpleList marginFactor={2} gutter alignItems="stretch">
+        <Typography variant="h4">Slider</Typography>
+        <Slider value={30} />
       </SimpleList>
     </div>
   );
