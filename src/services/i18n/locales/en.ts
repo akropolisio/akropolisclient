@@ -12,6 +12,12 @@ export default {
       title: 'Sign transaction',
       description: 'Scan this QR code with your mobile device to continue transaction',
     },
+    dashboard: {
+      dashboard: 'Dashboard',
+      hint: {
+        incomeMonthly: 'Monthly payments upon retirement age',
+      },
+    },
   },
   documents: {},
   modules: {

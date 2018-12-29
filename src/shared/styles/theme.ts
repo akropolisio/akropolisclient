@@ -17,6 +17,7 @@ const colors = {
   buttercup: '#f5a623',
   white: '#fff',
   black: '#000',
+  gray: '#868686',
   alto: '#e0e0e0',
   heavyMetal: '#1d1d1b',
   alabaster: '#f8f8f8',
