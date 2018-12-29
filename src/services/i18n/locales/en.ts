@@ -38,6 +38,13 @@ export default {
         selectRole: 'select your role',
       },
     },
+    marketplace: {
+      fundsMarketplace: 'Funds marketplace',
+      commission: 'Commission',
+      policy: 'Policy',
+      getInFund: 'Get in fund',
+      YouAreInThisFund: 'You’re in this fond',
+    },
   },
   demo: {
     selectedLang: 'Selected language is %{locale}',

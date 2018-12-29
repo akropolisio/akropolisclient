@@ -14,20 +14,24 @@ const styles = ({ extra: theme }: Theme) => ({
   }),
 
   title: rule({
+    display: ({ onlyIcon }: IProps) => onlyIcon ? 'none' : 'unset',
     fontSize: '0.45em',
     fontFamily: theme.typography.primaryFont,
     fontWeight: 'bold',
     color: theme.colors.heavyMetal,
     textTransform: 'uppercase',
     letterSpacing: '0.07em',
+
   }),
 
   logo: rule({
     fontSize: '1em',
     flexShrink: 0,
-    marginRight: ({ viewType }: IProps) => viewType === 'row' ? '0.5em' : 0,
+    marginRight: ({ viewType, onlyIcon }: IProps) => viewType === 'row' && !onlyIcon ? '0.5em' : 0,
     marginBottom: ({ viewType }: IProps) => viewType === 'row' ? 0 : '0.65em',
+
   }),
+
 });
 
 export const provideStyles = injectSheet(styles);

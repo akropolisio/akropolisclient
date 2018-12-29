@@ -7,6 +7,7 @@ import { Logo } from 'shared/view/elements/Icons';
 interface IOwnProps {
   linkTo: string;
   viewType: 'row' | 'column';
+  onlyIcon?: boolean;
 }
 type IProps = IOwnProps & StylesProps;
 
