@@ -4,6 +4,7 @@ import * as backgroundFon from './images/background.png';
 
 const styles = ({ extra: theme }: Theme) => ({
   root: rule({
+    overflow: 'auto',
     width: '100%',
     minHeight: '100%',
     display: 'flex',
@@ -25,10 +26,16 @@ const styles = ({ extra: theme }: Theme) => ({
     padding: '1.875rem 1.25rem 4.75rem',
 
     [theme.breakpoints.up('sm')]: rule({
+      minHeight: '38.75rem',
+      width: '48.125rem',
+      maxWidth: '48.125rem',
+      margin: 'auto',
+      padding: '5rem 4.375rem 5rem',
+    }),
+    [theme.breakpoints.up('md')]: rule({
+      minHeight: '43.75rem',
       width: '51.25rem',
       maxWidth: '51.25rem',
-      minHeight: '43.75rem',
-      margin: 'auto',
       padding: '3.5rem 5.125rem 6.5rem',
     }),
   }),
