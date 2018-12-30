@@ -3,7 +3,7 @@ import * as React from 'react';
 import { i18nConnect, tKeys, ITranslateProps } from 'services/i18n';
 import { Search } from 'shared/view/elements/Icons';
 
-import { StylesProps, provideStyles } from './FundsList.style';
+import { StylesProps, provideStyles } from './FundsMarketplace.style';
 import { IFund } from '../../namespace';
 import FundCard from '../../components/FundCard/FundCard';
 
@@ -19,7 +19,7 @@ const funds: IFund[] = [
 
 const tKeysMarketplace = tKeys.modules.marketplace;
 
-class FundsList extends React.PureComponent<IProps> {
+class FundsMarketplace extends React.PureComponent<IProps> {
 
   public render() {
     const { classes, t } = this.props;
@@ -43,4 +43,4 @@ class FundsList extends React.PureComponent<IProps> {
   }
 }
 
-export default i18nConnect(provideStyles(FundsList));
+export default i18nConnect(provideStyles(FundsMarketplace));

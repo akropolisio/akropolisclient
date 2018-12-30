@@ -1,7 +1,6 @@
 import * as React from 'react';
-import { bind } from 'decko';
 
-import { Dashboard } from 'shared/view/drafts';
+import { Dashboard, UserFunds } from 'shared/view/drafts';
 import { BaseLayout } from 'modules/shared';
 
 interface IState {
@@ -13,19 +12,12 @@ class DemoDashboard extends React.PureComponent<{}, IState> {
   public render() {
     return (
       <BaseLayout>
-        <Dashboard />
+        <div style={{ marginBottom: '2rem' }}>
+          <Dashboard />
+        </div>
+        <UserFunds />
       </BaseLayout>
     );
-  }
-
-  @bind
-  public openModal() {
-    this.setState({ isOpenModal: true });
-  }
-
-  @bind
-  public closeModal() {
-    this.setState({ isOpenModal: false });
   }
 }
 

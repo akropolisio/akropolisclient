@@ -1,2 +1,3 @@
 export { Dashboard } from './Dashboard';
-export { FundsList } from './FundsMarketplace/index';
+export { FundsMarketplace } from './FundsMarketplace';
+export { UserFunds } from './UserFunds';

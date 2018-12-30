@@ -1,1 +1,1 @@
-export { default as FundsList } from './FundsList/FundsList';
+export { default as FundsMarketplace } from './FundsMarketplace/FundsMarketplace';
