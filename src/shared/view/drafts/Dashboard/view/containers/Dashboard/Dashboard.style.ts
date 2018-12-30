@@ -1,6 +1,6 @@
 import injectSheet, { Theme, WithStyles } from 'react-jss';
 
-import { rule, styledBy } from 'shared/helpers/style';
+import { rule } from 'shared/helpers/style';
 import { hexToRGBA } from 'shared/styles/helpers';
 
 const styles = ({ extra: theme }: Theme) => ({
@@ -30,21 +30,44 @@ const styles = ({ extra: theme }: Theme) => ({
   }),
 
   metric: rule({
+    position: 'relative',
     minHeight: '7.5rem',
     flexGrow: 1,
     padding: '0.9rem 0.625rem',
     borderBottom: `solid 1px ${hexToRGBA(theme.colors.dustyGray, 0.2)}`,
 
-    '&:last-child': rule({
-      border: 'none',
-    }),
-
     [theme.breakpoints.up('sm')]: rule({
       padding: '0.5rem 1.5rem',
       minHeight: 'unset',
-      borderBottom: 'none',
-      borderRight: `solid 1px ${hexToRGBA(theme.colors.dustyGray, 0.2)}`,
+      border: 'none',
     }),
+
+    '&:after': rule({
+      content: '""',
+      display: 'none',
+      position: 'absolute',
+      right: 0,
+      top: 0,
+      minHeight: '4rem',
+      width: '0.0625rem',
+      backgroundColor: theme.colors.dustyGray,
+
+      [theme.breakpoints.up('sm')]: rule({
+        display: 'block',
+      }),
+
+      [theme.breakpoints.up('md')]: rule({
+        minHeight: '100%',
+      }),
+    }),
+
+    '&:last-child': rule({
+      border: 'none',
+      '&:after': rule({
+        display: 'none',
+      }),
+    }),
+
   }),
 
 });

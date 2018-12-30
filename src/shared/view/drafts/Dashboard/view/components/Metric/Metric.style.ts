@@ -1,6 +1,6 @@
 import injectSheet, { Theme, WithStyles } from 'react-jss';
 
-import { rule, styledBy } from 'shared/helpers/style';
+import { rule } from 'shared/helpers/style';
 
 import { IProps } from './Metric';
 

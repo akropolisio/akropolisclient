@@ -6,3 +6,4 @@ export { default as Menu } from './Menu';
 export { default as Arrow } from './Arrow';
 export { default as AngleArrow } from './AngleArrow';
 export { default as Logo } from './Logo';
+export { default as Search } from './Search';
