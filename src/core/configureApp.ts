@@ -8,6 +8,7 @@ import { configureJss } from 'core/configureJss';
 import { DemoModule, AuthModule } from 'modules';
 import { reduxEntry as i18nRE, I18n } from 'services/i18n';
 import { reduxEntry as adaptabilityRE } from 'services/adaptability';
+import { reduxEntry as signTransactionRE } from 'services/signTransaction';
 
 import { ReducersMap } from 'shared/types/redux';
 import { IAppData, IModule, RootSaga, IAppReduxState, IReduxEntry } from 'shared/types/app';
@@ -24,6 +25,7 @@ function configureApp(data?: IAppData): IAppData {
     { reducers: { form: formReducer } },
     i18nRE,
     adaptabilityRE,
+    signTransactionRE,
   ];
 
   const connectedSagas: RootSaga[] = [];

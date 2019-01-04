@@ -3,7 +3,6 @@ import injectSheet, { Theme, WithStyles } from 'react-jss';
 import { rule } from 'shared/helpers/style';
 
 const styles = ({ extra: theme }: Theme) => ({
-
   root: rule({
     height: '100%',
     display: 'flex',
@@ -44,21 +43,25 @@ const styles = ({ extra: theme }: Theme) => ({
   }),
 
   scanQrCode: rule({
-    position: 'relative',
     width: '80%',
+    position: 'relative',
     marginBottom: '2.5rem',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
   }),
 
   phone: rule({
-    width: '100%',
+    width: '160%',
+    maxWidth: 500,
+    minWidth: 300,
   }),
 
   qrCode: rule({
-    position: 'absolute',
-    top: '42%',
+    top: '66%',
     left: '50%',
-    width: '30%',
-    transform: 'translateX(-50%)',
+    position: 'absolute',
+    transform: 'translate(-50%, -50%)',
   }),
 
   qrCodeImage: rule({

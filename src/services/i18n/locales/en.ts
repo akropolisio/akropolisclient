@@ -12,21 +12,13 @@ export default {
       title: 'Sign transaction',
       description: 'Scan this QR code with your mobile device to continue transaction',
     },
-    dashboard: {
-      dashboard: 'Dashboard',
-      hint: {
-        incomeMonthly: 'Monthly payments upon retirement age',
+    signUp: {
+      fields: {
+        userName: 'Name',
+        surname: 'Surname',
       },
-    },
-
-    funds: {
-      activeFunds: 'Active Funds',
-      notActiveFunds: 'Not active Funds',
-      deposit: 'deposit',
-      policy: 'Policy',
-      pensionDate: 'Pension date',
-      totalSum: 'Total sum',
-      incomeMonthly: 'Income monthly',
+      submit: 'Sign in',
+      title: 'Sign in',
     },
   },
   documents: {},

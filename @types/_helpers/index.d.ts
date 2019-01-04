@@ -26,6 +26,13 @@ declare module '_helpers' {
     T extends React.StatelessComponent<infer SP> ? SP :
     T extends React.ComponentClass<infer CP> ? CP : never;
 
+  export type PromisedReturnType<T extends (...args: any[]) => any> =
+    T extends (...args: any[]) => Promise<infer R> ? R : ReturnType<T>;
+
+  export type ArgumentTypes<F extends (...args: any[]) => any> = F extends (...args: infer A) => any ? A : never;
+
+  export type Nullable<T> = T | null | undefined;
+
   export type SubSet<T, R extends T> = R;
   export type SubsetMapStrict<B extends { [key in keyof T]: any }, T extends B> = T;
 
