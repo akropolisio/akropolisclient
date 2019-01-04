@@ -4,7 +4,7 @@ export const breakpointKeys: BreakpointType[] = ['xs', 'sm', 'md', 'lg', 'xl'];
 
 const values: { [key: string]: number } = {
   xs: 0,
-  sm: 560,
+  sm: 660,
   md: 1100,
   lg: 1920,
 };

@@ -20,6 +20,21 @@ export default {
       submit: 'Sign in',
       title: 'Sign in',
     },
+    dashboard: {
+      dashboard: 'Dashboard',
+      hint: {
+        incomeMonthly: 'Monthly payments upon retirement age',
+      },
+    },
+    funds: {
+      activeFunds: 'Active Funds',
+      notActiveFunds: 'Not active Funds',
+      deposit: 'deposit',
+      policy: 'Policy',
+      pensionDate: 'Pension date',
+      totalSum: 'Total sum',
+      incomeMonthly: 'Income monthly',
+    },
   },
   documents: {},
   modules: {
