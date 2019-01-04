@@ -13,7 +13,7 @@ const styles = ({ extra: theme }: Theme) => ({
       right: -1,
       bottom: -1,
       left: -1,
-      zIndex: theme.zIndex.modal,
+      zIndex: theme.zIndex.afterContext(theme.zIndex.newContext),
 
       '&:empty': {
         display: 'none',
@@ -21,6 +21,11 @@ const styles = ({ extra: theme }: Theme) => ({
     },
   }),
   overlay: rule({
+    position: 'relative',
+    zIndex: styledBy<IProps, 'type'>('type', {
+      default: theme.zIndex.modal,
+      signTransaction: theme.zIndex.signTransactionsModal,
+    }, 'default'),
     minHeight: '100%',
     minWidth: '100%',
     padding: 1,
@@ -35,8 +40,8 @@ const styles = ({ extra: theme }: Theme) => ({
     minHeight: '100%',
     minWidth: '100%',
     display: 'flex',
+    alignItems: 'stretch',
     justifyContent: 'center',
-    alignItems: 'center',
     flexDirection: 'column',
     backgroundColor: theme.colors.white,
     outline: 'none',
@@ -47,12 +52,20 @@ const styles = ({ extra: theme }: Theme) => ({
       minHeight: 'unset',
       minWidth: 'unset',
       width: styledBy<IProps, 'size'>('size', {
+        small: '16.875rem',
+        medium: '25rem',
+        large: '35.625rem',
+      }),
+      margin: '3rem',
+      borderRadius: '0.5rem',
+    }),
+
+    [theme.breakpoints.up('md')]: rule({
+      width: styledBy<IProps, 'size'>('size', {
         small: '21.875rem',
         medium: '30rem',
         large: '40.625rem',
       }),
-      margin: '3rem',
-      borderRadius: '0.5rem',
     }),
   }),
 
@@ -77,17 +90,38 @@ const styles = ({ extra: theme }: Theme) => ({
     animationFillMode: 'forwards',
   }),
 
+  title: rule({
+    display: 'flex',
+    alignItems: 'center',
+    textAlign: 'center',
+    justifyContent: 'space-between',
+    margin: `${theme.spacing.unit * 6}px ${theme.spacing.unit * 3}px 0`,
+    fontSize: '1.25rem',
+    fontWeight: 'bold',
+    fontFamily: theme.typography.primaryFont,
+
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '1.5rem',
+    },
+  }),
+
   cross: rule({
-    position: 'absolute',
-    top: '1.5rem',
-    right: '1.5rem',
+    position: 'static',
+    top: theme.spacing.unit * 3,
+    right: theme.spacing.unit * 3,
+    marginLeft: theme.spacing.unit * 3,
     zIndex: theme.zIndex.newContext + 1,
 
-    [theme.breakpoints.up('sm')]: rule({
-      top: '3rem',
-      right: '3rem',
-    }),
+    '&$isAbsolute': {
+      position: 'absolute',
+    },
+    '&$isHidden': {
+      visibility: 'hidden',
+    },
   }),
+
+  isAbsolute: {},
+  isHidden: {},
 
   '@keyframes modal-disappear-animation': rule({
     from: {

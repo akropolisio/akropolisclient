@@ -2,11 +2,13 @@ import * as React from 'react';
 import * as cn from 'classnames';
 import { NavLink } from 'react-router-dom';
 
+import { i18nConnect, ITranslateProps, tKeys } from 'services/i18n';
+
+import { withComponent } from 'shared/helpers/react';
+import { Button } from 'shared/view/elements';
+
 import routes from '../../../routes';
 import { StylesProps, provideStyles } from './Menu.style';
-import { i18nConnect, ITranslateProps, tKeys } from 'services/i18n';
-import { withComponent } from 'shared/helpers';
-import { Button } from 'shared/view/elements';
 
 interface IProps {
   viewType: 'row' | 'column';
@@ -18,12 +20,12 @@ interface IMenuItem {
 }
 
 const rowItems: IMenuItem[] = [
-  { label: tKeys.shared.menu.dashboard.getKey(), to: routes.demo.header.dashboard.getRedirectPath() },
-  { label: tKeys.shared.menu.marketplace.getKey(), to: routes.demo.header.marketplace.getRedirectPath() },
+  { label: tKeys.shared.menu.dashboard.getKey(), to: routes.demo.dashboard.getRedirectPath() },
+  { label: tKeys.shared.menu.marketplace.getKey(), to: routes.demo.marketplace.getRedirectPath() },
 ];
 
 const columnItems: IMenuItem[] = rowItems.concat([
-  { label: tKeys.shared.menu.profile.getKey(), to: routes.demo.header.profile.getRedirectPath() },
+  { label: tKeys.shared.menu.profile.getKey(), to: routes.demo.profile.getRedirectPath() },
 ]);
 
 const itemsByType: Record<IProps['viewType'], IMenuItem[]> = {

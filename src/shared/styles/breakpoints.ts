@@ -4,10 +4,9 @@ export const breakpointKeys: BreakpointType[] = ['xs', 'sm', 'md', 'lg', 'xl'];
 
 const values: { [key: string]: number } = {
   xs: 0,
-  sm: 760,
-  md: 960,
-  lg: 1280,
-  xl: 1920,
+  sm: 660,
+  md: 1100,
+  lg: 1920,
 };
 const unit = 'px';
 const step = 5;
@@ -38,7 +37,7 @@ function between(start: BreakpointType, end: BreakpointType) {
 
   return (
     `@media (min-width:${values[start]}${unit}) and ` +
-    `(max-width:${values[breakpointKeys[endIndex]] - step / 100}${unit})`
+    `(max-width:${values[end] - step / 100}${unit})`
   );
 }
 

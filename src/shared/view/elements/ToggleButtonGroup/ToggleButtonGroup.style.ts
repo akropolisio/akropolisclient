@@ -1,7 +1,7 @@
-import injectSheet, { WithStyles, Theme } from 'react-jss';
+import injectSheet, { WithStyles } from 'react-jss';
 import { rule } from 'shared/helpers/style';
 
-const styles = (theme: Theme) => ({
+const styles = {
   root: rule({
     boxShadow: 'unset',
     display: 'flex',
@@ -9,7 +9,7 @@ const styles = (theme: Theme) => ({
   selected: rule({
 
   }),
-});
+};
 
 export const provideStyles = injectSheet(styles);
 

@@ -1,13 +1,18 @@
 import * as React from 'react';
-import { withRouter, RouteComponentProps } from 'react-router';
+import { bind } from 'decko';
+import { withRouter, RouteComponentProps, Route } from 'react-router';
 import { Link } from 'react-router-dom';
 
 import { Logo } from 'modules/shared';
+import routes from 'modules/routes';
 import { tKeys, i18nConnect, ITranslateProps } from 'services/i18n';
 import { Adaptive } from 'services/adaptability';
+import { SignTransactionButton } from 'services/signTransaction';
+import { SignUpModal } from 'features/signUp';
 
+import { UserRole } from 'shared/types/models';
 import { Button } from 'shared/view/elements';
-import { withComponent } from 'shared/helpers';
+import { withComponent } from 'shared/helpers/react';
 
 import { SelectRole } from './components';
 import { StylesProps, provideStyles } from './LoginForm.style';
@@ -16,12 +21,12 @@ const LinkButton = withComponent(Link)(Button);
 
 const tKeysAuth = tKeys.modules.auth;
 
-type IProps = RouteComponentProps & StylesProps & ITranslateProps;
+type IProps = RouteComponentProps<{ role: UserRole }> & StylesProps & ITranslateProps;
 
 class LoginForm extends React.PureComponent<IProps> {
 
   public render() {
-    const { classes, location, t } = this.props;
+    const { classes, location, t, match } = this.props;
     return (
       <div className={classes.root}>
         <div className={classes.content}>
@@ -38,21 +43,51 @@ class LoginForm extends React.PureComponent<IProps> {
             <SelectRole />
           </div>
           <div className={classes.signButtons}>
-            <LinkButton
+            <SignTransactionButton<'signIn'>
+              transactionType="signIn"
+              data={{ role: match.params.role }}
               className={classes.signInButton}
-              to={location.pathname + '/signIn'}
               fullWidth
               variant="contained"
               color="primary"
+              onSuccess={this.onSignInSuccess}
             >
               {t(tKeysAuth.signIn.getKey())}
-            </LinkButton>
+            </SignTransactionButton>
             <LinkButton to={location.pathname + '/signUp'} fullWidth variant="outlined">
               {t(tKeysAuth.signUp.getKey())}
             </LinkButton>
           </div>
         </div>
+        <Route path={routes.auth.role.signUp.getRoutePath()}>
+          {({ match: signUpMatch }: RouteComponentProps<{ role: UserRole }>) => (
+            <SignUpModal
+              size="medium"
+              isOpen={Boolean(signUpMatch && signUpMatch.isExact)}
+              role={match.params.role}
+              onSuccess={this.onSignUpSuccess}
+              onClose={this.onSignUpClose}
+            />
+          )}
+        </Route>
       </div>);
+  }
+
+  @bind
+  private onSignUpClose() {
+    const { history, match } = this.props;
+    history.push(routes.auth.role.getRedirectPath({ role: match.params.role }));
+  }
+
+  @bind
+  private onSignInSuccess() {
+    // do something
+  }
+
+  @bind
+  private onSignUpSuccess() {
+    this.onSignUpClose();
+    // do something
   }
 }
 

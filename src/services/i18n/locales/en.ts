@@ -12,6 +12,29 @@ export default {
       title: 'Sign transaction',
       description: 'Scan this QR code with your mobile device to continue transaction',
     },
+    signUp: {
+      fields: {
+        userName: 'Name',
+        surname: 'Surname',
+      },
+      submit: 'Sign in',
+      title: 'Sign in',
+    },
+    dashboard: {
+      dashboard: 'Dashboard',
+      hint: {
+        incomeMonthly: 'Monthly payments upon retirement age',
+      },
+    },
+    funds: {
+      activeFunds: 'Active Funds',
+      notActiveFunds: 'Not active Funds',
+      deposit: 'deposit',
+      policy: 'Policy',
+      pensionDate: 'Pension date',
+      totalSum: 'Total sum',
+      incomeMonthly: 'Income monthly',
+    },
   },
   documents: {},
   modules: {
@@ -37,6 +60,13 @@ export default {
         title: 'a trustless financial future for everyone',
         selectRole: 'select your role',
       },
+    },
+    marketplace: {
+      fundsMarketplace: 'Funds marketplace',
+      commission: 'Commission',
+      policy: 'Policy',
+      getInFund: 'Get in fund',
+      YouAreInThisFund: 'You’re in this fond',
     },
   },
   demo: {

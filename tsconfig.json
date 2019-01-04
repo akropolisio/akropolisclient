@@ -20,7 +20,7 @@
     "moduleResolution": "node",
     "baseUrl": "./src",
     "noUnusedLocals": true,
-    "noUnusedParameters": false,
+    "noUnusedParameters": true,
     "allowSyntheticDefaultImports": true,
     "importHelpers": true,
     "strictPropertyInitialization": true,
