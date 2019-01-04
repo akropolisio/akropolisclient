@@ -2,11 +2,13 @@ import * as React from 'react';
 import * as cn from 'classnames';
 import { NavLink } from 'react-router-dom';
 
+import { i18nConnect, ITranslateProps, tKeys } from 'services/i18n';
+
+import { withComponent } from 'shared/helpers/react';
+import { Button } from 'shared/view/elements';
+
 import routes from '../../../routes';
 import { StylesProps, provideStyles } from './Menu.style';
-import { i18nConnect, ITranslateProps, tKeys } from 'services/i18n';
-import { withComponent } from 'shared/helpers';
-import { Button } from 'shared/view/elements';
 
 interface IProps {
   viewType: 'row' | 'column';

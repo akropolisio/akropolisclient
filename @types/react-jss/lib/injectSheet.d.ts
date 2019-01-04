@@ -8,7 +8,7 @@ declare module 'react-jss/lib/injectSheet' {
   type BaseCSSProps = CSS.Properties<number | string>;
 
   type ExtendedCSSProperties = {
-    [key in keyof BaseCSSProps]: BaseCSSProps[key] | ((props: any) => BaseCSSProps[key]);
+    [key in keyof BaseCSSProps]: BaseCSSProps[key] | ((props: any) => string | number);
   } & {
     composes?: string | string[];
   };

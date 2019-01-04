@@ -8,6 +8,7 @@ import { FormStateMap } from 'redux-form';
 
 import * as i18nNS from 'services/i18n/namespace';
 import * as adaptabilityNS from 'services/adaptability/namespace';
+import * as signTransactionNS from 'services/signTransaction/namespace';
 
 import Api from 'services/api/Api';
 
@@ -57,6 +58,7 @@ export interface IAppReduxState {
   i18n: i18nNS.IReduxState;
   adaptability: adaptabilityNS.IReduxState;
   // features
+  signTransaction: signTransactionNS.IReduxState;
 }
 
 export type RootSaga = (deps: IDependencies) => () => SagaIterator;

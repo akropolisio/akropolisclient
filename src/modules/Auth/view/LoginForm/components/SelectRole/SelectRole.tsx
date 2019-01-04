@@ -7,20 +7,20 @@ import routes from 'modules/routes';
 import { i18nConnect, ITranslateProps, tKeys } from 'services/i18n';
 import { Adaptive } from 'services/adaptability';
 
+import { UserRole } from 'shared/types/models';
 import { ToggleButton, Tooltip, ToggleButtonGroup, TextInput, MenuItem } from 'shared/view/elements';
 import { Question } from 'shared/view/elements/Icons';
-import { withComponent } from 'shared/helpers';
+import { withComponent } from 'shared/helpers/react';
 
-import { Role } from '../../../../namespace';
 import { StylesProps, provideStyles } from './SelectRole.style';
 
-type IProps = StylesProps & ITranslateProps & RouteComponentProps<{ role: Role }>;
+type IProps = StylesProps & ITranslateProps & RouteComponentProps<{ role: UserRole }>;
 
 const NavToggleButton = withComponent(Link)(ToggleButton);
 const NavMenuItem = withComponent(Link)(MenuItem);
 
 const tKeysAuth = tKeys.modules.auth;
-const roles: Role[] = ['beneficiary', 'fundOwner', 'boardMember', 'assetManager'];
+const roles: UserRole[] = ['beneficiary', 'fundOwner', 'boardMember', 'assetManager'];
 
 class SelectRole extends React.PureComponent<IProps> {
 

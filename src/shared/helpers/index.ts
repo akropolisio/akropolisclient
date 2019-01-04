@@ -1,1 +1,1 @@
-export { default as withComponent } from './withComponent';
+export { default as getErrorMsg } from './getErrorMsg';

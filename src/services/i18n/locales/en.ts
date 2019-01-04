@@ -12,6 +12,14 @@ export default {
       title: 'Sign transaction',
       description: 'Scan this QR code with your mobile device to continue transaction',
     },
+    signUp: {
+      fields: {
+        userName: 'Name',
+        surname: 'Surname',
+      },
+      submit: 'Sign in',
+      title: 'Sign in',
+    },
   },
   documents: {},
   modules: {
