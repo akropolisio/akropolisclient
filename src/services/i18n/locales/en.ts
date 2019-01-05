@@ -29,6 +29,9 @@ export default {
       cancel: 'Cancel',
       title: 'Profile',
     },
+    contributors: {
+      addNew: 'AddNew',
+    },
     dashboard: {
       dashboard: 'Dashboard',
       hint: {

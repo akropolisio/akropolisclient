@@ -3,10 +3,10 @@ import { rule } from 'shared/helpers/style';
 
 const styles = ({ extra: theme }: Theme) => ({
   root: rule({
-    overflow: 'auto',
     backgroundColor: theme.colors.white,
-
   }),
+
+  content: {},
 
   title: rule({
     fontSize: '1.125rem',
@@ -31,7 +31,7 @@ const styles = ({ extra: theme }: Theme) => ({
     borderRadius: 0,
     fontSize: '0.875rem',
     padding: theme.spacing.unit,
-    borderBottom: `solid transparent 0.125rem`,
+    borderBottom: `solid #e6e6e6 0.125rem`,
 
     '&$isActive': rule({
       borderColor: theme.palette.control.border.focus,

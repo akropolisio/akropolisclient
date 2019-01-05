@@ -1,7 +1,6 @@
 import * as React from 'react';
-import { bind } from 'decko';
-import { withRouter, RouteComponentProps, Route, Redirect } from 'react-router';
-import { Link, NavLink } from 'react-router-dom';
+import { withRouter, RouteComponentProps } from 'react-router';
+import { NavLink } from 'react-router-dom';
 
 import routes from 'modules/routes';
 import { tKeys as tkeysAll, i18nConnect, ITranslateProps } from 'services/i18n';
@@ -46,7 +45,7 @@ class Profile extends React.PureComponent<IProps> {
               </NavButton>
             ))}
           </nav>
-          <div>
+          <div className={classes.content}>
             {children}
           </div>
         </div>
