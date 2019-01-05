@@ -20,6 +20,15 @@ export default {
       submit: 'Sign in',
       title: 'Sign in',
     },
+    userSettings: {
+      fields: {
+        userName: 'Name',
+        surname: 'Surname',
+      },
+      submit: 'Save',
+      cancel: 'Cancel',
+      title: 'Profile',
+    },
     dashboard: {
       dashboard: 'Dashboard',
       hint: {
@@ -67,6 +76,12 @@ export default {
       policy: 'Policy',
       getInFund: 'Get in fund',
       YouAreInThisFund: 'You’re in this fond',
+    },
+    profile: {
+      title: 'Profile',
+      settings: 'Settings',
+      contributors: 'Contributors',
+      heirs: 'Heirs',
     },
   },
   demo: {

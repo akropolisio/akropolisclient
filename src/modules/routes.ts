@@ -6,6 +6,11 @@ const rawTree = {
       signUp: null,
     }),
   },
+  profile: {
+    settings: null,
+    contributors: null,
+    heirs: null,
+  },
   demo: {
     gui: null,
     modal: null,

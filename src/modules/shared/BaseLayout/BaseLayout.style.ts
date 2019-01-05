@@ -5,7 +5,6 @@ const styles = (theme: Theme) => ({
   content: rule({
     maxWidth: theme.extra.sizes.page.maxWidth,
     padding: theme.spacing.unit * 3,
-
     [theme.breakpoints.up('md')]: {
       margin: '0 auto',
     },
