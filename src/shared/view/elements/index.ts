@@ -14,5 +14,5 @@ export { default as ToggleButtonGroup } from './ToggleButtonGroup/ToggleButtonGr
 export { default as ToggleButton } from './ToggleButton/ToggleButton';
 export { default as CircleProgressBar } from './CircleProgressBar/CircleProgressBar';
 export { default as Tooltip } from './Tooltip/Tooltip';
-export { default as Slider } from './Slider/Slider';
+export { Slider, SliderItem, SliderSelect } from './Slider';
 export { default as QRCode } from './QRCode/QRCode';

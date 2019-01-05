@@ -1,5 +1,5 @@
 import injectSheet, { WithStyles, Theme } from 'react-jss';
-import { IProps } from './Slider';
+import { IProps } from './BaseSlider';
 
 import { rule } from 'shared/helpers/style';
 
@@ -13,6 +13,14 @@ const styles = (theme: Theme) => ({
     margin: `-${crutchMargin}rem`,
     padding: `${crutchPadding}rem`,
     overflow: 'hidden',
+  }),
+  labels: rule({
+    display: 'flex',
+    justifyContent: 'space-between',
+    marginTop: theme.extra.spacing.unit * 2,
+    fontFamily: theme.extra.typography.primaryFont,
+    color: theme.extra.palette.text.secondary,
+    fontSize: '0.75rem',
   }),
   thumb: rule({
     width: `${thumbSize}rem`,
@@ -38,6 +46,7 @@ const styles = (theme: Theme) => ({
     borderRadius: 50,
     width: `${thumbSize}rem`,
     height: `${thumbSize}rem`,
+    boxShadow: '0 2px 4px 0 rgba(0, 0, 0, 0.5)',
     backgroundColor: (props: IProps) => props.disabled ? theme.extra.colors.alto : theme.extra.colors.silver,
   }),
   runner: rule({

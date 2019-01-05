@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { SimpleList, Button, Typography, CircleProgressBar, Slider } from 'shared/view/elements';
+import { SimpleList, Button, Typography, CircleProgressBar } from 'shared/view/elements';
 
 import { StylesProps, provideStyles } from './DemoGUI.style';
-import { ToggleButtons, TextInputs, RadioGroups, Checkboxes } from './components';
+import { ToggleButtons, TextInputs, RadioGroups, Checkboxes, Sliders } from './components';
 
 function DemoGUI(_props: StylesProps) {
   return (
@@ -39,10 +39,7 @@ function DemoGUI(_props: StylesProps) {
         <Checkboxes />
       </SimpleList>
 
-      <SimpleList marginFactor={2} gutter alignItems="stretch">
-        <Typography variant="h4">Slider</Typography>
-        <Slider value={30} />
-      </SimpleList>
+      <Sliders />
     </div>
   );
 }
