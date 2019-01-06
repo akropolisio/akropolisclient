@@ -7,8 +7,13 @@ import { ToggleButtons, TextInputs, RadioGroups, Checkboxes } from './components
 function DemoGUI(_props: StylesProps) {
   return (
     <div style={{ padding: 20 }}>
-      <ToggleButtons />
-
+      <SimpleList marginFactor={2} gutter>
+        <Typography variant="h4">Toggle button group</Typography>
+        <Typography variant="h6">Contained</Typography>
+        <ToggleButtons variant="contained" />
+        <Typography variant="h6">Outlined</Typography>
+        <ToggleButtons variant="outlined" />
+      </SimpleList>
       <SimpleList marginFactor={4} direction="row">
         <SimpleList marginFactor={2} gutter>
           <Typography variant="h4">Default color</Typography>

@@ -15,30 +15,9 @@ const styles = ({ extra: theme }: Theme) => ({
     marginBottom: '1.75rem',
   }),
 
-  sectionsMenu: rule({
-    display: 'flex',
-    alignItems: 'stretch',
-  }),
-
   sectionLink: rule({
-    display: 'flex',
-    alignItems: 'center',
     flexGrow: 1,
-    textDecoration: 'none',
-    color: theme.palette.text.primary,
-    fontFamily: theme.typography.primaryFont,
-    tapHighlightColor: 'rgba(0,0,0,0)',
-    borderRadius: 0,
-    fontSize: '0.875rem',
-    padding: theme.spacing.unit,
-    borderBottom: `solid #e6e6e6 0.125rem`,
-
-    '&$isActive': rule({
-      borderColor: theme.palette.control.border.focus,
-    }),
   }),
-
-  isActive: {},
 
 });
 

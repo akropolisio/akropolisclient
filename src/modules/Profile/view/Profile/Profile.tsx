@@ -1,52 +1,61 @@
 import * as React from 'react';
 import { withRouter, RouteComponentProps } from 'react-router';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import routes from 'modules/routes';
 import { tKeys as tkeysAll, i18nConnect, ITranslateProps } from 'services/i18n';
-
-import { UserRole } from 'shared/types/models';
-import { Button } from 'shared/view/elements';
+import { ToggleButtonGroup, ToggleButton } from 'shared/view/elements';
 import { withComponent } from 'shared/helpers/react';
+import { EditMainInfo, Contributors } from 'shared/view/drafts';
 
 import { StylesProps, provideStyles } from './Profile.style';
 import { BaseLayout } from 'modules/shared';
 
 const tKeys = tkeysAll.modules.profile;
 
-type IProps = RouteComponentProps<{ role: UserRole }> & StylesProps & ITranslateProps;
+const NavToggleButton = withComponent(Link)(ToggleButton);
 
-const NavButton = withComponent(NavLink)(Button);
+type Section = 'settings' | 'contributors' | 'heirs';
 
-const links = [
-  { link: routes.profile.settings.getRoutePath(), title: tKeys.settings.getKey() },
-  { link: routes.profile.contributors.getRoutePath(), title: tKeys.contributors.getKey() },
-  { link: routes.profile.heirs.getRoutePath(), title: tKeys.heirs.getKey(), disabled: true },
+interface ISectionLink {
+  section: Section;
+  title: string;
+  disabled?: boolean;
+}
+
+const links: ISectionLink[] = [
+  { section: 'settings', title: tKeys.settings.getKey() },
+  { section: 'contributors', title: tKeys.contributors.getKey() },
+  { section: 'heirs', title: tKeys.heirs.getKey(), disabled: true },
 ];
+
+type IProps = RouteComponentProps<{ section: Section }> & StylesProps & ITranslateProps;
 
 class Profile extends React.PureComponent<IProps> {
 
   public render() {
-    const { classes, t, children } = this.props;
+    const { classes, t, match: { params: { section: selectedSection } } } = this.props;
     return (
       <BaseLayout background="primary">
         <div className={classes.root}>
           <div className={classes.title}>{t(tKeys.title.getKey())}</div>
-          <nav className={classes.sectionsMenu}>
-            {links.map(({ link, title, disabled }, index: number) => (
-              <NavButton
+          <ToggleButtonGroup value={selectedSection} exclusive nullable={false} >
+            {links.map(({ section, title, disabled }, index: number) => (
+              <NavToggleButton
+                className={classes.sectionLink}
                 disabled={disabled}
                 key={index}
-                to={link}
-                className={classes.sectionLink}
-                activeClassName={classes.isActive}
+                to={routes.profile.section.getRedirectPath({ section })}
+                variant="outlined"
+                value={section}
               >
                 <span>{t(title)}</span>
-              </NavButton>
+              </NavToggleButton>
             ))}
-          </nav>
+          </ToggleButtonGroup>
           <div className={classes.content}>
-            {children}
+            {selectedSection === 'settings' && <EditMainInfo />}
+            {selectedSection === 'contributors' && <Contributors />}
           </div>
         </div>
       </BaseLayout>

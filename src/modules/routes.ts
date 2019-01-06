@@ -7,9 +7,7 @@ const rawTree = {
     }),
   },
   profile: {
-    settings: null,
-    contributors: null,
-    heirs: null,
+    section: getParam(null),
   },
   demo: {
     gui: null,

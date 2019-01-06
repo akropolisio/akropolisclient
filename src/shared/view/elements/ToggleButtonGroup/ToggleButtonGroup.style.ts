@@ -5,6 +5,7 @@ const styles = {
   root: rule({
     boxShadow: 'unset',
     display: 'flex',
+    borderRadius: 0,
   }),
   selected: rule({
 
