@@ -2,11 +2,14 @@ import * as React from 'react';
 import { InjectedFormProps, reduxForm } from 'redux-form';
 import uuid from 'uuid';
 import { SimpleList, Typography, MenuItem } from 'shared/view/elements';
-import { TextInputField } from 'shared/view/redux-form';
+import { TextInputField, MaskedInputField, NumberInputField } from 'shared/view/redux-form';
 import { isRequired } from 'shared/validators';
 
 interface IFormData {
   selectedGroup: string;
+  inp4: number;
+  inp8: number;
+  inp15: number;
 }
 
 function TextInputs(_props: InjectedFormProps<IFormData>) {
@@ -23,8 +26,8 @@ function TextInputs(_props: InjectedFormProps<IFormData>) {
           required
           validate={isRequired}
         />
-        <TextInputField name="inp3" label="Your email" value="disabled" variant="standard" disabled />
-        <TextInputField name="inp4" label="Select" value={1} variant="standard" select fullWidth>
+        <TextInputField name="inp3" label="Your email" variant="standard" disabled />
+        <TextInputField name="inp4" label="Select" variant="standard" select fullWidth>
           {[1, 2, 3, 4, 5].map(item => (
             <MenuItem key={item} value={item}>Item #{item}</MenuItem>
           ))}
@@ -42,8 +45,8 @@ function TextInputs(_props: InjectedFormProps<IFormData>) {
           required
           validate={isRequired}
         />
-        <TextInputField name="inp7" label="Your email" value="disabled" variant="outlined" disabled />
-        <TextInputField name="inp8" label="Select" value={1} variant="outlined" select fullWidth>
+        <TextInputField name="inp7" label="Your email" variant="outlined" disabled />
+        <TextInputField name="inp8" label="Select" variant="outlined" select fullWidth>
           {[1, 2, 3, 4, 5].map(item => (
             <MenuItem key={item} value={item}>Item #{item}</MenuItem>
           ))}
@@ -69,15 +72,23 @@ function TextInputs(_props: InjectedFormProps<IFormData>) {
 
       <SimpleList marginFactor={2} gutter>
         <Typography variant="h4">Other inputs</Typography>
-        <TextInputField name="inp13" label="Visa input" variant="outlined" maskType="visa" />
+        <MaskedInputField name="inp13" label="Visa input" variant="outlined" maskType="visa" />
         <TextInputField name="inp14" label="Password input" variant="outlined" type="password" />
+        <NumberInputField
+          name="inp15"
+          label="Number input"
+          variant="outlined"
+          thousandSeparator
+          prefix="$"
+          decimalScale={2}
+        />
       </SimpleList>
     </SimpleList>
   );
 }
 
 export default (
-  reduxForm<IFormData>({ form: uuid(), initialValues: {} })(
+  reduxForm<IFormData>({ form: uuid(), initialValues: { inp15: 0, inp4: 1, inp8: 1 } })(
     TextInputs,
   )
 );

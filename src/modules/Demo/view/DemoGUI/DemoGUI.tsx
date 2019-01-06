@@ -2,7 +2,7 @@ import * as React from 'react';
 import { SimpleList, Button, Typography, CircleProgressBar } from 'shared/view/elements';
 
 import { StylesProps, provideStyles } from './DemoGUI.style';
-import { ToggleButtons, TextInputs, RadioGroups, Checkboxes } from './components';
+import { ToggleButtons, TextInputs, RadioGroups, Checkboxes, Sliders } from './components';
 
 function DemoGUI(_props: StylesProps) {
   return (
@@ -28,7 +28,7 @@ function DemoGUI(_props: StylesProps) {
 
         <SimpleList marginFactor={0} gutter>
           <Typography variant="h4">ProgressBar</Typography>
-          <CircleProgressBar variant="indeterminate" size={100} value={85} />
+          <CircleProgressBar variant="static" size={100} value={85} />
         </SimpleList>
       </SimpleList>
 
@@ -38,6 +38,8 @@ function DemoGUI(_props: StylesProps) {
         <RadioGroups />
         <Checkboxes />
       </SimpleList>
+
+      <Sliders />
     </div>
   );
 }

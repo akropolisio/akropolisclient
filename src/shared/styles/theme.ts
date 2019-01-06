@@ -21,6 +21,7 @@ const colors = {
   alto: '#e0e0e0',
   heavyMetal: '#1d1d1b',
   alabaster: '#f8f8f8',
+  silverChalice: '#aeaeae',
 };
 
 export const theme = {
