@@ -1,7 +1,8 @@
+export * from './Input';
+export * from './Slider';
 export { default as RowsLayout } from './RowsLayout/RowsLayout';
 export { default as SimpleList } from './SimpleList/SimpleList';
 export { default as Typography } from './Typography/Typography';
-export { default as TextInput } from './TextInput/TextInput';
 export { default as Button } from './Button/Button';
 export { default as IconButton } from './IconButton/IconButton';
 export { default as RadioGroupInput } from './RadioGroupInput/RadioGroupInput';
@@ -14,5 +15,4 @@ export { default as ToggleButtonGroup } from './ToggleButtonGroup/ToggleButtonGr
 export { default as ToggleButton } from './ToggleButton/ToggleButton';
 export { default as CircleProgressBar } from './CircleProgressBar/CircleProgressBar';
 export { default as Tooltip } from './Tooltip/Tooltip';
-export { Slider, SliderItem, SliderSelect } from './Slider';
 export { default as QRCode } from './QRCode/QRCode';

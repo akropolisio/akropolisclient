@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import { SimpleList, Typography, SliderItem } from 'shared/view/elements';
-import { SliderField, SliderSelectField } from 'shared/view/redux-form';
+import { SimpleList, Typography, MenuItem } from 'shared/view/elements';
+import { SliderField, SliderSelectField, NumberInputField, TextInputField } from 'shared/view/redux-form';
 
 import { reduxForm, InjectedFormProps, getFormValues } from 'redux-form';
 import uuid from 'uuid';
@@ -33,6 +33,11 @@ function mapState(state: IAppReduxState): IStateProps {
 
 function Sliders(props: IProps) {
   const { formData } = props;
+
+  const menuItems = ['day', 'week', 'month', 'year'].map(item => (
+    <MenuItem key={item} value={item}>Label for {item}</MenuItem>
+  ));
+
   return (
     <SimpleList marginFactor={2} gutter alignItems="stretch">
       <Typography variant="h4">Sliders</Typography>
@@ -40,10 +45,25 @@ function Sliders(props: IProps) {
       <SliderField name="default" min={-100} step={1} formatLabel={R.identity} />
       <Typography variant="h5">Select slider: {formData.select}</Typography>
       <SliderSelectField name="select" formatLabel={formatSliderLabel}>
-        <SliderItem value="day">Label for day</SliderItem>
-        <SliderItem value="week">Label for week</SliderItem>
-        <SliderItem value="month">Label for month</SliderItem>
-        <SliderItem value="year">Label for year</SliderItem>
+        {menuItems}
+      </SliderSelectField>
+      <Typography variant="h5">Default slider with number input: {formData.withNumberInput}</Typography>
+      <NumberInputField
+        fullWidth
+        name="withNumberInput"
+        label="Number input"
+        variant="outlined"
+        thousandSeparator
+        prefix="$"
+        decimalScale={2}
+      />
+      <SliderField name="withNumberInput" min={-100} step={1} formatLabel={R.identity} />
+      <Typography variant="h5">Select slider with select input: {formData.withSelectInput}</Typography>
+      <TextInputField name="withSelectInput" label="Select" variant="outlined" select fullWidth>
+        {menuItems}
+      </TextInputField>
+      <SliderSelectField name="withSelectInput" formatLabel={formatSliderLabel}>
+        {menuItems}
       </SliderSelectField>
     </SimpleList>
   );
@@ -51,8 +71,15 @@ function Sliders(props: IProps) {
 
 const formatSliderLabel: NonNullable<GetProps<typeof SliderSelectField>['formatLabel']> = item => item.label || '';
 
+const initialValues: IFormData = {
+  default: 0,
+  select: 'day',
+  withNumberInput: 0,
+  withSelectInput: 'day',
+};
+
 export default (
-  reduxForm<IFormData>({ form: formName, initialValues: { default: 0, select: 'day' } })(
+  reduxForm<IFormData>({ form: formName, initialValues })(
     connect(mapState)(Sliders),
   )
 );
