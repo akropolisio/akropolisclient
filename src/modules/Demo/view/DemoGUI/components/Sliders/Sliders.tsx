@@ -1,14 +1,13 @@
 import * as React from 'react';
+import * as R from 'ramda';
+import uuid from 'uuid';
+import { GetProps } from '_helpers';
+import { connect } from 'react-redux';
+import { reduxForm, InjectedFormProps, getFormValues } from 'redux-form';
 
+import { IAppReduxState } from 'shared/types/app';
 import { SimpleList, Typography, MenuItem } from 'shared/view/elements';
 import { SliderField, SliderSelectField, NumberInputField, TextInputField } from 'shared/view/redux-form';
-
-import { reduxForm, InjectedFormProps, getFormValues } from 'redux-form';
-import uuid from 'uuid';
-import * as R from 'ramda';
-import { IAppReduxState } from 'shared/types/app';
-import { connect } from 'react-redux';
-import { GetProps } from '_helpers';
 
 interface IFormData {
   default: number;

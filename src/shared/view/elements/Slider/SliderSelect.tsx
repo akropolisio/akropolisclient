@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { Omit, GetProps } from '_helpers';
-import { ISliderItemProps } from './SliderItem';
 import { bind } from 'decko';
+
+import { ISliderItemProps } from './SliderItem';
 import BaseSlider from './BaseSlider/BaseSlider';
 
 interface IOwnProps {

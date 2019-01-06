@@ -1,7 +1,7 @@
 import * as React from 'react';
+import { Omit } from '_helpers';
 import MuiSlider, { SliderProps } from '@material-ui/lab/Slider';
 import { StylesProps, provideStyles } from './BaseSlider.style';
-import { Omit } from '_helpers';
 
 interface IOwnProps {
   value: number;
