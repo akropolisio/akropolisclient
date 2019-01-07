@@ -7,7 +7,7 @@ import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import * as ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import * as threadLoader from 'thread-loader';
 import * as FaviconsWebpackPlugin from 'favicons-webpack-plugin';
-
+import * as  ReactJssHmrPlugin from 'react-jss-hmr/webpack';
 import * as postcssEasyImport from 'postcss-easy-import';
 import * as postcssSCSS from 'postcss-scss';
 import * as autoprefixer from 'autoprefixer';
@@ -92,6 +92,7 @@ export const getCommonRules: (type: BuildType) => webpack.Rule[] = (type) => [
           babelrc: false,
           plugins: [
             'react-hot-loader/babel',
+            new ReactJssHmrPlugin(),
             'syntax-dynamic-import',
           ],
         },
@@ -192,6 +193,9 @@ export const commonConfig: webpack.Configuration = {
   resolve: {
     modules: ['node_modules', 'src'],
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
+    plugins: [
+      new ReactJssHmrPlugin(),
+    ],
   },
   optimization: {
     runtimeChunk: 'single',
