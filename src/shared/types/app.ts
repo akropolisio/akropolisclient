@@ -4,7 +4,6 @@ import { Store, Reducer, ActionCreator, Action } from 'redux';
 import { SagaIterator } from 'redux-saga';
 import { GenerateClassName } from 'jss';
 import { JSS, Theme } from 'react-jss';
-import { FormStateMap } from 'redux-form';
 
 import * as i18nNS from 'services/i18n/namespace';
 import * as adaptabilityNS from 'services/adaptability/namespace';
@@ -53,7 +52,6 @@ export interface IFeatureEntry<
 }
 
 export interface IAppReduxState {
-  form: FormStateMap;
   // services
   i18n: i18nNS.IReduxState;
   adaptability: adaptabilityNS.IReduxState;

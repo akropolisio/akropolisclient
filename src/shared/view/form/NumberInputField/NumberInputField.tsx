@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { WrappedFieldProps } from 'redux-form';
+import { FieldRenderProps } from 'react-final-form';
 import { GetProps } from '_helpers';
 
 import { NumberInput } from 'shared/view/elements';
 import { getFieldWithComponent } from 'shared/helpers/react';
 
-type IProps = GetProps<typeof NumberInput> & WrappedFieldProps;
+type IProps = GetProps<typeof NumberInput> & FieldRenderProps;
 
 class NumberInputField extends React.Component<IProps> {
   public render() {

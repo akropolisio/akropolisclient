@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { reduxForm, InjectedFormProps } from 'redux-form';
 import { bind } from 'decko';
+import { Form } from 'react-final-form';
 
 import { i18nConnect, ITranslateProps, tKeys as allKeys } from 'services/i18n';
-import { TextInputField } from 'shared/view/redux-form';
+import { TextInputField } from 'shared/view/form';
 import { isRequired } from 'shared/validators';
 import { Button } from 'shared/view/elements';
 
@@ -22,62 +22,72 @@ const names: { [key in keyof IFormData]: key } = {
   userName: 'userName',
 };
 
+const initialValues: IFormData = {
+  surname: 'Klimov',
+  userName: 'Pavel',
+};
+
 const commonFieldProps = {
   required: true,
   fullWidth: true,
   validate: isRequired,
 };
 
-type IProps = StylesProps & ITranslateProps & InjectedFormProps<IFormData>;
+type IProps = StylesProps & ITranslateProps;
 
 class EditMainInfo extends React.PureComponent<IProps> {
 
   public render() {
     const { classes, t } = this.props;
     return (
-      <div className={classes.root}>
-        <form className={classes.form} onSubmit={this.onSubmit} >
-          <div className={classes.formContent}>
-            <div className={classes.avatarWrapper}>
-              <img className={classes.avatar} src={avatar} />
-            </div>
-            <div className={classes.fields}>
-              <div className={classes.field}>
-                <TextInputField {...commonFieldProps} name={names.userName} label={t(tKeys.fields.userName.getKey())} />
+      <Form onSubmit={this.onSubmit} initialValues={initialValues} subscription={{ submitting: true }}>
+        {({ handleSubmit, form }) => (
+          <div className={classes.root}>
+            <form className={classes.form} onSubmit={handleSubmit} >
+              <div className={classes.formContent}>
+                <div className={classes.avatarWrapper}>
+                  <img className={classes.avatar} src={avatar} />
+                </div>
+                <div className={classes.fields}>
+                  <div className={classes.field}>
+                    <TextInputField
+                      {...commonFieldProps}
+                      name={names.userName}
+                      label={t(tKeys.fields.userName.getKey())}
+                    />
+                  </div>
+                  <div className={classes.field}>
+                    <TextInputField
+                      {...commonFieldProps}
+                      name={names.surname}
+                      label={t(tKeys.fields.surname.getKey())}
+                    />
+                  </div>
+                </div>
               </div>
-              <div className={classes.field}>
-                <TextInputField {...commonFieldProps} name={names.surname} label={t(tKeys.fields.surname.getKey())} />
+              <div className={classes.formButtons}>
+                <Button className={classes.formButton} fullWidth type="submit" variant="contained" color="primary">
+                  {t(tKeys.submit.getKey())}
+                </Button>
+                <Button className={classes.formButton} fullWidth onClick={form.reset}>
+                  {t(tKeys.cancel.getKey())}
+                </Button>
               </div>
-            </div>
+            </form>
           </div>
-          <div className={classes.formButtons}>
-            <Button className={classes.formButton} fullWidth type="submit" variant="contained" color="primary">
-              {t(tKeys.submit.getKey())}
-            </Button>
-            <Button className={classes.formButton} fullWidth onClick={this.resetForm}>
-              {t(tKeys.cancel.getKey())}
-            </Button>
-          </div>
-        </form>
-      </div>);
+        )}
+      </Form>
+    );
   }
 
   @bind
-  public onSubmit(event: React.FormEvent<HTMLFormElement>) {
-    const { handleSubmit } = this.props;
-    handleSubmit(() => {
-      //
-    })(event);
-  }
-
-  @bind
-  public resetForm() {
-    this.props.reset();
+  public onSubmit(data: IFormData) {
+    console.log(data);
   }
 }
 
-export default reduxForm<IFormData>({ form: 'editProfile', initialValues: { surname: 'Klimov', userName: 'Pavel' } })(
+export default (
   i18nConnect(
     provideStyles(EditMainInfo),
-  ),
+  )
 );
