@@ -6,6 +6,9 @@ const rawTree = {
       signUp: null,
     }),
   },
+  profile: {
+    section: getParam(null),
+  },
   demo: {
     gui: null,
     modal: null,

@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { SimpleList, Typography, ToggleButton, Tooltip } from 'shared/view/elements';
+import { SimpleList, ToggleButton, Tooltip } from 'shared/view/elements';
 import { ToggleButtonGroupField } from 'shared/view/redux-form';
 import { Question } from 'shared/view/elements/Icons';
 
@@ -8,35 +8,37 @@ import { StylesProps, provideStyles } from './ToggleButtons.style';
 import { reduxForm, InjectedFormProps } from 'redux-form';
 import uuid from 'uuid';
 
+interface IOwnProps {
+  variant: 'contained' | 'outlined';
+}
 interface IFormData {
   selectedGroup: string;
 }
 
-function ToggleButtons(props: StylesProps & InjectedFormProps<IFormData>) {
-  const { classes } = props;
+function ToggleButtons(props: IOwnProps & StylesProps & InjectedFormProps<IFormData, IOwnProps>) {
+  const { classes, variant } = props;
   return (
     <SimpleList marginFactor={2} gutter>
-      <Typography variant="h4">Toggle button group</Typography>
       <ToggleButtonGroupField name="selectedGroup" exclusive nullable={false}>
-        <ToggleButton value="beneficiary">
+        <ToggleButton variant={variant} value="beneficiary">
           Beneficiary
           <Tooltip placement="top" title="qweqwe">
             <Question className={classes.rightIcon} />
           </Tooltip>
         </ToggleButton>
-        <ToggleButton value="fund owner">
+        <ToggleButton variant={variant} value="fund owner">
           Fund owner
           <Tooltip placement="top" title="qweqwe">
             <Question className={classes.rightIcon} />
           </Tooltip>
         </ToggleButton>
-        <ToggleButton value="board member">
+        <ToggleButton disabled variant={variant} value="board member">
           Board member
           <Tooltip placement="top" title="qweqwe">
             <Question className={classes.rightIcon} />
           </Tooltip>
         </ToggleButton>
-        <ToggleButton value="asset manager">
+        <ToggleButton variant={variant} value="asset manager">
           Asset manager
           <Tooltip placement="top" title="qweqwe">
             <Question className={classes.rightIcon} />
@@ -48,7 +50,7 @@ function ToggleButtons(props: StylesProps & InjectedFormProps<IFormData>) {
 }
 
 export default (
-  reduxForm<IFormData>({ form: uuid(), initialValues: { selectedGroup: 'beneficiary' } })(
+  reduxForm<IFormData, IOwnProps>({ form: uuid(), initialValues: { selectedGroup: 'beneficiary' } })(
     provideStyles(ToggleButtons),
   )
 );

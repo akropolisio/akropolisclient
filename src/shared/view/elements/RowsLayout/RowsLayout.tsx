@@ -6,6 +6,7 @@ interface IProps {
   children?: React.ReactNode;
   footerContent?: React.ReactNode;
   headerContent?: React.ReactNode;
+  background?: 'primary' | 'unset';
 }
 
 function RowsLayout({ children, footerContent, headerContent, classes }: IProps & StylesProps) {
