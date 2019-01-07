@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { bind } from 'decko';
-import { reduxForm, InjectedFormProps } from 'redux-form';
+import { Form } from 'react-final-form';
 
 import { i18nConnect, ITranslateProps, tKeys as allKeys } from 'services/i18n';
 import { WithSignTransaction, SignTransactionFunction } from 'services/signTransaction';
@@ -28,11 +28,22 @@ interface IState {
   isOpen: boolean;
 }
 
-type IProps = IOwnProps & StylesProps & ITranslateProps & InjectedFormProps<IFormData, IOwnProps>;
+type IProps = IOwnProps & StylesProps & ITranslateProps;
+
+const initialValues: IFormData = {
+  surname: '',
+  userName: '',
+};
 
 const names: { [key in keyof IFormData]: key } = {
   surname: 'surname',
   userName: 'userName',
+};
+
+const commonFieldProps = {
+  required: true,
+  fullWidth: true,
+  validate: isRequired,
 };
 
 class SignUpForm extends React.PureComponent<IProps, IState> {
@@ -40,26 +51,28 @@ class SignUpForm extends React.PureComponent<IProps, IState> {
   public render() {
     const { classes, onSuccess, t } = this.props;
 
-    const commonFieldProps = {
-      required: true,
-      fullWidth: true,
-      validate: isRequired,
-    };
-
     return (
       <WithSignTransaction onSuccess={onSuccess}>
         {({ signTransaction }) => (
-          <form className={classes.root} onSubmit={this.makeOnSubmit(signTransaction)}>
-            <div className={classes.field}>
-              <TextInputField {...commonFieldProps} name={names.userName} label={t(tKeys.fields.userName.getKey())} />
-            </div>
-            <div className={classes.field}>
-              <TextInputField {...commonFieldProps} name={names.surname} label={t(tKeys.fields.surname.getKey())} />
-            </div>
-            <Button className={classes.submit} fullWidth type="submit" variant="contained" color="primary">
-              {t(tKeys.submit.getKey())}
-            </Button>
-          </form>
+          <Form onSubmit={this.makeOnSubmit(signTransaction)} initialValues={initialValues}>
+            {({ handleSubmit }) => (
+              <form className={classes.root} onSubmit={handleSubmit}>
+                <div className={classes.field}>
+                  <TextInputField
+                    {...commonFieldProps}
+                    name={names.userName}
+                    label={t(tKeys.fields.userName.getKey())}
+                  />
+                </div>
+                <div className={classes.field}>
+                  <TextInputField {...commonFieldProps} name={names.surname} label={t(tKeys.fields.surname.getKey())} />
+                </div>
+                <Button className={classes.submit} fullWidth type="submit" variant="contained" color="primary">
+                  {t(tKeys.submit.getKey())}
+                </Button>
+              </form>
+            )}
+          </Form>
         )}
       </WithSignTransaction>
     );
@@ -67,20 +80,15 @@ class SignUpForm extends React.PureComponent<IProps, IState> {
 
   @bind
   private makeOnSubmit(signTransaction: SignTransactionFunction) {
-    return (event: React.FormEvent<HTMLFormElement>) => {
-      const { handleSubmit, role } = this.props;
-      handleSubmit(({ surname, userName }) => {
-        signTransaction('signUp', { surname, name: userName, role });
-      })(event);
+    return ({ surname, userName }: IFormData) => {
+      signTransaction('signUp', { surname, name: userName, role: this.props.role });
     };
   }
 }
 
 export { IOwnProps };
 export default (
-  reduxForm<IFormData, IOwnProps>({ form: 'sign-up', initialValues: { surname: '', userName: '' } })(
-    provideStyles(
-      i18nConnect(SignUpForm),
-    ),
+  provideStyles(
+    i18nConnect(SignUpForm),
   )
 );
