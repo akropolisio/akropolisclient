@@ -4,10 +4,11 @@ import { rule } from 'shared/helpers/style';
 const styles = ({ extra: theme }: Theme) => ({
 
   root: rule({
+    zIndex: theme.zIndex.mobileHeader,
+    position: 'relative',
     background: theme.colors.white,
     borderTop: `solid ${theme.colors.alto} 1px`,
     borderBottom: `solid ${theme.colors.alto} 1px`,
-
     [theme.breakpoints.up('sm')]: rule({
       border: 'none',
       boxShadow: '0 1px 2px 0 rgba(224, 224, 224, 0.5)',
