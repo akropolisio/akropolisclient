@@ -4,7 +4,7 @@ import { GetProps } from '_helpers';
 import { Form, FormSpy } from 'react-final-form';
 
 import { SimpleList, Typography, MenuItem } from 'shared/view/elements';
-import { SliderField, SliderSelectField, NumberInputField, TextInputField } from 'shared/view/redux-form';
+import { SliderField, SliderSelectField, NumberInputField, TextInputField } from 'shared/view/form';
 
 interface IFormData {
   default: number;

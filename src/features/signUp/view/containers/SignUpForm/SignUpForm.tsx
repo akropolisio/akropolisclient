@@ -7,7 +7,7 @@ import { WithSignTransaction, SignTransactionFunction } from 'services/signTrans
 
 import { UserRole } from 'shared/types/models';
 import { Button } from 'shared/view/elements';
-import { TextInputField } from 'shared/view/redux-form';
+import { TextInputField } from 'shared/view/form';
 import { isRequired } from 'shared/validators';
 
 import { StylesProps, provideStyles } from './SignUpForm.style';

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Form } from 'react-final-form';
 
 import { SimpleList, Typography, FormControlLabel, Radio } from 'shared/view/elements';
-import { RadioGroupInputField } from 'shared/view/redux-form';
+import { RadioGroupInputField } from 'shared/view/form';
 import { isRequired } from 'shared/validators';
 
 type Value = 'female' | 'male' | 'disabled' | 'other';

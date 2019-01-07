@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Form } from 'react-final-form';
 
 import { SimpleList, ToggleButton, Tooltip } from 'shared/view/elements';
-import { ToggleButtonGroupField } from 'shared/view/redux-form';
+import { ToggleButtonGroupField } from 'shared/view/form';
 import { Question } from 'shared/view/elements/Icons';
 
 import { StylesProps, provideStyles } from './ToggleButtons.style';

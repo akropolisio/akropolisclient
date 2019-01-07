@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Form } from 'react-final-form';
 
 import { SimpleList, Typography, MenuItem } from 'shared/view/elements';
-import { TextInputField, MaskedInputField, NumberInputField } from 'shared/view/redux-form';
+import { TextInputField, MaskedInputField, NumberInputField } from 'shared/view/form';
 import { isRequired } from 'shared/validators';
 
 interface IFormData {

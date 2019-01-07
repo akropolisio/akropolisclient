@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { bind } from 'decko';
+import { Form } from 'react-final-form';
 
 import { i18nConnect, ITranslateProps, tKeys as allKeys } from 'services/i18n';
-import { TextInputField } from 'shared/view/redux-form';
+import { TextInputField } from 'shared/view/form';
 import { isRequired } from 'shared/validators';
 import { Button } from 'shared/view/elements';
 
 import avatar from './images/avatar.svg';
 import { provideStyles, StylesProps } from './EditMainInfo.style';
-import { Form } from 'react-final-form';
 
 const tKeys = allKeys.features.userSettings;
 
