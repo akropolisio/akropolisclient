@@ -62,7 +62,7 @@ export const theme = {
       maxWidth: 1200,
     },
     header: {
-      minHeightMobile: '3.4125rem',
+      minHeightMobile: '4rem',
       minHeightDesktop: '6.25rem',
     },
   },

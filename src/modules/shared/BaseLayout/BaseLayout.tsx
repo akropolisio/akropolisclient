@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { RowsLayout } from 'shared/view/elements';
+import RowsLayout, { IProps as IRowsLayoutProps } from 'shared/view/elements/RowsLayout/RowsLayout';
 
 import Header from '../Header/Header';
 
@@ -10,15 +10,16 @@ interface IOwnProps {
   children: React.ReactNode;
 }
 
-type Props = IOwnProps & StylesProps;
+type IProps = IOwnProps & StylesProps & Pick<IRowsLayoutProps, 'background'>;
 
-class BaseLayout extends React.PureComponent<Props> {
+class BaseLayout extends React.PureComponent<IProps> {
   public render() {
-    const { classes, children } = this.props;
+    const { classes, children, ...rest } = this.props;
 
     return (
       <RowsLayout
         headerContent={<Header />}
+        {...rest}
       >
         <div className={classes.content}>
           {children}
@@ -28,4 +29,5 @@ class BaseLayout extends React.PureComponent<Props> {
   }
 }
 
+export { IProps };
 export default provideStyles(BaseLayout);
