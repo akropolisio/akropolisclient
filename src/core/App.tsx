@@ -10,6 +10,7 @@ import { IAppData, IModule, IJssDependencies } from 'shared/types/app';
 import BaseStyles from 'shared/styles/BaseStyles';
 
 import createRoutes from './routes';
+import { I18nPropvider } from 'services/i18n';
 
 interface IAppProps {
   jssDeps: IJssDependencies;
@@ -19,9 +20,11 @@ interface IAppProps {
 export function App({ modules, store, jssDeps, disableStylesGeneration }: IAppData & IAppProps) {
   return (
     <Provider store={store}>
-      <BrowserRouter>
-        {renderSharedPart(modules, jssDeps, disableStylesGeneration)}
-      </BrowserRouter>
+      <I18nPropvider>
+        <BrowserRouter>
+          {renderSharedPart(modules, jssDeps, disableStylesGeneration)}
+        </BrowserRouter>
+      </I18nPropvider>
     </Provider>
   );
 }
@@ -36,9 +39,11 @@ export function ServerApp(props: IAppData & IServerAppProps & StaticRouter['prop
   const { modules, store, registry, jssDeps, disableStylesGeneration, ...routerProps } = props;
   return (
     <Provider store={store}>
-      <StaticRouter {...routerProps}>
-        {renderSharedPart(modules, jssDeps, disableStylesGeneration, registry)}
-      </StaticRouter>
+      <I18nPropvider>
+        <StaticRouter {...routerProps}>
+          {renderSharedPart(modules, jssDeps, disableStylesGeneration, registry)}
+        </StaticRouter>
+      </I18nPropvider>
     </Provider>
   );
 }
