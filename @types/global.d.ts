@@ -39,7 +39,4 @@ declare module 'doiuse';
 
 declare module 'webpack-isomorphic-dev-middleware';
 declare module 'thread-loader';
-declare module 'postcss-reporter';
-declare module 'postcss-easy-import';
-declare module 'postcss-scss';
-declare module 'doiuse';
+declare module 'react-jss-hmr/webpack';

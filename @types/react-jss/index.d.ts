@@ -20,7 +20,3 @@ declare module 'react-jss' {
     public toString(): string;
   }
 }
-
-declare module 'react-jss-hmr/webpack'
-
-
