@@ -3,13 +3,13 @@ import { RouteProps } from 'react-router';
 import { Store, Reducer, ActionCreator, Action } from 'redux';
 import { SagaIterator } from 'redux-saga';
 import { GenerateClassName } from 'jss';
-import { JSS, Theme } from 'react-jss';
 
 import * as i18nNS from 'services/i18n/namespace';
 import * as adaptabilityNS from 'services/adaptability/namespace';
 import * as signTransactionNS from 'services/signTransaction/namespace';
-
 import Api from 'services/api/Api';
+
+import { JSS, Theme } from 'shared/styles';
 
 export interface IModule {
   getRoutes?(): ReactElement<RouteProps> | Array<ReactElement<RouteProps>>;

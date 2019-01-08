@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import { ITranslateProps, ITranslateFunction } from '../../namespace';
-import { TContext } from '../I18nProvider/I18nProvider';
+import { ITranslateProps } from '../../namespace';
+import { TContext } from '../../constants';
 
 function i18nConnect<TProps>(
   WrappedComponent: React.ComponentType<TProps & ITranslateProps>,
@@ -14,7 +14,7 @@ function i18nConnect<TProps>(
     public render() {
       return (
         <TContext.Consumer>
-          {({ t, locale }) => <WrappedComponent t={t as ITranslateFunction} locale={locale} {...this.props} />}
+          {(contextProps) => <WrappedComponent {...contextProps} {...this.props} />}
         </TContext.Consumer>
       );
     }

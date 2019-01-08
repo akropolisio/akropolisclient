@@ -1,9 +1,22 @@
-import { Lang } from './namespace';
+import * as React from 'react';
+import * as Polyglot from 'node-polyglot';
+
 import buildTranslationKeys from 'shared/helpers/buildTranslationKeys';
-import { en } from './locales';
+
+import { Lang, ITranslateFunction, ITranslateProps } from './namespace';
+import { en, phrasesByLocale } from './locales';
 
 export const LANGUAGES: Lang[] = ['en', 'ru'];
 
 export const DEFAULT_LANGUAGE: Lang = 'en';
 
 export const tKeys = buildTranslationKeys(en);
+
+const polyglot: Polyglot = new Polyglot({
+  locale: DEFAULT_LANGUAGE,
+  phrases: phrasesByLocale[DEFAULT_LANGUAGE],
+});
+export const TContext = React.createContext<ITranslateProps>({
+  t: polyglot.t.bind(polyglot) as ITranslateFunction,
+  locale: DEFAULT_LANGUAGE,
+});

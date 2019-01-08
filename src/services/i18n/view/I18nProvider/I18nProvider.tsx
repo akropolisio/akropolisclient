@@ -7,39 +7,19 @@ import { withProps } from 'shared/helpers/react';
 
 import { ITranslateFunction, Lang } from '../../namespace';
 import * as selectors from '../../redux/selectors';
-import { DEFAULT_LANGUAGE } from '../../constants';
+import { DEFAULT_LANGUAGE, TContext } from '../../constants';
 import { phrasesByLocale as phrases } from '../../locales';
-
-/**
- * It is a localization service for whole app.
- * It will be injected inside all classes (including React components) and
- * provide public methods for translation and localization.
- *
- * For passing translate functional inside low level components use getTranslator function,
- * cause it needs to rerender component, when locale will change, and getTranslator will
- * care about rerender components when it needs.
- *
- * For other cases you can use Translate component, or translate api function, defined in this service.
- */
-
-const polyglot: Polyglot = new Polyglot({
-  locale: DEFAULT_LANGUAGE,
-  phrases: phrases[DEFAULT_LANGUAGE],
-});
-
-export const TContext = React.createContext({
-  t: polyglot.t.bind(polyglot),
-  locale: DEFAULT_LANGUAGE,
-});
 
 interface IOwnProps {
   phrasesByLocale: typeof phrases;
 }
 
-interface IStateprops {
+interface IStateProps {
   locale: Lang;
 }
-type IProps = IStateprops & IOwnProps;
+
+type IProps = IStateProps & IOwnProps;
+
 class I18nProvider extends React.PureComponent<IProps> {
   public polyglot: Polyglot = new Polyglot({
     locale: DEFAULT_LANGUAGE,
@@ -47,13 +27,6 @@ class I18nProvider extends React.PureComponent<IProps> {
   });
 
   public state = { translator: this.polyglot.t.bind(this.polyglot) as ITranslateFunction };
-  public get locale(): Lang {
-    return (this.polyglot.locale() as Lang);
-  }
-
-  public get t(): ITranslateFunction {
-    return this.state.translator;
-  }
 
   public componentDidUpdate(prevProps: IProps) {
     const { locale, phrasesByLocale } = this.props;

@@ -1,6 +1,6 @@
-import injectSheet, { WithStyles, Theme } from 'react-jss';
+import { withStyles as muiWithStyles } from '@material-ui/core/styles';
+import { withStyles, WithStyles, Theme } from 'shared/styles';
 import { rule } from 'shared/helpers/style';
-import { withStyles } from '@material-ui/core/styles';
 
 const styles = (theme: Theme) => ({
 
@@ -79,6 +79,6 @@ const styles = (theme: Theme) => ({
 });
 
 // TODO ds: rewrite after transition to @material-ui/styles
-export const provideStyles = (withStyles as typeof injectSheet)(styles);
+export const provideStyles = (muiWithStyles as typeof withStyles)(styles);
 
 export type StylesProps = WithStyles<typeof styles>;

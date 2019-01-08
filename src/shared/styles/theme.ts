@@ -1,5 +1,5 @@
 import { Theme as MaterialTheme } from '@material-ui/core/styles';
-import { hexToRGBA } from './helpers';
+import { hexToRGBA } from 'shared/helpers/style';
 import breakpoints from './breakpoints';
 
 // Find color name http://chir.ag/projects/name-that-color

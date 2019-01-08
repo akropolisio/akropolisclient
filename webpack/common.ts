@@ -7,7 +7,7 @@ import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import * as ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import * as threadLoader from 'thread-loader';
 import * as FaviconsWebpackPlugin from 'favicons-webpack-plugin';
-import * as  ReactJssHmrPlugin from 'react-jss-hmr/webpack';
+import * as ReactJssHmrPlugin from 'react-jss-hmr/webpack';
 import * as postcssEasyImport from 'postcss-easy-import';
 import * as postcssSCSS from 'postcss-scss';
 import * as autoprefixer from 'autoprefixer';
@@ -193,9 +193,9 @@ export const commonConfig: webpack.Configuration = {
   resolve: {
     modules: ['node_modules', 'src'],
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
-    plugins: [
+    plugins: withHot ? [
       new ReactJssHmrPlugin(),
-    ],
+    ] : undefined,
   },
   optimization: {
     runtimeChunk: 'single',

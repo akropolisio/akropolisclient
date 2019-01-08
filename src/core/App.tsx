@@ -3,11 +3,10 @@ import { Provider } from 'react-redux';
 import { BrowserRouter, StaticRouter } from 'react-router-dom';
 import 'normalize.css';
 
-import { JssProvider, SheetsRegistry } from 'react-jss';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 
 import { IAppData, IModule, IJssDependencies } from 'shared/types/app';
-import BaseStyles from 'shared/styles/BaseStyles';
+import { JssProvider, SheetsRegistry, BaseStyles } from 'shared/styles';
 
 import createRoutes from './routes';
 import { I18nPropvider } from 'services/i18n';
