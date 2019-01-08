@@ -4,7 +4,7 @@ import configureStore, { createReducer } from './configureStore';
 import { configureJss } from 'core/configureJss';
 
 import { DemoModule, AuthModule, ProfileModule } from 'modules';
-import { reduxEntry as i18nRE, I18n } from 'services/i18n';
+import { reduxEntry as i18nRE } from 'services/i18n';
 import { reduxEntry as adaptabilityRE } from 'services/adaptability';
 import { reduxEntry as signTransactionRE } from 'services/signTransaction';
 
@@ -33,11 +33,9 @@ function configureApp(data?: IAppData): IAppData {
     container.getAll(TYPES.Store);
     container.rebind(TYPES.connectEntryToStore).toConstantValue(connectEntryToStore);
     container.rebind(TYPES.Store).toConstantValue(store);
-    container.rebind(TYPES.I18n).to(I18n).inSingletonScope();
   } catch {
     container.bind(TYPES.connectEntryToStore).toConstantValue(connectEntryToStore);
     container.bind(TYPES.Store).toConstantValue(store);
-    container.bind(TYPES.I18n).to(I18n).inSingletonScope();
   }
 
   const dependencies = configureDeps(store);

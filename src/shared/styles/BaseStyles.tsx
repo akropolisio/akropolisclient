@@ -1,4 +1,4 @@
-import injectSheet, { Theme } from 'react-jss';
+import { withStyles, Theme } from 'shared/styles';
 import { rule } from 'shared/helpers/style';
 import './fonts/OpenSans/index.scss';
 
@@ -31,4 +31,4 @@ const styles = ({ extra: theme }: Theme) => ({
   }),
 });
 
-export default injectSheet(styles)();
+export default withStyles(styles)();

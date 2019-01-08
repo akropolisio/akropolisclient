@@ -171,6 +171,7 @@
     "jest": "^23.6.0",
     "mini-css-extract-plugin": "^0.4.5",
     "react-hot-loader": "^4.3.12",
+    "react-jss-hmr": "^1.0.0",
     "redux-devtools-extension": "^2.13.5",
     "sinon": "^7.1.1",
     "style-loader": "^0.21.0",

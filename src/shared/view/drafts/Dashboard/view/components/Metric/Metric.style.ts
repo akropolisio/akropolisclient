@@ -1,4 +1,4 @@
-import injectSheet, { Theme, WithStyles } from 'react-jss';
+import { withStyles, Theme, WithStyles } from 'shared/styles';
 
 import { rule } from 'shared/helpers/style';
 
@@ -74,6 +74,6 @@ const styles = ({ extra: theme }: Theme) => ({
   }),
 });
 
-export const provideStyles = injectSheet(styles);
+export const provideStyles = withStyles(styles);
 
 export type StylesProps = WithStyles<typeof styles>;

@@ -1,5 +1,5 @@
 import * as R from 'ramda';
-import injectSheet, { WithStyles, Theme, CSSProperties } from 'react-jss';
+import { withStyles, WithStyles, Theme, CSSProperties } from 'shared/styles';
 
 import { rule } from 'shared/helpers/style';
 import { breakpointKeys } from 'shared/styles/breakpoints';
@@ -37,6 +37,6 @@ const styles = ({ extra: theme }: Theme): Record<string, CSSProperties> => ({
   ...generateMediaQueries(theme),
 });
 
-export const provideStyles = injectSheet(styles);
+export const provideStyles = withStyles(styles);
 
 export type StylesProps = WithStyles<typeof styles>;

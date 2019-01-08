@@ -21,4 +21,6 @@ declare module 'react-jss' {
   }
 }
 
+declare module 'react-jss-hmr/webpack'
+
 

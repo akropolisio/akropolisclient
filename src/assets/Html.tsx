@@ -1,11 +1,11 @@
 import * as React from 'react';
 import * as serialize from 'serialize-javascript';
 import Helmet from 'react-helmet';
-
 import * as redux from 'redux';
-import { IAssets } from 'shared/types/app';
-import { SheetsRegistry } from 'react-jss';
 import { renderToString } from 'react-dom/server';
+
+import { IAssets } from 'shared/types/app';
+import { SheetsRegistry } from 'shared/styles';
 
 interface IHtmlProps {
   assets: IAssets;
@@ -35,7 +35,7 @@ export default class Html extends React.PureComponent<IHtmlProps> {
     const state = store.getState();
     // component rendering for injecting styles to jss registry
     const renderedComponent = component ? renderToString(component) : '';
-    const windowAssets = serialize({styles: assets.styles, javascript: assets.javascript });
+    const windowAssets = serialize({ styles: assets.styles, javascript: assets.javascript });
     return (
       <html lang={__LANG__} style={styles}>
         <head>
