@@ -3,11 +3,12 @@ import { connect } from 'react-redux';
 import * as Polyglot from 'node-polyglot';
 
 import { IAppReduxState } from 'shared/types/app';
+import { withProps } from 'shared/helpers/react';
 
 import { ITranslateFunction, Lang } from '../../namespace';
 import * as selectors from '../../redux/selectors';
 import { DEFAULT_LANGUAGE } from '../../constants';
-import { phrasesByLocale } from '../../locales';
+import { phrasesByLocale as phrases } from '../../locales';
 
 /**
  * It is a localization service for whole app.
@@ -23,23 +24,26 @@ import { phrasesByLocale } from '../../locales';
 
 const polyglot: Polyglot = new Polyglot({
   locale: DEFAULT_LANGUAGE,
-  phrases: phrasesByLocale[DEFAULT_LANGUAGE],
+  phrases: phrases[DEFAULT_LANGUAGE],
 });
 
-export const TContext = React.createContext(
-  {
-    t: polyglot.t.bind(polyglot),
-    locale: DEFAULT_LANGUAGE,
-  });
+export const TContext = React.createContext({
+  t: polyglot.t.bind(polyglot),
+  locale: DEFAULT_LANGUAGE,
+});
+
+interface IOwnProps {
+  phrasesByLocale: typeof phrases;
+}
 
 interface IStateprops {
   locale: Lang;
 }
-type IProps = IStateprops;
+type IProps = IStateprops & IOwnProps;
 class I18nProvider extends React.PureComponent<IProps> {
   public polyglot: Polyglot = new Polyglot({
     locale: DEFAULT_LANGUAGE,
-    phrases: phrasesByLocale[DEFAULT_LANGUAGE],
+    phrases: this.props.phrasesByLocale[DEFAULT_LANGUAGE],
   });
 
   public state = { translator: this.polyglot.t.bind(this.polyglot) as ITranslateFunction };
@@ -52,8 +56,8 @@ class I18nProvider extends React.PureComponent<IProps> {
   }
 
   public componentDidUpdate(prevProps: IProps) {
-    const { locale } = this.props;
-    if (prevProps.locale !== locale) {
+    const { locale, phrasesByLocale } = this.props;
+    if (prevProps.locale !== locale || prevProps.phrasesByLocale !== phrasesByLocale) {
       this.polyglot.locale(locale);
       this.polyglot.replace(phrasesByLocale[locale]);
       this.setState({ translator: this.polyglot.t.bind(this.polyglot) });
@@ -72,4 +76,8 @@ function mapState(state: IAppReduxState) {
   };
 }
 
-export default connect(mapState)(I18nProvider);
+export default (
+  withProps(
+    connect(mapState)(I18nProvider), { phrasesByLocale: phrases },
+  )
+);
