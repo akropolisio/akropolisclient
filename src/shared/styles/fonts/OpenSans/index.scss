@@ -34,12 +34,21 @@
 }
 
 @include font-face(OpenSans, openSans-regular/openSans-regular, 400, null, woff ttf svg);
+
 @include font-face(OpenSans, openSans-bold/openSans-bold, 700, null, woff ttf svg);
+
 @include font-face(OpenSans, openSans-boldItalic/openSans-boldItalic, 700, italic, woff ttf svg);
+
 @include font-face(OpenSans, openSans-extraBold/openSans-extraBold, 800, null, woff ttf svg);
+
 @include font-face(OpenSans, openSans-extraBoldItalic/openSans-extraBoldItalic, 800, italic, woff ttf svg);
+
 @include font-face(OpenSans, openSans-italic/openSans-italic, 400, italic, woff ttf svg);
+
 @include font-face(OpenSans, openSans-semiBold/openSans-semiBold, 600, null, woff ttf svg);
+
 @include font-face(OpenSans, opensans-semibolditalic/opensans-semibolditalic, 600, italic, woff ttf svg);
+
 @include font-face(OpenSans, openSans-light/openSans-light, 300, null, woff ttf svg);
+
 @include font-face(OpenSans, openSans-lightItalic/openSans-lightItalic, 300, italic, woff ttf svg);

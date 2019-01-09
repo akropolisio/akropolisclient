@@ -8,7 +8,6 @@ import * as ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import * as threadLoader from 'thread-loader';
 import * as FaviconsWebpackPlugin from 'favicons-webpack-plugin';
 import * as ReactJssHmrPlugin from 'react-jss-hmr/webpack';
-import * as postcssEasyImport from 'postcss-easy-import';
 import * as postcssSCSS from 'postcss-scss';
 import * as autoprefixer from 'autoprefixer';
 import * as stylelint from 'stylelint';
@@ -164,9 +163,6 @@ const commonScssLoaders: webpack.Loader[] = [
       syntax: postcssSCSS,
       plugins: () => {
         return [
-          postcssEasyImport({
-            extensions: '.scss',
-          }),
           stylelint(),
           doiuse({
             // https://github.com/browserslist/browserslist
