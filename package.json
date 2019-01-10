@@ -22,7 +22,8 @@
     "analyze:dev": "better-npm-run analyze:dev",
     "analyze:prod": "better-npm-run analyze:prod",
     "yeoman": "better-npm-run initial:yeoman",
-    "stylelint-autofix": "./node_modules/.bin/stylelint \"./src/**/*.scss\" --fix"
+    "stylelint-autofix": "./node_modules/.bin/stylelint \"./src/**/*.scss\" --fix",
+    "heroku-postbuild":"npm run build:prod"
   },
   "betterScripts": {
     "initial:yeoman": {

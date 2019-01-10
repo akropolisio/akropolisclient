@@ -1,0 +1,4 @@
+root: build
+pushstate: enabled
+gzip: on
+http_strict_transport_security: true
