@@ -203,6 +203,8 @@ export const commonConfig: webpack.Configuration = {
     // typescript would remove the interfaces but also remove the imports of typings
     // and because of this, warnings are shown https://github.com/TypeStrong/ts-loader/issues/653
     warningsFilter: /export .* was not found in/,
+    assets: false,
+    modules: false,
   },
   devServer: {
     hot: withHot,
