@@ -4,9 +4,10 @@ import { Store, Reducer, ActionCreator, Action } from 'redux';
 import { SagaIterator } from 'redux-saga';
 import { GenerateClassName } from 'jss';
 
-import * as i18nNS from 'services/i18n/namespace';
 import * as adaptabilityNS from 'services/adaptability/namespace';
+import * as i18nNS from 'services/i18n/namespace';
 import * as signTransactionNS from 'services/signTransaction/namespace';
+import * as userNS from 'services/user/namespace';
 import Api from 'services/api/Api';
 
 import { JSS, Theme } from 'shared/styles';
@@ -53,10 +54,11 @@ export interface IFeatureEntry<
 
 export interface IAppReduxState {
   // services
-  i18n: i18nNS.IReduxState;
   adaptability: adaptabilityNS.IReduxState;
-  // features
+  i18n: i18nNS.IReduxState;
   signTransaction: signTransactionNS.IReduxState;
+  user: userNS.IReduxState;
+  // features
 }
 
 export type RootSaga = (deps: IDependencies) => () => SagaIterator;
