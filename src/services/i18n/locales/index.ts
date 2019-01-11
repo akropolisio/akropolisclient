@@ -1,6 +1,8 @@
 import en from './en';
 import ru from './ru';
+import { SubSet } from '_helpers';
+import { Lang } from '../namespace';
 
-const phrasesByLocale: { en: typeof en, ru: typeof ru } = { en, ru };
+const phrasesByLocale: SubSet<Record<Lang, any>, { en: typeof en, ru: typeof ru }> = { en, ru };
 
 export { en, ru, phrasesByLocale };

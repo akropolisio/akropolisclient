@@ -23,7 +23,7 @@
     "analyze:prod": "better-npm-run analyze:prod",
     "yeoman": "better-npm-run initial:yeoman",
     "stylelint-autofix": "./node_modules/.bin/stylelint \"./src/**/*.scss\" --fix",
-    "heroku-postbuild":"npm run build:prod"
+    "heroku-postbuild": "npm run build:prod"
   },
   "betterScripts": {
     "initial:yeoman": {
@@ -196,20 +196,23 @@
     "yo": "^2.0.5"
   },
   "dependencies": {
+    "@date-io/moment": "^1.0.1",
     "@material-ui/core": "^3.6.2",
     "@material-ui/icons": "^3.0.1",
     "@material-ui/lab": "^3.0.0-alpha.25",
+    "@types/accounting": "^0.4.1",
     "@types/autoprefixer": "^9.1.1",
     "@types/bem-cn": "^2.1.1",
     "@types/classnames": "^2.2.6",
     "@types/compression": "0.0.36",
     "@types/cookie-parser": "^1.4.1",
+    "@types/crypto-js": "^3.1.43",
     "@types/google-maps": "^3.2.0",
     "@types/node-polyglot": "^0.4.31",
     "@types/prop-types": "^15.5.6",
     "@types/qrcode.react": "^0.8.1",
     "@types/ramda": "^0.25.46",
-    "@types/react": "^16.7.17",
+    "@types/react": "^16.7.18",
     "@types/react-dom": "^16.0.11",
     "@types/react-helmet": "^5.0.7",
     "@types/react-modal": "^3.6.0",
@@ -225,6 +228,7 @@
     "@types/uuid": "^3.4.4",
     "@types/webpack-hot-middleware": "^2.16.2",
     "@types/webpack-node-externals": "^1.6.2",
+    "accounting": "^0.4.1",
     "autoprefixer": "^9.3.1",
     "awesome-typescript-loader": "^5.2.1",
     "axios": "^0.18.0",
@@ -238,6 +242,7 @@
     "compression": "^1.7.2",
     "concurrently": "^4.0.1",
     "cookie-parser": "^1.4.3",
+    "crypto-js": "^3.1.9-1",
     "css-loader": "^1.0.1",
     "decko": "^1.2.0",
     "doiuse": "^4.2.0",
@@ -249,6 +254,8 @@
     "inversify-inject-decorators": "^3.1.0",
     "jss": "^9.8.3",
     "jss-compose": "^5.0.0",
+    "material-ui-pickers": "^2.1.1",
+    "moment": "^2.23.0",
     "node-polyglot": "^2.3.0",
     "node-sass": "^4.9.2",
     "normalize.css": "^8.0.0",

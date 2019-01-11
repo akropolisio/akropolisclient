@@ -7,7 +7,7 @@ import FormHelperText, { FormHelperTextProps } from '@material-ui/core/FormHelpe
 
 type IProps = RadioGroupProps & Pick<FormControlProps, 'error' | 'required' | 'fullWidth'> & {
   label?: React.ReactNode;
-  helperText?: string;
+  helperText?: React.ReactNode;
   formLabelProps?: FormLabelProps;
   formHelperTextProps?: FormHelperTextProps;
 };
@@ -19,7 +19,7 @@ interface INormalizedProps {
   radioGroupProps: RadioGroupProps;
   other: {
     label: React.ReactNode | null;
-    helperText: string | null;
+    helperText: React.ReactNode;
   };
 }
 

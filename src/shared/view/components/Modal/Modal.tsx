@@ -13,7 +13,7 @@ interface IOwnProps {
   type?: 'default' | 'signTransaction';
   isOpen: boolean;
   title?: string;
-  withCross?: boolean;
+  titleAlign?: 'center' | 'left';
   onClose?: () => void;
 }
 
@@ -23,7 +23,7 @@ ReactModal.setAppElement('#root');
 
 class Modal extends React.Component<IProps> {
   public render() {
-    const { classes, children, isOpen, onClose, withCross, title } = this.props;
+    const { classes, children, isOpen, onClose, title } = this.props;
 
     return (
       <ReactModal
@@ -43,12 +43,12 @@ class Modal extends React.Component<IProps> {
       >
         {!!title && (
           <div className={classes.title}>
-            {withCross && <CrossButton isHidden classes={classes} />}
+            <CrossButton isHidden classes={classes} />
             {title}
-            {withCross && <CrossButton classes={classes} onClick={onClose} />}
+            <CrossButton classes={classes} onClick={onClose} />
           </div>
         )}
-        {!title && withCross && <CrossButton isAbsolute classes={classes} onClick={onClose} />}
+        {!title && <CrossButton isAbsolute classes={classes} onClick={onClose} />}
         {children}
       </ReactModal>
     );

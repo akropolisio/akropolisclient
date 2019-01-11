@@ -1,8 +1,8 @@
 import * as React from 'react';
 import * as R from 'ramda';
-import { GetProps } from '_helpers';
 import { Form, FormSpy } from 'react-final-form';
 
+import { formatSliderLabelDefault } from 'shared/helpers/format';
 import { SimpleList, Typography, MenuItem } from 'shared/view/elements';
 import { SliderField, SliderSelectField, NumberInputField, TextInputField } from 'shared/view/form';
 
@@ -34,7 +34,7 @@ function Sliders() {
             <Typography variant="h5">Default slider: {renderValue('default')}</Typography>
             <SliderField name="default" min={-100} step={1} formatLabel={R.identity} />
             <Typography variant="h5">Select slider: {renderValue('select')}</Typography>
-            <SliderSelectField name="select" formatLabel={formatSliderLabel}>
+            <SliderSelectField name="select" formatLabel={formatSliderLabelDefault}>
               {menuItems}
             </SliderSelectField>
             <Typography variant="h5">Default slider with number input: {renderValue('withNumberInput')}</Typography>
@@ -52,7 +52,7 @@ function Sliders() {
             <TextInputField name="withSelectInput" label="Select" variant="outlined" select fullWidth>
               {menuItems}
             </TextInputField>
-            <SliderSelectField name="withSelectInput" formatLabel={formatSliderLabel}>
+            <SliderSelectField name="withSelectInput" formatLabel={formatSliderLabelDefault}>
               {menuItems}
             </SliderSelectField>
           </SimpleList>
@@ -69,7 +69,5 @@ function renderValue(key: keyof IFormData) {
     </FormSpy>
   );
 }
-
-const formatSliderLabel: NonNullable<GetProps<typeof SliderSelectField>['formatLabel']> = item => item.label || '';
 
 export default Sliders;

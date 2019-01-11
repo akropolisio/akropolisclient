@@ -4,12 +4,14 @@ import { BrowserRouter, StaticRouter } from 'react-router-dom';
 import 'normalize.css';
 
 import { MuiThemeProvider } from '@material-ui/core/styles';
+import { MuiPickersUtilsProvider } from 'material-ui-pickers';
+import MomentUtils from '@date-io/moment';
+import { I18nProvider } from 'services/i18n';
 
 import { IAppData, IModule, IJssDependencies } from 'shared/types/app';
 import { JssProvider, SheetsRegistry, BaseStyles } from 'shared/styles';
 
 import createRoutes from './routes';
-import { I18nPropvider } from 'services/i18n';
 
 interface IAppProps {
   jssDeps: IJssDependencies;
@@ -19,12 +21,10 @@ interface IAppProps {
 export function App({ modules, store, jssDeps, disableStylesGeneration }: IAppData & IAppProps) {
   return (
     <Provider store={store}>
-      <I18nPropvider>
-        <BrowserRouter>
-          {renderSharedPart(modules, jssDeps, disableStylesGeneration)}
-        </BrowserRouter>
-      </I18nPropvider>
-    </Provider>
+      <BrowserRouter>
+        {renderSharedPart(modules, jssDeps, disableStylesGeneration)}
+      </BrowserRouter>
+    </Provider >
   );
 }
 
@@ -38,11 +38,9 @@ export function ServerApp(props: IAppData & IServerAppProps & StaticRouter['prop
   const { modules, store, registry, jssDeps, disableStylesGeneration, ...routerProps } = props;
   return (
     <Provider store={store}>
-      <I18nPropvider>
-        <StaticRouter {...routerProps}>
-          {renderSharedPart(modules, jssDeps, disableStylesGeneration, registry)}
-        </StaticRouter>
-      </I18nPropvider>
+      <StaticRouter {...routerProps}>
+        {renderSharedPart(modules, jssDeps, disableStylesGeneration, registry)}
+      </StaticRouter>
     </Provider>
   );
 }
@@ -55,18 +53,22 @@ function renderSharedPart(
   const { generateClassName, jss, theme } = jssDeps;
 
   return (
-    <JssProvider
-      jss={jss}
-      registry={registry}
-      generateClassName={generateClassName}
-      disableStylesGeneration={disableStylesGeneration}
-    >
-      <MuiThemeProvider theme={theme} disableStylesGeneration={disableStylesGeneration}>
-        {/* <React.StrictMode> */}
-        <BaseStyles />
-        {createRoutes(modules)}
-        {/* </React.StrictMode> */}
-      </MuiThemeProvider>
-    </JssProvider>
+    <MuiPickersUtilsProvider utils={MomentUtils}>
+      <I18nProvider>
+        <JssProvider
+          jss={jss}
+          registry={registry}
+          generateClassName={generateClassName}
+          disableStylesGeneration={disableStylesGeneration}
+        >
+          <MuiThemeProvider theme={theme} disableStylesGeneration={disableStylesGeneration}>
+            {/* <React.StrictMode> */}
+            <BaseStyles />
+            {createRoutes(modules)}
+            {/* </React.StrictMode> */}
+          </MuiThemeProvider>
+        </JssProvider>
+      </I18nProvider>
+    </MuiPickersUtilsProvider>
   );
 }

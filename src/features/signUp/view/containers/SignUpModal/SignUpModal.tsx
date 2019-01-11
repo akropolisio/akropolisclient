@@ -12,7 +12,7 @@ type IProps = Omit<GetProps<typeof Modal>, 'classes' | 'title'> & IFormOwnProps 
 function SignUpModal(props: IProps) {
   const { classes, role, onSuccess, t, locale, ...modalProps } = props;
   return (
-    <Modal {...modalProps} withCross title={t(tKeys.features.signUp.title.getKey())}>
+    <Modal {...modalProps} title={t(tKeys.features.signUp.title.getKey())}>
       <div className={classes.root}>
         <SignUpForm role={role} onSuccess={onSuccess} />
       </div>

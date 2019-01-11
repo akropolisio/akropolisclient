@@ -4,6 +4,8 @@ import { rule, styledBy } from 'shared/helpers/style';
 
 import { IProps } from './Modal';
 
+const iconButtonPadding = 12;
+
 const styles = ({ extra: theme }: Theme) => ({
   '@global': rule({
     '.ReactModalPortal': {
@@ -13,7 +15,7 @@ const styles = ({ extra: theme }: Theme) => ({
       right: -1,
       bottom: -1,
       left: -1,
-      zIndex: theme.zIndex.afterContext(theme.zIndex.newContext),
+      zIndex: theme.zIndex.newContext,
 
       '&:empty': {
         display: 'none',
@@ -95,7 +97,7 @@ const styles = ({ extra: theme }: Theme) => ({
     alignItems: 'center',
     textAlign: 'center',
     justifyContent: 'space-between',
-    margin: `${theme.spacing.unit * 6}px ${theme.spacing.unit * 3}px 0`,
+    margin: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 4 - iconButtonPadding}px 0 ${theme.spacing.unit * 4}px`,
     fontSize: '1.25rem',
     fontWeight: 'bold',
     fontFamily: theme.typography.primaryFont,
@@ -121,7 +123,12 @@ const styles = ({ extra: theme }: Theme) => ({
   }),
 
   isAbsolute: {},
-  isHidden: {},
+  isHidden: {
+    display: styledBy<IProps, 'titleAlign'>('titleAlign', {
+      center: 'block',
+      left: 'none',
+    }, 'center'),
+  },
 
   '@keyframes modal-disappear-animation': rule({
     from: {

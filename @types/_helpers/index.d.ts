@@ -38,6 +38,10 @@ declare module '_helpers' {
 
   export type MergeRight<L, R> = R & Pick<L, Exclude<keyof L, keyof R>>;
 
+  export type MarkAs<A, T> = {
+    [key in keyof T]: A;
+  }
+
   type CheckExtends<T, R> = T extends R ? true : unknown;
   export type CheckIdentity<T, R> = (
     CheckExtends<T, R> | CheckExtends<R, T> | CheckExtends<keyof T, keyof R> | CheckExtends<keyof R, keyof T>

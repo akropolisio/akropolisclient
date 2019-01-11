@@ -29,7 +29,7 @@ const mapDispatch = {
 function SignTransactionModal(props: IProps) {
   const { onClose, isOpened, ...restProps } = props;
   return (
-    <Modal withCross size="large" type="signTransaction" onClose={onClose} isOpen={isOpened}>
+    <Modal size="large" type="signTransaction" onClose={onClose} isOpen={isOpened}>
       <SignTransaction {...restProps} />
     </Modal>
   );

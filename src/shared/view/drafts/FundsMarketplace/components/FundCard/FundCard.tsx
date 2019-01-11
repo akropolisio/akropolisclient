@@ -1,10 +1,11 @@
 import * as React from 'react';
 
 import { i18nConnect, tKeys, ITranslateProps } from 'services/i18n';
+import { IFund } from 'shared/types/models';
 import { Button } from 'shared/view/elements';
 
 import { StylesProps, provideStyles } from './FundCard.style';
-import { IFund } from '../../namespace';
+import { AsyncGetInFundButton } from 'features/getInFund';
 
 interface IOwnProps {
   fund: IFund;
@@ -17,7 +18,9 @@ const tKeysMarketplace = tKeys.modules.marketplace;
 class FundCard extends React.PureComponent<IProps> {
 
   public render() {
-    const { classes, t, fund: { acronym, title, commission, policy, chosen } } = this.props;
+    const { classes, t, fund } = this.props;
+    const { acronym, title, commission, policy, chosen } = fund;
+
     return (
       <div className={classes.root}>
         <div className={classes.header}>
@@ -33,17 +36,19 @@ class FundCard extends React.PureComponent<IProps> {
           <div className={classes.policy}>
             {`${t(tKeysMarketplace.policy.getKey())}: ${policy}`}
           </div>
-          <Button
-            variant={chosen ? 'outlined' : 'contained'}
-            color={chosen ? 'default' : 'primary'}
-            className={classes.selectFundButton}
-          >
-            {
-              chosen ?
-                t(tKeysMarketplace.YouAreInThisFund.getKey())
-                :
-                t(tKeysMarketplace.getInFund.getKey())}
-          </Button>
+          {chosen
+            ? (
+              <Button variant="outlined" color="default" className={classes.selectFundButton}>
+                {t(tKeysMarketplace.YouAreInThisFund.getKey())}
+              </Button>
+            ) : (
+              <AsyncGetInFundButton
+                fund={fund}
+                variant="contained"
+                color="primary"
+                className={classes.selectFundButton}
+              />
+            )}
         </div>
       </div >
     );

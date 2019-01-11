@@ -14,6 +14,7 @@ import * as stylelint from 'stylelint';
 import * as doiuse from 'doiuse';
 
 import getEnvParams from '../src/core/getEnvParams';
+import { LANGUAGES } from '../src/services/i18n/constants';
 
 export type BuildType = 'dev' | 'prod' | 'server';
 
@@ -49,6 +50,7 @@ export const getCommonPlugins: (type: BuildType) => webpack.Plugin[] = (type) =>
     '__SERVER__': false,
   }),
   new FaviconsWebpackPlugin(path.resolve(__dirname, '..', 'src', 'assets', 'favicon.png')),
+  new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, new RegExp(LANGUAGES.join('|'))),
 ]
   .concat(type !== 'server' && !withoutTypeCheking ? (
     new ForkTsCheckerWebpackPlugin({

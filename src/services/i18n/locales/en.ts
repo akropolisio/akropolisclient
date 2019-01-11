@@ -6,6 +6,12 @@ export default {
       marketplace: 'Marketplace',
       profile: 'Profile',
     },
+    validation: {
+      isRequired: 'Field is required',
+      moreThenOrEqual: 'Should be more then or equal %{value}',
+      lessThenOrEqual: 'Should be less then or equal %{value}',
+      invalidWalletAddress: 'Invalid wallet address',
+    },
   },
   features: {
     signTransaction: {
@@ -19,6 +25,22 @@ export default {
       },
       submit: 'Sign in',
       title: 'Sign in',
+    },
+    getInFund: {
+      getButton: 'Get in fund',
+      modalTitle: 'Choice of conditions',
+      form: {
+        fields: {
+          regularPayment: 'Regular payment size',
+          periodicity: 'Payment\'s periodicity',
+          retirementDate: 'Retirement date',
+          wallet: 'Contributor\'s wallet',
+        },
+        periodicityItemPrefix: 'once per',
+        walletHint: 'If contributions to fund are made by 3rd party (employer, state, friends and family), please insert contributor\'s ethereum address.',
+        submitButton: 'Get in fund',
+        cancelButton: 'Cancel',
+      },
     },
     userSettings: {
       fields: {
@@ -77,7 +99,6 @@ export default {
       fundsMarketplace: 'Funds marketplace',
       commission: 'Commission',
       policy: 'Policy',
-      getInFund: 'Get in fund',
       YouAreInThisFund: 'You’re in this fond',
     },
     profile: {

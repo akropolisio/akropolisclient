@@ -1,5 +1,6 @@
 import { Entry } from './entry';
 
-export function loadEntry(): Promise<Entry> {
-  return import(/* webpackChunkName: "<%= featureName %>" */ './entry').then(feature => feature.entry);
+export async function loadEntry(): Promise<Entry> {
+  const feature = await import(/* webpackChunkName: "<%= featureName %>" */ './entry');
+  return feature.entry;
 }

@@ -6,7 +6,7 @@ import buildTranslationKeys from 'shared/helpers/buildTranslationKeys';
 import { Lang, ITranslateFunction, ITranslateProps } from './namespace';
 import { en, phrasesByLocale } from './locales';
 
-export const LANGUAGES: Lang[] = ['en', 'ru'];
+export const LANGUAGES: Lang[] = Object.keys(phrasesByLocale) as Lang[];
 
 export const DEFAULT_LANGUAGE: Lang = 'en';
 

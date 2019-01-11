@@ -4,17 +4,17 @@ import { i18nConnect, tKeys, ITranslateProps } from 'services/i18n';
 import { Search } from 'shared/view/elements/Icons';
 
 import { StylesProps, provideStyles } from './FundsList.style';
-import { IFund } from '../../namespace';
 import FundCard from '../../components/FundCard/FundCard';
+import { IFund } from 'shared/types/models';
 
 type IProps = StylesProps & ITranslateProps;
 
 const mocks = { commission: 15, policy: '0x00000000000000000000000' };
 const funds: IFund[] = [
-  { acronym: 'st', title: 'Standart life', ...mocks },
-  { acronym: 'th', title: 'The people’s pension', ...mocks, chosen: true },
-  { acronym: 'Zu', title: 'Zurich', ...mocks },
-  { acronym: 'Li', title: 'Libery pension', ...mocks },
+  { id: 1, acronym: 'st', title: 'Standart life', ...mocks },
+  { id: 2, acronym: 'th', title: 'The people’s pension', ...mocks, chosen: true },
+  { id: 3, acronym: 'Zu', title: 'Zurich', ...mocks },
+  { id: 4, acronym: 'Li', title: 'Libery pension', ...mocks },
 ];
 
 const tKeysMarketplace = tKeys.modules.marketplace;

@@ -19,6 +19,10 @@ const styles = ({ extra: theme }: Theme) => ({
     'html, body, #root': {
       height: '100%',
     },
+    '#root': {
+      zIndex: theme.zIndex.newContext,
+      position: 'relative',
+    },
     '*, *::before, *::after': {
       boxSizing: 'inherit',
     },

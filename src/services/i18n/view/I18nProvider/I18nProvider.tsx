@@ -5,7 +5,7 @@ import * as Polyglot from 'node-polyglot';
 import { IAppReduxState } from 'shared/types/app';
 import { withProps } from 'shared/helpers/react';
 
-import { ITranslateFunction, Lang } from '../../namespace';
+import { ITranslateFunction, Lang, ITranslateKey } from '../../namespace';
 import * as selectors from '../../redux/selectors';
 import { DEFAULT_LANGUAGE, TContext } from '../../constants';
 import { phrasesByLocale as phrases } from '../../locales';
@@ -26,14 +26,14 @@ class I18nProvider extends React.PureComponent<IProps> {
     phrases: this.props.phrasesByLocale[DEFAULT_LANGUAGE],
   });
 
-  public state = { translator: this.polyglot.t.bind(this.polyglot) as ITranslateFunction };
+  public state = { translator: makeTranslator(this.polyglot) };
 
   public componentDidUpdate(prevProps: IProps) {
     const { locale, phrasesByLocale } = this.props;
     if (prevProps.locale !== locale || prevProps.phrasesByLocale !== phrasesByLocale) {
       this.polyglot.locale(locale);
       this.polyglot.replace(phrasesByLocale[locale]);
-      this.setState({ translator: this.polyglot.t.bind(this.polyglot) });
+      this.setState({ translator: makeTranslator(this.polyglot) });
     }
   }
 
@@ -41,6 +41,15 @@ class I18nProvider extends React.PureComponent<IProps> {
     const { children, locale } = this.props;
     return <TContext.Provider value={{ t: this.state.translator, locale }}>{children}</TContext.Provider>;
   }
+}
+
+function makeTranslator(polyglot: Polyglot): ITranslateFunction {
+  return (phrase: ITranslateKey, smartCountOrInterpolationOptions?: number | Polyglot.InterpolationOptions) => {
+    if (typeof phrase === 'string') {
+      return polyglot.t(phrase, smartCountOrInterpolationOptions as any);
+    }
+    return polyglot.t(phrase.key, phrase.params);
+  };
 }
 
 function mapState(state: IAppReduxState) {

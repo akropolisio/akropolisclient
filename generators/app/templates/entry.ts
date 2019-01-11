@@ -6,8 +6,9 @@ import * as containers from './view/containers';
 <% if (reduxConfig) { -%>
 import { actions, selectors, reducer<%= (reduxConfig.withSaga) ? ', getSaga' : '' %> } from './redux';
 <% } -%>
+import makeFeatureEntry from 'shared/helpers/makeFeatureEntry';
 
-const entry = getFeatureEntry(
+const entry = makeFeatureEntry(
   <%= (viewConfig && viewConfig.parts.includes('containers')) ? 'containers' : 'null' %>, <%= reduxConfig ? 'actions, selectors,' : 'null, null,' %>
 <% if (reduxConfig) { -%>
   {
