@@ -10,6 +10,22 @@ const styles = ({ extra: theme }: Theme) => ({
     backgroundColor: theme.colors.white,
   }),
 
+  cell: rule({
+    padding: '1.875rem 0',
+
+    '&:last-child': {
+      paddingRight: '4.625rem',
+    },
+  }),
+
+  header: rule({
+    backgroundColor: 'transparent',
+  }),
+
+  row: rule({
+    boxShadow: '0 1px 7px 0 rgba(184, 184, 184, 0.5)',
+  }),
+
 });
 
 export const provideStyles = withStyles(styles);

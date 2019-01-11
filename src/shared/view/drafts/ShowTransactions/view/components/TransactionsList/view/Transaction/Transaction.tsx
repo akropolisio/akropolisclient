@@ -37,24 +37,24 @@ class Transaction extends React.PureComponent<IProps> {
 
   public renderMetrics() {
     const { classes, transaction } = this.props;
-    const metricKeys = Object.keys(transaction)
-      .filter(key => !hiddenMetrics.includes(key));
 
-    const labels = metricKeys.map((key: keyof ITransaction) => {
-      const _transaction = transactionFields.find(t => t.id === key);
-      const metric = <div key={key} className={classes.metricLabel}>{_transaction && _transaction.label}</div>;
-      return key === 'date' ? <Adaptive key={key} from="sm">{metric}</Adaptive> : metric;
-    });
+    const metrics = Object.keys(transaction)
+      .filter(key => !hiddenMetrics.includes(key))
+      .map((key: keyof ITransaction) => {
+        const _transaction = transactionFields.find(t => t.id === key);
+        const metric = <div key={key} className={classes.metricLabel}>{_transaction && _transaction.label}</div>;
+        const labelElement = key === 'date' ? <Adaptive key={key} from="sm">{metric}</Adaptive> : metric;
 
-    const values = metricKeys.map((key: keyof ITransaction) => {
-      const value = <div key={key} className={classes.metricValue}>{transaction[key]}</div>;
-      return key === 'date' ? <Adaptive key={key} from="sm">{value}</Adaptive> : value;
-    });
+        const value = <div key={key} className={classes.metricValue}>{transaction[key]}</div>;
+        const valueElement = key === 'date' ? <Adaptive key={key} from="sm">{value}</Adaptive> : value;
+
+        return { label: labelElement, value: valueElement };
+      });
 
     return (
       <div className={classes.metrics}>
-        <div className={classes.metricsLabels}>{labels}</div>
-        <div className={classes.metricsValues}>{values}</div>
+        <div className={classes.metricsLabels}>{metrics.map(m => m.label)}</div>
+        <div className={classes.metricsValues}>{metrics.map(m => m.value)}</div>
       </div>);
   }
 }
