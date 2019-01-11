@@ -17,7 +17,10 @@ function configureStore(): IStoreData {
   const middlewares: Middleware[] = [sagaMiddleware];
 
   const isBrowser = typeof window !== 'undefined';
-  const composeEnhancers = isBrowser && process.env.NODE_ENV === 'development' ? composeWithDevTools({}) : compose;
+  const composeEnhancers = isBrowser && process.env.NODE_ENV === 'development'
+    // ? composeWithDevTools({ trace: true, traceLimit: 25 } as {})
+    ? composeWithDevTools({})
+    : compose;
 
   const initialAppState: IAppReduxState | undefined = isBrowser ? window.__data : undefined;
 

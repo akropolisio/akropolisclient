@@ -25,7 +25,7 @@ const rowItems: IMenuItem[] = [
 ];
 
 const columnItems: IMenuItem[] = rowItems.concat([
-  { label: tKeys.shared.menu.profile.getKey(), to: routes.demo.profile.getRedirectPath() },
+  { label: tKeys.shared.menu.profile.getKey(), to: routes.profile.getRedirectPath() },
 ]);
 
 const itemsByType: Record<IProps['viewType'], IMenuItem[]> = {

@@ -1,18 +1,22 @@
 import * as React from 'react';
 import { bind } from 'decko';
-import { withRouter, RouteComponentProps, Route } from 'react-router';
+import { RouteComponentProps, Route } from 'react-router';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { Logo } from 'modules/shared';
 import routes from 'modules/routes';
-import { tKeys, i18nConnect, ITranslateProps } from 'services/i18n';
+
 import { Adaptive } from 'services/adaptability';
+import { tKeys, i18nConnect, ITranslateProps } from 'services/i18n';
 import { SignTransactionButton } from 'services/signTransaction';
+import * as userService from 'services/user';
 import { SignUpModal } from 'features/signUp';
 
 import { UserRole } from 'shared/types/models';
 import { Button } from 'shared/view/elements';
 import { withComponent } from 'shared/helpers/react';
+import { InjectedAuthRouterProps } from 'shared/helpers/authWrapper';
 
 import { SelectRole } from './components';
 import { StylesProps, provideStyles } from './LoginForm.style';
@@ -21,7 +25,15 @@ const LinkButton = withComponent(Link)(Button);
 
 const tKeysAuth = tKeys.modules.auth;
 
-type IProps = RouteComponentProps<{ role: UserRole }> & StylesProps & ITranslateProps;
+type IActionProps = typeof mapDispatch;
+
+type IProps =
+  & IActionProps & StylesProps & ITranslateProps
+  & InjectedAuthRouterProps & RouteComponentProps<{ role: UserRole }>;
+
+const mapDispatch = {
+  completeAuthentication: userService.actions.completeAuthentication,
+};
 
 class LoginForm extends React.PureComponent<IProps> {
 
@@ -81,14 +93,19 @@ class LoginForm extends React.PureComponent<IProps> {
 
   @bind
   private onSignInSuccess() {
-    // do something
+    const { match, completeAuthentication } = this.props;
+    completeAuthentication(match.params.role);
   }
 
   @bind
   private onSignUpSuccess() {
     this.onSignUpClose();
-    // do something
+    this.onSignInSuccess();
   }
 }
 
-export default withRouter(i18nConnect(provideStyles(LoginForm)));
+export default (
+  connect(null, mapDispatch)(
+    i18nConnect(provideStyles(LoginForm)),
+  )
+);
