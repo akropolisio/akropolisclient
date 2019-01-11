@@ -3,20 +3,7 @@ import { Table, TableBody, TableRow, TableCell, TableHead, TableHeadCell } from 
 
 import TableSortHead from './view/TableSortHead/TableSortHead';
 import { ITransaction } from '../../../namespace';
-
-interface IColumn {
-  id: keyof ITransaction;
-  label: string;
-}
-
-const columnsMocks: IColumn[] = [
-  { id: 'date', label: 'Date' },
-  { id: 'fundName', label: 'Fund name' },
-  { id: 'sender', label: 'Sender' },
-  { id: 'receiver', label: 'Receiver' },
-  { id: 'type', label: 'Type' },
-  { id: 'amount', label: 'Amount' },
-];
+import { transactionFields } from '../../../constants';
 
 interface IState {
   order: 'desc' | 'asc';
@@ -37,14 +24,14 @@ class CompletedTransactions extends React.PureComponent<IProps, IState> {
       <Table>
         <TableHead>
           <TableHeadCell />
-          {columnsMocks.map((column, i) => (
+          {transactionFields.map((column, i) => (
             <TableHeadCell
               key={i}
             >
               <TableSortHead
                 order={orderBy === column.id ? order : undefined}
                 active={orderBy === column.id}
-                align={i === columnsMocks.length - 1 ? 'right' : 'left'}
+                align={i === transactionFields.length - 1 ? 'right' : 'left'}
                 onClick={this.sortMethod.bind(this, column.id)}
               >
                 {column.label}
@@ -61,7 +48,7 @@ class CompletedTransactions extends React.PureComponent<IProps, IState> {
                   key={k}
                   align={k === Object.keys(row).length - 1 ? 'right' : 'left'}
                 >
-                  {row[key]}
+                  {row[key as keyof ITransaction]}
                 </TableCell>
               ))}
             </TableRow>))}

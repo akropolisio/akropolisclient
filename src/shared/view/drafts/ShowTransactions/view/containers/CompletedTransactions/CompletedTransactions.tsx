@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { Adaptive } from 'services/adaptability';
 
-import { TransactionsTable } from '../../components';
+import { TransactionsTable, TransactionsList } from '../../components';
 import { ITransaction } from '../../../namespace';
 import { provideStyles, StylesProps } from './CompletedTransactions.style';
 
@@ -12,7 +12,7 @@ const transactionMock: ITransaction = {
   sender: 'Pavel Klimov',
   receiver: 'Reciever',
   type: 'Вложение в ПФ',
-  amount: '343.343',
+  amount: 343.343,
 };
 
 const mocks = [transactionMock, transactionMock, transactionMock, transactionMock, transactionMock];
@@ -39,6 +39,9 @@ class CompletedTransactions extends React.PureComponent<StylesProps, IState> {
       <div className={classes.root}>
         <Adaptive from="md">
           <TransactionsTable transactions={mocks} />
+        </Adaptive>
+        <Adaptive to="md">
+          <TransactionsList transactions={mocks} />
         </Adaptive>
       </div>
     );
