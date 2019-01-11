@@ -13,7 +13,10 @@ const styles = ({ extra: theme }: Theme) => ({
       right: -1,
       bottom: -1,
       left: -1,
-      zIndex: theme.zIndex.afterContext(theme.zIndex.newContext),
+      zIndex: styledBy<IProps, 'type'>('type', {
+        default: theme.zIndex.modal,
+        signTransaction: theme.zIndex.signTransactionsModal,
+      }, 'default'),
 
       '&:empty': {
         display: 'none',
@@ -22,10 +25,6 @@ const styles = ({ extra: theme }: Theme) => ({
   }),
   overlay: rule({
     position: 'relative',
-    zIndex: styledBy<IProps, 'type'>('type', {
-      default: theme.zIndex.modal,
-      signTransaction: theme.zIndex.signTransactionsModal,
-    }, 'default'),
     minHeight: '100%',
     minWidth: '100%',
     padding: 1,
