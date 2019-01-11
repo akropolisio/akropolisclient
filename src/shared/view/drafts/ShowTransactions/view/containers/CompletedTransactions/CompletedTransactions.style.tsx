@@ -1,11 +1,7 @@
-import { withStyles, Theme, WithStyles } from 'shared/styles';
+import { withStyles, WithStyles } from 'shared/styles';
 
-import { rule } from 'shared/helpers/style';
-
-const styles = ({ extra: theme }: Theme) => ({
-  root: rule({
-
-  }),
+const styles = () => ({
+  root: {},
 
 });
 

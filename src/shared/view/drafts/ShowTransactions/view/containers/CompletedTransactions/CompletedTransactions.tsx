@@ -17,15 +17,6 @@ const transactionMock: ITransaction = {
 
 const mocks = [transactionMock, transactionMock, transactionMock, transactionMock, transactionMock];
 
-const columnsMocks = [
-  { id: 'date', label: 'Date' },
-  { id: 'fundName', label: 'Fund name' },
-  { id: 'sender', label: 'Sender' },
-  { id: 'reciever', label: 'Reciever' },
-  { id: 'type', label: 'Type' },
-  { id: 'amount', label: 'Amount' },
-];
-
 interface IState {
   order: 'desc' | 'asc';
   orderBy: keyof ITransaction;
