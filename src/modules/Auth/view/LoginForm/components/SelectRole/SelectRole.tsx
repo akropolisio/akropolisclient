@@ -25,7 +25,7 @@ const roles: UserRole[] = ['beneficiary', 'fundOwner', 'boardMember', 'assetMana
 class SelectRole extends React.PureComponent<IProps> {
 
   public render() {
-    const { classes, t, match: { params: { role: selectedRole } } } = this.props;
+    const { classes, t, match: { params: { role: selectedRole } }, location } = this.props;
 
     return (
       <>
@@ -40,7 +40,7 @@ class SelectRole extends React.PureComponent<IProps> {
             }}
           >
             {roles.map(role => (
-              <NavMenuItem to={routes.auth.role.getRedirectPath({ role })} key={role} value={role}>
+              <NavMenuItem to={routes.auth.role.getRedirectPath({ role }) + location.search} key={role} value={role}>
                 {t(tKeysAuth.roles.title[role].getKey())}
                 <Tooltip placement="top" title={t(tKeysAuth.roles.hint[role].getKey())}>
                   <Question className={cn(classes.rightIcon, classes.inMenu)} />
@@ -54,7 +54,7 @@ class SelectRole extends React.PureComponent<IProps> {
           <ToggleButtonGroup value={selectedRole} exclusive nullable={false} >
             {roles.map(role => (
               <NavToggleButton
-                to={routes.auth.role.getRedirectPath({ role })}
+                to={routes.auth.role.getRedirectPath({ role }) + location.search}
                 className={classes.roleButton}
                 value={role}
                 key={role}

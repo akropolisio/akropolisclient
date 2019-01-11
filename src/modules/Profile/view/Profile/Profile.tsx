@@ -4,8 +4,10 @@ import { Link } from 'react-router-dom';
 
 import routes from 'modules/routes';
 import { tKeys as tkeysAll, i18nConnect, ITranslateProps } from 'services/i18n';
-import { ToggleButtonGroup, ToggleButton } from 'shared/view/elements';
+
 import { withComponent } from 'shared/helpers/react';
+import { InjectedAuthRouterProps } from 'shared/helpers/authWrapper';
+import { ToggleButtonGroup, ToggleButton } from 'shared/view/elements';
 import { EditMainInfo, Contributors } from 'shared/view/drafts';
 
 import { StylesProps, provideStyles } from './Profile.style';
@@ -29,7 +31,7 @@ const links: ISectionLink[] = [
   { section: 'heirs', title: tKeys.heirs.getKey(), disabled: true },
 ];
 
-type IProps = RouteComponentProps<{ section: Section }> & StylesProps & ITranslateProps;
+type IProps = InjectedAuthRouterProps & RouteComponentProps<{ section: Section }> & StylesProps & ITranslateProps;
 
 class Profile extends React.PureComponent<IProps> {
 

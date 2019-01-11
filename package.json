@@ -22,7 +22,8 @@
     "analyze:dev": "better-npm-run analyze:dev",
     "analyze:prod": "better-npm-run analyze:prod",
     "yeoman": "better-npm-run initial:yeoman",
-    "stylelint-autofix": "./node_modules/.bin/stylelint \"./src/**/*.scss\" --fix"
+    "stylelint-autofix": "./node_modules/.bin/stylelint \"./src/**/*.scss\" --fix",
+    "heroku-postbuild":"npm run build:prod"
   },
   "betterScripts": {
     "initial:yeoman": {
@@ -172,7 +173,7 @@
     "mini-css-extract-plugin": "^0.4.5",
     "react-hot-loader": "^4.3.12",
     "react-jss-hmr": "^1.0.0",
-    "redux-devtools-extension": "^2.13.5",
+    "redux-devtools-extension": "^2.13.7",
     "sinon": "^7.1.1",
     "style-loader": "^0.21.0",
     "stylelint": "^9.6.0",
@@ -188,7 +189,7 @@
     "webpack": "^4.26.1",
     "webpack-bundle-analyzer": "^3.0.3",
     "webpack-cli": "^3.1.2",
-    "webpack-dev-server": "^3.1.10",
+    "webpack-dev-server": "^3.1.14",
     "webpack-hot-middleware": "^2.24.3",
     "webpack-isomorphic-dev-middleware": "^4.1.0",
     "webpack-node-externals": "^1.7.2",
@@ -207,7 +208,7 @@
     "@types/node-polyglot": "^0.4.31",
     "@types/prop-types": "^15.5.6",
     "@types/qrcode.react": "^0.8.1",
-    "@types/ramda": "^0.25.45",
+    "@types/ramda": "^0.25.46",
     "@types/react": "^16.7.17",
     "@types/react-dom": "^16.0.11",
     "@types/react-helmet": "^5.0.7",
@@ -218,6 +219,7 @@
     "@types/react-router-dom": "^4.3.1",
     "@types/react-select": "^1.2.6",
     "@types/react-text-mask": "^5.4.2",
+    "@types/redux-auth-wrapper": "^2.0.9",
     "@types/serialize-javascript": "^1.5.0",
     "@types/stylelint": "^9.4.1",
     "@types/uuid": "^3.4.4",
@@ -273,6 +275,7 @@
     "react-select": "^1.2.1",
     "react-text-mask": "^5.4.3",
     "redux": "^4.0.1",
+    "redux-auth-wrapper": "^2.0.3",
     "redux-make-communication": "^1.0.1",
     "redux-saga": "^0.16.2",
     "reflect-metadata": "^0.1.10",

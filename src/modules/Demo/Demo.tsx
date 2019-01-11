@@ -1,7 +1,9 @@
 import * as React from 'react';
+import { compose } from 'redux';
 import { Route, Redirect, Switch } from 'react-router-dom';
 
 import routes from 'modules/routes';
+import { isLoggedRedirect, makeRedirectByRole } from 'modules/shared/checkAuth';
 import { IModule } from 'shared/types/app';
 
 import DemoGUI from './view/DemoGUI/DemoGUI';
@@ -10,6 +12,10 @@ import DemoTranslations from './view/DemoTranslations/DemoTranslations';
 import DemoAdaptability from './view/DemoAdaptability/DemoAdaptability';
 import DemoDashboard from './view/DemoDashboard/DemoDashboard';
 import FundsMarketplace from './view/FundsMarketplace/FundsMarketplace';
+import DemoAuthRedirect from './view/DemoAuthRedirect/DemoAuthRedirect';
+
+const rolesRedirect = makeRedirectByRole(['beneficiary', 'boardMember']);
+const demoAuthRedirect = compose(isLoggedRedirect, rolesRedirect);
 
 const DemoModule: IModule = {
   getRoutes() {
@@ -22,6 +28,7 @@ const DemoModule: IModule = {
           <Route path={routes.demo.translations.getRoutePath()} component={DemoTranslations} />
           <Route path={routes.demo.adaptability.getRoutePath()} component={DemoAdaptability} />
           <Route path={routes.demo.marketplace.getRoutePath()} component={FundsMarketplace} />
+          <Route path={routes.demo.authRedirect.getRoutePath()} component={demoAuthRedirect(DemoAuthRedirect)} />
           <Redirect to={routes.demo.gui.getRedirectPath()} />
         </Switch>
       </Route>
