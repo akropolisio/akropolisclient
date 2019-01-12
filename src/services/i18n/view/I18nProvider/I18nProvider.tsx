@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 import * as Polyglot from 'node-polyglot';
 
 import { IAppReduxState } from 'shared/types/app';
@@ -20,7 +21,7 @@ interface IStateProps {
 
 type IProps = IStateProps & IOwnProps;
 
-class I18nProvider extends React.PureComponent<IProps> {
+class I18nProvider extends React.Component<IProps> {
   public polyglot: Polyglot = new Polyglot({
     locale: DEFAULT_LANGUAGE,
     phrases: this.props.phrasesByLocale[DEFAULT_LANGUAGE],
@@ -59,7 +60,9 @@ function mapState(state: IAppReduxState) {
 }
 
 export default (
-  withProps(
-    connect(mapState)(I18nProvider), { phrasesByLocale: phrases },
+  withRouter(// needed for rerendering on route change
+    withProps(
+      connect(mapState)(I18nProvider), { phrasesByLocale: phrases },
+    ),
   )
 );

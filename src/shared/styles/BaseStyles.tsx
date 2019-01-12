@@ -1,4 +1,4 @@
-import { withStyles, Theme } from 'shared/styles';
+import { withStyles, Theme } from './jss';
 import { rule } from 'shared/helpers/style';
 import './fonts/OpenSans/index.scss';
 

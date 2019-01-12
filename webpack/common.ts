@@ -5,8 +5,10 @@ import * as CleanWebpackPlugin from 'clean-webpack-plugin';
 import * as MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import * as ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
-import * as threadLoader from 'thread-loader';
 import * as FaviconsWebpackPlugin from 'favicons-webpack-plugin';
+import * as CircularDependencyPlugin from 'circular-dependency-plugin';
+
+import * as threadLoader from 'thread-loader';
 import * as ReactJssHmrPlugin from 'react-jss-hmr/webpack';
 import * as postcssSCSS from 'postcss-scss';
 import * as autoprefixer from 'autoprefixer';
@@ -51,6 +53,10 @@ export const getCommonPlugins: (type: BuildType) => webpack.Plugin[] = (type) =>
   }),
   new FaviconsWebpackPlugin(path.resolve(__dirname, '..', 'src', 'assets', 'favicon.png')),
   new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, new RegExp(LANGUAGES.join('|'))),
+  new CircularDependencyPlugin({
+    exclude: /node_modules/,
+    failOnError: true,
+  }),
 ]
   .concat(type !== 'server' && !withoutTypeCheking ? (
     new ForkTsCheckerWebpackPlugin({

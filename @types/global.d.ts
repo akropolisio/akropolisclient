@@ -40,3 +40,4 @@ declare module 'doiuse';
 declare module 'webpack-isomorphic-dev-middleware';
 declare module 'thread-loader';
 declare module 'react-jss-hmr/webpack';
+declare module 'circular-dependency-plugin';
