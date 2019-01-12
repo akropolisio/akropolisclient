@@ -26,6 +26,12 @@
     "heroku-postbuild": "npm run build:prod"
   },
   "betterScripts": {
+    "custom-node": {
+      "command": "node --max_old_space_size=4096 -r ts-node/register -r tsconfig-paths/register"
+    },
+    "custom-node:debug": {
+      "command": "node --inspect --inspect-brk --max_old_space_size=4096 -r ts-node/register -r tsconfig-paths/register"
+    },
     "initial:yeoman": {
       "command": "sh ./generators/initializationGenerator.sh",
       "env": {
@@ -33,7 +39,7 @@
       }
     },
     "server:dev": {
-      "command": "node -r ts-node/register ./server/index.ts",
+      "command": "bnr custom-node ./server/index.ts",
       "env": {
         "PORT": 8080,
         "TS_NODE_FILES": true,
@@ -43,7 +49,7 @@
       }
     },
     "server:dev:debug": {
-      "command": "node --inspect --inspect-brk -r ts-node/register ./server/index.ts",
+      "command": "bnr custom-node:debug ./server/index.ts",
       "env": {
         "PORT": 8080,
         "TS_NODE_FILES": true,
@@ -53,7 +59,7 @@
       }
     },
     "server:prod": {
-      "command": "node -r ts-node/register ./server/index.ts",
+      "command": "bnr custom-node ./server/index.ts",
       "env": {
         "PORT": 8080,
         "TS_NODE_FILES": true,
@@ -62,7 +68,7 @@
       }
     },
     "server:prod:debug": {
-      "command": "node --inspect --inspect-brk -r ts-node/register ./server/index.ts",
+      "command": "bnr custom-node:debug ./server/index.ts",
       "env": {
         "PORT": 8080,
         "TS_NODE_FILES": true,
@@ -71,7 +77,7 @@
       }
     },
     "watch:dev": {
-      "command": "node --max_old_space_size=4096 -r ts-node/register -r tsconfig-paths/register node_modules/.bin/webpack-dev-server --watch --progress --colors --config webpack/dev.config.ts",
+      "command": "bnr custom-node node_modules/.bin/webpack-dev-server --watch --progress --colors --config webpack/dev.config.ts",
       "env": {
         "NODE_ENV": "development",
         "TS_NODE_FILES": true,
@@ -80,7 +86,7 @@
       }
     },
     "watch:prod": {
-      "command": "node --max_old_space_size=4096 node_modules/.bin/webpack-dev-server --client-log-level info --watch --progress --colors --config webpack/prod.config.ts",
+      "command": "bnr custom-node node_modules/.bin/webpack-dev-server --client-log-level info --watch --progress --colors --config webpack/prod.config.ts",
       "env": {
         "NODE_ENV": "production",
         "TS_NODE_FILES": true,
@@ -89,7 +95,7 @@
       }
     },
     "watch:dev:fast": {
-      "command": "node --max_old_space_size=4096 -r ts-node/register -r tsconfig-paths/register node_modules/.bin/webpack-dev-server --watch --progress --colors --config webpack/dev.config.ts",
+      "command": "bnr custom-node node_modules/.bin/webpack-dev-server --watch --progress --colors --config webpack/dev.config.ts",
       "env": {
         "NODE_ENV": "development",
         "TS_NODE_FILES": true,
@@ -99,7 +105,7 @@
       }
     },
     "analyze:dev": {
-      "command": "node --max_old_space_size=4096 node_modules/.bin/webpack --progress --config webpack/dev.config.ts",
+      "command": "bnr custom-node node_modules/.bin/webpack --progress --config webpack/dev.config.ts",
       "env": {
         "BUNDLE_ANALYZE_MODE": true,
         "TS_NODE_FILES": true,
@@ -108,7 +114,7 @@
       }
     },
     "analyze:prod": {
-      "command": "node --max_old_space_size=4096 node_modules/.bin/webpack --progress --config webpack/prod.config.ts",
+      "command": "bnr custom-node node_modules/.bin/webpack --progress --config webpack/prod.config.ts",
       "env": {
         "BUNDLE_ANALYZE_MODE": true,
         "TS_NODE_FILES": true,
@@ -117,7 +123,7 @@
       }
     },
     "build:dev": {
-      "command": "node --max_old_space_size=4096 node_modules/.bin/webpack --progress --colors --config webpack/dev.config.ts",
+      "command": "bnr custom-node node_modules/.bin/webpack --progress --colors --config webpack/dev.config.ts",
       "env": {
         "NODE_ENV": "development",
         "TS_NODE_FILES": true,
@@ -125,7 +131,7 @@
       }
     },
     "build:prod": {
-      "command": "node --max_old_space_size=4096 node_modules/.bin/webpack --progress --colors --config webpack/prod.config.ts",
+      "command": "bnr custom-node node_modules/.bin/webpack --progress --colors --config webpack/prod.config.ts",
       "env": {
         "NODE_ENV": "production",
         "TS_NODE_FILES": true,
