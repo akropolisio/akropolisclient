@@ -71,7 +71,7 @@
       }
     },
     "watch:dev": {
-      "command": "node --max_old_space_size=4096 node_modules/.bin/webpack-dev-server --watch --progress --colors --config webpack/dev.config.ts",
+      "command": "node --max_old_space_size=4096 -r ts-node/register -r tsconfig-paths/register node_modules/.bin/webpack-dev-server --watch --progress --colors --config webpack/dev.config.ts",
       "env": {
         "NODE_ENV": "development",
         "TS_NODE_FILES": true,
@@ -89,7 +89,7 @@
       }
     },
     "watch:dev:fast": {
-      "command": "node --max_old_space_size=4096 node_modules/.bin/webpack-dev-server --watch --progress --colors --config webpack/dev.config.ts",
+      "command": "node --max_old_space_size=4096 -r ts-node/register -r tsconfig-paths/register node_modules/.bin/webpack-dev-server --watch --progress --colors --config webpack/dev.config.ts",
       "env": {
         "NODE_ENV": "development",
         "TS_NODE_FILES": true,
