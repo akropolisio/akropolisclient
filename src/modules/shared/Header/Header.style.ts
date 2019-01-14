@@ -61,6 +61,7 @@ const styles = ({ extra: theme }: Theme) => ({
   profileComponent: rule({
     marginLeft: 'auto',
     display: 'none',
+    cursor: 'pointer',
 
     [theme.breakpoints.up('sm')]: rule({
       display: 'block',

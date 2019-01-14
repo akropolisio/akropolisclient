@@ -29,6 +29,7 @@ const styles = ({ extra: theme }: Theme) => ({
   }),
 
   metric: rule({
+    overflow: 'hidden',
     position: 'relative',
     minHeight: '7.5rem',
     flexGrow: 1,

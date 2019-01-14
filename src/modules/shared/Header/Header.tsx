@@ -14,7 +14,8 @@ import Logo from '../Logo/Logo';
 import Menu from './Menu/Menu';
 import { provideStyles, StylesProps } from './Header.style';
 
-const brandRedirectPath = routes.demo.getRoutePath();
+const brandRedirectPath = routes.demo.dashboard.getRoutePath();
+const profileRedirectPath = routes.profile.getRoutePath();
 
 type IProps = StylesProps & RouteComponentProps;
 
@@ -45,7 +46,7 @@ class Header extends React.PureComponent<IProps, IState> {
           <div className={classes.desktopMenu}>
             <Menu viewType="row" />
           </div>
-          <div className={classes.profileComponent}><ProfileMenu /></div>
+          <div onClick={this.redirectToProfile} className={classes.profileComponent}><ProfileMenu /></div>
           <IconButton className={classes.toggleMenuButton} onClick={this.toggleMenu}>
             {isMenuOpen ? <Cross /> : <MenuIcon />}
           </IconButton>
@@ -60,6 +61,11 @@ class Header extends React.PureComponent<IProps, IState> {
   @bind
   public toggleMenu() {
     this.setState((prevState) => ({ isMenuOpen: !prevState.isMenuOpen }));
+  }
+
+  @bind
+  public redirectToProfile() {
+    this.props.history.push(profileRedirectPath);
   }
 }
 
