@@ -2,9 +2,9 @@ import * as React from 'react';
 import { FieldRenderProps } from 'react-final-form';
 import { GetProps } from '_helpers';
 
+import { ITranslateProps, i18nConnect } from 'services/i18n';
 import { NumberInput } from 'shared/view/elements';
 import { getFieldWithComponent } from 'shared/helpers/react';
-import { ITranslateProps, i18nConnect } from 'services/i18n';
 
 type IProps = GetProps<typeof NumberInput> & FieldRenderProps & ITranslateProps;
 

@@ -1,11 +1,12 @@
 import * as React from 'react';
 
-import { StylesProps, provideStyles } from './GetInFundModal.style';
-import { Modal } from 'shared/view/components';
 import { ITranslateProps, i18nConnect, tKeys } from 'services/i18n';
-import GetInFundForm from '../GetInFundForm/GetInFundForm';
 import { IFund } from 'shared/types/models';
 import { FundLogo, Fund } from 'shared/view/model';
+import { Modal } from 'shared/view/components';
+
+import GetInFundForm from '../GetInFundForm/GetInFundForm';
+import { StylesProps, provideStyles } from './GetInFundModal.style';
 
 interface IProps {
   fund: IFund;
@@ -26,7 +27,9 @@ class GetInFundModal extends React.PureComponent<IProps & StylesProps & ITransla
         title={t(tKeys.features.getInFund.modalTitle.getKey())}
       >
         <div className={classes.root}>
-          <div className={classes.form}><GetInFundForm fund={fund} onSuccess={onSuccess} onCancel={onClose} /></div>
+          <div className={classes.form}>
+            <GetInFundForm fund={fund} onSuccess={onSuccess} onCancel={onClose} />
+          </div>
           <div className={classes.fund}>
             <div className={classes.logo}>
               <FundLogo fund={fund} />

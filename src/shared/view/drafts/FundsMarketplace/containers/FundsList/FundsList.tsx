@@ -1,11 +1,11 @@
 import * as React from 'react';
 
 import { i18nConnect, tKeys, ITranslateProps } from 'services/i18n';
+import { IFund } from 'shared/types/models';
 import { Search } from 'shared/view/elements/Icons';
 
-import { StylesProps, provideStyles } from './FundsList.style';
 import FundCard from '../../components/FundCard/FundCard';
-import { IFund } from 'shared/types/models';
+import { StylesProps, provideStyles } from './FundsList.style';
 
 type IProps = StylesProps & ITranslateProps;
 

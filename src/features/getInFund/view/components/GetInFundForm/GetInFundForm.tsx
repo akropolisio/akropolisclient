@@ -32,10 +32,6 @@ interface IOwnProps {
   onCancel(): void;
 }
 
-interface IState {
-  isOpen: boolean;
-}
-
 type IProps = IOwnProps & StylesProps & ITranslateProps;
 
 const initialValues: IFormData = {
@@ -69,8 +65,7 @@ function validateForm(values: IFormData): Partial<MarkAs<ITranslateKey, IFormDat
   };
 }
 
-class GetInFundForm extends React.PureComponent<IProps, IState> {
-  public state: IState = { isOpen: false };
+class GetInFundForm extends React.PureComponent<IProps> {
   public render() {
     const { classes, onSuccess, t, onCancel } = this.props;
 

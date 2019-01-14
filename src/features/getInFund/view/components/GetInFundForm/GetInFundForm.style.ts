@@ -2,15 +2,16 @@ import { withStyles, Theme, WithStyles } from 'shared/styles';
 import { rule } from 'shared/helpers/style';
 
 const styles = ({ extra: theme }: Theme) => ({
-  root: rule({
+  root: rule({}),
 
-  }),
   field: rule({
     marginBottom: theme.spacing.unit * 3,
   }),
+
   slider: rule({
     marginTop: theme.spacing.unit * 2,
   }),
+
   actions: rule({
     display: 'flex',
     flexDirection: 'column',
@@ -20,6 +21,7 @@ const styles = ({ extra: theme }: Theme) => ({
       flexDirection: 'row',
     },
   }),
+
   action: rule({
     flexGrow: 1,
     marginBottom: theme.spacing.unit,

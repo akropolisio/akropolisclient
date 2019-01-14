@@ -1,8 +1,8 @@
 import * as React from 'react';
 
-import { StylesProps, provideStyles } from './Fund.style';
-import { IFund } from 'shared/types/models';
 import { ITranslateProps, i18nConnect, tKeys as allKeys } from 'services/i18n';
+import { IFund } from 'shared/types/models';
+import { StylesProps, provideStyles } from './Fund.style';
 
 const tKeys = allKeys.components.fund;
 

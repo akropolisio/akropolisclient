@@ -1,12 +1,12 @@
 import * as React from 'react';
 
 import { i18nConnect, tKeys, ITranslateProps } from 'services/i18n';
+import { AsyncGetInFundButton } from 'features/getInFund';
 import { IFund } from 'shared/types/models';
+import { Fund, FundLogo } from 'shared/view/model';
 import { Button } from 'shared/view/elements';
 
 import { StylesProps, provideStyles } from './FundCard.style';
-import { AsyncGetInFundButton } from 'features/getInFund';
-import { Fund, FundLogo } from 'shared/view/model';
 
 interface IOwnProps {
   fund: IFund;
@@ -42,6 +42,7 @@ class FundCard extends React.PureComponent<IProps> {
                 fund={fund}
                 variant="contained"
                 color="primary"
+                onSuccess={console.log.bind(null, '>> Get in fund succeeded')}
               />
             )}
         </div>

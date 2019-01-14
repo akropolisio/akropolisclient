@@ -1,13 +1,12 @@
 import * as React from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter, StaticRouter } from 'react-router-dom';
+import { MuiPickersUtilsProvider } from 'material-ui-pickers';
+import { MuiThemeProvider } from '@material-ui/core/styles';
+import MomentUtils from '@date-io/moment';
 import 'normalize.css';
 
-import { MuiThemeProvider } from '@material-ui/core/styles';
-import { MuiPickersUtilsProvider } from 'material-ui-pickers';
-import MomentUtils from '@date-io/moment';
 import { I18nProvider } from 'services/i18n';
-
 import { IAppData, IModule, IJssDependencies } from 'shared/types/app';
 import { JssProvider, SheetsRegistry, BaseStyles } from 'shared/styles';
 

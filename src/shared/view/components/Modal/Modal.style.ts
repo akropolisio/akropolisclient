@@ -1,5 +1,4 @@
 import { withStyles, Theme, WithStyles } from 'shared/styles';
-
 import { rule, styledBy } from 'shared/helpers/style';
 
 import { IProps } from './Modal';

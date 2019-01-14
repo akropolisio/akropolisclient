@@ -6,10 +6,12 @@ const styles = ({ extra: theme }: Theme) => ({
     display: 'flex',
     padding: `${theme.spacing.unit * 4}px`,
   }),
+
   form: rule({
     width: 0,
     flexGrow: 5,
   }),
+
   fund: rule({
     display: 'none',
     width: 0,
@@ -20,6 +22,7 @@ const styles = ({ extra: theme }: Theme) => ({
       display: 'block',
     },
   }),
+
   logo: rule({
     display: 'flex',
     justifyContent: 'center',

@@ -7,9 +7,9 @@ import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import * as ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import * as FaviconsWebpackPlugin from 'favicons-webpack-plugin';
 import * as CircularDependencyPlugin from 'circular-dependency-plugin';
+import * as ReactJssHmrPlugin from 'react-jss-hmr/webpack';
 
 import * as threadLoader from 'thread-loader';
-import * as ReactJssHmrPlugin from 'react-jss-hmr/webpack';
 import * as postcssSCSS from 'postcss-scss';
 import * as autoprefixer from 'autoprefixer';
 import * as stylelint from 'stylelint';

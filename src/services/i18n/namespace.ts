@@ -7,7 +7,6 @@ export interface IReduxState {
   };
 }
 
-// tslint:disable-next-line:max-line-length
 type CustomTranslateFunction = (phrase: IPhraseWithOptions) => string;
 interface IPhraseWithOptions {
   key: string;
