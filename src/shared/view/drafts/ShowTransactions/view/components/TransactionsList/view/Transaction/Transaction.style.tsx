@@ -24,6 +24,7 @@ const styles = ({ extra: theme }: Theme) => ({
   header: rule({
     composes: '$text',
     display: 'flex',
+    alignItems: 'center',
     paddingBottom: '1.125rem',
     borderBottom: `solid ${hexToRGBA(theme.colors.dustyGray, 0.33)} 1px`,
 
@@ -42,6 +43,7 @@ const styles = ({ extra: theme }: Theme) => ({
   }),
 
   date: rule({
+    fontSize: '0.8125rem',
     whiteSpace: 'nowrap',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
