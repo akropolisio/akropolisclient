@@ -7,6 +7,7 @@ interface IProps {
   footerContent?: React.ReactNode;
   headerContent?: React.ReactNode;
   background?: 'primary' | 'unset';
+  fullHeight?: boolean;
 }
 
 function RowsLayout({ children, footerContent, headerContent, classes }: IProps & StylesProps) {

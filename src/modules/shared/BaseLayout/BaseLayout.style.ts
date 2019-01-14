@@ -6,6 +6,7 @@ const styles = (theme: Theme) => ({
     maxWidth: theme.extra.sizes.page.maxWidth,
     padding: theme.spacing.unit * 3,
     paddingTop: `calc(${theme.spacing.unit}px + ${theme.extra.sizes.header.minHeightMobile})`,
+    flexGrow: 1,
 
     [theme.extra.breakpoints.up('sm')]: {
       paddingTop: theme.spacing.unit * 3,

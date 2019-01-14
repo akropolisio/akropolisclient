@@ -1,41 +1,37 @@
 import * as React from 'react';
 
 import { i18nConnect, tKeys, ITranslateProps } from 'services/i18n';
+import { fundsMock } from 'shared/helpers/mocks';
 
 import { StylesProps, provideStyles } from './UserFunds.style';
-import { IUserFund } from '../../namespace';
-import FundCard from '../../components/FundCard/FundCard';
+import { FundCard, EmptyFunds } from '../../components';
 
-type IProps = StylesProps & ITranslateProps;
+interface IOwnProps {
+  onRedirectToMarketplace(): void;
+}
 
-const mocks = {
-  type: 'State pension', policy: '23313445',
-  pensionDate: 'Dec 2022', totalSum: 11343.31, incomeMonthly: 343.31,
-};
-const funds: IUserFund[] = [
-  { acronym: 'st', title: 'Standart life', ...mocks },
-  { acronym: 'th', title: 'The people’s pension', ...mocks },
-  { acronym: 'Zu', title: 'Zurich', ...mocks },
-  { acronym: 'Li', title: 'Libery pension', ...mocks },
-];
+type IProps = IOwnProps & StylesProps & ITranslateProps;
 
 const tKeysFunds = tKeys.features.funds;
 
 class UserFunds extends React.PureComponent<IProps> {
 
   public render() {
-    const { classes, t } = this.props;
+    const { classes, t, onRedirectToMarketplace } = this.props;
     return (
       <div className={classes.root}>
         <div className={classes.title}>
           {t(tKeysFunds.activeFunds.getKey())}
         </div>
         <div className={classes.content}>
-          {funds.map(fund => (
-            <div key={fund.title} className={classes.fundCard}>
-              <FundCard fund={fund} />
-            </div>
-          ))}
+          {fundsMock && fundsMock.length !== 0 ?
+            fundsMock.map(fund => (
+              <div key={fund.title} className={classes.fundCard}>
+                <FundCard fund={fund} />
+              </div>
+            )) :
+            <EmptyFunds onFindFund={onRedirectToMarketplace} />
+          }
         </div>
       </div>
     );
