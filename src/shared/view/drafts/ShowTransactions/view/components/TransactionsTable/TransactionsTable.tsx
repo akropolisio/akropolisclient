@@ -3,6 +3,7 @@ import { bind } from 'decko';
 
 import { Table, TableBody, TableRow, TableCell, TableHead } from 'shared/view/elements';
 import { i18nConnect, ITranslateProps, tKeys as tKeysAll } from 'services/i18n';
+import { toFixed } from 'shared/helpers/integer';
 
 import { ITransaction } from '../../../namespace';
 import TableSortHead from './view/TableSortHead/TableSortHead';
@@ -33,20 +34,19 @@ class CompletedTransactions extends React.PureComponent<IProps, IState> {
         <TableHead>
           <TableRow className={classes.header}>
             <TableCell />
-            {
-              rowKeys && rowKeys.map((key: keyof ITransaction, i) => (
-                <TableCell key={key}>
-                  <TableSortHead
-                    columnId={key}
-                    order={orderBy === key ? order : undefined}
-                    active={orderBy === key}
-                    align={i === rowKeys.length - 1 ? 'right' : 'left'}
-                    onClick={this.sortBy}
-                  >
-                    {t(tKeys[key] ? tKeys[key].getKey() : key)}
-                  </TableSortHead>
-                </TableCell>
-              ))}
+            {rowKeys && rowKeys.map((key: keyof ITransaction, i) => (
+              <TableCell key={key}>
+                <TableSortHead
+                  columnId={key}
+                  order={orderBy === key ? order : undefined}
+                  active={orderBy === key}
+                  align={i === rowKeys.length - 1 ? 'right' : 'left'}
+                  onClick={this.sortBy}
+                >
+                  {t(tKeys[key] ? tKeys[key].getKey() : key)}
+                </TableSortHead>
+              </TableCell>
+            ))}
           </TableRow>
         </TableHead>
         <TableBody>
@@ -60,7 +60,7 @@ class CompletedTransactions extends React.PureComponent<IProps, IState> {
                     align={k === rowKeys.length - 1 ? 'right' : 'left'}
                     className={classes.cell}
                   >
-                    {row[key]}
+                    {key === 'amount' ? toFixed(row[key], 3) : row[key]}
                   </TableCell>
                 ))}
               </TableRow>))}

@@ -6,6 +6,7 @@ import { IMetric } from '../../../namespace';
 import { provideStyles, StylesProps } from './Metric.style';
 import { Adaptive } from 'services/adaptability';
 import { Question, Arrow } from 'shared/view/elements/Icons';
+import { toFixed } from 'shared/helpers/integer';
 
 interface IOwnProps {
   metric: IMetric;
@@ -44,7 +45,7 @@ class Metric extends React.Component<IProps> {
               </Adaptive>
             }
           </div>
-          <div className={classes.value}>{`$${value.toFixed(3)}`}</div>
+          <div className={classes.value}>{`$${toFixed(value, 3)}`}</div>
           {variation && this.renderVariation(variation)}
         </div>
       </div>

@@ -14,11 +14,10 @@ interface ITableProps {
   separated?: boolean;
 
 }
-class Table extends React.PureComponent<ISharedProps & ITableProps> {
+class Table extends React.Component<ISharedProps & ITableProps> {
 
   public render() {
     const { classes, children, className, separated } = this.props;
-
     return (
       <table
         className={cn(
@@ -35,30 +34,22 @@ class Table extends React.PureComponent<ISharedProps & ITableProps> {
 
 const TableComponent = provideStyles(Table);
 
-export { TableComponent as Table };
-
-const TableHead = React.memo(provideStyles((props: MakeFnComponentProps<ISharedProps>) => {
-
+const TableHead = provideStyles((props: MakeFnComponentProps<ISharedProps>) => {
   return <thead className={props.className}>{props.children}</thead>;
-}));
+});
 
-const TableBody = React.memo(provideStyles((props: MakeFnComponentProps<ISharedProps>) => {
-
+const TableBody = provideStyles((props: MakeFnComponentProps<ISharedProps>) => {
   return <tbody className={props.className}>{props.children}</tbody>;
-}));
+});
 
-const TableRow = React.memo(provideStyles((props: MakeFnComponentProps<ISharedProps>) => {
-
+const TableRow = provideStyles((props: MakeFnComponentProps<ISharedProps>) => {
   const { classes, children, className } = props;
-
   return <tr className={cn(classes.row, className)}>{children}</tr>;
-}));
+});
 
 const TableCell = React.memo(provideStyles((props: MakeFnComponentProps<ISharedProps & ICellProps>) => {
-
   const { classes, children, align, className } = props;
-
   return <td align={align} className={cn(classes.cell, className)}>{children}</td>;
 }));
 
-export { TableHead, TableBody, TableRow, TableCell };
+export { TableComponent as Table, TableHead, TableBody, TableRow, TableCell };

@@ -11,7 +11,7 @@ const TransactionsModule: IModule = {
     return (
       <Route key="transactions" path={routes.transactions.getRoutePath()}>
         <Switch>
-          <Route path={routes.transactions.getRoutePath()} component={Transactions} />
+          <Route exact path={routes.transactions.getRoutePath()} component={Transactions} />
           <Redirect to={routes.transactions.getRedirectPath()} />
         </Switch>
       </Route>

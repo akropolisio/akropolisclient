@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import { Adaptive } from 'services/adaptability';
 import { i18nConnect, ITranslateProps, tKeys as tKeysAll } from 'services/i18n';
+import { toFixed } from 'shared/helpers/integer';
 
 import { StylesProps, provideStyles } from './Transaction.style';
 import { ITransaction } from '../../../../../namespace';
@@ -27,13 +28,13 @@ class Transaction extends React.PureComponent<IProps> {
         <div className={classes.header}>
           <div className={classes.index}>{index}</div>
           <div className={classes.date}>{transaction.date}</div>
-          <div className={classes.amount}>{`$${transaction.amount.toFixed(3)}`}</div>
+          <div className={classes.amount}>{`$${toFixed(transaction.amount, 3)}`}</div>
         </div>
         <Adaptive from="sm"><div className={classes.index}>{index}</div></Adaptive>
         {this.renderMetrics()}
         <Adaptive className={classes.rightColumn} from="sm">
           <div className={classes.type}>{transaction.type}</div>
-          <div className={classes.amount}>{`$${transaction.amount.toFixed(3)}`}</div>
+          <div className={classes.amount}>{`$${toFixed(transaction.amount, 3)}`}</div>
         </Adaptive>
       </div>);
   }
@@ -59,9 +60,9 @@ class Transaction extends React.PureComponent<IProps> {
   public addAdaptive(key: keyof ITransaction, el: React.ReactElement<any>) {
     switch (key) {
       case 'date':
-        return <Adaptive from="sm">{el}</Adaptive>;
+        return <Adaptive key={key} from="sm">{el}</Adaptive>;
       case 'type':
-        return <Adaptive to="sm">{el}</Adaptive>;
+        return <Adaptive key={key} to="sm">{el}</Adaptive>;
       default:
         return el;
     }

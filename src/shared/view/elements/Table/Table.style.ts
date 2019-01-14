@@ -14,7 +14,6 @@ const styles = ({ extra: theme }: Theme) => ({
   }),
 
   separated: {},
-  padded: {},
 
   row: rule({
     background: theme.colors.white,
@@ -22,7 +21,6 @@ const styles = ({ extra: theme }: Theme) => ({
 
   text: rule({
     fontWeight: 'normal',
-    fontSize: '14px',
     fontFamily: theme.typography.primaryFont,
     color: theme.palette.text.primary,
   }),
