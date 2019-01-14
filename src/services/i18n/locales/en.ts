@@ -6,6 +6,7 @@ export default {
       marketplace: 'Marketplace',
       profile: 'Profile',
     },
+    pageNotFound: 'We can’t find this page',
   },
   features: {
     signTransaction: {

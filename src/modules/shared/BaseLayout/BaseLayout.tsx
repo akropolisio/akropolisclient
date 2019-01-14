@@ -10,7 +10,7 @@ interface IOwnProps {
   children: React.ReactNode;
 }
 
-type IProps = IOwnProps & StylesProps & Pick<IRowsLayoutProps, 'background'>;
+type IProps = IOwnProps & StylesProps & Pick<IRowsLayoutProps, 'background' | 'fullHeight'>;
 
 class BaseLayout extends React.PureComponent<IProps> {
   public render() {

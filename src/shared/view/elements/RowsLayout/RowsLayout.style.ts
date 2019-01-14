@@ -13,6 +13,7 @@ const styles = ({ extra: theme }: Theme) => ({
     }, 'unset'),
   }),
   content: rule({
+    display: ({ fullHeight }: IProps) => fullHeight ? 'flex' : 'unset',
     flexGrow: 1,
   }),
 });
