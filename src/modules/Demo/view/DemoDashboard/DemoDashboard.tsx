@@ -14,7 +14,6 @@ const tKeysDashboard = tKeysAll.modules.dashboard;
 
 type IProps = StylesProps & ITranslateProps & RouteComponentProps<{}>;
 class DemoDashboard extends React.PureComponent<IProps> {
-  public state = { isOpenModal: false };
   public render() {
     const { classes, t } = this.props;
     return (

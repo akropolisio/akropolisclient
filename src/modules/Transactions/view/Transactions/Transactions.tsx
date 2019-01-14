@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { BaseLayout } from 'modules/shared';
-import { CompletedTransactions } from 'shared/view/drafts'
+import { CompletedTransactions } from 'shared/view/drafts';
 
 class Transactions extends React.PureComponent {
 
