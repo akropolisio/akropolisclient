@@ -2,7 +2,7 @@ import { ID } from './common';
 
 export interface IFund {
   id: ID;
-  acronym: string;
+  logo: string;
   title: string;
   commission: number;
   policy: string;

@@ -7,15 +7,23 @@ const styles = ({ extra: theme }: Theme) => ({
     padding: `${theme.spacing.unit * 4}px`,
   }),
   form: rule({
-    flexGrow: 3,
+    width: 0,
+    flexGrow: 5,
   }),
-  fond: rule({
+  fund: rule({
     display: 'none',
-    flexGrow: 1,
+    width: 0,
+    flexGrow: 3,
+    marginLeft: `${theme.spacing.unit * 4}px`,
 
     [theme.breakpoints.up('sm')]: {
       display: 'block',
     },
+  }),
+  logo: rule({
+    display: 'flex',
+    justifyContent: 'center',
+    marginBottom: `${theme.spacing.unit * 4}px`,
   }),
 });
 

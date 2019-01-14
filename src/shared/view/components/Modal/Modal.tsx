@@ -9,7 +9,7 @@ import { provideStyles, StylesProps } from './Modal.style';
 
 interface IOwnProps {
   children?: React.ReactNode;
-  size: 'small' | 'medium' | 'large';
+  size: 'small' | 'medium' | 'large' | 'xLarge';
   type?: 'default' | 'signTransaction';
   isOpen: boolean;
   title?: string;
@@ -27,6 +27,7 @@ class Modal extends React.Component<IProps> {
 
     return (
       <ReactModal
+        portalClassName={classes.portal}
         className={classes.modal && {
           base: classes.modal,
           afterOpen: classes.modalAfterOpen,

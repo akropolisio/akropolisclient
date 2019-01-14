@@ -1,11 +1,11 @@
 import * as React from 'react';
 
 import { i18nConnect, tKeys, ITranslateProps } from 'services/i18n';
-import { toFixed } from 'shared/helpers/integer';
 import { Button } from 'shared/view/elements';
+import { formatUSDAmount } from 'shared/helpers/format';
 
-import { StylesProps, provideStyles } from './FundCard.style';
 import { IUserFund } from '../../namespace';
+import { StylesProps, provideStyles } from './FundCard.style';
 
 interface IOwnProps {
   fund: IUserFund;
@@ -39,11 +39,11 @@ class FundCard extends React.PureComponent<IProps> {
         <div className={classes.metrics}>
           <div className={classes.metric}>
             <div className={classes.metricName}>{`${t(tKeysFunds.totalSum.getKey())}:`}</div>
-            <div className={classes.metricValue}>{`$${toFixed(totalSum, 3)}`}</div>
+            <div className={classes.metricValue}>{`${formatUSDAmount(totalSum)}`}</div>
           </div>
           <div className={classes.metric}>
             <div className={classes.metricName}>{`${t(tKeysFunds.incomeMonthly.getKey())}:`}</div>
-            <div className={classes.metricValue}>{`$${toFixed(incomeMonthly, 3)}`}</div>
+            <div className={classes.metricValue}>{`${formatUSDAmount(incomeMonthly)}`}</div>
           </div>
           <div className={classes.deposit}>
             <Button fullWidth variant="contained" color="primary" className={classes.depositButton}>

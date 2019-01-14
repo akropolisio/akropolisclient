@@ -2,20 +2,20 @@ import * as React from 'react';
 import { bind } from 'decko';
 import { Form } from 'react-final-form';
 import * as moment from 'moment';
+import { MarkAs } from '_helpers';
 
 import { i18nConnect, ITranslateProps, tKeys as allKeys, ITranslateFunction, ITranslateKey } from 'services/i18n';
 import { WithSignTransaction, SignTransactionFunction } from 'services/signTransaction';
 
 import { TimePeriod, IFund } from 'shared/types/models';
 import { Button, Tooltip, MenuItem } from 'shared/view/elements';
+import { Question } from 'shared/view/elements/Icons';
 import { TextInputField, NumberInputField, SliderField, SliderSelectField, DatePickerField } from 'shared/view/form';
 import { lessThenOrEqual, moreThenOrEqual, isEthereumAddress } from 'shared/validators';
-
-import { StylesProps, provideStyles } from './GetInFundForm.style';
-import { getInFundConfig } from 'features/getInFund/constanst';
-import { Question } from 'shared/view/elements/Icons';
 import { formatUSDAmount, formatSliderLabelDefault } from 'shared/helpers/format';
-import { MarkAs } from '_helpers';
+
+import { getInFundConfig } from '../../../constants';
+import { StylesProps, provideStyles } from './GetInFundForm.style';
 
 const tKeys = allKeys.features.getInFund.form;
 

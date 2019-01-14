@@ -13,6 +13,12 @@ export default {
       invalidWalletAddress: 'Invalid wallet address',
     },
   },
+  components: {
+    fund: {
+      commissionLabel: 'Commission',
+      policyLabel: 'Policy',
+    },
+  },
   features: {
     signTransaction: {
       title: 'Sign transaction',
@@ -105,8 +111,6 @@ export default {
     },
     marketplace: {
       fundsMarketplace: 'Funds marketplace',
-      commission: 'Commission',
-      policy: 'Policy',
       YouAreInThisFund: 'You’re in this fond',
     },
     profile: {

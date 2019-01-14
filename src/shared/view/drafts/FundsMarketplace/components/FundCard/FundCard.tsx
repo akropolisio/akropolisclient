@@ -6,6 +6,7 @@ import { Button } from 'shared/view/elements';
 
 import { StylesProps, provideStyles } from './FundCard.style';
 import { AsyncGetInFundButton } from 'features/getInFund';
+import { Fund, FundLogo } from 'shared/view/model';
 
 interface IOwnProps {
   fund: IFund;
@@ -19,34 +20,28 @@ class FundCard extends React.PureComponent<IProps> {
 
   public render() {
     const { classes, t, fund } = this.props;
-    const { acronym, title, commission, policy, chosen } = fund;
+    const { chosen } = fund;
 
     return (
       <div className={classes.root}>
         <div className={classes.header}>
-          <div className={classes.acronym}>{acronym}</div>
+          <FundLogo fund={fund} />
         </div>
         <div className={classes.content}>
-          <div className={classes.title}>
-            {title}
-          </div>
-          <div className={classes.commission}>
-            {`${t(tKeysMarketplace.commission.getKey())}: ${commission}`}
-          </div>
-          <div className={classes.policy}>
-            {`${t(tKeysMarketplace.policy.getKey())}: ${policy}`}
-          </div>
+          <Fund fund={fund} />
+        </div>
+        <div className={classes.actions}>
           {chosen
             ? (
-              <Button variant="outlined" color="default" className={classes.selectFundButton}>
+              <Button fullWidth variant="outlined" color="default">
                 {t(tKeysMarketplace.YouAreInThisFund.getKey())}
               </Button>
             ) : (
               <AsyncGetInFundButton
+                fullWidth
                 fund={fund}
                 variant="contained"
                 color="primary"
-                className={classes.selectFundButton}
               />
             )}
         </div>

@@ -4,20 +4,19 @@ import { GetProps } from '_helpers';
 
 import { CheckboxInput } from 'shared/view/elements';
 import { getFieldWithComponent } from 'shared/helpers/react';
-import { ITranslateFunction } from 'services/i18n';
+import { ITranslateProps, i18nConnect } from 'services/i18n';
 
-type IProps = GetProps<typeof CheckboxInput> & FieldRenderProps & { t?: ITranslateFunction };
+type IProps = GetProps<typeof CheckboxInput> & FieldRenderProps & ITranslateProps;
 
 function CheckboxInputField(props: IProps) {
-  const { input, meta, t, ...rest } = props;
-  const translatedError = meta.error && t ? t(meta.error) : meta.error;
+  const { input, meta, t, locale, ...rest } = props;
   const error = typeof rest.error === 'boolean'
-    ? rest.error && translatedError
-    : meta.touched && translatedError;
+    ? rest.error && meta.error && t(meta.error)
+    : meta.touched && meta.error && t(meta.error);
   const value = typeof input.value === 'boolean' ? undefined : input.value;
   return (
     <CheckboxInput {...rest} helperText={error} error={Boolean(error)} {...input} value={value} />
   );
 }
 
-export default getFieldWithComponent(CheckboxInputField, 'checkbox');
+export default getFieldWithComponent(i18nConnect(CheckboxInputField), 'checkbox');

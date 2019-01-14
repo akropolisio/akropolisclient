@@ -2,10 +2,10 @@ import * as React from 'react';
 
 import { Adaptive } from 'services/adaptability';
 import { i18nConnect, ITranslateProps, tKeys as tKeysAll } from 'services/i18n';
-import { toFixed } from 'shared/helpers/integer';
+import { formatUSDAmount } from 'shared/helpers/format';
 
-import { StylesProps, provideStyles } from './Transaction.style';
 import { ITransaction } from '../../../../../namespace';
+import { StylesProps, provideStyles } from './Transaction.style';
 
 const hiddenMetrics = ['amount'];
 
@@ -28,13 +28,13 @@ class Transaction extends React.PureComponent<IProps> {
         <div className={classes.header}>
           <div className={classes.index}>{index}</div>
           <div className={classes.date}>{transaction.date}</div>
-          <div className={classes.amount}>{`$${toFixed(transaction.amount, 3)}`}</div>
+          <div className={classes.amount}>{`${formatUSDAmount(transaction.amount)}`}</div>
         </div>
         <Adaptive from="sm"><div className={classes.index}>{index}</div></Adaptive>
         {this.renderMetrics()}
         <Adaptive className={classes.rightColumn} from="sm">
           <div className={classes.type}>{transaction.type}</div>
-          <div className={classes.amount}>{`$${toFixed(transaction.amount, 3)}`}</div>
+          <div className={classes.amount}>{`${formatUSDAmount(transaction.amount)}`}</div>
         </Adaptive>
       </div>);
   }

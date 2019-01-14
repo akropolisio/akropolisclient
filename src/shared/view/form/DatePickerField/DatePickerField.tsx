@@ -4,19 +4,18 @@ import { GetProps } from '_helpers';
 
 import { DatePicker } from 'shared/view/elements';
 import { getFieldWithComponent } from 'shared/helpers/react';
-import { ITranslateFunction } from 'services/i18n';
+import { ITranslateProps, i18nConnect } from 'services/i18n';
 
-type IProps = GetProps<typeof DatePicker> & FieldRenderProps & { t?: ITranslateFunction };
+type IProps = GetProps<typeof DatePicker> & FieldRenderProps & ITranslateProps;
 
 function DatePickerField(props: IProps) {
-  const { input, meta, t, ...rest } = props;
-  const translatedError = meta.error && t ? t(meta.error) : meta.error;
+  const { input, meta, t, locale, ...rest } = props;
   const error = typeof rest.error === 'boolean'
-    ? rest.error && translatedError
-    : meta.touched && translatedError;
+    ? rest.error && meta.error && t(meta.error)
+    : meta.touched && meta.error && t(meta.error);
   return (
     <DatePicker {...rest} helperText={error} error={Boolean(error)} {...input} />
   );
 }
 
-export default getFieldWithComponent(DatePickerField);
+export default getFieldWithComponent(i18nConnect(DatePickerField));

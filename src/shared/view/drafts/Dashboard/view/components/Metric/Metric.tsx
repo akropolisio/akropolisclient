@@ -1,12 +1,12 @@
 import * as React from 'react';
 
+import { Adaptive } from 'services/adaptability';
 import { CircleProgressBar, Tooltip } from 'shared/view/elements';
+import { Question, Arrow } from 'shared/view/elements/Icons';
+import { formatUSDAmount } from 'shared/helpers/format';
 
 import { IMetric } from '../../../namespace';
 import { provideStyles, StylesProps } from './Metric.style';
-import { Adaptive } from 'services/adaptability';
-import { Question, Arrow } from 'shared/view/elements/Icons';
-import { toFixed } from 'shared/helpers/integer';
 
 interface IOwnProps {
   metric: IMetric;
@@ -45,7 +45,7 @@ class Metric extends React.Component<IProps> {
               </Adaptive>
             }
           </div>
-          <div className={classes.value}>{`$${toFixed(value, 3)}`}</div>
+          <div className={classes.value}>{`${formatUSDAmount(value)}`}</div>
           {variation && this.renderVariation(variation)}
         </div>
       </div>

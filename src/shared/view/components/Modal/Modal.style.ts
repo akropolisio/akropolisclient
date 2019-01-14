@@ -7,27 +7,24 @@ import { IProps } from './Modal';
 const iconButtonPadding = 12;
 
 const styles = ({ extra: theme }: Theme) => ({
-  '@global': rule({
-    '.ReactModalPortal': {
-      overflow: 'auto',
-      position: 'fixed',
-      top: -1,
-      right: -1,
-      bottom: -1,
-      left: -1,
-      zIndex: theme.zIndex.newContext,
-
-      '&:empty': {
-        display: 'none',
-      },
-    },
-  }),
-  overlay: rule({
-    position: 'relative',
+  portal: rule({
+    overflow: 'auto',
+    position: 'fixed',
+    top: -1,
+    right: -1,
+    bottom: -1,
+    left: -1,
     zIndex: styledBy<IProps, 'type'>('type', {
       default: theme.zIndex.modal,
       signTransaction: theme.zIndex.signTransactionsModal,
     }, 'default'),
+
+    '&:empty': {
+      display: 'none',
+    },
+  }),
+  overlay: rule({
+    position: 'relative',
     minHeight: '100%',
     minWidth: '100%',
     padding: 1,
@@ -41,6 +38,7 @@ const styles = ({ extra: theme }: Theme) => ({
     flexGrow: 1,
     minHeight: '100%',
     minWidth: '100%',
+    maxWidth: '100%',
     display: 'flex',
     alignItems: 'stretch',
     justifyContent: 'center',
@@ -54,9 +52,10 @@ const styles = ({ extra: theme }: Theme) => ({
       minHeight: 'unset',
       minWidth: 'unset',
       width: styledBy<IProps, 'size'>('size', {
-        small: '16.875rem',
+        small: '16rem',
         medium: '25rem',
-        large: '35.625rem',
+        large: '35rem',
+        xLarge: '45rem',
       }),
       margin: '3rem',
       borderRadius: '0.5rem',
@@ -64,9 +63,10 @@ const styles = ({ extra: theme }: Theme) => ({
 
     [theme.breakpoints.up('md')]: rule({
       width: styledBy<IProps, 'size'>('size', {
-        small: '21.875rem',
+        small: '21rem',
         medium: '30rem',
-        large: '40.625rem',
+        large: '40rem',
+        xLarge: '50rem',
       }),
     }),
   }),
