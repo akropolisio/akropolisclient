@@ -10,6 +10,7 @@ const rawTree = {
   profile: {
     section: getParam(null),
   },
+  transactions: null,
   demo: {
     gui: null,
     modal: null,
