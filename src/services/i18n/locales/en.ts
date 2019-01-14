@@ -34,7 +34,6 @@ export default {
       addNew: 'AddNew',
     },
     dashboard: {
-      dashboard: 'Dashboard',
       hint: {
         incomeMonthly: 'Monthly payments upon retirement age',
       },
@@ -47,6 +46,9 @@ export default {
       pensionDate: 'Pension date',
       totalSum: 'Total sum',
       incomeMonthly: 'Income monthly',
+      noFunds: 'No funds',
+      findFundsAtMarket: 'Find some funds in our marketplace',
+      findFunds: 'Find fund',
     },
     transactions: {
       date: 'Date',
@@ -59,6 +61,10 @@ export default {
   },
   documents: {},
   modules: {
+    dashboard: {
+      dashboard: 'Dashboard',
+      transactions: 'Transactions',
+    },
     auth: {
       signIn: 'Sign in',
       signUp: 'Sign up',

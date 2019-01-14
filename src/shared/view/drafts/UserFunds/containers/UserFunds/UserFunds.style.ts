@@ -16,6 +16,7 @@ const styles = ({ extra: theme }: Theme) => ({
   }),
 
   fundCard: rule({
+    overflow: 'hidden',
     flexGrow: 1,
     boxShadow: `0 0.0625rem 0.4375rem 0 rgba(184, 184, 184, 0.5)`,
     marginBottom: '1.375rem',

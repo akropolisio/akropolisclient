@@ -21,7 +21,6 @@ class Dashboard extends React.Component<IProps> {
     const { classes, t } = this.props;
     return (
       <div className={classes.root}>
-        <div className={classes.title}>{t(tKeysDashboard.dashboard.getKey())}</div>
         <div className={classes.metrics}>
           {metrics.map((metric, key) => (
             <div key={metric.name} className={classes.metric}>
