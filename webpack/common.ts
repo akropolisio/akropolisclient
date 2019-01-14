@@ -20,7 +20,7 @@ import { LANGUAGES } from '../src/services/i18n/constants';
 
 export type BuildType = 'dev' | 'prod' | 'server';
 
-const { chunkHash, withAnalyze, chunkName, withHot, withoutTypeCheking } = getEnvParams();
+const { chunkHash, withAnalyze, chunkName, withHot, withoutTypeChecking, isWatchMode } = getEnvParams();
 
 const workerPool = {
   workers: require('os').cpus().length - 1,
@@ -58,7 +58,7 @@ export const getCommonPlugins: (type: BuildType) => webpack.Plugin[] = (type) =>
     failOnError: true,
   }),
 ]
-  .concat(type !== 'server' && !withoutTypeCheking ? (
+  .concat(isWatchMode && !withoutTypeChecking ? (
     new ForkTsCheckerWebpackPlugin({
       checkSyntacticErrors: true,
       async: false,
@@ -87,12 +87,11 @@ function sortChunks(a: webpack.compilation.Chunk, b: webpack.compilation.Chunk) 
 export const getCommonRules: (type: BuildType) => webpack.Rule[] = (type) => [
   {
     test: /\.tsx?$/,
-    use: ([
-      {
+    use: ([] as webpack.Loader[])
+      .concat(isWatchMode ? {
         loader: 'thread-loader',
         options: workerPool,
-      },
-    ] as webpack.Loader[])
+      } : [])
       .concat(withHot && type === 'dev' ? {
         loader: 'babel-loader',
         options: {
@@ -107,8 +106,8 @@ export const getCommonRules: (type: BuildType) => webpack.Rule[] = (type) => [
       .concat({
         loader: 'ts-loader',
         options: {
-          transpileOnly: true,
-          happyPackMode: true,
+          transpileOnly: isWatchMode,
+          happyPackMode: isWatchMode,
           logLevel: 'error',
         },
       }),
