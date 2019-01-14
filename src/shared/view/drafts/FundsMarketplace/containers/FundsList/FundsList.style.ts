@@ -1,9 +1,10 @@
 import { withStyles, Theme, WithStyles } from 'shared/styles';
 import { rule } from 'shared/helpers/style';
+import { toFixed } from 'shared/helpers/integer';
 
 const percentForMargin = 3;
 
-const cardMargin = (percentForMargin / 2).toFixed(1);
+const cardMargin = toFixed(percentForMargin / 2, 1);
 
 const fundCardStyles = (itemAtRow: number) => {
   const width = 100 / itemAtRow - percentForMargin;

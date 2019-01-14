@@ -453,6 +453,11 @@
       "integrity": "sha512-ZwTHAlC9akprWDinwEPD4kOuwaYZlyMwVJIANsKNC3QVp0AHB04m7RnB4eqeWfgmxw8MGTzS9uMaw93Z3QcZbw==",
       "dev": true
     },
+    "@types/accounting": {
+      "version": "0.4.1",
+      "resolved": "https://registry.npmjs.org/@types/accounting/-/accounting-0.4.1.tgz",
+      "integrity": "sha512-qIN2yvRFvTtUtzG3bs7NKnsqHCPwRIIZMvBNWxiyF4LfOBMhwbwmsefqOt1T7KfkvCgOOxWYVqvlnKKZARSHgg=="
+    },
     "@types/anymatch": {
       "version": "1.3.0",
       "resolved": "https://registry.npmjs.org/@types/anymatch/-/anymatch-1.3.0.tgz",
@@ -1197,6 +1202,11 @@
         "mime-types": "~2.1.18",
         "negotiator": "0.6.1"
       }
+    },
+    "accounting": {
+      "version": "0.4.1",
+      "resolved": "https://registry.npmjs.org/accounting/-/accounting-0.4.1.tgz",
+      "integrity": "sha1-h91BA+/39EYPHhhvXGd+1s9WaIM="
     },
     "acorn": {
       "version": "5.7.3",
