@@ -47,6 +47,14 @@ export default {
       totalSum: 'Total sum',
       incomeMonthly: 'Income monthly',
     },
+    transactions: {
+      date: 'Date',
+      fundName: 'Fund Name',
+      sender: 'Sender',
+      receiver: 'Receiver',
+      type: 'Type',
+      amount: 'Amount',
+    },
   },
   documents: {},
   modules: {

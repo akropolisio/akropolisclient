@@ -11,7 +11,7 @@ const transactionMock: ITransaction = {
   fundName: 'StandartLife',
   sender: 'Pavel Klimov',
   receiver: 'Reciever',
-  type: 'Вложение в ПФ',
+  type: 'Investment in PF',
   amount: 343.343,
 };
 

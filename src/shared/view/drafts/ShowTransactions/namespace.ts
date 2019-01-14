@@ -1,7 +1,9 @@
-export interface ITransactionFields {
-  id: keyof ITransaction;
-  label: string;
-}
+// type TransactionFieldsLabel = 'date' | 'fundName' | 'sender' | 'receiver' | 'type' | 'amount';
+
+// export interface ITransactionFields {
+//   id: keyof ITransaction;
+//   label: string;
+// }
 
 export interface ITransaction {
   date: string;

@@ -1,9 +1,10 @@
 import * as React from 'react';
 
+import { Adaptive } from 'services/adaptability';
+import { i18nConnect, ITranslateProps, tKeys as tKeysAll } from 'services/i18n';
+
 import { StylesProps, provideStyles } from './Transaction.style';
 import { ITransaction } from '../../../../../namespace';
-import { Adaptive } from 'services/adaptability';
-import { transactionFields } from 'shared/view/drafts/ShowTransactions/constants';
 
 const hiddenMetrics = ['amount'];
 
@@ -12,7 +13,9 @@ interface IOwnProps {
   index: number;
 }
 
-type IProps = IOwnProps & StylesProps;
+const tKeys = tKeysAll.features.transactions;
+
+type IProps = IOwnProps & StylesProps & ITranslateProps;
 
 class Transaction extends React.PureComponent<IProps> {
 
@@ -36,19 +39,14 @@ class Transaction extends React.PureComponent<IProps> {
   }
 
   public renderMetrics() {
-    const { classes, transaction } = this.props;
+    const { classes, transaction, t } = this.props;
 
     const metrics = Object.keys(transaction)
       .filter(key => !hiddenMetrics.includes(key))
       .map((key: keyof ITransaction) => {
-        const _transaction = transactionFields.find(t => t.id === key);
-        const metric = <div key={key} className={classes.metricLabel}>{_transaction && _transaction.label}</div>;
-        const labelElement = key === 'date' ? <Adaptive key={key} from="sm">{metric}</Adaptive> : metric;
-
+        const label = <div key={key} className={classes.metricLabel}>{t(tKeys[key] ? tKeys[key].getKey() : key)}</div>;
         const value = <div key={key} className={classes.metricValue}>{transaction[key]}</div>;
-        const valueElement = key === 'date' ? <Adaptive key={key} from="sm">{value}</Adaptive> : value;
-
-        return { label: labelElement, value: valueElement };
+        return { label: this.addAdaptive(key, label), value: this.addAdaptive(key, value) };
       });
 
     return (
@@ -57,7 +55,18 @@ class Transaction extends React.PureComponent<IProps> {
         <div className={classes.metricsValues}>{metrics.map(m => m.value)}</div>
       </div>);
   }
+
+  public addAdaptive(key: keyof ITransaction, el: React.ReactElement<any>) {
+    switch (key) {
+      case 'date':
+        return <Adaptive from="sm">{el}</Adaptive>;
+      case 'type':
+        return <Adaptive to="sm">{el}</Adaptive>;
+      default:
+        return el;
+    }
+  }
 }
 
 export { IProps };
-export default provideStyles(Transaction);
+export default i18nConnect(provideStyles(Transaction));

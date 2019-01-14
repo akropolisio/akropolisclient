@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { bind } from 'decko';
-import { Table, TableBody, TableRow, TableCell, TableHead } from 'shared/view/elements';
 
-import TableSortHead from './view/TableSortHead/TableSortHead';
+import { Table, TableBody, TableRow, TableCell, TableHead } from 'shared/view/elements';
+import { i18nConnect, ITranslateProps, tKeys as tKeysAll } from 'services/i18n';
+
 import { ITransaction } from '../../../namespace';
-import { transactionFields } from '../../../constants';
+import TableSortHead from './view/TableSortHead/TableSortHead';
 import { StylesProps, provideStyles } from './TransactionsTable.style';
 
 interface IState {
@@ -16,43 +17,47 @@ interface IOwnProps {
   transactions: ITransaction[];
 }
 
-type IProps = IOwnProps & StylesProps;
+const tKeys = tKeysAll.features.transactions;
+
+type IProps = IOwnProps & StylesProps & ITranslateProps;
 
 class CompletedTransactions extends React.PureComponent<IProps, IState> {
 
   public state: IState = { order: 'desc', orderBy: 'date' };
   public render() {
     const { orderBy, order } = this.state;
-    const { transactions, classes } = this.props;
+    const { transactions, classes, t } = this.props;
+    const rowKeys = transactions[0] && Object.keys(transactions[0]);
     return (
       <Table separated>
         <TableHead>
           <TableRow className={classes.header}>
             <TableCell />
-            {transactionFields.map((column, i) => (
-              <TableCell key={column.id}>
-                <TableSortHead
-                  columnId={column.id}
-                  order={orderBy === column.id ? order : undefined}
-                  active={orderBy === column.id}
-                  align={i === transactionFields.length - 1 ? 'right' : 'left'}
-                  onClick={this.sortBy}
-                >
-                  {column.label}
-                </TableSortHead>
-              </TableCell>
-            ))}
+            {
+              rowKeys && rowKeys.map((key: keyof ITransaction, i) => (
+                <TableCell key={key}>
+                  <TableSortHead
+                    columnId={key}
+                    order={orderBy === key ? order : undefined}
+                    active={orderBy === key}
+                    align={i === rowKeys.length - 1 ? 'right' : 'left'}
+                    onClick={this.sortBy}
+                  >
+                    {t(tKeys[key] ? tKeys[key].getKey() : key)}
+                  </TableSortHead>
+                </TableCell>
+              ))}
           </TableRow>
         </TableHead>
         <TableBody>
-          {transactions.map(
+          {rowKeys && transactions.map(
             (row, i) => (
               <TableRow key={i} className={classes.row}>
                 <TableCell className={classes.cell}>{i}</TableCell>
-                {Object.keys(row).map((key: keyof ITransaction, k) => (
+                {rowKeys.map((key: keyof ITransaction, k) => (
                   <TableCell
                     key={key}
-                    align={k === Object.keys(row).length - 1 ? 'right' : 'left'}
+                    align={k === rowKeys.length - 1 ? 'right' : 'left'}
                     className={classes.cell}
                   >
                     {row[key]}
@@ -74,4 +79,4 @@ class CompletedTransactions extends React.PureComponent<IProps, IState> {
   }
 }
 
-export default provideStyles(CompletedTransactions);
+export default i18nConnect(provideStyles(CompletedTransactions));
