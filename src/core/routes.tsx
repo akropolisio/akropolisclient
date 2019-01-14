@@ -14,7 +14,7 @@ function getRoutes(modules: IModule[]): React.ReactElement<RouteComponentProps<a
       <App>
         <Switch>
           {modules.map(module => module.getRoutes ? module.getRoutes() : null)}
-          <Redirect exact from="/" to={routes.demo.getRedirectPath()} />
+          <Redirect exact from="/" to={routes.auth.getRedirectPath()} />
           <Route component={isLoggedRedirect(PageNotFound)} />
         </Switch>
       </App>

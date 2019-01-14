@@ -14,7 +14,7 @@ import Logo from '../Logo/Logo';
 import Menu from './Menu/Menu';
 import { provideStyles, StylesProps } from './Header.style';
 
-const brandRedirectPath = routes.demo.getRoutePath();
+const brandRedirectPath = routes.demo.dashboard.getRoutePath();
 const profileRedirectPath = routes.profile.getRoutePath();
 
 type IProps = StylesProps & RouteComponentProps;
