@@ -16,3 +16,4 @@ export { default as ToggleButton } from './ToggleButton/ToggleButton';
 export { default as CircleProgressBar } from './CircleProgressBar/CircleProgressBar';
 export { default as Tooltip } from './Tooltip/Tooltip';
 export { default as QRCode } from './QRCode/QRCode';
+export * from './Table/Table';
