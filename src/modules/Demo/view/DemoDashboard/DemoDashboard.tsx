@@ -11,12 +11,9 @@ import { provideStyles, StylesProps } from './DemoDashboard.style';
 import routes from 'modules/routes';
 
 const tKeysDashboard = tKeysAll.modules.dashboard;
-interface IState {
-  isOpenModal: boolean;
-}
 
 type IProps = StylesProps & ITranslateProps & RouteComponentProps<{}>;
-class DemoDashboard extends React.PureComponent<IProps, IState> {
+class DemoDashboard extends React.PureComponent<IProps> {
   public state = { isOpenModal: false };
   public render() {
     const { classes, t } = this.props;
