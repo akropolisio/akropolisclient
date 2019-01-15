@@ -20,8 +20,8 @@ interface IMenuItem {
 }
 
 const rowItems: IMenuItem[] = [
-  { label: tKeys.shared.menu.dashboard.getKey(), to: routes.demo.dashboard.getRedirectPath() },
-  { label: tKeys.shared.menu.marketplace.getKey(), to: routes.demo.marketplace.getRedirectPath() },
+  { label: tKeys.shared.menu.dashboard.getKey(), to: routes.dashboard.getRedirectPath() },
+  { label: tKeys.shared.menu.marketplace.getKey(), to: routes.marketplace.getRedirectPath() },
 ];
 
 const columnItems: IMenuItem[] = rowItems.concat([
