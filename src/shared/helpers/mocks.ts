@@ -18,8 +18,8 @@ const fund = {
 };
 
 export const fundsMock: IUserFund[] = [
-  { acronym: 'st', title: 'Standart life', ...fund },
-  { acronym: 'th', title: 'The people’s pension', ...fund },
-  { acronym: 'Zu', title: 'Zurich', ...fund },
-  { acronym: 'Li', title: 'Libery pension', ...fund },
+  { id: 1, acronym: 'st', title: 'Standart life', ...fund },
+  { id: 2, acronym: 'th', title: 'The people’s pension', ...fund },
+  { id: 3, acronym: 'Zu', title: 'Zurich', ...fund },
+  { id: 4, acronym: 'Li', title: 'Libery pension', ...fund },
 ];

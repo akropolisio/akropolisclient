@@ -1,7 +1,7 @@
 import * as React from 'react';
 
+import { SignTransactionButton } from 'services/signTransaction';
 import { i18nConnect, tKeys, ITranslateProps } from 'services/i18n';
-import { Button } from 'shared/view/elements';
 import { formatUSDAmount } from 'shared/helpers/format';
 
 import { IUserFund } from '../../namespace';
@@ -18,7 +18,7 @@ const tKeysFunds = tKeys.features.funds;
 class FundCard extends React.PureComponent<IProps> {
 
   public render() {
-    const { classes, t, fund: { acronym, title, policy, pensionDate, type, totalSum, incomeMonthly } } = this.props;
+    const { classes, t, fund: { acronym, title, policy, pensionDate, type, totalSum, incomeMonthly, id } } = this.props;
     return (
       <div className={classes.root}>
         <div className={classes.description}>
@@ -46,9 +46,16 @@ class FundCard extends React.PureComponent<IProps> {
             <div className={classes.metricValue}>{`${formatUSDAmount(incomeMonthly)}`}</div>
           </div>
           <div className={classes.deposit}>
-            <Button fullWidth variant="contained" color="primary" className={classes.depositButton}>
+            <SignTransactionButton
+              transactionType="depositToFund"
+              data={{ fundId: id }}
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.depositButton}
+            >
               {t(tKeysFunds.deposit.getKey())}
-            </Button>
+            </SignTransactionButton>
           </div>
         </div>
       </div >

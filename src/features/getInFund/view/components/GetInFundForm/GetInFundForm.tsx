@@ -8,7 +8,7 @@ import { i18nConnect, ITranslateProps, tKeys as allKeys, ITranslateFunction, ITr
 import { WithSignTransaction, SignTransactionFunction } from 'services/signTransaction';
 
 import { TimePeriod, IFund } from 'shared/types/models';
-import { Button, Tooltip, MenuItem } from 'shared/view/elements';
+import { Button, Tooltip, MenuItem, InputAdornment } from 'shared/view/elements';
 import { Question } from 'shared/view/elements/Icons';
 import { TextInputField, NumberInputField, SliderField, SliderSelectField, DatePickerField } from 'shared/view/form';
 import { lessThenOrEqual, moreThenOrEqual, isEthereumAddress } from 'shared/validators';
@@ -125,9 +125,11 @@ class GetInFundForm extends React.PureComponent<IProps> {
                     {...getFieldProps('wallet', t)}
                     InputProps={{
                       endAdornment: (
-                        <Tooltip placement="top" title={t(tKeys.walletHint.getKey())}>
-                          <Question className={classes.root} />
-                        </Tooltip>
+                        <InputAdornment position="end">
+                          <Tooltip placement="top" title={t(tKeys.walletHint.getKey())}>
+                            <Question className={classes.root} />
+                          </Tooltip>
+                        </InputAdornment>
                       ),
                     }}
                   />

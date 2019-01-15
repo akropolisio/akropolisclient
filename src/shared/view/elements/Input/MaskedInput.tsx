@@ -4,9 +4,9 @@ import { GetProps } from '_helpers';
 import ReactTextMask from 'react-text-mask';
 
 import { InputBaseComponentProps } from '@material-ui/core/InputBase';
-import InputAdornment from '@material-ui/core/InputAdornment';
 
 import { MoneyIcon } from '../Icons';
+import InputAdornment from '../InputAdornment/InputAdornment';
 import TextInput, { IProps as ITextInputProps } from './TextInput';
 
 type MaskType = 'visa';
@@ -38,7 +38,7 @@ const makeMaskInput = R.memoizeWith(R.identity, (maskType: MaskType) => {
 
 class MaskedInput extends React.PureComponent<IProps> {
   public render() {
-    const { maskType, ...restProps } = this.props;
+    const { maskType, InputProps, ...restProps } = this.props;
 
     return (
       <TextInput
@@ -48,9 +48,9 @@ class MaskedInput extends React.PureComponent<IProps> {
           shrink: true,
         }}
         InputProps={{
-          ...restProps.InputProps,
+          ...InputProps,
           inputComponent: makeMaskInput(maskType),
-          endAdornment: this.renderEndAdornment(),
+          endAdornment: InputProps && InputProps.endAdornment || this.renderEndAdornment(),
         }}
       />
     );
