@@ -20,6 +20,7 @@ const rawTree = {
     adaptability: null,
     authRedirect: null,
   },
+  pageNotFound: null,
 };
 
 const routes = build(rawTree);

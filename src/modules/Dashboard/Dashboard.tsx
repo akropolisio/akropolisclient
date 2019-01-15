@@ -13,7 +13,7 @@ const DashboardModule: IModule = {
       <Route key="dashboard" path={routes.dashboard.getRoutePath()}>
         <Switch>
           <Route exact path={routes.dashboard.getRoutePath()} component={isLoggedRedirect(Dashboard)} />
-          <Redirect to={routes.marketplace.getRedirectPath()} />
+          <Redirect to={routes.pageNotFound.getRedirectPath()} />
         </Switch>
       </Route>
     );

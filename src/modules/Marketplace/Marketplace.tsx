@@ -13,7 +13,7 @@ const MarketplaceModule: IModule = {
       <Route key="marketplace" path={routes.marketplace.getRoutePath()}>
         <Switch>
           <Route exact path={routes.marketplace.getRoutePath()} component={isLoggedRedirect(Marketplace)} />
-          <Redirect to={routes.marketplace.getRedirectPath()} />
+          <Redirect to={routes.pageNotFound.getRedirectPath()} />
         </Switch>
       </Route>
     );

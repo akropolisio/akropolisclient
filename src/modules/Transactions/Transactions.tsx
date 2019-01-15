@@ -13,7 +13,7 @@ const TransactionsModule: IModule = {
       <Route key="transactions" path={routes.transactions.getRoutePath()}>
         <Switch>
           <Route exact path={routes.transactions.getRoutePath()} component={isLoggedRedirect(Transactions)} />
-          <Redirect to={routes.transactions.getRedirectPath()} />
+          <Redirect to={routes.pageNotFound.getRedirectPath()} />
         </Switch>
       </Route>
     );
