@@ -10,6 +10,7 @@ const ee = new EventEmitter();
 class Transactions extends BaseApi {
   @bind
   public async generateABI(request: ABIRequest): Promise<string> {
+    console.log('>>> generate ABI request', request);
     await delay(1000);
     const mockTxid = `${request.uuid}:${request.type}`;
     setTimeout(() => ee.emit('transaction-completed', { txid: mockTxid }), 3000);

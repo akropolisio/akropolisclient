@@ -1,26 +1,25 @@
 import { withStyles, Theme, WithStyles } from 'shared/styles';
-
 import { rule, styledBy } from 'shared/helpers/style';
 
 import { IProps } from './Modal';
 
-const styles = ({ extra: theme }: Theme) => ({
-  '@global': rule({
-    '.ReactModalPortal': {
-      overflow: 'auto',
-      position: 'fixed',
-      top: -1,
-      right: -1,
-      bottom: -1,
-      left: -1,
-      zIndex: styledBy<IProps, 'type'>('type', {
-        default: theme.zIndex.modal,
-        signTransaction: theme.zIndex.signTransactionsModal,
-      }, 'default'),
+const iconButtonPadding = 12;
 
-      '&:empty': {
-        display: 'none',
-      },
+const styles = ({ extra: theme }: Theme) => ({
+  portal: rule({
+    overflow: 'auto',
+    position: 'fixed',
+    top: -1,
+    right: -1,
+    bottom: -1,
+    left: -1,
+    zIndex: styledBy<IProps, 'type'>('type', {
+      default: theme.zIndex.modal,
+      signTransaction: theme.zIndex.signTransactionsModal,
+    }, 'default'),
+
+    '&:empty': {
+      display: 'none',
     },
   }),
   overlay: rule({
@@ -38,6 +37,7 @@ const styles = ({ extra: theme }: Theme) => ({
     flexGrow: 1,
     minHeight: '100%',
     minWidth: '100%',
+    maxWidth: '100%',
     display: 'flex',
     alignItems: 'stretch',
     justifyContent: 'center',
@@ -51,9 +51,10 @@ const styles = ({ extra: theme }: Theme) => ({
       minHeight: 'unset',
       minWidth: 'unset',
       width: styledBy<IProps, 'size'>('size', {
-        small: '16.875rem',
+        small: '16rem',
         medium: '25rem',
-        large: '35.625rem',
+        large: '35rem',
+        xLarge: '45rem',
       }),
       margin: '3rem',
       borderRadius: '0.5rem',
@@ -61,9 +62,10 @@ const styles = ({ extra: theme }: Theme) => ({
 
     [theme.breakpoints.up('md')]: rule({
       width: styledBy<IProps, 'size'>('size', {
-        small: '21.875rem',
+        small: '21rem',
         medium: '30rem',
-        large: '40.625rem',
+        large: '40rem',
+        xLarge: '50rem',
       }),
     }),
   }),
@@ -94,7 +96,7 @@ const styles = ({ extra: theme }: Theme) => ({
     alignItems: 'center',
     textAlign: 'center',
     justifyContent: 'space-between',
-    margin: `${theme.spacing.unit * 6}px ${theme.spacing.unit * 3}px 0`,
+    margin: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 4 - iconButtonPadding}px 0 ${theme.spacing.unit * 4}px`,
     fontSize: '1.25rem',
     fontWeight: 'bold',
     fontFamily: theme.typography.primaryFont,
@@ -120,7 +122,12 @@ const styles = ({ extra: theme }: Theme) => ({
   }),
 
   isAbsolute: {},
-  isHidden: {},
+  isHidden: {
+    display: styledBy<IProps, 'titleAlign'>('titleAlign', {
+      center: 'block',
+      left: 'none',
+    }, 'center'),
+  },
 
   '@keyframes modal-disappear-animation': rule({
     from: {

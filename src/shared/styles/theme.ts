@@ -75,8 +75,8 @@ export const theme = {
   zIndex: {
     newContext: 0,
     mobileHeader: 500,
-    modal: 1400,
-    signTransactionsModal: 1405,
+    modal: 1300,
+    signTransactionsModal: 1305,
     tooltip: 1500,
     beforeContext: (zIndex: number) => --zIndex,
     afterContext: (zIndex: number) => ++zIndex,

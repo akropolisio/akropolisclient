@@ -1,4 +1,7 @@
+import { ID } from 'shared/types/models';
+
 export interface IUserFund {
+  id: ID;
   acronym: string;
   title: string;
   type: string;

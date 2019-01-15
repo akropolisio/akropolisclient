@@ -1,4 +1,4 @@
-import { withStyles, Theme } from 'shared/styles';
+import { withStyles, Theme } from './jss';
 import { rule } from 'shared/helpers/style';
 import './fonts/OpenSans/index.scss';
 
@@ -18,6 +18,10 @@ const styles = ({ extra: theme }: Theme) => ({
     },
     'html, body, #root': {
       height: '100%',
+    },
+    '#root': {
+      zIndex: theme.zIndex.newContext,
+      position: 'relative',
     },
     '*, *::before, *::after': {
       boxSizing: 'inherit',

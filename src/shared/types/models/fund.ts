@@ -1,5 +1,8 @@
+import { ID } from './common';
+
 export interface IFund {
-  acronym: string;
+  id: ID;
+  logo: string;
   title: string;
   commission: number;
   policy: string;

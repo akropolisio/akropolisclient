@@ -7,7 +7,7 @@ import Checkbox, { CheckboxProps } from '../Checkbox/Checkbox';
 
 type IProps = CheckboxProps & Pick<FormControlProps, 'error' | 'required' | 'fullWidth'> & {
   label: React.ReactNode;
-  helperText?: string;
+  helperText?: React.ReactNode;
   formHelperTextProps?: FormHelperTextProps;
 };
 
@@ -17,7 +17,7 @@ interface INormalizedProps {
   formHelperTextProps: FormHelperTextProps | null;
   other: {
     label: React.ReactNode | null;
-    helperText: string | null;
+    helperText: React.ReactNode;
   };
 }
 

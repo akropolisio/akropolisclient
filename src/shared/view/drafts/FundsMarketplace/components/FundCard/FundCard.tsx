@@ -1,10 +1,12 @@
 import * as React from 'react';
 
 import { i18nConnect, tKeys, ITranslateProps } from 'services/i18n';
+import { AsyncGetInFundButton } from 'features/getInFund';
+import { IFund } from 'shared/types/models';
+import { Fund, FundLogo } from 'shared/view/model';
 import { Button } from 'shared/view/elements';
 
 import { StylesProps, provideStyles } from './FundCard.style';
-import { IFund } from '../../namespace';
 
 interface IOwnProps {
   fund: IFund;
@@ -17,33 +19,32 @@ const tKeysMarketplace = tKeys.modules.marketplace;
 class FundCard extends React.PureComponent<IProps> {
 
   public render() {
-    const { classes, t, fund: { acronym, title, commission, policy, chosen } } = this.props;
+    const { classes, t, fund } = this.props;
+    const { chosen } = fund;
+
     return (
       <div className={classes.root}>
         <div className={classes.header}>
-          <div className={classes.acronym}>{acronym}</div>
+          <FundLogo fund={fund} />
         </div>
         <div className={classes.content}>
-          <div className={classes.title}>
-            {title}
-          </div>
-          <div className={classes.commission}>
-            {`${t(tKeysMarketplace.commission.getKey())}: ${commission}`}
-          </div>
-          <div className={classes.policy}>
-            {`${t(tKeysMarketplace.policy.getKey())}: ${policy}`}
-          </div>
-          <Button
-            variant={chosen ? 'outlined' : 'contained'}
-            color={chosen ? 'default' : 'primary'}
-            className={classes.selectFundButton}
-          >
-            {
-              chosen ?
-                t(tKeysMarketplace.YouAreInThisFund.getKey())
-                :
-                t(tKeysMarketplace.getInFund.getKey())}
-          </Button>
+          <Fund fund={fund} />
+        </div>
+        <div className={classes.actions}>
+          {chosen
+            ? (
+              <Button fullWidth variant="outlined" color="default">
+                {t(tKeysMarketplace.YouAreInThisFund.getKey())}
+              </Button>
+            ) : (
+              <AsyncGetInFundButton
+                fullWidth
+                fund={fund}
+                variant="contained"
+                color="primary"
+                onSuccess={console.log.bind(null, '>> Get in fund succeeded')}
+              />
+            )}
         </div>
       </div >
     );

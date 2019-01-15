@@ -26,6 +26,12 @@
     "heroku-postbuild": "npm run build:prod"
   },
   "betterScripts": {
+    "custom-node": {
+      "command": "node --max_old_space_size=4096 -r ts-node/register -r tsconfig-paths/register"
+    },
+    "custom-node:debug": {
+      "command": "node --inspect --inspect-brk --max_old_space_size=4096 -r ts-node/register -r tsconfig-paths/register"
+    },
     "initial:yeoman": {
       "command": "sh ./generators/initializationGenerator.sh",
       "env": {
@@ -33,7 +39,7 @@
       }
     },
     "server:dev": {
-      "command": "node -r ts-node/register ./server/index.ts",
+      "command": "bnr custom-node ./server/index.ts",
       "env": {
         "PORT": 8080,
         "TS_NODE_FILES": true,
@@ -43,7 +49,7 @@
       }
     },
     "server:dev:debug": {
-      "command": "node --inspect --inspect-brk -r ts-node/register ./server/index.ts",
+      "command": "bnr custom-node:debug ./server/index.ts",
       "env": {
         "PORT": 8080,
         "TS_NODE_FILES": true,
@@ -53,7 +59,7 @@
       }
     },
     "server:prod": {
-      "command": "node -r ts-node/register ./server/index.ts",
+      "command": "bnr custom-node ./server/index.ts",
       "env": {
         "PORT": 8080,
         "TS_NODE_FILES": true,
@@ -62,7 +68,7 @@
       }
     },
     "server:prod:debug": {
-      "command": "node --inspect --inspect-brk -r ts-node/register ./server/index.ts",
+      "command": "bnr custom-node:debug ./server/index.ts",
       "env": {
         "PORT": 8080,
         "TS_NODE_FILES": true,
@@ -71,7 +77,7 @@
       }
     },
     "watch:dev": {
-      "command": "node --max_old_space_size=4096 node_modules/.bin/webpack-dev-server --watch --progress --colors --config webpack/dev.config.ts",
+      "command": "bnr custom-node node_modules/.bin/webpack-dev-server --watch --progress --colors --config webpack/dev.config.ts",
       "env": {
         "NODE_ENV": "development",
         "TS_NODE_FILES": true,
@@ -80,7 +86,7 @@
       }
     },
     "watch:prod": {
-      "command": "node --max_old_space_size=4096 node_modules/.bin/webpack-dev-server --client-log-level info --watch --progress --colors --config webpack/prod.config.ts",
+      "command": "bnr custom-node node_modules/.bin/webpack-dev-server --client-log-level info --watch --progress --colors --config webpack/prod.config.ts",
       "env": {
         "NODE_ENV": "production",
         "TS_NODE_FILES": true,
@@ -89,7 +95,7 @@
       }
     },
     "watch:dev:fast": {
-      "command": "node --max_old_space_size=4096 node_modules/.bin/webpack-dev-server --watch --progress --colors --config webpack/dev.config.ts",
+      "command": "bnr custom-node node_modules/.bin/webpack-dev-server --watch --progress --colors --config webpack/dev.config.ts",
       "env": {
         "NODE_ENV": "development",
         "TS_NODE_FILES": true,
@@ -99,7 +105,7 @@
       }
     },
     "analyze:dev": {
-      "command": "node --max_old_space_size=4096 node_modules/.bin/webpack --progress --config webpack/dev.config.ts",
+      "command": "bnr custom-node node_modules/.bin/webpack --progress --config webpack/dev.config.ts",
       "env": {
         "BUNDLE_ANALYZE_MODE": true,
         "TS_NODE_FILES": true,
@@ -108,7 +114,7 @@
       }
     },
     "analyze:prod": {
-      "command": "node --max_old_space_size=4096 node_modules/.bin/webpack --progress --config webpack/prod.config.ts",
+      "command": "bnr custom-node node_modules/.bin/webpack --progress --config webpack/prod.config.ts",
       "env": {
         "BUNDLE_ANALYZE_MODE": true,
         "TS_NODE_FILES": true,
@@ -117,7 +123,7 @@
       }
     },
     "build:dev": {
-      "command": "node --max_old_space_size=4096 node_modules/.bin/webpack --progress --colors --config webpack/dev.config.ts",
+      "command": "bnr custom-node node_modules/.bin/webpack --progress --colors --config webpack/dev.config.ts",
       "env": {
         "NODE_ENV": "development",
         "TS_NODE_FILES": true,
@@ -125,7 +131,7 @@
       }
     },
     "build:prod": {
-      "command": "node --max_old_space_size=4096 node_modules/.bin/webpack --progress --colors --config webpack/prod.config.ts",
+      "command": "bnr custom-node node_modules/.bin/webpack --progress --colors --config webpack/prod.config.ts",
       "env": {
         "NODE_ENV": "production",
         "TS_NODE_FILES": true,
@@ -196,6 +202,7 @@
     "yo": "^2.0.5"
   },
   "dependencies": {
+    "@date-io/moment": "^1.0.1",
     "@material-ui/core": "^3.6.2",
     "@material-ui/icons": "^3.0.1",
     "@material-ui/lab": "^3.0.0-alpha.25",
@@ -205,12 +212,13 @@
     "@types/classnames": "^2.2.6",
     "@types/compression": "0.0.36",
     "@types/cookie-parser": "^1.4.1",
+    "@types/crypto-js": "^3.1.43",
     "@types/google-maps": "^3.2.0",
     "@types/node-polyglot": "^0.4.31",
     "@types/prop-types": "^15.5.6",
     "@types/qrcode.react": "^0.8.1",
     "@types/ramda": "^0.25.46",
-    "@types/react": "^16.7.17",
+    "@types/react": "^16.7.18",
     "@types/react-dom": "^16.0.11",
     "@types/react-helmet": "^5.0.7",
     "@types/react-modal": "^3.6.0",
@@ -236,10 +244,12 @@
     "bootstrap": "^3.3.7",
     "build-route-tree": "^1.0.2",
     "cheerio": "^1.0.0-rc.2",
+    "circular-dependency-plugin": "^5.0.2",
     "classnames": "^2.2.6",
     "compression": "^1.7.2",
     "concurrently": "^4.0.1",
     "cookie-parser": "^1.4.3",
+    "crypto-js": "^3.1.9-1",
     "css-loader": "^1.0.1",
     "decko": "^1.2.0",
     "doiuse": "^4.2.0",
@@ -251,6 +261,8 @@
     "inversify-inject-decorators": "^3.1.0",
     "jss": "^9.8.3",
     "jss-compose": "^5.0.0",
+    "material-ui-pickers": "^2.1.1",
+    "moment": "^2.23.0",
     "node-polyglot": "^2.3.0",
     "node-sass": "^4.9.2",
     "normalize.css": "^8.0.0",

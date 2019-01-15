@@ -9,11 +9,11 @@ import { provideStyles, StylesProps } from './Modal.style';
 
 interface IOwnProps {
   children?: React.ReactNode;
-  size: 'small' | 'medium' | 'large';
+  size: 'small' | 'medium' | 'large' | 'xLarge';
   type?: 'default' | 'signTransaction';
   isOpen: boolean;
   title?: string;
-  withCross?: boolean;
+  titleAlign?: 'center' | 'left';
   onClose?: () => void;
 }
 
@@ -23,10 +23,11 @@ ReactModal.setAppElement('#root');
 
 class Modal extends React.Component<IProps> {
   public render() {
-    const { classes, children, isOpen, onClose, withCross, title } = this.props;
+    const { classes, children, isOpen, onClose, title } = this.props;
 
     return (
       <ReactModal
+        portalClassName={classes.portal}
         className={classes.modal && {
           base: classes.modal,
           afterOpen: classes.modalAfterOpen,
@@ -43,12 +44,12 @@ class Modal extends React.Component<IProps> {
       >
         {!!title && (
           <div className={classes.title}>
-            {withCross && <CrossButton isHidden classes={classes} />}
+            <CrossButton isHidden classes={classes} />
             {title}
-            {withCross && <CrossButton classes={classes} onClick={onClose} />}
+            <CrossButton classes={classes} onClick={onClose} />
           </div>
         )}
-        {!title && withCross && <CrossButton isAbsolute classes={classes} onClick={onClose} />}
+        {!title && <CrossButton isAbsolute classes={classes} onClick={onClose} />}
         {children}
       </ReactModal>
     );

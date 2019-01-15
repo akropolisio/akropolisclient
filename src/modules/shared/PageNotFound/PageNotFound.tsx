@@ -1,9 +1,9 @@
 import * as React from 'react';
 
 import { i18nConnect, ITranslateProps, tKeys } from 'services/i18n';
-import { BaseLayout } from 'modules/shared';
 import { InjectedAuthRouterProps } from 'shared/helpers/authWrapper';
 
+import BaseLayout from '../BaseLayout/BaseLayout';
 import { provideStyles, StylesProps } from './PageNotFound.style';
 
 type IProps = StylesProps & ITranslateProps & InjectedAuthRouterProps;

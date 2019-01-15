@@ -5,19 +5,22 @@ import * as CleanWebpackPlugin from 'clean-webpack-plugin';
 import * as MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import * as ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
-import * as threadLoader from 'thread-loader';
 import * as FaviconsWebpackPlugin from 'favicons-webpack-plugin';
+import * as CircularDependencyPlugin from 'circular-dependency-plugin';
 import * as ReactJssHmrPlugin from 'react-jss-hmr/webpack';
+
+import * as threadLoader from 'thread-loader';
 import * as postcssSCSS from 'postcss-scss';
 import * as autoprefixer from 'autoprefixer';
 import * as stylelint from 'stylelint';
 import * as doiuse from 'doiuse';
 
 import getEnvParams from '../src/core/getEnvParams';
+import { LANGUAGES } from '../src/services/i18n/constants';
 
 export type BuildType = 'dev' | 'prod' | 'server';
 
-const { chunkHash, withAnalyze, chunkName, withHot, withoutTypeCheking } = getEnvParams();
+const { chunkHash, withAnalyze, chunkName, withHot, withoutTypeChecking, isWatchMode } = getEnvParams();
 
 const workerPool = {
   workers: require('os').cpus().length - 1,
@@ -49,8 +52,13 @@ export const getCommonPlugins: (type: BuildType) => webpack.Plugin[] = (type) =>
     '__SERVER__': false,
   }),
   new FaviconsWebpackPlugin(path.resolve(__dirname, '..', 'src', 'assets', 'favicon.png')),
+  new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, new RegExp(LANGUAGES.join('|'))),
+  new CircularDependencyPlugin({
+    exclude: /node_modules/,
+    failOnError: true,
+  }),
 ]
-  .concat(type !== 'server' && !withoutTypeCheking ? (
+  .concat(isWatchMode && !withoutTypeChecking ? (
     new ForkTsCheckerWebpackPlugin({
       checkSyntacticErrors: true,
       async: false,
@@ -79,12 +87,11 @@ function sortChunks(a: webpack.compilation.Chunk, b: webpack.compilation.Chunk) 
 export const getCommonRules: (type: BuildType) => webpack.Rule[] = (type) => [
   {
     test: /\.tsx?$/,
-    use: ([
-      {
+    use: ([] as webpack.Loader[])
+      .concat(isWatchMode ? {
         loader: 'thread-loader',
         options: workerPool,
-      },
-    ] as webpack.Loader[])
+      } : [])
       .concat(withHot && type === 'dev' ? {
         loader: 'babel-loader',
         options: {
@@ -99,8 +106,8 @@ export const getCommonRules: (type: BuildType) => webpack.Rule[] = (type) => [
       .concat({
         loader: 'ts-loader',
         options: {
-          transpileOnly: true,
-          happyPackMode: true,
+          transpileOnly: isWatchMode,
+          happyPackMode: isWatchMode,
           logLevel: 'error',
         },
       }),

@@ -9,63 +9,25 @@ const styles = ({ extra: theme }: Theme) => ({
     flexDirection: 'column',
     backgroundColor: theme.colors.white,
   }),
+
   header: rule({
     display: 'flex',
     minHeight: '8.75rem',
     borderBottom: `solid 0.0625rem ${hexToRGBA(theme.colors.dustyGray, 0.21)}`,
-  }),
-  acronym: rule({
-    margin: 'auto',
-    fontSize: '4rem',
-    fontFamily: theme.typography.primaryFont,
-    fontWeight: 'bold',
-    color: '#6931b6',
-    textTransform: 'capitalize',
-  }),
-
-  text: rule({
-    fontSize: '0.875rem',
-    color: theme.palette.text.primary,
-    fontFamily: theme.typography.primaryFont,
-  }),
-
-  title: rule({
-    composes: '$text',
-    marginBottom: '0.6875rem',
-    fontSize: '1.125rem',
-    fontWeight: 600,
-  }),
-
-  commission: rule({
-    composes: '$text',
-    marginBottom: '0.3125rem',
-  }),
-
-  policy: rule({
-    composes: '$text',
-    opacity: 0.58,
-    marginBottom: '1.25rem',
-    whiteSpace: 'nowrap',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
+    alignItems: 'center',
+    justifyContent: 'center',
   }),
 
   content: rule({
-    display: 'flex',
-    flexDirection: 'column',
-    flexGrow: 1,
-    padding: '1.625rem 1.625rem 1.375rem',
-  }),
-  search: rule({
-    fontSize: '1.125rem',
+    padding: '1.625rem 1.625rem 1.25rem',
   }),
 
-  selectFundButton: rule({
+  actions: rule({
+    padding: '0 1.625rem 1.375rem',
     marginTop: 'auto',
     fontSize: '0.875rem',
     fontWeight: 'bold',
   }),
-
 });
 
 export const provideStyles = withStyles(styles);

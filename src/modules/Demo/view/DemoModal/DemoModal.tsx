@@ -16,6 +16,7 @@ const stub = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam nec
 class DemoModal extends React.PureComponent<{}, IState> {
   public state: IState = { openedModal: null };
   public render() {
+    const { openedModal } = this.state;
     return (
       <div style={{ padding: 20 }}>
         <Button onClick={this.openModal.bind(null, 'small')} variant="outlined">Show small modal</Button>
@@ -24,16 +25,16 @@ class DemoModal extends React.PureComponent<{}, IState> {
         <Button onClick={this.openModal.bind(null, 'with-scroll')} variant="outlined">
           Show medium modal with scroll
         </Button>
-        <Modal size="small" isOpen={this.state.openedModal === 'small'} onClose={this.closeModal}>
+        <Modal size="small" title="Modal title" isOpen={openedModal === 'small'} onClose={this.closeModal}>
           <p style={{ margin: 20 }}>{stub}</p>
         </Modal>
-        <Modal size="medium" isOpen={this.state.openedModal === 'medium'} onClose={this.closeModal}>
+        <Modal size="medium" title="Modal title" isOpen={openedModal === 'medium'} onClose={this.closeModal}>
           <p style={{ margin: 20 }}>{stub}</p>
         </Modal>
-        <Modal size="large" isOpen={this.state.openedModal === 'large'} onClose={this.closeModal}>
+        <Modal size="large" title="Modal title" isOpen={openedModal === 'large'} onClose={this.closeModal}>
           <p style={{ margin: 20 }}>{stub}</p>
         </Modal>
-        <Modal size="medium" isOpen={this.state.openedModal === 'with-scroll'} onClose={this.closeModal}>
+        <Modal size="medium" title="Modal title" isOpen={openedModal === 'with-scroll'} onClose={this.closeModal}>
           {Array.from({ length: 5 }).map((_, index) => (
             <p key={index} style={{ margin: 20 }}>{stub}</p>
           ))}

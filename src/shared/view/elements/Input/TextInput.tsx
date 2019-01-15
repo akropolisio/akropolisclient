@@ -3,10 +3,10 @@ import { bind } from 'decko';
 import { MarkAsPartial, SubSet } from '_helpers';
 
 import TextField, { TextFieldProps } from '@material-ui/core/TextField';
-import InputAdornment from '@material-ui/core/InputAdornment';
 import IconButton from '@material-ui/core/IconButton';
 
 import { EyeIcon } from '../Icons';
+import InputAdornment from '../InputAdornment/InputAdornment';
 
 // crutch for types :)
 type PartialProps = SubSet<
@@ -28,14 +28,15 @@ class TextInput extends React.PureComponent<IProps, IState> {
 
   public render() {
     const { type } = this.state;
+    const { InputProps } = this.props;
 
     return (
       <TextField
         {...this.props as TextFieldProps}
         type={type}
         InputProps={{
-          ...this.props.InputProps,
-          endAdornment: this.renderEndAdornment(),
+          ...InputProps,
+          endAdornment: InputProps && InputProps.endAdornment || this.renderEndAdornment(),
         }}
       />
     );
