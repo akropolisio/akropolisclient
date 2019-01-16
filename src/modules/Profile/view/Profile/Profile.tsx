@@ -8,7 +8,8 @@ import { tKeys as tkeysAll, i18nConnect, ITranslateProps } from 'services/i18n';
 import { withComponent } from 'shared/helpers/react';
 import { InjectedAuthRouterProps } from 'shared/helpers/authWrapper';
 import { ToggleButtonGroup, ToggleButton } from 'shared/view/elements';
-import { EditMainInfo, Contributors } from 'shared/view/drafts';
+import { Contributors } from 'shared/view/drafts';
+import { AsyncEditMainInfo } from 'features/changeUser';
 
 import { StylesProps, provideStyles } from './Profile.style';
 import { BaseLayout } from 'modules/shared';
@@ -56,7 +57,7 @@ class Profile extends React.PureComponent<IProps> {
             ))}
           </ToggleButtonGroup>
           <div className={classes.content}>
-            {selectedSection === 'settings' && <EditMainInfo />}
+            {selectedSection === 'settings' && <AsyncEditMainInfo />}
             {selectedSection === 'contributors' && <Contributors />}
           </div>
         </div>

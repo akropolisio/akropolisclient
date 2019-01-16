@@ -8,6 +8,12 @@ const styles = ({ extra: theme }: Theme) => ({
     padding: '3.25rem 0 1.375rem',
   }),
 
+  preloader: rule({
+    display: 'flex',
+    justifyContent: 'center',
+    padding: '120px 0 20px',
+  }),
+
   avatarWrapper: rule({
     marginBottom: '2.5rem',
     alignSelf: 'center',
