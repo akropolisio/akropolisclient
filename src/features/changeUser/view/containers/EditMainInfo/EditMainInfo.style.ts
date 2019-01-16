@@ -11,7 +11,7 @@ const styles = ({ extra: theme }: Theme) => ({
   preloader: rule({
     display: 'flex',
     justifyContent: 'center',
-    padding: '120px 0 20px',
+    padding: '7.5rem 0 1.25rem',
   }),
 
   avatarWrapper: rule({
