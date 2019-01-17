@@ -1,5 +1,5 @@
 import { delay } from 'redux-saga';
-import { IUser } from 'shared/types/models';
+import { IUser, IUserEditableFields } from 'shared/types/models';
 
 import BaseApi from './BaseApi';
 
@@ -10,7 +10,7 @@ class Transactions extends BaseApi {
     return { name: 'Pavel', surname: 'Kosov' };
   }
 
-  public async editMainInfo(user: IUser): Promise<IUser> {
+  public async editMainInfo(user: IUserEditableFields): Promise<IUser> {
     await delay(1000);
     return user;
   }

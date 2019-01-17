@@ -1,5 +1,5 @@
 import { ICommunication, IAction, IPlainFailAction, IPlainAction } from 'shared/types/redux';
-import { IUser } from 'shared/types/models';
+import { IUserEditableFields } from 'shared/types/models';
 
 export interface IReduxState {
   communication: {
@@ -7,7 +7,7 @@ export interface IReduxState {
   };
 }
 
-export type IEditMainInfo = IAction<'CHANGE_USER:EDIT_MAIN_INFO', IUser>;
+export type IEditMainInfo = IAction<'CHANGE_USER:EDIT_MAIN_INFO', IUserEditableFields>;
 export type IEditMainInfoSuccess = IPlainAction<'CHANGE_USER:EDIT_MAIN_INFO_SUCCESS'>;
 export type IEditMainInfoFail = IPlainFailAction<'CHANGE_USER:EDIT_MAIN_INFO_FAIL'>;
 

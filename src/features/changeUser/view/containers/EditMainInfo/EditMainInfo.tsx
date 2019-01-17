@@ -41,11 +41,9 @@ interface IStateProps {
   user: IUser | null;
 }
 
-interface IActionProps {
-  editMainInfo: typeof actions.editMainInfo;
-}
+type ActionProps = typeof actionProps;
 
-type IProps = StylesProps & IActionProps & ITranslateProps & IStateProps;
+type IProps = StylesProps & ActionProps & ITranslateProps & IStateProps;
 
 class EditMainInfo extends React.PureComponent<IProps> {
 
@@ -61,7 +59,6 @@ class EditMainInfo extends React.PureComponent<IProps> {
           <Form
             onSubmit={this.onSubmit}
             initialValues={{ name: user.name, surname: user.surname }}
-            subscription={{ submitting: true }}
           >
             {({ handleSubmit, form }) => (
               <form className={classes.form} onSubmit={handleSubmit} >
