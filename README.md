@@ -1,3 +1,10 @@
+#  Project links:
+* /auth - Authorization
+* /profile - User profile
+* /dashboard - User dashboard
+* /marketplace - User marketplace
+* /demo/gui - demo page
+
 # akropolisio frontend
 Modular starter kit for React+Redux+React Router projects.
 
