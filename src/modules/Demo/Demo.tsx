@@ -10,8 +10,6 @@ import DemoGUI from './view/DemoGUI/DemoGUI';
 import DemoModal from './view/DemoModal/DemoModal';
 import DemoTranslations from './view/DemoTranslations/DemoTranslations';
 import DemoAdaptability from './view/DemoAdaptability/DemoAdaptability';
-import DemoDashboard from './view/DemoDashboard/DemoDashboard';
-import FundsMarketplace from './view/FundsMarketplace/FundsMarketplace';
 import DemoAuthRedirect from './view/DemoAuthRedirect/DemoAuthRedirect';
 
 const rolesRedirect = makeRedirectByRole(['beneficiary', 'boardMember']);
@@ -24,10 +22,8 @@ const DemoModule: IModule = {
         <Switch>
           <Route path={routes.demo.gui.getRoutePath()} component={DemoGUI} />
           <Route path={routes.demo.modal.getRoutePath()} component={DemoModal} />
-          <Route path={routes.demo.dashboard.getRoutePath()} component={DemoDashboard} />
           <Route path={routes.demo.translations.getRoutePath()} component={DemoTranslations} />
           <Route path={routes.demo.adaptability.getRoutePath()} component={DemoAdaptability} />
-          <Route path={routes.demo.marketplace.getRoutePath()} component={FundsMarketplace} />
           <Route path={routes.demo.authRedirect.getRoutePath()} component={demoAuthRedirect(DemoAuthRedirect)} />
           <Redirect to={routes.demo.gui.getRedirectPath()} />
         </Switch>

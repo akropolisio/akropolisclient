@@ -3,7 +3,7 @@ import { TYPES, container } from './configureIoc';
 import configureStore, { createReducer } from './configureStore';
 import { configureJss } from 'core/configureJss';
 
-import { DemoModule, AuthModule, ProfileModule, TransactionsModule } from 'modules';
+import { DemoModule, AuthModule, ProfileModule, TransactionsModule, DashboardModule, MarketplaceModule } from 'modules';
 import { reduxEntry as adaptabilityRE } from 'services/adaptability';
 import { reduxEntry as i18nRE } from 'services/i18n';
 import { reduxEntry as signTransactionRE } from 'services/signTransaction';
@@ -14,7 +14,14 @@ import { IAppData, IModule, RootSaga, IAppReduxState, IReduxEntry } from 'shared
 
 function configureApp(data?: IAppData): IAppData {
   /* Prepare main app elements */
-  const modules: IModule[] = [DemoModule, AuthModule, ProfileModule, TransactionsModule];
+  const modules: IModule[] = [
+    DemoModule,
+    AuthModule,
+    ProfileModule,
+    TransactionsModule,
+    DashboardModule,
+    MarketplaceModule,
+  ];
 
   if (data) {
     return { ...data, modules };

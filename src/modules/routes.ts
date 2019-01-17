@@ -11,13 +11,13 @@ const rawTree = {
     section: getParam(null),
   },
   transactions: null,
+  dashboard: null,
+  marketplace: null,
   demo: {
     gui: null,
     modal: null,
     translations: null,
     adaptability: null,
-    marketplace: null,
-    dashboard: null,
     authRedirect: null,
   },
 };

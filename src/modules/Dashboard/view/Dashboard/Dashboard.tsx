@@ -2,17 +2,18 @@ import * as React from 'react';
 import { bind } from 'decko';
 import { withRouter, RouteComponentProps } from 'react-router';
 
+import { InjectedAuthRouterProps } from 'shared/helpers/authWrapper';
 import { Dashboard, UserFunds } from 'shared/view/drafts';
 import { BaseLayout } from 'modules/shared';
 import { i18nConnect, ITranslateProps, tKeys as tKeysAll } from 'services/i18n';
 import { Button } from 'shared/view/elements';
 
-import { provideStyles, StylesProps } from './DemoDashboard.style';
+import { provideStyles, StylesProps } from './Dashboard.style';
 import routes from 'modules/routes';
 
 const tKeysDashboard = tKeysAll.modules.dashboard;
 
-type IProps = StylesProps & ITranslateProps & RouteComponentProps<{}>;
+type IProps = StylesProps & ITranslateProps & RouteComponentProps<{}> & InjectedAuthRouterProps;
 class DemoDashboard extends React.PureComponent<IProps> {
   public render() {
     const { classes, t } = this.props;
@@ -44,7 +45,7 @@ class DemoDashboard extends React.PureComponent<IProps> {
 
   @bind
   public redirectToMarketplace() {
-    this.props.history.push(routes.demo.marketplace.getRedirectPath());
+    this.props.history.push(routes.marketplace.getRedirectPath());
   }
 }
 
