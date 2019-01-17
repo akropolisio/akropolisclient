@@ -59,6 +59,7 @@ class EditMainInfo extends React.PureComponent<IProps> {
           <Form
             onSubmit={this.onSubmit}
             initialValues={{ name: user.name, surname: user.surname }}
+            subscription={{}}
           >
             {({ handleSubmit, form }) => (
               <form className={classes.form} onSubmit={handleSubmit} >
