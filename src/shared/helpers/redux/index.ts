@@ -1,4 +1,5 @@
 export * from './multiConnect';
+export * from './init';
 export { default as composeReducers } from './composeReducers';
 export { default as makeIdentityReducer } from './makeIdentityReducer';
 export { default as makeResetStateReducer } from './makeResetStateReducer';
