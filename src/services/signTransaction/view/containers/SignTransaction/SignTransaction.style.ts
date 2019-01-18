@@ -72,6 +72,16 @@ const styles = ({ extra: theme }: Theme) => ({
     width: '44%',
   }),
 
+  buttons: rule({
+    width: '100%',
+    maxWidth: '20.5rem',
+    marginBottom: '0.625rem',
+  }),
+
+  button: rule({
+    marginBottom: '1rem',
+  }),
+
   linksToMarket: rule({
     width: '100%',
     display: 'flex',

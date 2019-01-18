@@ -19,3 +19,4 @@ export { default as ToggleButtonGroup } from './ToggleButtonGroup/ToggleButtonGr
 export { default as Tooltip } from './Tooltip/Tooltip';
 export { default as Typography } from './Typography/Typography';
 export { default as InputAdornment } from './InputAdornment/InputAdornment';
+export { default as Notification } from './Notification/Notification';

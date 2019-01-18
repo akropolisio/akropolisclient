@@ -13,6 +13,7 @@ export default {
       invalidWalletAddress: 'Invalid wallet address',
     },
     pageNotFound: 'We can’t find this page',
+    copiedAtClipboard: 'Copied at clipboard',
   },
   components: {
     fund: {
@@ -24,6 +25,8 @@ export default {
     signTransaction: {
       title: 'Sign transaction',
       description: 'Scan this QR code with your mobile device to continue transaction',
+      openApp: 'Open application',
+      copyLink: 'Copy link',
     },
     signUp: {
       fields: {
