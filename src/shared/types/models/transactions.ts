@@ -1,37 +1,11 @@
-import { SubsetMapStrict } from '_helpers';
-import { UserRole } from './user';
-import { TimePeriod, ID } from './common';
+import { ID } from './common';
 
-export interface ITransaction {
-  txid: string;
+export interface IFundTransaction {
+  id: ID;
+  date: string;
+  fundName: string;
+  sender: string;
+  receiver: string;
+  type: string;
+  amount: number;
 }
-
-export type TransactionType = 'signIn' | 'signUp' | 'getInFund' | 'depositToFund';
-export type ABIRequestDataByType = SubsetMapStrict<Record<TransactionType, any>, {
-  signIn: {
-    role: UserRole;
-  };
-  signUp: {
-    role: UserRole;
-    name: string;
-    surname: string;
-  };
-  getInFund: {
-    fundId: ID;
-    regularPayment: number;
-    periodicity: TimePeriod;
-    retirementDate: number;
-    wallet: string;
-  };
-  depositToFund: {
-    fundId: ID;
-  };
-}>;
-
-export type ABIRequest = {
-  [key in TransactionType]: {
-    uuid: string;
-    type: key;
-    data: ABIRequestDataByType[key];
-  };
-}[TransactionType];

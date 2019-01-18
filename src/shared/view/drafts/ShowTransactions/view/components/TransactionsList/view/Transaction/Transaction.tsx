@@ -2,15 +2,15 @@ import * as React from 'react';
 
 import { Adaptive } from 'services/adaptability';
 import { i18nConnect, ITranslateProps, tKeys as tKeysAll } from 'services/i18n';
+import { IFundTransaction } from 'shared/types/models';
 import { formatUSDAmount } from 'shared/helpers/format';
 
-import { ITransaction } from '../../../../../namespace';
 import { StylesProps, provideStyles } from './Transaction.style';
 
 const hiddenMetrics = ['amount'];
 
 interface IOwnProps {
-  transaction: ITransaction;
+  transaction: IFundTransaction;
   index: number;
 }
 
@@ -44,7 +44,7 @@ class Transaction extends React.PureComponent<IProps> {
 
     const metrics = Object.keys(transaction)
       .filter(key => !hiddenMetrics.includes(key))
-      .map((key: keyof ITransaction) => {
+      .map((key: keyof IFundTransaction) => {
         const label = <div key={key} className={classes.metricLabel}>{t(tKeys[key] ? tKeys[key].getKey() : key)}</div>;
         const value = <div key={key} className={classes.metricValue}>{transaction[key]}</div>;
         return { label: this.addAdaptive(key, label), value: this.addAdaptive(key, value) };
@@ -57,7 +57,7 @@ class Transaction extends React.PureComponent<IProps> {
       </div>);
   }
 
-  public addAdaptive(key: keyof ITransaction, el: React.ReactElement<any>) {
+  public addAdaptive(key: keyof IFundTransaction, el: React.ReactElement<any>) {
     switch (key) {
       case 'date':
         return <Adaptive key={key} from="sm">{el}</Adaptive>;

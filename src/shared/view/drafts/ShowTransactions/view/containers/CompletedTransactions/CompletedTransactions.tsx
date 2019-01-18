@@ -1,15 +1,15 @@
 import * as React from 'react';
 
 import { Adaptive } from 'services/adaptability';
-import { transactionsMocks } from 'shared/helpers/mocks';
+import { IFundTransaction } from 'shared/types/models';
+import { transactionsMock } from 'shared/helpers/mocks';
 
 import { TransactionsTable, TransactionsList } from '../../components';
-import { ITransaction } from '../../../namespace';
 import { provideStyles, StylesProps } from './CompletedTransactions.style';
 
 interface IState {
   order: 'desc' | 'asc';
-  orderBy: keyof ITransaction;
+  orderBy: keyof IFundTransaction;
 }
 
 class CompletedTransactions extends React.PureComponent<StylesProps, IState> {
@@ -19,10 +19,10 @@ class CompletedTransactions extends React.PureComponent<StylesProps, IState> {
     return (
       <div className={classes.root}>
         <Adaptive from="md">
-          <TransactionsTable transactions={transactionsMocks} />
+          <TransactionsTable transactions={transactionsMock} />
         </Adaptive>
         <Adaptive to="md">
-          <TransactionsList transactions={transactionsMocks} />
+          <TransactionsList transactions={transactionsMock} />
         </Adaptive>
       </div>
     );

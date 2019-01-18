@@ -5,6 +5,7 @@ import { configureJss } from 'core/configureJss';
 
 import { DemoModule, AuthModule, ProfileModule, TransactionsModule, DashboardModule, MarketplaceModule } from 'modules';
 import { reduxEntry as adaptabilityRE } from 'services/adaptability';
+import { reduxEntry as dataProviderRE } from 'services/dataProvider';
 import { reduxEntry as i18nRE } from 'services/i18n';
 import { reduxEntry as signTransactionRE } from 'services/signTransaction';
 import { reduxEntry as userRE } from 'services/user';
@@ -29,6 +30,7 @@ function configureApp(data?: IAppData): IAppData {
 
   const sharedReduxEntries: IReduxEntry[] = [
     adaptabilityRE,
+    dataProviderRE,
     i18nRE,
     signTransactionRE,
     userRE,

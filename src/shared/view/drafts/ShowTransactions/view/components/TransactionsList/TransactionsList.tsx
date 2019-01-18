@@ -1,11 +1,11 @@
 import * as React from 'react';
+import { IFundTransaction } from 'shared/types/models';
 
 import Transaction from './view/Transaction/Transaction';
-import { ITransaction } from '../../../namespace';
 import { provideStyles, StylesProps } from './TransactionsList.style';
 
 interface IOwnProps {
-  transactions: ITransaction[];
+  transactions: IFundTransaction[];
 }
 
 type IProps = IOwnProps & StylesProps;

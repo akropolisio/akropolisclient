@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { i18nConnect, tKeys, ITranslateProps } from 'services/i18n';
-import { fundsMock } from 'shared/helpers/mocks';
+import { userFundsMock } from 'shared/helpers/mocks';
 
 import { StylesProps, provideStyles } from './UserFunds.style';
 import { FundCard, EmptyFunds } from '../../components';
@@ -24,8 +24,8 @@ class UserFunds extends React.PureComponent<IProps> {
           {t(tKeysFunds.activeFunds.getKey())}
         </div>
         <div className={classes.content}>
-          {fundsMock && fundsMock.length !== 0 ?
-            fundsMock.map(fund => (
+          {userFundsMock && userFundsMock.length !== 0 ?
+            userFundsMock.map(fund => (
               <div key={fund.title} className={classes.fundCard}>
                 <FundCard fund={fund} />
               </div>

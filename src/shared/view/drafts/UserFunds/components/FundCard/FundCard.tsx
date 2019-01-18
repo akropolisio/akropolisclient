@@ -2,9 +2,9 @@ import * as React from 'react';
 
 import { SignTransactionButton } from 'services/signTransaction';
 import { i18nConnect, tKeys, ITranslateProps } from 'services/i18n';
+import { IUserFund } from 'shared/types/models';
 import { formatUSDAmount } from 'shared/helpers/format';
 
-import { IUserFund } from '../../namespace';
 import { StylesProps, provideStyles } from './FundCard.style';
 
 interface IOwnProps {

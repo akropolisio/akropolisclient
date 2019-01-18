@@ -8,11 +8,13 @@ import * as adaptabilityNS from 'services/adaptability/namespace';
 import * as i18nNS from 'services/i18n/namespace';
 import * as signTransactionNS from 'services/signTransaction/namespace';
 import * as userNS from 'services/user/namespace';
+import * as dataProviderNS from 'services/dataProvider/namespace';
 import Api from 'services/api/Api';
 
 import * as changeUserNS from 'features/changeUser/namespace';
 
 import { JSS, Theme } from 'shared/styles';
+import { IMultiInstanceState } from 'shared/helpers/redux';
 
 export interface IModule {
   getRoutes?(): ReactElement<RouteProps> | Array<ReactElement<RouteProps>>;
@@ -62,6 +64,7 @@ export interface IAppReduxState {
   user: userNS.IReduxState;
   // features
   changeUser: changeUserNS.IReduxState;
+  dataProvider: IMultiInstanceState<dataProviderNS.IReduxState>;
 }
 
 export type RootSaga = (deps: IDependencies) => () => SagaIterator;

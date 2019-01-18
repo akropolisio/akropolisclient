@@ -79,6 +79,7 @@ export default {
       findFunds: 'Find fund',
     },
     transactions: {
+      id: 'Id',
       date: 'Date',
       fundName: 'Fund Name',
       sender: 'Sender',
