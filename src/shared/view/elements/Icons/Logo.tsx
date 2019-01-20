@@ -4,7 +4,7 @@ import { GetProps } from '_helpers';
 import SvgIcon from '@material-ui/core/SvgIcon';
 
 // tslint:disable:max-line-length
-function MoneyIcon(props: GetProps<typeof SvgIcon>) {
+function Logo(props: GetProps<typeof SvgIcon>) {
   return (
     <SvgIcon {...props} viewBox="0 0 48 48">
       <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd" transform="translate(3.6, 0)">
@@ -17,4 +17,4 @@ function MoneyIcon(props: GetProps<typeof SvgIcon>) {
   );
 }
 
-export default MoneyIcon;
+export default Logo;

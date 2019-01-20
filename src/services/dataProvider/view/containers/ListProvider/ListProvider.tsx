@@ -71,7 +71,7 @@ const paginationAvailability: AvailabilityPaginationByResource = {
 
 const defaultPerPage = 10;
 
-class ListProvider extends React.PureComponent<IProps, IState> {
+class MultiListProvider extends React.PureComponent<IProps, IState> {
   public state: IState = {
     sort: this.props.sort ? this.props.sort as ISortParams<string> : null,
     pagination: paginationAvailability[this.props.resource] ? {
@@ -85,6 +85,18 @@ class ListProvider extends React.PureComponent<IProps, IState> {
     this.loadList();
   }
 
+  public componentDidUpdate(prevProps: IProps, prevState: IState) {
+    const prevRequest = this.getRequest(prevProps, prevState);
+    const currentRequest = this.getRequest();
+
+    const fields: Array<keyof IListRequest<Resource>> = ['filter', 'pagination', 'resource', 'sort'];
+
+    if (fields.some(field => prevRequest[field] !== currentRequest[field])) {
+      this.loadList();
+    }
+
+  }
+
   public render() {
     return this.props.children(this.getChildrenProps());
   }
@@ -92,18 +104,17 @@ class ListProvider extends React.PureComponent<IProps, IState> {
   @bind
   private loadList() {
     this.props.loadList(this.getRequest());
-
   }
 
   @bind
-  private getRequest(): IListRequest<Resource> {
-    const { resource } = this.props;
-    const { sort, pagination, filter } = this.state;
+  private getRequest(props?: IProps, state?: IState): IListRequest<Resource> {
+    const { resource } = props || this.props;
+    const { sort, pagination, filter } = state || this.state;
     return {
       filter,
       resource,
-      sort: sort ? sort as IListRequest<Resource>['sort'] : undefined,
-      pagination: pagination ? pagination : undefined,
+      sort: sort as IListRequest<Resource>['sort'] || undefined,
+      pagination: pagination || undefined,
     };
   }
 
@@ -134,13 +145,17 @@ class ListProvider extends React.PureComponent<IProps, IState> {
 
   @bind
   private loadMore() {
-    const { perPage } = this.props;
-    this.setState(state => ({
-      pagination: {
-        current: state.pagination && state.pagination.current || 1,
-        perPage: (state.pagination && state.pagination.perPage || defaultPerPage) + (perPage || defaultPerPage),
-      },
-    }), this.loadList);
+    const { perPage, total } = this.props;
+    this.setState(state => {
+      const currentPerPage = state.pagination && state.pagination.perPage || defaultPerPage;
+      const nextPerPage = currentPerPage + (perPage || defaultPerPage);
+      return currentPerPage >= total ? null : {
+        pagination: {
+          current: 1,
+          perPage: nextPerPage,
+        },
+      };
+    });
   }
 
   @bind
@@ -148,13 +163,13 @@ class ListProvider extends React.PureComponent<IProps, IState> {
     this.setState(state => {
       const pageCount = this.calcPageCount(state);
       const currentPage = state.pagination && state.pagination.current || 1;
-      return {
-        pagination: currentPage === pageCount ? state.pagination : {
+      return currentPage === pageCount ? null : {
+        pagination: {
           current: Math.min(currentPage + 1, pageCount),
-          perPage: state.pagination && state.pagination.perPage || defaultPerPage,
+          perPage: this.props.perPage || defaultPerPage,
         },
       };
-    }, this.loadList);
+    });
   }
 
   @bind
@@ -162,13 +177,14 @@ class ListProvider extends React.PureComponent<IProps, IState> {
     this.setState(state => {
       const pageCount = this.calcPageCount(state);
       const currentPage = state.pagination && state.pagination.current || 1;
-      return {
-        pagination: currentPage === page ? state.pagination : {
-          current: Math.min(page, pageCount),
-          perPage: state.pagination && state.pagination.perPage || defaultPerPage,
+      const nextPage = Math.min(page, pageCount);
+      return currentPage === nextPage ? null : {
+        pagination: {
+          current: nextPage,
+          perPage: this.props.perPage || defaultPerPage,
         },
       };
-    }, this.loadList);
+    });
   }
 
   @bind
@@ -176,32 +192,43 @@ class ListProvider extends React.PureComponent<IProps, IState> {
     this.setState(state => {
       const orderInvertor: Record<SortOrder, SortOrder> = { asc: 'desc', desc: 'asc' };
       const nextOrder = order || (
-        state.sort ? orderInvertor[state.sort.order] : 'asc'
+        state.sort && state.sort.field === field ? orderInvertor[state.sort.order] : 'asc'
       );
 
       const isEqualSort = state.sort && state.sort.field === field && state.sort.order === nextOrder;
-      return {
-        sort: isEqualSort ? state.sort : {
+      return isEqualSort ? null : {
+        sort: {
           field,
           order: nextOrder,
         },
       };
-    }, this.loadList);
+    });
   }
 
   @bind
   private calcPageCount(state?: IState) {
     const { total } = this.props;
     const { pagination } = state || this.state;
-    return Math.floor(total / (pagination && pagination.perPage || defaultPerPage));
+    return Math.ceil(total / (pagination && pagination.perPage || defaultPerPage));
   }
 }
 
-// tslint:disable-next-line:max-classes-per-file
-declare class ResultListProvider<T extends Resource> extends React.Component<CleanedListProviderPropsByResource<T>> { }
-
-export default (
+const MultiProvider = (
   multiConnect(['dataProvider'], initial, mapState, mapDispatch)(
-    ListProvider,
+    MultiListProvider, { removeInstanceOnLastUnmount: false },
   )
-) as typeof ResultListProvider;
+);
+
+// tslint:disable-next-line:max-classes-per-file
+class ResultListProvider<T extends Resource> extends React.Component<CleanedListProviderPropsByResource<T>> {
+  public render() {
+    return (
+      <MultiProvider
+        {...this.props as CleanedListProviderPropsByResource<Resource>}
+        instanceKey={this.props.resource}
+      />
+    );
+  }
+}
+
+export default ResultListProvider;

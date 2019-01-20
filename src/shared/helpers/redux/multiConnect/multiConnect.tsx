@@ -10,12 +10,16 @@ import { IAppReduxState } from 'shared/types/app';
 import { IMultiAction } from 'shared/types/redux';
 
 import { addInstance, removeInstance } from './actions';
-import { MapStateToProps, MapDispatchToProps, IMultiConnectProps } from './namespace';
+import { MapStateToProps, MapDispatchToProps, IMultiConnectProps, IOptions } from './namespace';
 
 type FeatureName = keyof IAppReduxState;
 type MultiComponent<P> = React.ComponentClass<P & IMultiConnectProps>;
 
 const mountedContainersForInstance: { [key: string]: number } = {};
+
+const defaultOptions: IOptions = {
+  removeInstanceOnLastUnmount: true,
+};
 
 const multiConnect = <TReduxState, TStateProps, TDispatchProps, TOwnProps>(
   keyPathToState: FeatureName[],
@@ -25,8 +29,9 @@ const multiConnect = <TReduxState, TStateProps, TDispatchProps, TOwnProps>(
 ) => {
   type IWrappedComponentProps = TStateProps & TDispatchProps;
   // tslint:disable-next-line:max-line-length
-  return function HOC<TOwn extends TOwnProps & IWrappedComponentProps>(WrappedComponent: React.ComponentType<TOwn>): MultiComponent<Omit<TOwn, keyof IWrappedComponentProps>> {
+  return function HOC<TOwn extends TOwnProps & IWrappedComponentProps>(WrappedComponent: React.ComponentType<TOwn>, ownOptions: Partial<IOptions> = {}): MultiComponent<Omit<TOwn, keyof IWrappedComponentProps>> {
     type Props = Omit<TOwn, keyof IWrappedComponentProps> & IMultiConnectProps;
+    const options: IOptions = { ...defaultOptions, ...ownOptions };
     class MultiConnector extends React.PureComponent<Props> {
       public static contextTypes = {
         store: PropTypes.object,
@@ -56,7 +61,7 @@ const multiConnect = <TReduxState, TStateProps, TDispatchProps, TOwnProps>(
         const mountedContainers = mountedContainersForInstance[this.instanceKey] || 1;
         mountedContainersForInstance[this.instanceKey] = mountedContainers - 1;
 
-        if (mountedContainers === 1) {
+        if (options.removeInstanceOnLastUnmount && mountedContainers === 1) {
           this.context.store.dispatch(removeInstance(this.instanceKey, keyPathToState));
         }
       }

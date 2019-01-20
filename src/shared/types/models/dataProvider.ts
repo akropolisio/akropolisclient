@@ -109,11 +109,11 @@ export type IListProviderChildrenProps = ICommonListProviderChildrenProps<Resour
 export type CleanedListProviderChildrenPropsByResource<R extends Resource> = {
   [key in Resource]: ICommonListProviderChildrenProps<R> & (
     SortByResource[key] extends null ? {} : {
-      sort: ISortToChildrenProps<key> | null;
+      sort: ISortToChildrenProps<key>;
     }
   ) & (
     FilterByResource[key] extends null ? {} : {
-      filter: FilterByResource[key] | null;
+      filter: FilterByResource[key];
     }
   ) & (
     AvailabilityPaginationByResource[key] extends true ? {
