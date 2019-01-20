@@ -5,6 +5,8 @@ import { userFundsMock } from 'shared/helpers/mocks';
 
 import { StylesProps, provideStyles } from './UserFunds.style';
 import { FundCard, EmptyFunds } from '../../components';
+import { ListProvider, ShowMoreButton } from 'services/dataProvider';
+import { CircleProgressBar } from 'shared/view/elements';
 
 interface IOwnProps {
   onRedirectToMarketplace(): void;
@@ -19,21 +21,33 @@ class UserFunds extends React.PureComponent<IProps> {
   public render() {
     const { classes, t, onRedirectToMarketplace } = this.props;
     return (
-      <div className={classes.root}>
-        <div className={classes.title}>
-          {t(tKeysFunds.activeFunds.getKey())}
-        </div>
-        <div className={classes.content}>
-          {userFundsMock && userFundsMock.length !== 0 ?
-            userFundsMock.map(fund => (
-              <div key={fund.title} className={classes.fundCard}>
-                <FundCard fund={fund} />
-              </div>
-            )) :
-            <EmptyFunds onFindFund={onRedirectToMarketplace} />
-          }
-        </div>
-      </div>
+      <ListProvider<'userFund'> resource="userFund">
+        {({ items, pagination, loading }) => (
+          <div className={classes.root}>
+            <div className={classes.title}>
+              {t(tKeysFunds.activeFunds.getKey())}
+            </div>
+            <div className={classes.content}>
+              {items.length === 0 && loading && (
+                <div className={classes.preloader}>
+                  <CircleProgressBar size={80} variant="indeterminate" />
+                </div>
+              )}
+              {items.length === 0 && !loading && (
+                <EmptyFunds onFindFund={onRedirectToMarketplace} />
+              )}
+              {items.length !== 0 && (<>
+                {items.map(fund => (
+                  <div key={fund.id} className={classes.fundCard}>
+                    <FundCard fund={fund} />
+                  </div>
+                ))}
+                <ShowMoreButton fullWidth pagination={pagination} loading={loading} />
+              </>)}
+            </div>
+          </div>
+        )}
+      </ListProvider>
     );
   }
 }

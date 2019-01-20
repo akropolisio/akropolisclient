@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+import { ITranslateProps, i18nConnect, tKeys } from 'services/i18n';
+
 import { IPaginationToChildrenProps } from 'shared/types/models';
 import { Button, CircleProgressBar } from 'shared/view/elements';
 import { Arrow } from 'shared/view/elements/Icons';
@@ -12,15 +14,15 @@ interface IOwnProps {
   fullWidth?: boolean;
 }
 
-type IProps = IOwnProps & StylesProps;
+type IProps = IOwnProps & StylesProps & ITranslateProps;
 
 function ShowMoreButton(props: IProps) {
-  const { pagination, loading, classes, ...restProps } = props;
+  const { pagination, loading, classes, t, locale, ...restProps } = props;
   const { perPage, total, loadMore } = pagination;
   const isDisabled = loading || perPage >= total;
   return (
     <Button {...restProps} color="primary" variant="outlined" onClick={loadMore} disabled={isDisabled}>
-      {'Show more '}
+      {t(tKeys.services.dataProvider.showMoreButton.getKey())}
       <div className={classes.icon}>
         {loading
           ? <CircleProgressBar size={22} />
@@ -31,4 +33,4 @@ function ShowMoreButton(props: IProps) {
   );
 }
 
-export default provideStyles(ShowMoreButton);
+export default i18nConnect(provideStyles(ShowMoreButton));

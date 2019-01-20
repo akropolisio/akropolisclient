@@ -15,6 +15,11 @@ const styles = () => ({
     padding: '0 2.125rem',
   }),
 
+  preloader: rule({
+    display: 'flex',
+    justifyContent: 'center',
+    padding: '2rem',
+  }),
 });
 
 export const provideStyles = withStyles(styles);

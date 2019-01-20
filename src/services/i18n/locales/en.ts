@@ -135,4 +135,9 @@ export default {
     pluralLabel: 'Pluralize demonstration:',
     pluralTest: '%{smart_count} object |||| %{smart_count} objects',
   },
+  services: {
+    dataProvider: {
+      showMoreButton: 'Show more',
+    },
+  },
 };
