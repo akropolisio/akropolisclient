@@ -1,10 +1,11 @@
 import * as React from 'react';
+
+import { ListProvider } from 'services/dataProvider';
+import { i18nConnect, ITranslateProps, tKeys as tKeysAll } from 'services/i18n';
 import { Button, CircleProgressBar } from 'shared/view/elements';
 
 import { Contribution } from '../../components';
 import { provideStyles, StylesProps } from './Contributors.style';
-import { i18nConnect, ITranslateProps, tKeys as tKeysAll } from 'services/i18n';
-import { ListProvider } from 'services/dataProvider';
 
 const tKeys = tKeysAll.features.contributors;
 

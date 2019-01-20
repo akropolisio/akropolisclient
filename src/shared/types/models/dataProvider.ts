@@ -122,11 +122,10 @@ export type CleanedListProviderChildrenPropsByResource<R extends Resource> = {
   );
 }[R];
 
-export type ISortToChildrenProps<T extends Resource> = {
+export interface ISortToChildrenProps<T extends Resource> {
   params?: SortByResource[T];
-} & {
   setSort(field: SortFieldByResource[T], order?: SortOrder): void;
-};
+}
 
 export interface IPaginationToChildrenProps {
   currentPage: number;

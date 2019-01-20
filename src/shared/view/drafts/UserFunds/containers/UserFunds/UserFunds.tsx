@@ -1,12 +1,11 @@
 import * as React from 'react';
 
+import { ListProvider, ShowMoreButton } from 'services/dataProvider';
 import { i18nConnect, tKeys, ITranslateProps } from 'services/i18n';
-import { userFundsMock } from 'shared/helpers/mocks';
+import { CircleProgressBar } from 'shared/view/elements';
 
 import { StylesProps, provideStyles } from './UserFunds.style';
 import { FundCard, EmptyFunds } from '../../components';
-import { ListProvider, ShowMoreButton } from 'services/dataProvider';
-import { CircleProgressBar } from 'shared/view/elements';
 
 interface IOwnProps {
   onRedirectToMarketplace(): void;

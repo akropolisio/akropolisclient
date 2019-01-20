@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { bind } from 'decko';
+import { Dispatch, bindActionCreators } from 'redux';
 
 import {
   Resource, CleanedListProviderPropsByResource, DataByResource, IListRequest, IListProviderProps, ISortParams,
@@ -7,13 +8,12 @@ import {
   SortOrder,
 } from 'shared/types/models';
 import { ICommunication } from 'shared/types/redux';
+import { multiConnect } from 'shared/helpers/redux';
 
 import { IReduxState } from '../../../namespace';
 import * as actions from '../../../redux/actions';
 import { initial } from '../../../redux/initial';
 import * as selectors from '../../../redux/selectors';
-import { multiConnect } from 'shared/helpers/redux';
-import { Dispatch, bindActionCreators } from 'redux';
 
 interface IStateProps {
   loading: ICommunication;
