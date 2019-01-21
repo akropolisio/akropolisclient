@@ -275,6 +275,7 @@
     "ramda": "^0.26.1",
     "react": "^16.7.0",
     "react-async-bootstrapper": "^2.1.0",
+    "react-device-detect": "^1.6.1",
     "react-dom": "^16.7.0",
     "react-final-form": "^4.0.2",
     "react-geosuggest": "^2.5.0",

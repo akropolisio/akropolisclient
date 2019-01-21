@@ -94,7 +94,7 @@ class LoginForm extends React.PureComponent<IProps> {
   @bind
   private onSignInSuccess() {
     const { match, completeAuthentication } = this.props;
-    completeAuthentication(match.params.role);
+    setTimeout(() => completeAuthentication(match.params.role), 2000); // remove when endpoint will available
   }
 
   @bind
