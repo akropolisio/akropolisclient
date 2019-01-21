@@ -21,6 +21,12 @@ const styles = ({ extra: theme }: Theme) => ({
     boxShadow: `0 0.0625rem 0.4375rem 0 rgba(184, 184, 184, 0.5)`,
     marginBottom: '1.375rem',
   }),
+
+  preloader: rule({
+    display: 'flex',
+    justifyContent: 'center',
+    padding: '2rem',
+  }),
 });
 
 export const provideStyles = withStyles(styles);

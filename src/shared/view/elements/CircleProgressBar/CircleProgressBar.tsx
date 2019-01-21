@@ -9,7 +9,7 @@ type IProps = Omit<CircularProgressProps, 'classes'> & StylesProps;
 function CircleProgressBar(props: IProps) {
   const { classes, ...rest } = props;
   return (
-    <div className={props.classes.piechart}>
+    <div className={props.classes.root}>
       <CircularProgress
         className={props.classes.overlay}
         variant="determinate"

@@ -82,6 +82,7 @@ export default {
       findFunds: 'Find fund',
     },
     transactions: {
+      id: 'Id',
       date: 'Date',
       fundName: 'Fund Name',
       sender: 'Sender',
@@ -136,5 +137,10 @@ export default {
     somethingText: 'Something text',
     pluralLabel: 'Pluralize demonstration:',
     pluralTest: '%{smart_count} object |||| %{smart_count} objects',
+  },
+  services: {
+    dataProvider: {
+      showMoreButton: 'Show more',
+    },
   },
 };

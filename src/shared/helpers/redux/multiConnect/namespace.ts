@@ -9,6 +9,10 @@ export interface IMultiInstanceState<TReduxState> {
   [instanceKey: string]: TReduxState;
 }
 
+export interface IOptions {
+  removeInstanceOnLastUnmount: boolean;
+}
+
 export interface IAddInstance {
   type: '@@MULTI_CONNECT:ADD_INSTANCE';
   payload: {

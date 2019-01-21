@@ -2,7 +2,8 @@ import { withStyles, WithStyles, Theme } from 'shared/styles';
 import { rule } from 'shared/helpers/style';
 
 const styles = (theme: Theme) => ({
-  piechart: rule({
+  root: rule({
+    display: 'flex',
     position: 'relative',
   }),
   overlay: rule({

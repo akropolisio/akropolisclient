@@ -11,6 +11,7 @@ import DemoModal from './view/DemoModal/DemoModal';
 import DemoTranslations from './view/DemoTranslations/DemoTranslations';
 import DemoAdaptability from './view/DemoAdaptability/DemoAdaptability';
 import DemoAuthRedirect from './view/DemoAuthRedirect/DemoAuthRedirect';
+import DemoIcons from './view/DemoIcons/DemoIcons';
 
 const rolesRedirect = makeRedirectByRole(['beneficiary', 'boardMember']);
 const demoAuthRedirect = compose(isLoggedRedirect, rolesRedirect);
@@ -25,6 +26,7 @@ const DemoModule: IModule = {
           <Route path={routes.demo.translations.getRoutePath()} component={DemoTranslations} />
           <Route path={routes.demo.adaptability.getRoutePath()} component={DemoAdaptability} />
           <Route path={routes.demo.authRedirect.getRoutePath()} component={demoAuthRedirect(DemoAuthRedirect)} />
+          <Route path={routes.demo.icons.getRoutePath()} component={DemoIcons} />
           <Redirect to={routes.demo.gui.getRedirectPath()} />
         </Switch>
       </Route>

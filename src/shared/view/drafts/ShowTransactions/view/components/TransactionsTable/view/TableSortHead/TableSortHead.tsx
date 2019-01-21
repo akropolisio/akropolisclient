@@ -1,17 +1,18 @@
 import * as React from 'react';
 import * as cn from 'classnames';
 import { bind } from 'decko';
+
+import { IFundTransaction } from 'shared/types/models';
 import { AngleArrow } from 'shared/view/elements/Icons';
 
 import { StylesProps, provideStyles } from './TableSortHead.style';
-import { ITransaction } from '../../../../../namespace';
 
 interface ITableSortHead {
-  columnId: keyof ITransaction;
+  columnId: keyof IFundTransaction;
   active: boolean;
   order?: 'desc' | 'asc';
   align?: 'left' | 'center' | 'right';
-  onClick?(columnId: keyof ITransaction): void;
+  onClick?(columnId: keyof IFundTransaction): void;
 }
 
 type IProps = ITableSortHead & StylesProps;

@@ -17,7 +17,7 @@ export interface IFailAction<T, P, E = string> extends IPlainFailAction<T, E> {
 }
 
 export interface IMultiAction<T = string> {
-  _instanceKey?: string;
+  _instanceKey: string;
   type: T;
 }
 

@@ -1,12 +1,10 @@
 import * as React from 'react';
-import { SubSet, Omit } from '_helpers';
+import { SubSet, MergeRight } from '_helpers';
 import MuiButton, { ButtonProps } from '@material-ui/core/Button';
 
-type ICommonProps = Omit<ButtonProps, 'color'>;
-
-type IProps = ICommonProps & {
+type IProps = MergeRight<ButtonProps, {
   color?: SubSet<ButtonProps['color'], 'primary' | 'default'>;
-};
+}>;
 
 function Button(props: IProps) {
   return (

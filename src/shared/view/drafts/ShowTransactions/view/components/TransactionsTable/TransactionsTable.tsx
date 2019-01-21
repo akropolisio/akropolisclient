@@ -3,19 +3,19 @@ import { bind } from 'decko';
 
 import { Table, TableBody, TableRow, TableCell, TableHead } from 'shared/view/elements';
 import { i18nConnect, ITranslateProps, tKeys as tKeysAll } from 'services/i18n';
+import { IFundTransaction } from 'shared/types/models';
 import { toFixed } from 'shared/helpers/integer';
 
-import { ITransaction } from '../../../namespace';
 import TableSortHead from './view/TableSortHead/TableSortHead';
 import { StylesProps, provideStyles } from './TransactionsTable.style';
 
 interface IState {
   order: 'desc' | 'asc';
-  orderBy: keyof ITransaction;
+  orderBy: keyof IFundTransaction;
 }
 
 interface IOwnProps {
-  transactions: ITransaction[];
+  transactions: IFundTransaction[];
 }
 
 const tKeys = tKeysAll.features.transactions;
@@ -34,7 +34,7 @@ class CompletedTransactions extends React.PureComponent<IProps, IState> {
         <TableHead>
           <TableRow className={classes.header}>
             <TableCell />
-            {rowKeys && rowKeys.map((key: keyof ITransaction, i) => (
+            {rowKeys && rowKeys.map((key: keyof IFundTransaction, i) => (
               <TableCell key={key}>
                 <TableSortHead
                   columnId={key}
@@ -54,7 +54,7 @@ class CompletedTransactions extends React.PureComponent<IProps, IState> {
             (row, i) => (
               <TableRow key={i} className={classes.row}>
                 <TableCell className={classes.cell}>{i}</TableCell>
-                {rowKeys.map((key: keyof ITransaction, k) => (
+                {rowKeys.map((key: keyof IFundTransaction, k) => (
                   <TableCell
                     key={key}
                     align={k === rowKeys.length - 1 ? 'right' : 'left'}
@@ -70,7 +70,7 @@ class CompletedTransactions extends React.PureComponent<IProps, IState> {
   }
 
   @bind
-  public sortBy(orderBy: keyof ITransaction) {
+  public sortBy(orderBy: keyof IFundTransaction) {
     if (this.state.orderBy !== orderBy) {
       this.setState({ orderBy, order: 'desc' });
     } else {

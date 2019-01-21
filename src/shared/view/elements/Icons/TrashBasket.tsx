@@ -4,7 +4,7 @@ import { GetProps } from '_helpers';
 import SvgIcon from '@material-ui/core/SvgIcon';
 
 // tslint:disable:max-line-length
-function Arrow(props: GetProps<typeof SvgIcon>) {
+function TrashBasket(props: GetProps<typeof SvgIcon>) {
   return (
     <SvgIcon {...props} viewBox="0 0 18 18">
       <g fill="none" fillRule="evenodd" stroke="currentColor" strokeWidth="1.5">
@@ -15,4 +15,4 @@ function Arrow(props: GetProps<typeof SvgIcon>) {
   );
 }
 
-export default Arrow;
+export default TrashBasket;

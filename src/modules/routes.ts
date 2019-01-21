@@ -19,6 +19,7 @@ const rawTree = {
     translations: null,
     adaptability: null,
     authRedirect: null,
+    icons: null,
   },
 };
 
