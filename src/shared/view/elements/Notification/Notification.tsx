@@ -28,7 +28,7 @@ class Notification extends React.Component<IProps> {
   public componentDidUpdate(prevProps: IProps) {
     const { isOpen, onClose, closeTimeout } = this.props;
     if (!prevProps.isOpen && isOpen) {
-      this.closeTimer = window.setTimeout(() => onClose(), closeTimeout ? closeTimeout : 2000);
+      this.closeTimer = window.setTimeout(() => onClose(), closeTimeout || 2000);
     }
   }
 

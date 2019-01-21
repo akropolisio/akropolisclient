@@ -1,1 +1,2 @@
-export const deppLinkToMobileApp = 'exp://dh-wqa.varimartas.akropolisconnect.exp.direct:80/--/transaction?data=';
+// tslint:disable:max-line-length
+export const deppLinkToMobileApp = 'akropolisconnect://transaction?data=';

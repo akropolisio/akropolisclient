@@ -1,4 +1,4 @@
-import { withStyles, WithStyles, Theme, CSSProperties } from 'shared/styles';
+import { withStyles, WithStyles, Theme } from 'shared/styles';
 import { rule } from 'shared/helpers/style';
 
 const styles = ({ extra: theme }: Theme) => ({

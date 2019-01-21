@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { bind } from 'decko';
-import { MobileView } from 'react-device-detect';
 
+import { MobileView } from 'services/adaptability';
 import { i18nConnect, ITranslateProps, tKeys as tKeysAll } from 'services/i18n';
 import { IAppReduxState } from 'shared/types/app';
 import { ICommunication } from 'shared/types/redux';
@@ -113,7 +113,6 @@ class SignTransaction extends React.Component<IProps, IState> {
   @bind
   public closeNotification() {
     this.setState({ showCopyClipboardNotification: false });
-
   }
 }
 
