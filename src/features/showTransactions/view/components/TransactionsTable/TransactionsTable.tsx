@@ -4,7 +4,7 @@ import { bind } from 'decko';
 import { Table, TableBody, TableRow, TableCell, TableHead } from 'shared/view/elements';
 import { i18nConnect, ITranslateProps, tKeys as tKeysAll } from 'services/i18n';
 import { IFundTransaction } from 'shared/types/models';
-import { toFixed } from 'shared/helpers/integer';
+import { formatUSDAmount } from 'shared/helpers/format';
 
 import TableSortHead from './view/TableSortHead/TableSortHead';
 import { StylesProps, provideStyles } from './TransactionsTable.style';
@@ -60,7 +60,8 @@ class CompletedTransactions extends React.PureComponent<IProps, IState> {
                     align={k === rowKeys.length - 1 ? 'right' : 'left'}
                     className={classes.cell}
                   >
-                    {key === 'amount' ? toFixed(row[key], 3) : row[key]}
+                    {key === 'amount' ?
+                      <div className={classes.bold}>{formatUSDAmount(row[key])}</div> : row[key]}
                   </TableCell>
                 ))}
               </TableRow>))}
