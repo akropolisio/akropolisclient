@@ -3,7 +3,8 @@ import { bind } from 'decko';
 import { withRouter, RouteComponentProps } from 'react-router';
 
 import { InjectedAuthRouterProps } from 'shared/helpers/authWrapper';
-import { Dashboard, UserFunds } from 'shared/view/drafts';
+import { Dashboard } from 'features/manageDashboard';
+import { UserFunds } from 'features/manageFunds';
 import { BaseLayout } from 'modules/shared';
 import { i18nConnect, ITranslateProps, tKeys as tKeysAll } from 'services/i18n';
 import { Button } from 'shared/view/elements';

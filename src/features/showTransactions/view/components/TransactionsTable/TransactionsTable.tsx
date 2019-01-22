@@ -28,7 +28,7 @@ class CompletedTransactions extends React.PureComponent<IProps, IState> {
   public render() {
     const { orderBy, order } = this.state;
     const { transactions, classes, t } = this.props;
-    const rowKeys = transactions[0] && Object.keys(transactions[0]);
+    const rowKeys = transactions[0] && Object.keys(transactions[0]).filter((k: keyof IFundTransaction) => k !== 'id');
     return (
       <Table separated>
         <TableHead>

@@ -7,7 +7,7 @@ import { formatUSDAmount } from 'shared/helpers/format';
 
 import { StylesProps, provideStyles } from './Transaction.style';
 
-const hiddenMetrics = ['amount'];
+const hiddenMetrics = ['amount', 'id'];
 
 interface IOwnProps {
   transaction: IFundTransaction;

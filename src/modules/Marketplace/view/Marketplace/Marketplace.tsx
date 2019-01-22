@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { BaseLayout } from 'modules/shared';
-import { FundsMarketplace } from 'shared/view/drafts';
+import { FundsMarketplace } from 'features/manageFundsMarketplace';
 import { InjectedAuthRouterProps } from 'shared/helpers/authWrapper';
 
 type IProps = InjectedAuthRouterProps;
