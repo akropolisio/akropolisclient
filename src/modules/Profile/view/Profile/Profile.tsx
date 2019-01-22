@@ -8,7 +8,6 @@ import { tKeys as tkeysAll, i18nConnect, ITranslateProps } from 'services/i18n';
 import { withComponent } from 'shared/helpers/react';
 import { InjectedAuthRouterProps } from 'shared/helpers/authWrapper';
 import { ToggleButtonGroup, ToggleButton } from 'shared/view/elements';
-import { Contributors } from 'shared/view/drafts';
 import { AsyncEditMainInfo } from 'features/changeUser';
 
 import { StylesProps, provideStyles } from './Profile.style';
@@ -28,7 +27,7 @@ interface ISectionLink {
 
 const links: ISectionLink[] = [
   { section: 'settings', title: tKeys.settings.getKey() },
-  { section: 'contributors', title: tKeys.contributors.getKey() },
+  { section: 'contributors', title: tKeys.contributors.getKey(), disabled: true },
   { section: 'heirs', title: tKeys.heirs.getKey(), disabled: true },
 ];
 
@@ -58,7 +57,7 @@ class Profile extends React.PureComponent<IProps> {
           </ToggleButtonGroup>
           <div className={classes.content}>
             {selectedSection === 'settings' && <AsyncEditMainInfo />}
-            {selectedSection === 'contributors' && <Contributors />}
+            {/* {selectedSection === 'contributors' && <Contributors />} */}
           </div>
         </div>
       </BaseLayout>

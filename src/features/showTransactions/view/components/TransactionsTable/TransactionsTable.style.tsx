@@ -26,6 +26,10 @@ const styles = ({ extra: theme }: Theme) => ({
     boxShadow: '0 1px 7px 0 rgba(184, 184, 184, 0.5)',
   }),
 
+  bold: rule({
+    fontWeight: 'bold',
+  }),
+
 });
 
 export const provideStyles = withStyles(styles);
