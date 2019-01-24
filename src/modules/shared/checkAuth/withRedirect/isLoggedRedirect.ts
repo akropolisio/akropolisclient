@@ -6,5 +6,5 @@ export default connectedRouterRedirect({
   authenticatedSelector: selectors.selectIsLogged,
   wrapperDisplayName: 'IsNotLoggedRedirect',
   allowRedirectBack: true,
-  redirectPath: routes.auth.role.getRedirectPath({ role: 'beneficiary' }),
+  redirectPath: routes.marketplace.getRedirectPath(),
 });

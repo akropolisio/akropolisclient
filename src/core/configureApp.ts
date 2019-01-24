@@ -3,12 +3,14 @@ import { TYPES, container } from './configureIoc';
 import configureStore, { createReducer } from './configureStore';
 import { configureJss } from 'core/configureJss';
 
-import { DemoModule, AuthModule, ProfileModule, TransactionsModule, DashboardModule, MarketplaceModule } from 'modules';
+import { DemoModule, MarketplaceModule } from 'modules';
 import { reduxEntry as adaptabilityRE } from 'services/adaptability';
 import { reduxEntry as dataProviderRE } from 'services/dataProvider';
 import { reduxEntry as i18nRE } from 'services/i18n';
 import { reduxEntry as signTransactionRE } from 'services/signTransaction';
 import { reduxEntry as userRE } from 'services/user';
+
+import { reduxEntry as signInRE } from 'features/signIn';
 
 import { ReducersMap } from 'shared/types/redux';
 import { IAppData, IModule, RootSaga, IAppReduxState, IReduxEntry } from 'shared/types/app';
@@ -17,10 +19,6 @@ function configureApp(data?: IAppData): IAppData {
   /* Prepare main app elements */
   const modules: IModule[] = [
     DemoModule,
-    AuthModule,
-    ProfileModule,
-    TransactionsModule,
-    DashboardModule,
     MarketplaceModule,
   ];
 
@@ -34,6 +32,7 @@ function configureApp(data?: IAppData): IAppData {
     i18nRE,
     signTransactionRE,
     userRE,
+    signInRE,
   ];
 
   const connectedSagas: RootSaga[] = [];
@@ -90,7 +89,7 @@ function configureApp(data?: IAppData): IAppData {
     }
   }
 
-  return { modules, store, jssDeps };
+  return { modules, store, jssDeps, drizzle: dependencies.drizzle };
 }
 
 export default configureApp;

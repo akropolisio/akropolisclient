@@ -3,6 +3,7 @@ import { RouteProps } from 'react-router';
 import { Store, Reducer, ActionCreator, Action } from 'redux';
 import { SagaIterator } from 'redux-saga';
 import { GenerateClassName } from 'jss';
+import { Drizzle } from 'drizzle';
 
 import * as adaptabilityNS from 'services/adaptability/namespace';
 import * as dataProviderNS from 'services/dataProvider/namespace';
@@ -12,6 +13,7 @@ import * as userNS from 'services/user/namespace';
 import Api from 'services/api/Api';
 
 import * as changeUserNS from 'features/changeUser/namespace';
+import * as signInNS from 'features/signIn/namespace';
 
 import { JSS, Theme } from 'shared/styles';
 import { IMultiInstanceState } from 'shared/helpers/redux';
@@ -23,6 +25,7 @@ export interface IModule {
 
 export interface IAppData {
   modules: IModule[];
+  drizzle: Drizzle;
   store: Store<IAppReduxState>;
   jssDeps: IJssDependencies;
 }
@@ -35,6 +38,7 @@ export interface IJssDependencies {
 
 export interface IDependencies {
   api: Api;
+  drizzle: Drizzle;
 }
 
 export type IDictionary<T, S extends keyof any = string> = {
@@ -65,6 +69,7 @@ export interface IAppReduxState {
   user: userNS.IReduxState;
   // features
   changeUser: changeUserNS.IReduxState;
+  signIn: signInNS.IReduxState;
 }
 
 export type RootSaga = (deps: IDependencies) => () => SagaIterator;

@@ -58,14 +58,9 @@ const styles = ({ extra: theme }: Theme) => ({
     }),
   }),
 
-  profileComponent: rule({
+  accountStatus: rule({
+    display: 'flex',
     marginLeft: 'auto',
-    display: 'none',
-    cursor: 'pointer',
-
-    [theme.breakpoints.up('sm')]: rule({
-      display: 'block',
-    }),
   }),
 
   toggleMenuButton: rule({

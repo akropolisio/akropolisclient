@@ -232,6 +232,7 @@
     "@types/serialize-javascript": "^1.5.0",
     "@types/stylelint": "^9.4.1",
     "@types/uuid": "^3.4.4",
+    "@types/web3": "^1.0.15",
     "@types/webpack-hot-middleware": "^2.16.2",
     "@types/webpack-node-externals": "^1.6.2",
     "accounting": "^0.4.1",
@@ -253,6 +254,9 @@
     "css-loader": "^1.0.1",
     "decko": "^1.2.0",
     "doiuse": "^4.2.0",
+    "drizzle": "^1.2.4",
+    "drizzle-react": "^1.2.0",
+    "eth-sig-util": "^2.1.1",
     "events": "^3.0.0",
     "express": "^4.16.3",
     "file-loader": "^2.0.0",
@@ -264,7 +268,7 @@
     "material-ui-pickers": "^2.1.1",
     "moment": "^2.23.0",
     "node-polyglot": "^2.3.0",
-    "node-sass": "^4.9.2",
+    "node-sass": "^4.11.0",
     "normalize.css": "^8.0.0",
     "normalizr": "^2.3.1",
     "postcss-loader": "^3.0.0",
@@ -305,7 +309,7 @@
     "uuid": "^3.3.2"
   },
   "engines": {
-    "node": "10.2.0",
-    "npm": "5.6.0"
+    "node": "10.15.0",
+    "npm": "6.6.0"
   }
 }

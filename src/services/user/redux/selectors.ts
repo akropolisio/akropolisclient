@@ -1,5 +1,5 @@
 import { IAppReduxState } from 'shared/types/app';
-import { UserRole, IUser } from 'shared/types/models';
+import { IUser } from 'shared/types/models';
 import { makeCommunicationSelector } from 'shared/helpers/redux';
 
 import * as NS from '../namespace';
@@ -10,8 +10,8 @@ export function selectState(state: IAppReduxState): NS.IReduxState {
 
 export const selectCommunication = makeCommunicationSelector(selectState);
 
-export function selectUserRole(state: IAppReduxState): UserRole | null {
-  return selectState(state).data.role;
+export function selectConfirmedAddress(state: IAppReduxState): string | null {
+  return selectState(state).data.confirmedAddress;
 }
 
 export function selectUser(state: IAppReduxState): IUser | null {

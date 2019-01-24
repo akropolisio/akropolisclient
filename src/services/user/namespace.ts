@@ -1,5 +1,5 @@
 import { IAction, IPlainAction, IPlainFailAction, ICommunication } from 'shared/types/redux';
-import { UserRole, IUser } from 'shared/types/models';
+import { IUser } from 'shared/types/models';
 
 export interface IReduxState {
   communication: {
@@ -7,12 +7,13 @@ export interface IReduxState {
   };
   data: {
     user: IUser | null;
-    role: UserRole | null;
+    confirmedAddress: string | null;
     isLogged: boolean;
   };
 }
 
-export type ICompleteAuthentication = IAction<'USER:COMPLETE_AUTHENTICATION', { role: UserRole }>;
+export type ICompleteAuthentication = IAction<'USER:COMPLETE_AUTHENTICATION', { address: string }>;
+export type ILogout = IPlainAction<'USER:LOGOUT'>;
 
 export type ILoadUser = IPlainAction<'USER:LOAD_USER'>;
 export type ILoadUserSuccess = IAction<'USER:LOAD_USER_SUCCESS', { user: IUser }>;
@@ -22,4 +23,4 @@ export type IUpdateUser = IAction<'USER:UPDATE_USER', { user: IUser }>;
 
 export type Action = ICompleteAuthentication
   | ILoadUser | ILoadUserSuccess | ILoadUserFail
-  | IUpdateUser;
+  | IUpdateUser | ILogout;

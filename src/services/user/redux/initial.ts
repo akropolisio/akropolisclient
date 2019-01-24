@@ -7,7 +7,7 @@ export const initial: NS.IReduxState = {
   },
   data: {
     user: null,
-    role: null,
+    confirmedAddress: null,
     isLogged: false,
   },
 };

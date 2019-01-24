@@ -18,7 +18,6 @@ import { Button } from 'shared/view/elements';
 import { withComponent } from 'shared/helpers/react';
 import { InjectedAuthRouterProps } from 'shared/helpers/authWrapper';
 
-import { SelectRole } from './components';
 import { StylesProps, provideStyles } from './LoginForm.style';
 
 const LinkButton = withComponent(Link)(Button);
@@ -51,9 +50,6 @@ class LoginForm extends React.PureComponent<IProps> {
           <div className={classes.subTitle}>{t(tKeysAuth.authForm.subTitle.getKey())}</div>
           <div className={classes.title}>{t(tKeysAuth.authForm.title.getKey())}</div>
           <div className={classes.selectRole}>{t(tKeysAuth.authForm.selectRole.getKey())}</div>
-          <div className={classes.roles}>
-            <SelectRole />
-          </div>
           <div className={classes.signButtons}>
             <SignTransactionButton<'signIn'>
               transactionType="signIn"

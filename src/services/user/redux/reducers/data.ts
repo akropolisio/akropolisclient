@@ -6,7 +6,7 @@ export function dataReducer(state: NS.IReduxState['data'] = initial.data, action
     case 'USER:COMPLETE_AUTHENTICATION': {
       return {
         ...state,
-        role: action.payload.role,
+        confirmedAddress: action.payload.address,
         isLogged: true,
       };
     }
@@ -16,6 +16,9 @@ export function dataReducer(state: NS.IReduxState['data'] = initial.data, action
         ...state,
         user: action.payload.user,
       };
+    }
+    case 'USER:LOGOUT': {
+      return initial.data;
     }
     default: return state;
   }
