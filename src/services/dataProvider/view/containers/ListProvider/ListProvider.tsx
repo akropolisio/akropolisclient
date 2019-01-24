@@ -51,16 +51,10 @@ function mapDispatch(dispatch: Dispatch): IActionProps {
 }
 
 const sortAvailability: AvailabilitySortByResource = {
-  contributors: false,
-  fund: true,
-  transaction: true,
-  userFund: true,
+  incoming: true,
 };
 const paginationAvailability: AvailabilityPaginationByResource = {
-  contributors: false,
-  fund: true,
-  transaction: true,
-  userFund: true,
+  incoming: true,
 };
 // const filterAvailability: AvailabilityFilterByResource = {
 //   contributors: false,

@@ -3,13 +3,11 @@ import HttpActions from './HttpActions';
 
 import Data from './Data';
 import Transactions from './Transactions';
-import User from './User';
 
 import BaseApi from './BaseApi';
 
 class Api {
   public transactions: Transactions;
-  public user: User;
   public data: Data;
 
   private actions: HttpActions;
@@ -19,12 +17,11 @@ class Api {
 
     this.data = new Data(this.actions);
     this.transactions = new Transactions(this.actions);
-    this.user = new User(this.actions);
   }
 
   @bind
   public setToken(token: string | null) {
-    const apiSet: BaseApi[] = [this.transactions, this.user, this.data];
+    const apiSet: BaseApi[] = [this.transactions, this.data];
 
     apiSet.forEach(item => item.token = token);
   }

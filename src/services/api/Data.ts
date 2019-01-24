@@ -1,10 +1,9 @@
 import { bind } from 'decko';
 import { delay } from 'redux-saga';
+import * as R from 'ramda';
 
 import { Resource, DataByResource, IListResponse, ListRequestUnion, ID } from 'shared/types/models';
-import { transactionsMock, userFundsMock, contributorsMock, fundsMock } from 'shared/helpers/mocks';
 import BaseApi from './BaseApi';
-import * as R from 'ramda';
 
 function makeMocks<T extends { id: ID }>(values: T[]): T[] {
   const coef = Math.ceil(Math.random() * 5 + 10);
@@ -12,10 +11,7 @@ function makeMocks<T extends { id: ID }>(values: T[]): T[] {
 }
 
 const mockByResource: { [key in Resource]: Array<DataByResource[key]> } = {
-  transaction: makeMocks(transactionsMock),
-  contributors: makeMocks(contributorsMock),
-  userFund: makeMocks(userFundsMock),
-  fund: makeMocks(fundsMock),
+  incoming: makeMocks([{ id: 1 }, { id: 1 }]),
 };
 
 class Data extends BaseApi {

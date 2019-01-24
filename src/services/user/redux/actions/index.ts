@@ -6,4 +6,3 @@ export function logout(): NS.ILogout {
   };
 }
 export * from './data';
-export * from './communication';

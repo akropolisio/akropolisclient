@@ -12,7 +12,6 @@ import * as signTransactionNS from 'services/signTransaction/namespace';
 import * as userNS from 'services/user/namespace';
 import Api from 'services/api/Api';
 
-import * as changeUserNS from 'features/changeUser/namespace';
 import * as signInNS from 'features/signIn/namespace';
 
 import { JSS, Theme } from 'shared/styles';
@@ -68,7 +67,6 @@ export interface IAppReduxState {
   signTransaction: signTransactionNS.IReduxState;
   user: userNS.IReduxState;
   // features
-  changeUser: changeUserNS.IReduxState;
   signIn: signInNS.IReduxState;
 }
 

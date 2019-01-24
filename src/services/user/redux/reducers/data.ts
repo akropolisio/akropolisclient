@@ -10,13 +10,6 @@ export function dataReducer(state: NS.IReduxState['data'] = initial.data, action
         isLogged: true,
       };
     }
-    case 'USER:UPDATE_USER':
-    case 'USER:LOAD_USER_SUCCESS': {
-      return {
-        ...state,
-        user: action.payload.user,
-      };
-    }
     case 'USER:LOGOUT': {
       return initial.data;
     }

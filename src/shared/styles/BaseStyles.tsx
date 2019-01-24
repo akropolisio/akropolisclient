@@ -22,6 +22,7 @@ const styles = ({ extra: theme }: Theme) => ({
     '#root': {
       zIndex: theme.zIndex.newContext,
       position: 'relative',
+      minWidth: 1000,
     },
     '*, *::before, *::after': {
       boxSizing: 'inherit',

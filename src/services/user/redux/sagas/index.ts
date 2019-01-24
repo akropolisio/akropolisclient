@@ -1,10 +1,8 @@
 import { SagaIterator, Channel, eventChannel } from 'redux-saga';
-import { put, call, takeLatest, take, select } from 'redux-saga/effects';
-import { PromisedReturnType } from '_helpers';
+import { put, takeLatest, take, select } from 'redux-saga/effects';
 import { DrizzleState } from 'drizzle';
 
 import { IDependencies } from 'shared/types/app';
-import { getErrorMsg } from 'shared/helpers';
 
 import * as NS from '../../namespace';
 import * as actions from '../actions';
@@ -16,18 +14,6 @@ export function getSaga(deps: IDependencies) {
   return function* saga(): SagaIterator {
     yield takeLatest(completeAuthenticationType, listenAccountChange, deps);
   };
-}
-
-export function* loadUserSaga({ api }: IDependencies) {
-  try {
-    yield put(actions.loadUser());
-    const user: PromisedReturnType<typeof api.user.loadUser> =
-      yield call(api.user.loadUser);
-    yield put(actions.loaderUserSuccess({ user }));
-  } catch (error) {
-    const message = getErrorMsg(error);
-    yield put(actions.loadUserFail(message));
-  }
 }
 
 export function* listenAccountChange({ drizzle }: IDependencies) {

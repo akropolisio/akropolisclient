@@ -1,5 +1,4 @@
 import * as React from 'react';
-import * as cn from 'classnames';
 import { NavLink } from 'react-router-dom';
 
 import { i18nConnect, ITranslateProps, tKeys } from 'services/i18n';
@@ -11,7 +10,7 @@ import routes from '../../../routes';
 import { StylesProps, provideStyles } from './Menu.style';
 
 interface IProps {
-  viewType: 'row' | 'column';
+  isLogged: boolean;
 }
 
 interface IMenuItem {
@@ -19,37 +18,24 @@ interface IMenuItem {
   label: string;
 }
 
-const rowItems: IMenuItem[] = [
-  { label: tKeys.shared.menu.dashboard.getKey(), to: routes.dashboard.getRedirectPath() },
-  { label: tKeys.shared.menu.marketplace.getKey(), to: routes.marketplace.getRedirectPath() },
-];
-
-const columnItems: IMenuItem[] = rowItems.concat([
-  { label: tKeys.shared.menu.profile.getKey(), to: routes.profile.getRedirectPath() },
-]);
-
-const itemsByType: Record<IProps['viewType'], IMenuItem[]> = {
-  column: columnItems,
-  row: rowItems,
-};
+const getItems = (isLogged: boolean) => ([] as IMenuItem[])
+  .concat(isLogged ? [
+    { label: tKeys.shared.menu.myC2FCs.getKey(), to: routes.c2fc.type.getRedirectPath({ type: 'incoming' }) },
+  ] : [])
+  .concat([{ label: tKeys.shared.menu.marketplace.getKey(), to: routes.marketplace.getRedirectPath() }]);
 
 const NavButton = withComponent(NavLink)(Button);
 
 function Menu(props: IProps & StylesProps & ITranslateProps) {
-  const { classes, t, viewType } = props;
-
-  const linkClassName = cn(classes.link, {
-    [classes.isRowType]: viewType === 'row',
-    [classes.isColumnType]: viewType === 'column',
-  });
+  const { classes, t } = props;
 
   return (
     <nav className={classes.root}>
-      {itemsByType[viewType].map(item => (
+      {getItems(props.isLogged).map(item => (
         <NavButton
           variant="text"
           key={item.label}
-          className={linkClassName}
+          className={classes.link}
           activeClassName={classes.isActive}
           to={item.to}
         >

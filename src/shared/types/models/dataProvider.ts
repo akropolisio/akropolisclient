@@ -1,9 +1,6 @@
 import { SubSet } from '_helpers';
-import { IFund, IUserFund } from './fund';
-import { IFundTransaction } from './transactions';
-import { IContributor } from './user';
 
-export type Resource = 'fund' | 'userFund' | 'transaction' | 'contributors';
+export type Resource = 'incoming';
 
 export type SortOrder = 'asc' | 'desc';
 export interface ISortParams<F extends string> {
@@ -12,31 +9,19 @@ export interface ISortParams<F extends string> {
 }
 
 export type SortFieldByResource = SubSet<Record<Resource, string>, {
-  contributors: keyof IContributor;
-  fund: keyof IFund;
-  transaction: keyof IFundTransaction;
-  userFund: keyof IUserFund;
+  incoming: string;
 }>;
 
 export type SortByResource = SubSet<Record<Resource, ISortParams<string> | null>, {
-  contributors: null;
-  fund: ISortParams<SortFieldByResource['fund']>;
-  transaction: ISortParams<SortFieldByResource['transaction']>;
-  userFund: ISortParams<SortFieldByResource['userFund']>;
+  incoming: ISortParams<SortFieldByResource['incoming']>;
 }>;
 
 export type FilterByResource = SubSet<Record<Resource, object | null>, {
-  contributors: null;
-  fund: null;
-  transaction: null;
-  userFund: null;
+  incoming: null;
 }>;
 
 export type AvailabilityPaginationByResource = SubSet<Record<Resource, boolean>, {
-  contributors: false;
-  fund: true;
-  transaction: true;
-  userFund: true;
+  incoming: true;
 }>;
 export type AvailabilitySortByResource = {
   [key in Resource]: SortByResource[key] extends null ? false : true;
@@ -46,10 +31,7 @@ export type AvailabilityFilterByResource = {
 };
 
 export type DataByResource = SubSet<Record<Resource, any>, {
-  contributors: IContributor;
-  fund: IFund;
-  transaction: IFundTransaction;
-  userFund: IUserFund;
+  incoming: {};
 }>;
 
 export interface IPaginationParams {

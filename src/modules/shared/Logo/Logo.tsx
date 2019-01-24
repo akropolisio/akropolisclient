@@ -17,7 +17,7 @@ class HeaderLogo extends React.PureComponent<IProps> {
     return (
       <Link className={classes.root} to={linkTo}>
         <Logo className={classes.logo} />
-        <div className={classes.title}>akropolis</div>
+        <div className={classes.title}>C2FC<br />0xchanger</div>
       </Link>
     );
   }

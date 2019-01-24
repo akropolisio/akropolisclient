@@ -18,10 +18,8 @@ const styles = ({ extra: theme }: Theme) => ({
     fontSize: '0.45em',
     fontFamily: theme.typography.primaryFont,
     fontWeight: 'bold',
-    color: theme.colors.heavyMetal,
-    textTransform: 'uppercase',
+    color: theme.palette.text.positive,
     letterSpacing: '0.07em',
-
   }),
 
   logo: rule({
@@ -29,9 +27,7 @@ const styles = ({ extra: theme }: Theme) => ({
     flexShrink: 0,
     marginRight: ({ viewType, onlyIcon }: IProps) => viewType === 'row' && !onlyIcon ? '0.5em' : 0,
     marginBottom: ({ viewType }: IProps) => viewType === 'row' ? 0 : '0.65em',
-
   }),
-
 });
 
 export const provideStyles = withStyles(styles);

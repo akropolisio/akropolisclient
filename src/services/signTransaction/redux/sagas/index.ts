@@ -54,10 +54,6 @@ export function* listenTransactionSaga({ api }: IDependencies, { payload }: NS.I
     });
     if (data) {
       yield put(actions.saveSignedTransaction(data));
-
-      if (payload.type === 'signIn' || payload.type === 'signUp') {
-        yield call(api.setToken, data.txid);
-      }
     }
   } catch {
     //
