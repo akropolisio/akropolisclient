@@ -27,7 +27,7 @@ const workerPool = {
   poolTimeout: withHot ? Infinity : 2000,
 };
 
-threadLoader.warmup(workerPool, [
+isWatchMode && threadLoader.warmup(workerPool, [
   'babel-loader',
   'ts-loader',
   'postcss-loader',
