@@ -9,6 +9,7 @@ import { reduxEntry as dataProviderRE } from 'services/dataProvider';
 import { reduxEntry as i18nRE } from 'services/i18n';
 import { reduxEntry as signTransactionRE } from 'services/signTransaction';
 import { reduxEntry as userRE } from 'services/user';
+import { reduxEntry as detectNetworkRE } from 'features/detectNetwork';
 
 import { ReducersMap } from 'shared/types/redux';
 import { IAppData, IModule, RootSaga, IAppReduxState, IReduxEntry } from 'shared/types/app';
@@ -34,6 +35,7 @@ function configureApp(data?: IAppData): IAppData {
     i18nRE,
     signTransactionRE,
     userRE,
+    detectNetworkRE,
   ];
 
   const connectedSagas: RootSaga[] = [];

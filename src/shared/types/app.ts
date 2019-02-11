@@ -12,6 +12,7 @@ import * as userNS from 'services/user/namespace';
 import Api from 'services/api/Api';
 
 import * as changeUserNS from 'features/changeUser/namespace';
+import * as detectNetworkNS from 'features/detectNetwork/namespace';
 
 import { JSS, Theme } from 'shared/styles';
 import { IMultiInstanceState } from 'shared/helpers/redux';
@@ -65,6 +66,7 @@ export interface IAppReduxState {
   user: userNS.IReduxState;
   // features
   changeUser: changeUserNS.IReduxState;
+  detectNetwork: detectNetworkNS.IReduxState;
 }
 
 export type RootSaga = (deps: IDependencies) => () => SagaIterator;

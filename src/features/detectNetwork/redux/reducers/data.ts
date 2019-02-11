@@ -1,0 +1,14 @@
+import * as NS from '../../namespace';
+import { initial } from '../initial';
+
+export function dataReducer(state: NS.IReduxState['data'] = initial.data, action: NS.Action): NS.IReduxState['data'] {
+  switch (action.type) {
+    case 'DETECT_NETWORK:SET_NETWORK_STATUS': {
+      return {
+        ...state,
+        status: action.payload.status,
+      };
+    }
+    default: return state;
+  }
+}

@@ -12,10 +12,12 @@ class Api {
   public user: User;
   public data: Data;
 
+  public subscribeResponses: HttpActions['subscribeResponses'];
   private actions: HttpActions;
 
   constructor(public baseUrl: string, public version: string = 'v1') {
     this.actions = new HttpActions(`${baseUrl}/${version}`);
+    this.subscribeResponses = this.actions.subscribeResponses;
 
     this.data = new Data(this.actions);
     this.transactions = new Transactions(this.actions);
