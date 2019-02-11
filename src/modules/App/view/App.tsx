@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { SignTransactionModal } from 'services/signTransaction';
+import { ScrollTop } from 'shared/view/components';
+import { Adaptive } from 'services/adaptability';
 
 class App extends React.Component {
   public render() {
@@ -9,6 +11,7 @@ class App extends React.Component {
       <>
         {children}
         <SignTransactionModal />
+        <Adaptive from="md"> <ScrollTop /></Adaptive>
       </>
     );
   }

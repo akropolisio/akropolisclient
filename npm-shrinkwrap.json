@@ -845,6 +845,14 @@
         "@types/react-router": "*"
       }
     },
+    "@types/react-scroll": {
+      "version": "1.5.4",
+      "resolved": "https://registry.npmjs.org/@types/react-scroll/-/react-scroll-1.5.4.tgz",
+      "integrity": "sha512-EYJt9wDvyrcDZpZqI19eb2UlAzCoXBeoFu3yMkrBDC8zkwFXOhb8lv3tD9V9UAqptora096M7qWYktsWq1guEg==",
+      "requires": {
+        "@types/react": "*"
+      }
+    },
     "@types/react-select": {
       "version": "1.2.6",
       "resolved": "https://registry.npmjs.org/@types/react-select/-/react-select-1.2.6.tgz",
@@ -12072,6 +12080,11 @@
       "resolved": "https://registry.npmjs.org/lodash.tail/-/lodash.tail-4.1.1.tgz",
       "integrity": "sha1-0jM6NtnncXyK0vfKyv7HwytERmQ="
     },
+    "lodash.throttle": {
+      "version": "4.1.1",
+      "resolved": "https://registry.npmjs.org/lodash.throttle/-/lodash.throttle-4.1.1.tgz",
+      "integrity": "sha1-wj6RtxAkKscMN/HhzaknTMOb8vQ="
+    },
     "lodash.wrap": {
       "version": "4.1.1",
       "resolved": "https://registry.npmjs.org/lodash.wrap/-/lodash.wrap-4.1.1.tgz",
@@ -15683,6 +15696,15 @@
             "loose-envify": "^1.0.0"
           }
         }
+      }
+    },
+    "react-scroll": {
+      "version": "1.7.10",
+      "resolved": "https://registry.npmjs.org/react-scroll/-/react-scroll-1.7.10.tgz",
+      "integrity": "sha512-7K1caXF19PQ/jck+QRCdRMytqWei1ktv7jtcsgMap2s55pGOUc/a5phr4loajZRFRx3qKj9Tz12KDtELp91xMg==",
+      "requires": {
+        "lodash.throttle": "^4.1.1",
+        "prop-types": "^15.5.8"
       }
     },
     "react-select": {
